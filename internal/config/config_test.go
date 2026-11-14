@@ -45,3 +45,13 @@ func TestLoadRejectsBadConfigs(t *testing.T) {
 		}
 	}
 }
+
+// Two targets running at once must never share a template database: one
+// rebuilding it under the other once corrupted a whole run.
+func TestTemplateNamesAreDistinct(t *testing.T) {
+	a, _ := Load(write(t, `{"name":"a","start":["x"],"prepare":{"schema_file":"s.sql"}}`))
+	b, _ := Load(write(t, `{"name":"b","start":["x"],"prepare":{"schema_file":"s.sql"}}`))
+	if a.TemplateName("hunt") == b.TemplateName("hunt") || a.TemplateName("hunt") == a.TemplateName("explore") {
+		t.Fatalf("template names collide: %s %s %s", a.TemplateName("hunt"), b.TemplateName("hunt"), a.TemplateName("explore"))
+	}
+}

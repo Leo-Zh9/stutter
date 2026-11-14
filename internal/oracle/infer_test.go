@@ -78,3 +78,20 @@ func TestInferRejectsUnownedIds(t *testing.T) {
 		t.Fatal("sequence without an owner was not rejected")
 	}
 }
+
+// An OWNED BY column whose in-band values do not move with its sequence
+// cannot be trusted as the owner: inference must stop, not guess.
+func TestInferRejectsOwnerThatDoesNotShift(t *testing.T) {
+	a := inferWorld(2e12, 1e12, false)
+	b := inferWorld(2e12+2e6, 1e12+1e6, false)
+	for _, st := range []*State{a, b} {
+		st.Tables[0].Columns = append(st.Tables[0].Columns, Column{Name: "legacy"})
+		for _, row := range st.Rows["tx"] {
+			row["legacy"] = num(2e12 + 5) // in the band, identical in both runs
+		}
+	}
+	owners := map[string]string{"s.log_id": "logs.id", "s.tx_id": "tx.legacy"}
+	if _, err := Infer(a, b, testBands, owners); err == nil {
+		t.Fatal("owner column that does not shift was accepted")
+	}
+}
