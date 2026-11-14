@@ -1,0 +1,2 @@
+43 requests, 286 schedules
+no fault changed the final state in 286 runs (286 fired, 0 did not fire)

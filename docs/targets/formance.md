@@ -53,7 +53,7 @@ The prediction before running was a clean result. This target tests whether the 
 
 Each cell shows schedules that changed the final state out of schedules that fired; every schedule fired. There are 43 crash points per build, one commit per request. The split mutant has 86, because each request now commits twice.
 
-- **Unmodified Formance:** 0 of 129 single faults changed the final state. Neither did any of 286 further schedules (86 singles plus 200 random combinations of 2 to 4 faults), run with `stutter explore`.
+- **Unmodified Formance:** 0 of 129 single faults changed the final state. Neither did any of 286 further schedules (86 singles plus 200 random combinations of 2 to 4 faults, all fired), run with `stutter explore` ([output](../../targets/formance/explore/random-200.txt)).
 - **The missed cases** in the mutant rows are the 5 reverts in the trace. A duplicate revert is refused by Formance's own `ErrAlreadyReverted` check (`internal/controller/ledger/errors.go:89`), independent of the idempotency key. The split mutant's 13 surviving concurrent cases are the 5 reverts plus 8 metadata writes, which are idempotent by nature.
 - **The split mutant is the same bug class as minipay's `key-after-commit`.** A lost response cannot see it, because the retry finds the log. A crash at commit 1 can, and so can a duplicate racing between the two commits.
 - **One partial result.** In the "lookup removed and index dropped" build, two concurrent findings reproduced in only 6 and 4 of 10 replays. One of them did not shrink to a 1-minimal schedule. The barrier holds the first write, and in that build the race window extends past it. Every lost and crash finding reproduced 10 of 10.

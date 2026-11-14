@@ -143,8 +143,14 @@ func exploreCmd(ctx context.Context, root string, args []string) {
 			fail(o.Err)
 		}
 	}
+	fired := 0
+	for _, o := range outs {
+		if o.Fired {
+			fired++
+		}
+	}
 	if idx < 0 {
-		fmt.Printf("no fault changed the final state in %d runs\n", len(outs))
+		fmt.Printf("no fault changed the final state in %d runs (%d fired, %d did not fire)\n", len(outs), fired, len(outs)-fired)
 		return
 	}
 	fmt.Printf("run %d of %d changed the final state; shrinking\n", idx+1, len(scheds))
