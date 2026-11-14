@@ -44,6 +44,7 @@ Placeholders, usable in `start`, `env` and `prepare.migrate_*`:
 |---|---|
 | `{DSN}` | libpq keyword string over the project-local unix socket |
 | `{DATABASE_URL}` | `postgres://postgres@127.0.0.1:54329/<db>?sslmode=disable` |
+| `{DATABASE_URL_SOCKET}` | the same over the unix socket; prefer it for services with large pools, since TCP connections closed by killed processes pile up in TIME_WAIT and can exhaust ephemeral ports |
 | `{ADDR}` | `127.0.0.1:<port>` the service must listen on |
 | `{HOST}`, `{PORT}` | the two halves of `{ADDR}` |
 

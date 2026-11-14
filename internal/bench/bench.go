@@ -23,20 +23,23 @@ import (
 )
 
 type Variant struct {
-	Bug      string `json:"bug"`
-	Class    string `json:"class"` // correct | in-model | control
-	Pattern  string `json:"pattern"`
-	Expected string `json:"expected_fault"`
+	Bug      string           `json:"bug"`
+	Class    string           `json:"class"` // correct | in-model | control
+	Pattern  string           `json:"pattern"`
+	Expected string           `json:"expected_fault"`
+	Type     replay.FaultType `json:"-"` // fault type whose first failure is shrunk
 }
 
 var Variants = []Variant{
-	{"", "correct", "key row inserted first in the same transaction as the work; event ids behind a unique index", "none (false-alarm measurement)"},
-	{"key-ignored", "in-model", "idempotency key accepted but never checked", "lost"},
-	{"key-after-commit", "in-model", "key recorded in a second transaction after the charge commits", "concurrent"},
-	{"webhook-no-dedupe", "in-model", "webhook handler keeps no event log", "lost (redelivery)"},
-	{"webhook-stale-overwrite", "in-model", "status webhook applied without comparing event time", "reorder"},
-	{"webhook-check-then-insert", "in-model", "event dedupe is SELECT then INSERT with no unique index", "concurrent (redelivery)"},
-	{"key-unscoped", "control", "key not bound to the request body; wrong with or without faults", "none: outside a differential oracle"},
+	{"", "correct", "key row inserted first in the same transaction as the work; event ids behind a unique index", "none (false-alarm measurement)", ""},
+	{"key-ignored", "in-model", "idempotency key accepted but never checked", "lost", replay.Lost},
+	{"key-after-commit", "in-model", "key recorded in a second transaction after the charge commits", "concurrent", replay.Concurrent},
+	{"webhook-no-dedupe", "in-model", "webhook handler keeps no event log", "lost (redelivery)", replay.Lost},
+	{"webhook-stale-overwrite", "in-model", "status webhook applied without comparing event time", "reorder", replay.Reorder},
+	{"webhook-check-then-insert", "in-model", "event dedupe is SELECT then INSERT with no unique index", "concurrent (redelivery)", replay.Concurrent},
+	{"key-unscoped", "control", "key not bound to the request body; wrong with or without faults", "none: outside a differential oracle", ""},
+	{"outbox-after-commit", "in-model", "receipt queued after the charge commits, only for fresh charges", "crash", replay.Crash},
+	{"phases-no-recovery", "in-model", "multi-phase payout retried from the first phase, not its recovery point", "crash", replay.Crash},
 }
 
 type Config struct {
@@ -56,8 +59,15 @@ type Rate struct {
 	NNotFire int `json:"n_not_fired"`
 }
 
+type Cell struct {
+	Fired    int `json:"n_fired"`
+	NotFired int `json:"n_not_fired"`
+	Failed   int `json:"failed"`
+}
+
 type VariantResult struct {
 	Variant
+	Matrix map[replay.FaultType]*Cell `json:"by_fault_type"`
 	Schedules    int                 `json:"schedules_available"`
 	Ran          int                 `json:"schedules_run"`
 	Detected     bool                `json:"detected"`
@@ -90,6 +100,7 @@ type Results struct {
 	Retryable   int             `json:"retryable_entries"`
 	Webhooks    int             `json:"webhook_entries"`
 	SingleFaults int            `json:"single_fault_schedules"`
+	Crash        explore.CrashSpace `json:"crash"`
 	RandomFaults int            `json:"random_multi_fault_schedules"`
 	Determinism struct {
 		Replays  int `json:"fault_free_replays"`
@@ -142,9 +153,8 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 			res.Webhooks++
 		}
 	}
-	scheds := explore.Schedules(tr, tc.KeyHeader, cfg.Seed, cfg.Random)
-	res.SingleFaults = len(replay.Faults(tr, tc.KeyHeader))
-	res.RandomFaults = len(scheds) - res.SingleFaults
+	singles := replay.Faults(tr, tc.Space())
+	randoms := explore.Schedules(tr, tc.Space(), cfg.Seed, cfg.Random)[len(singles):]
 
 	runner := func(bug string, barrier bool) *explore.Runner {
 		rc := tc.Replay(env, tplName(bug), []string{"BUG=" + bug})
@@ -156,6 +166,22 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 			return nil, err
 		}
 	}
+
+	// Crash points come from the correct variant's commits: every variant
+	// faces the same schedules, in the same order.
+	say("counting commit points")
+	cs, err := runner("", true).CrashFaults(ctx, tc.KeyHeader)
+	if err != nil {
+		return nil, err
+	}
+	res.Crash = cs
+	var scheds []replay.Schedule
+	for _, f := range append(append([]replay.Fault(nil), singles...), cs.Faults...) {
+		scheds = append(scheds, replay.Full(tr, f))
+	}
+	res.SingleFaults = len(scheds)
+	scheds = append(scheds, randoms...)
+	res.RandomFaults = len(randoms)
 
 	// Determinism: fault-free replays of the full trace on the correct variant.
 	say("determinism: 20 fault-free replays")
@@ -214,32 +240,72 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 	}
 	sort.Slice(durs, func(i, j int) bool { return durs[i] < durs[j] })
 	res.MedianRunMs = float64(durs[len(durs)/2].Microseconds()) / 1000
+	cm := map[replay.FaultType]*Cell{}
+	for _, o := range outs {
+		ft := o.Schedule.Faults[0].Type
+		if len(o.Schedule.Faults) > 1 {
+			ft = "random"
+		}
+		c := cm[ft]
+		if c == nil {
+			c = &Cell{}
+			cm[ft] = c
+		}
+		if o.Fired {
+			c.Fired++
+		} else {
+			c.NotFired++
+		}
+		if o.Failed {
+			c.Failed++
+		}
+	}
 	res.Variants = append(res.Variants, VariantResult{
-		Variant: Variants[0], Schedules: len(scheds), Ran: len(outs),
+		Variant: Variants[0], Schedules: len(scheds), Ran: len(outs), Matrix: cm,
 		NFired: res.FalseAlarms.NFired, NNotFired: res.FalseAlarms.NotFire, Detected: res.FalseAlarms.Flagged > 0,
 	})
 
+	nSingles := res.SingleFaults
 	for _, v := range Variants[1:] {
 		say("variant " + v.Bug)
 		r := runner(v.Bug, true)
 		if err := r.CheckStable(ctx); err != nil {
 			return nil, fmt.Errorf("%s: %w", v.Bug, err)
 		}
-		idx, outs := r.FirstFailure(ctx, scheds)
-		vr := VariantResult{Variant: v, Schedules: len(scheds), Ran: len(outs)}
-		for _, o := range outs {
+		// Every single fault, not just up to the first failure: the matrix
+		// shows which fault types expose which bug.
+		outs := r.Parallel(nSingles, func(i int) explore.Outcome { return r.Check(ctx, scheds[i], cfg.Seed+int64(i)) })
+		vr := VariantResult{Variant: v, Schedules: nSingles, Ran: len(outs), Matrix: map[replay.FaultType]*Cell{}}
+		shrinkIdx := -1
+		for i, o := range outs {
 			if o.Err != "" {
 				return nil, fmt.Errorf("%s: %s", v.Bug, o.Err)
 			}
-			if o.Fired {
-				vr.NFired++
-			} else {
+			ft := o.Schedule.Faults[0].Type
+			c := vr.Matrix[ft]
+			if c == nil {
+				c = &Cell{}
+				vr.Matrix[ft] = c
+			}
+			if !o.Fired {
+				c.NotFired++
 				vr.NNotFired++
+				continue
+			}
+			c.Fired++
+			vr.NFired++
+			if o.Failed {
+				c.Failed++
+				if !vr.Detected {
+					vr.Detected, vr.DetectedAt = true, i+1
+				}
+				if shrinkIdx < 0 && ft == v.Type {
+					shrinkIdx = i
+				}
 			}
 		}
-		if idx >= 0 {
-			vr.Detected, vr.DetectedAt = true, idx+1
-			first := outs[idx]
+		if shrinkIdx >= 0 {
+			first := outs[shrinkIdx]
 			vr.FirstFailing = &first.Schedule
 			for _, f := range first.Schedule.Faults {
 				vr.FirstFaults = append(vr.FirstFaults, f.String())
@@ -251,14 +317,11 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 			vr.Shrunk = Describe(tr, min, tc.KeyHeader)
 			ok := r.OneMinimal(ctx, min, 3)
 			vr.OneMinimal = &ok
-			fin := r.Check(ctx, min, cfg.Seed)
-			vr.Diff = fin.Diff
-			if min.HasConcurrent() {
-				for _, f := range min.Faults {
-					if f.Type == replay.Concurrent {
-						say("barrier trigger rate " + v.Bug)
-						res.Triggers = append(res.Triggers, triggerRate(ctx, cfg, v.Bug, runner(v.Bug, true), runner(v.Bug, false), tr, f))
-					}
+			vr.Diff = r.Check(ctx, min, cfg.Seed).Diff
+			for _, f := range min.Faults {
+				if f.Type == replay.Concurrent {
+					say("barrier trigger rate " + v.Bug)
+					res.Triggers = append(res.Triggers, triggerRate(ctx, cfg, v.Bug, runner(v.Bug, true), runner(v.Bug, false), tr, f))
 				}
 			}
 		}
@@ -337,8 +400,29 @@ func Markdown(r *Results) string {
 	var b strings.Builder
 	fmt.Fprintf(&b, "# stutter results\n\nGenerated by `make bench` on %s (%s, PostgreSQL %s, %d lanes). Target: minipay, a simulated payments API with seeded bugs. Trace: %d recorded requests (%d retryable, %d webhooks), synthetic workload.\n\n",
 		r.When, r.Machine, r.Postgres, r.Lanes, r.TraceEntries, r.Retryable, r.Webhooks)
-	fmt.Fprintf(&b, "Schedules per variant: %d single-fault (every lost, concurrent and reorder fault the trace admits) then %d random 2 to 4 fault schedules.\n\n", r.SingleFaults, r.RandomFaults)
-	b.WriteString("## Detection\n\n| Variant | Class | Expected fault | Detected | First failing run | Fired / not fired | Shrunk to | 1-minimal |\n|---|---|---|---|---|---|---|---|\n")
+	fmt.Fprintf(&b, "Schedules per variant: %d single-fault (every lost, concurrent and reorder fault the trace admits, plus %d crash points: one per commit of every retryable request) then %d random 2 to 4 fault schedules (no crashes).\n\n", r.SingleFaults, r.Crash.Points, r.RandomFaults)
+	b.WriteString("## Which fault types expose which bug\n\nEach cell: single-fault schedules that changed the final state / schedules that fired (not fired in brackets).\n\n| Variant | lost | concurrent | reorder | crash |\n|---|---|---|---|---|\n")
+	for _, v := range r.Variants {
+		name := v.Bug
+		if name == "" {
+			name = "correct"
+		}
+		fmt.Fprintf(&b, "| %s |", name)
+		for _, ft := range []replay.FaultType{replay.Lost, replay.Concurrent, replay.Reorder, replay.Crash} {
+			c := v.Matrix[ft]
+			if c == nil {
+				b.WriteString(" - |")
+				continue
+			}
+			fmt.Fprintf(&b, " %d / %d", c.Failed, c.Fired)
+			if c.NotFired > 0 {
+				fmt.Fprintf(&b, " (%d)", c.NotFired)
+			}
+			b.WriteString(" |")
+		}
+		b.WriteString("\n")
+	}
+	b.WriteString("\n## Detection\n\n| Variant | Class | Expected fault | Detected | First failing single fault | Fired / not fired | Shrunk to | 1-minimal |\n|---|---|---|---|---|---|---|---|\n")
 	for _, v := range r.Variants {
 		name := v.Bug
 		if name == "" {

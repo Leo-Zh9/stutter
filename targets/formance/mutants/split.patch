@@ -1,0 +1,40 @@
+--- a/internal/controller/ledger/log_process.go	2026-11-14 06:40:27
++++ b/internal/controller/ledger/log_process.go	2026-11-14 06:50:47
+@@ -158,6 +158,37 @@
+ 		}
+ 	}
+ 
++	// MUTANT split: commit the business write, then record the idempotency
++	// log in a second transaction (the "key after commit" pattern).
++	if !parameters.DryRun {
++		output, err := fn(ctx, txStore, nil, parameters)
++		if err != nil {
++			_ = txStore.Rollback(ctx)
++			return nil, nil, false, fmt.Errorf("unexpected error while forging log: %w", err)
++		}
++		if err := txStore.Commit(ctx); err != nil {
++			return nil, nil, false, fmt.Errorf("failed to commit transaction: %w", err)
++		}
++		log := ledger.NewLog(*output)
++		log.IdempotencyKey = parameters.IdempotencyKey
++		log.IdempotencyHash = ledger.ComputeIdempotencyHash(parameters.Input)
++		logStore, _, err := store.BeginTX(ctx, nil)
++		if err != nil {
++			return nil, nil, false, err
++		}
++		if err := logStore.InsertLog(ctx, &log); err != nil {
++			_ = logStore.Rollback(ctx)
++			if errors.Is(err, ledgerstore.ErrIdempotencyKeyConflict{}) {
++				existing, out, ferr := lp.fetchLogWithIK(ctx, store, parameters)
++				return existing, out, true, ferr
++			}
++			return nil, nil, false, err
++		}
++		if err := logStore.Commit(ctx); err != nil {
++			return nil, nil, false, err
++		}
++		return &log, output, false, nil
++	}
+ 	log, output, err := lp.runLog(ctx, txStore, parameters, fn)
+ 	if err != nil {
+ 		if rollbackErr := txStore.Rollback(ctx); rollbackErr != nil {

@@ -1,0 +1,22 @@
+--- a/internal/controller/ledger/log_process.go	2026-11-14 06:40:27
++++ b/internal/controller/ledger/log_process.go	2026-11-14 06:50:39
+@@ -145,18 +145,7 @@
+ 		return nil, nil, false, fmt.Errorf("failed to start transaction: %w", err)
+ 	}
+ 
+-	if parameters.IdempotencyKey != "" {
+-		log, output, err := lp.fetchLogWithIK(ctx, txStore, parameters)
+-		if err != nil || output != nil {
+-			if rollbackErr := txStore.Rollback(ctx); rollbackErr != nil {
+-				logging.FromContext(ctx).Errorf("failed to rollback transaction: %v", rollbackErr)
+-			}
+-			if err != nil {
+-				return nil, nil, false, err
+-			}
+-			return log, output, true, nil
+-		}
+-	}
++	// MUTANT no-fetch: the idempotency lookup before doing the work is removed.
+ 
+ 	log, output, err := lp.runLog(ctx, txStore, parameters, fn)
+ 	if err != nil {

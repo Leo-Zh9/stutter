@@ -15,6 +15,7 @@ import (
 	"math/rand"
 	"net/http"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -23,6 +24,7 @@ import (
 
 	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
+	"github.com/Leo-Zh9/stutter/internal/pgproxy"
 	"github.com/Leo-Zh9/stutter/internal/target"
 	"github.com/Leo-Zh9/stutter/internal/trace"
 )
@@ -38,17 +40,25 @@ const (
 	Concurrent FaultType = "concurrent"
 	// Reorder: two webhook deliveries about the same object arrive swapped.
 	Reorder FaultType = "reorder"
+	// Crash: the service is killed right after commit K of request Seq,
+	// before it hears the commit succeeded; it restarts and the sender
+	// retries (see package pgproxy).
+	Crash FaultType = "crash"
 )
 
 type Fault struct {
 	Type FaultType `json:"type"`
 	Seq  int       `json:"seq"`
 	Seq2 int       `json:"seq2,omitempty"`
+	K    int       `json:"k,omitempty"` // crash: which commit of the request
 }
 
 func (f Fault) String() string {
 	if f.Type == Reorder {
 		return fmt.Sprintf("reorder(#%d,#%d)", f.Seq, f.Seq2)
+	}
+	if f.Type == Crash {
+		return fmt.Sprintf("crash(#%d@commit%d)", f.Seq, f.K)
 	}
 	return fmt.Sprintf("%s(#%d)", f.Type, f.Seq)
 }
@@ -84,11 +94,20 @@ type Config struct {
 	BarrierTimeout time.Duration // default 500ms
 	MaxAttempts    int           // per request, default 3
 	Oracle         oracle.Options
+	// Bands, when set, are the numeric ranges each sequence mints into.
+	// Integers inside a band are mapped from recorded to live ids.
+	Bands []pgenv.Band
+	// Shift advances every banded sequence by its offset right after the
+	// clone: the inference baseline (see oracle.Infer).
+	Shift bool
 	// KeyHeader names the idempotency header (default Idempotency-Key).
 	KeyHeader string
 	Webhooks  WebhookPolicy
 	// Arrival, if set, is called each time a request reaches the transport.
 	Arrival func(seq int)
+	// ObserveCommits routes the service through the wire proxy and reports
+	// commit points per request in Result.Commits, without crashing.
+	ObserveCommits bool
 }
 
 // WebhookPolicy describes the provider that sends webhook entries.
@@ -102,6 +121,9 @@ type WebhookPolicy struct {
 
 type Result struct {
 	Canon    *oracle.Canon
+	State    *oracle.State
+	Commits  map[int]int // commit points per request (proxy runs only)
+	BgCommits int        // commits seen while no request was in flight
 	Fired    int
 	NotFired int
 	Err      error
@@ -138,11 +160,36 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		return Result{Err: err}
 	}
 	defer cfg.Env.Drop(context.Background(), db)
-	proc, err := target.Start(ctx, cfg.Target, target.DB{DSN: cfg.Env.DSN(db), URL: cfg.Env.URL(db)})
+	if cfg.Shift {
+		if err := cfg.Env.ShiftBands(ctx, db, cfg.Bands); err != nil {
+			return Result{Err: err}
+		}
+	}
+	var crash *Fault
+	for i := range s.Faults {
+		if s.Faults[i].Type == Crash {
+			crash = &s.Faults[i]
+		}
+	}
+	dbFor := target.DB{DSN: cfg.Env.DSN(db), URL: cfg.Env.URL(db), SocketURL: cfg.Env.SocketURL(db)}
+	var px *pgproxy.Proxy
+	if crash != nil || cfg.ObserveCommits {
+		px, err = pgproxy.New(cfg.Env.SocketDir, cfg.Env.Port, true)
+		if err != nil {
+			return Result{Err: err}
+		}
+		defer px.Close()
+		dbFor = target.DB{
+			DSN:       fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable", px.Dir, px.Port, cfg.Env.User, db),
+			URL:       fmt.Sprintf("postgres://%s@%s/%s?sslmode=disable", cfg.Env.User, px.TCPAddr, db),
+			SocketURL: fmt.Sprintf("postgres://%s@/%s?host=%s&port=%s&sslmode=disable", cfg.Env.User, db, px.Dir, px.Port),
+		}
+	}
+	proc, err := target.Start(ctx, cfg.Target, dbFor)
 	if err != nil {
 		return Result{Err: err}
 	}
-	defer proc.Stop()
+	defer func() { proc.Stop() }()
 
 	bySeq := map[int]trace.Entry{}
 	for _, e := range tr {
@@ -174,6 +221,11 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 			} else {
 				res.NotFired++
 			}
+		case Crash:
+			if !include[f.Seq] || !bySeq[f.Seq].Retryable(cfg.KeyHeader) {
+				res.NotFired++
+				crash = nil
+			}
 		case Reorder:
 			i, ok1 := pos[f.Seq]
 			j, ok2 := pos[f.Seq2]
@@ -189,7 +241,7 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 
 	c := &client{
 		cfg: cfg, base: proc.BaseURL, http: &http.Client{Timeout: 10 * time.Second},
-		rng: rand.New(rand.NewSource(seed)), subst: map[string]string{}, dbName: db,
+		rng: rand.New(rand.NewSource(seed)), subst: map[string]string{}, nums: map[int64]int64{}, dbName: db,
 	}
 	if len(conc) > 0 && cfg.Barrier {
 		conn, err := pgx.Connect(ctx, cfg.Env.DSN(db))
@@ -214,7 +266,28 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	for _, q := range order {
 		e := bySeq[q]
 		var r response
+		if px != nil {
+			px.Begin(q)
+		}
 		switch {
+		case crash != nil && crash.Seq == q:
+			var fired bool
+			r, fired, err = c.crashed(ctx, e, px, crash.K, func() error {
+				proc.Stop()
+				px.DropConns()
+				px.Resume()
+				np, err := target.Start(ctx, cfg.Target, dbFor)
+				if err != nil {
+					return err
+				}
+				proc, c.base = np, np.BaseURL
+				return nil
+			})
+			if fired {
+				res.Fired++
+			} else {
+				res.NotFired++
+			}
 		case conc[q]:
 			var fired bool
 			r, fired, err = c.concurrent(ctx, e)
@@ -230,12 +303,18 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		default:
 			r, err = c.send(ctx, e, 1)
 		}
+		if px != nil {
+			px.End()
+		}
 		if err != nil {
 			return Result{Err: fmt.Errorf("seq %d: %w", q, err)}
 		}
 		c.learn(e, r)
 	}
 	proc.Stop()
+	if px != nil {
+		res.Commits, res.BgCommits = px.Commits()
+	}
 
 	conn, err := pgx.Connect(ctx, cfg.Env.DSN(db))
 	if err != nil {
@@ -246,6 +325,7 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	if err != nil {
 		return Result{Err: err}
 	}
+	res.State = st
 	res.Canon, res.Err = oracle.Canonicalize(st, cfg.Oracle)
 	return res
 }
@@ -269,6 +349,7 @@ type client struct {
 	rng     *rand.Rand
 	rngMu   sync.Mutex
 	subst   map[string]string
+	nums    map[int64]int64 // recorded -> live integer ids, in-band only
 	barrier *pgx.Conn
 	tables  []string
 	dbName  string
@@ -317,6 +398,36 @@ func (c *client) send(ctx context.Context, e trace.Entry, attempt int) (response
 		d := time.Duration(1+c.rng.Intn(3)) * time.Millisecond * time.Duration(attempt)
 		c.rngMu.Unlock()
 		time.Sleep(d)
+	}
+}
+
+// crashed sends request e with the proxy armed to hold back commit k. If
+// the crash point is reached, the service is killed and restarted, and the
+// request is retried exactly as after a lost response. If the request
+// finishes first, the fault did not fire (the request has fewer commits).
+func (c *client) crashed(ctx context.Context, e trace.Entry, px *pgproxy.Proxy, k int, restart func() error) (response, bool, error) {
+	px.ArmCrash(e.Seq, k)
+	type out struct {
+		r   response
+		err error
+	}
+	ch := make(chan out, 1)
+	go func() { r, err := c.once(ctx, e); ch <- out{r, err} }()
+	select {
+	case o := <-ch:
+		px.Resume()
+		if o.err == nil && c.done(e, o.r, nil) {
+			return o.r, false, nil
+		}
+		r, err := c.send(ctx, e, 2)
+		return r, false, err
+	case <-px.Crashed():
+		if err := restart(); err != nil {
+			return response{}, true, err
+		}
+		<-ch // the killed attempt's connection error
+		r, err := c.send(ctx, e, 2)
+		return r, true, err
 	}
 }
 
@@ -413,30 +524,58 @@ func (c *client) learn(e trace.Entry, r response) {
 	if r.status != e.Status || len(e.RespBody) == 0 {
 		return
 	}
-	var rec, live any
-	if json.Unmarshal(e.RespBody, &rec) != nil || json.Unmarshal(r.body, &live) != nil {
+	rec, err1 := decodeNum(e.RespBody)
+	live, err2 := decodeNum(r.body)
+	if err1 != nil || err2 != nil {
 		return
 	}
-	pair(rec, live, c.subst)
+	c.pair(rec, live)
 }
 
-func pair(rec, live any, m map[string]string) {
+func decodeNum(b []byte) (any, error) {
+	var v any
+	dec := json.NewDecoder(bytes.NewReader(b))
+	dec.UseNumber()
+	err := dec.Decode(&v)
+	return v, err
+}
+
+func (c *client) inBand(v int64) bool {
+	for _, b := range c.cfg.Bands {
+		if b.Contains(v) {
+			return true
+		}
+	}
+	return false
+}
+
+func (c *client) pair(rec, live any) {
 	switch x := rec.(type) {
 	case string:
 		if y, ok := live.(string); ok && x != y && !looksLikeTime(x) {
-			m[x] = y
+			c.subst[x] = y
+		}
+	case json.Number:
+		y, ok := live.(json.Number)
+		if !ok {
+			return
+		}
+		a, e1 := x.Int64()
+		b, e2 := y.Int64()
+		if e1 == nil && e2 == nil && a != b && c.inBand(a) {
+			c.nums[a] = b
 		}
 	case map[string]any:
 		if y, ok := live.(map[string]any); ok {
 			for k, v := range x {
-				pair(v, y[k], m)
+				c.pair(v, y[k])
 			}
 		}
 	case []any:
 		if y, ok := live.([]any); ok {
 			for i := range x {
 				if i < len(y) {
-					pair(x[i], y[i], m)
+					c.pair(x[i], y[i])
 				}
 			}
 		}
@@ -449,7 +588,7 @@ func looksLikeTime(s string) bool {
 }
 
 func (c *client) rewrite(body json.RawMessage) []byte {
-	if len(body) == 0 || len(c.subst) == 0 {
+	if len(body) == 0 || (len(c.subst) == 0 && len(c.nums) == 0) {
 		return body
 	}
 	var v any
@@ -458,26 +597,33 @@ func (c *client) rewrite(body json.RawMessage) []byte {
 	if dec.Decode(&v) != nil {
 		return body
 	}
-	v = subst(v, c.subst)
+	v = c.substAll(v)
 	b, _ := json.Marshal(v)
 	return b
 }
 
-func subst(v any, m map[string]string) any {
+func (c *client) substAll(v any) any {
 	switch x := v.(type) {
 	case string:
-		if y, ok := m[x]; ok {
+		if y, ok := c.subst[x]; ok {
 			return y
+		}
+		return x
+	case json.Number:
+		if n, err := x.Int64(); err == nil {
+			if y, ok := c.nums[n]; ok {
+				return json.Number(strconv.FormatInt(y, 10))
+			}
 		}
 		return x
 	case map[string]any:
 		for k, vv := range x {
-			x[k] = subst(vv, m)
+			x[k] = c.substAll(vv)
 		}
 		return x
 	case []any:
 		for i := range x {
-			x[i] = subst(x[i], m)
+			x[i] = c.substAll(x[i])
 		}
 		return x
 	}
@@ -489,15 +635,29 @@ func (c *client) rewritePath(p string) string {
 	for i, s := range parts {
 		if y, ok := c.subst[s]; ok {
 			parts[i] = y
+		} else if n, err := strconv.ParseInt(s, 10, 64); err == nil {
+			if y, ok := c.nums[n]; ok {
+				parts[i] = strconv.FormatInt(y, 10)
+			}
 		}
 	}
 	return strings.Join(parts, "/")
 }
 
+// Space says which faults a trace admits.
+type Space struct {
+	KeyHeader string // API calls without it are never faulted
+	// WebhookObject is a dotted JSON path naming what a webhook is about
+	// (e.g. "data.object.customer"). Two webhooks with the same value may be
+	// reordered. Empty: group by the first id minted earlier in the trace.
+	WebhookObject string
+}
+
 // Faults lists every single fault the trace admits: Lost and Concurrent on
 // each retryable request, Reorder on each pair of webhooks about the same
-// object (the first string in data that a response minted).
-func Faults(tr []trace.Entry, keyHeader string) []Fault {
+// object.
+func Faults(tr []trace.Entry, sp Space) []Fault {
+	keyHeader := sp.KeyHeader
 	if keyHeader == "" {
 		keyHeader = trace.DefaultKeyHeader
 	}
@@ -529,17 +689,25 @@ func Faults(tr []trace.Entry, keyHeader string) []Fault {
 		if json.Unmarshal(e.Body, &v) != nil {
 			continue
 		}
-		refs := map[string]bool{}
-		collectStrings(v, refs)
-		var ids []string
-		for s := range refs {
-			if minted[s] && !looksLikeTime(s) {
-				ids = append(ids, s)
+		obj := ""
+		if sp.WebhookObject != "" {
+			obj, _ = jsonPath(v, sp.WebhookObject).(string)
+		} else {
+			refs := map[string]bool{}
+			collectStrings(v, refs)
+			var ids []string
+			for s := range refs {
+				if minted[s] && !looksLikeTime(s) {
+					ids = append(ids, s)
+				}
+			}
+			sort.Strings(ids)
+			if len(ids) > 0 {
+				obj = ids[0]
 			}
 		}
-		sort.Strings(ids)
-		if len(ids) > 0 {
-			objOf[e.Seq] = ids[0]
+		if obj != "" {
+			objOf[e.Seq] = obj
 			hooks = append(hooks, e)
 		}
 	}
@@ -551,6 +719,18 @@ func Faults(tr []trace.Entry, keyHeader string) []Fault {
 		}
 	}
 	return out
+}
+
+// jsonPath follows a dotted path through decoded JSON objects.
+func jsonPath(v any, path string) any {
+	for _, k := range strings.Split(path, ".") {
+		m, ok := v.(map[string]any)
+		if !ok {
+			return nil
+		}
+		v = m[k]
+	}
+	return v
 }
 
 func collectStrings(v any, out map[string]bool) {

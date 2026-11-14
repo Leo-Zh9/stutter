@@ -76,7 +76,7 @@ func TestUnkeyedRequestsAreNeverFaulted(t *testing.T) {
 			t.Fatalf("%s on unkeyed call: arrivals=%d fired=%d", ft, a.count(e.Seq), res.Fired)
 		}
 	}
-	for _, f := range replay.Faults(tr, "Idempotency-Key") {
+	for _, f := range replay.Faults(tr, replay.Space{}) {
 		if f.Seq == e.Seq && f.Type != replay.Reorder {
 			t.Fatalf("enumeration offered %v on an unkeyed call", f)
 		}
@@ -129,7 +129,7 @@ func TestReorderSwapsDelivery(t *testing.T) {
 	cfg := testenv.Config(t, env, "")
 	tr := testenv.Trace(t)
 	var f replay.Fault
-	for _, x := range replay.Faults(tr, "Idempotency-Key") {
+	for _, x := range replay.Faults(tr, replay.Space{}) {
 		if x.Type == replay.Reorder {
 			f = x
 			break

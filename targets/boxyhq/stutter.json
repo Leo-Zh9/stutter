@@ -1,0 +1,32 @@
+{
+  "name": "boxyhq/saas-starter-kit @ abc9b68",
+  "dir": "../../.targets/saas-starter-kit",
+  "start": ["../../.targets/saas-starter-kit/node_modules/.bin/next", "start", "-p", "{PORT}", "-H", "127.0.0.1"],
+  "env": [
+    "DATABASE_URL={DATABASE_URL}",
+    "NEXTAUTH_URL=http://{ADDR}",
+    "NEXTAUTH_SECRET=stutter_local_nextauth_secret",
+    "APP_URL=http://{ADDR}",
+    "STRIPE_SECRET_KEY=sk_test_offline_never_used",
+    "STRIPE_WEBHOOK_SECRET=whsec_stutter_local",
+    "FEATURE_TEAM_PAYMENTS=true",
+    "NEXT_TELEMETRY_DISABLED=1"
+  ],
+  "health": "/api/health",
+  "start_timeout": "20s",
+  "prepare": {
+    "migrate_cmd": ["../../.targets/saas-starter-kit/node_modules/.bin/prisma", "migrate", "deploy"],
+    "migrate_env": ["DATABASE_URL={DATABASE_URL}"],
+    "seed_file": "fixtures.sql"
+  },
+  "schemas": ["public"],
+  "webhooks": {
+    "prefix": "/api/webhooks/stripe",
+    "signing": "stripe",
+    "secret": "whsec_stutter_local",
+    "retry": "non-2xx",
+    "max_attempts": 5,
+    "object_path": "data.object.customer"
+  },
+  "trace": "trace.jsonl"
+}

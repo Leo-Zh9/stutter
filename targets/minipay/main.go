@@ -9,6 +9,8 @@
 //	webhook-stale-overwrite   status webhook applied without comparing event time
 //	webhook-check-then-insert event dedupe is SELECT-then-INSERT with no unique index
 //	key-unscoped              key not bound to the request body (control: no fault needed)
+//	outbox-after-commit       charge notification written after the charge commits, only for fresh charges
+//	phases-no-recovery        payout retry restarts from the first phase instead of its recovery point
 //
 // Run `minipay -schema` to print the schema for the selected variant.
 package main
@@ -42,6 +44,8 @@ var Bugs = []string{
 	"webhook-stale-overwrite",
 	"webhook-check-then-insert",
 	"key-unscoped",
+	"outbox-after-commit",
+	"phases-no-recovery",
 }
 
 func variantSchema(bug string) string {
@@ -95,6 +99,7 @@ func main() {
 	mux.HandleFunc("POST /customers", s.createCustomer)
 	mux.HandleFunc("POST /charges", s.createCharge)
 	mux.HandleFunc("POST /webhooks", s.webhook)
+	mux.HandleFunc("POST /payouts", s.createPayout)
 	addr := os.Getenv("ADDR")
 	if addr == "" {
 		addr = "127.0.0.1:8080"
@@ -216,6 +221,11 @@ func insertCharge(ctx context.Context, tx pgx.Tx, in chargeIn, key string) reply
 		VALUES ($1, $2, $3, $4) RETURNING id, created_at`, in.Customer, in.Amount, in.Currency, key).Scan(&id, &created); err != nil {
 		return errReply(500, err.Error())
 	}
+	if !outboxAfterCommit {
+		if _, err := tx.Exec(ctx, `INSERT INTO outbox (kind, charge_id) VALUES ('receipt', $1)`, id); err != nil {
+			return errReply(500, err.Error())
+		}
+	}
 	return reply{200, map[string]any{
 		"id": id, "object": "charge", "customer": in.Customer, "amount": in.Amount,
 		"currency": in.Currency, "status": "pending", "created": created.UTC().Format(time.RFC3339Nano),
@@ -266,9 +276,121 @@ func (s *server) createCharge(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	default:
-		rep = s.idempotent(ctx, key, raw, func(tx pgx.Tx) reply { return insertCharge(ctx, tx, in, key) })
+		fresh := false
+		rep = s.idempotent(ctx, key, raw, func(tx pgx.Tx) reply { fresh = true; return insertCharge(ctx, tx, in, key) })
+		if outboxAfterCommit && fresh && rep.code == 200 {
+			// The bug: the receipt is queued after the charge commits, and
+			// only for a fresh charge so a retry won't send it twice. If the
+			// process dies in between, the retry replays the stored response
+			// and the receipt is never queued.
+			id := rep.body.(map[string]any)["id"]
+			if _, err := s.db.Exec(ctx, `INSERT INTO outbox (kind, charge_id) VALUES ('receipt', $1)`, id); err != nil {
+				rep = errReply(500, err.Error())
+			}
+		}
 	}
 	writeJSON(w, rep.code, rep.body)
+}
+
+var outboxAfterCommit = os.Getenv("BUG") == "outbox-after-commit"
+
+// createPayout uses a multi-phase idempotency key (recovery points). Each
+// phase commits separately and advances recovery_point, so a request that
+// dies part way can be resumed by its retry:
+//
+//	started        -> create the payout and debit the balance -> payout_created
+//	payout_created -> mark it notified, store the response     -> finished
+//	finished       -> replay the stored response
+//
+// A row lock (FOR UPDATE NOWAIT) keeps two attempts from running a phase at
+// once; the loser gets 409 and its client retries.
+func (s *server) createPayout(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		Customer string `json:"customer"`
+		Amount   int64  `json:"amount"`
+	}
+	raw, ok := readBody(w, r, &in)
+	if !ok {
+		return
+	}
+	key := r.Header.Get("Idempotency-Key")
+	if key == "" || in.Amount <= 0 {
+		writeJSON(w, 400, map[string]string{"error": "Idempotency-Key and amount required"})
+		return
+	}
+	ctx := r.Context()
+	sum := sha256.Sum256(raw)
+	hash := hex.EncodeToString(sum[:])
+	if _, err := s.db.Exec(ctx, `INSERT INTO payout_keys (key, request_hash, recovery_point) VALUES ($1, $2, 'started')
+		ON CONFLICT (key) DO NOTHING`, key, hash); err != nil {
+		writeJSON(w, 500, map[string]string{"error": err.Error()})
+		return
+	}
+	first := true
+	for {
+		rep, done := s.payoutPhase(ctx, key, hash, in.Customer, in.Amount, first)
+		first = false
+		if done {
+			writeJSON(w, rep.code, rep.body)
+			return
+		}
+	}
+}
+
+func (s *server) payoutPhase(ctx context.Context, key, hash, customer string, amount int64, first bool) (reply, bool) {
+	tx, err := s.db.Begin(ctx)
+	if err != nil {
+		return errReply(500, err.Error()), true
+	}
+	defer tx.Rollback(ctx)
+	var rp, storedHash string
+	var payoutID *string
+	var resp json.RawMessage
+	err = tx.QueryRow(ctx, `SELECT recovery_point, request_hash, payout_id, response_body FROM payout_keys WHERE key = $1 FOR UPDATE NOWAIT`, key).
+		Scan(&rp, &storedHash, &payoutID, &resp)
+	if err != nil {
+		if strings.Contains(err.Error(), "55P03") { // lock_not_available
+			return errReply(409, "a request with this idempotency key is in progress"), true
+		}
+		return errReply(500, err.Error()), true
+	}
+	if storedHash != hash {
+		return errReply(422, "idempotency key reused with a different request body"), true
+	}
+	if s.bug == "phases-no-recovery" && first && rp != "finished" {
+		rp = "started" // the bug: an unfinished key is redone from the top
+	}
+	switch rp {
+	case "started":
+		tag, err := tx.Exec(ctx, `UPDATE customers SET balance_cents = balance_cents - $2 WHERE id = $1`, customer, amount)
+		if err != nil {
+			return errReply(500, err.Error()), true
+		}
+		if tag.RowsAffected() == 0 {
+			return errReply(404, "no such customer"), true
+		}
+		var id string
+		if err := tx.QueryRow(ctx, `INSERT INTO payouts (customer_id, amount_cents) VALUES ($1, $2) RETURNING id`, customer, amount).Scan(&id); err != nil {
+			return errReply(500, err.Error()), true
+		}
+		if _, err := tx.Exec(ctx, `UPDATE payout_keys SET recovery_point = 'payout_created', payout_id = $2 WHERE key = $1`, key, id); err != nil {
+			return errReply(500, err.Error()), true
+		}
+	case "payout_created":
+		if _, err := tx.Exec(ctx, `UPDATE payouts SET notified = true WHERE id = $1`, *payoutID); err != nil {
+			return errReply(500, err.Error()), true
+		}
+		body, _ := json.Marshal(map[string]any{"id": *payoutID, "object": "payout", "customer": customer, "amount": amount})
+		if _, err := tx.Exec(ctx, `UPDATE payout_keys SET recovery_point = 'finished', response_body = $2 WHERE key = $1`, key, body); err != nil {
+			return errReply(500, err.Error()), true
+		}
+	case "finished":
+		return reply{200, resp}, true
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return errReply(500, err.Error()), true
+	}
+	return reply{}, false
 }
 
 func (s *server) inTx(ctx context.Context, fn func(pgx.Tx) reply) reply {

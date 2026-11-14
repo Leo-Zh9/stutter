@@ -1,0 +1,5 @@
+# SQL-only stand-in for pgcrypto's digest(), for PostgreSQL builds without
+# contrib (the pgserver package). Covers what Formance Ledger v2.4 calls.
+comment = 'stutter shim: pgcrypto digest() on built-in sha2 functions'
+default_version = '1.3'
+relocatable = true

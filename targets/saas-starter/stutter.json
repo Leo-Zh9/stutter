@@ -1,0 +1,30 @@
+{
+  "name": "nextjs/saas-starter @ 6e33e58",
+  "dir": "../../.targets/saas-starter",
+  "start": ["../../.targets/saas-starter/node_modules/.bin/next", "start", "-p", "{PORT}", "-H", "127.0.0.1"],
+  "env": [
+    "POSTGRES_URL={DATABASE_URL}",
+    "STRIPE_SECRET_KEY=sk_test_offline_never_used",
+    "STRIPE_WEBHOOK_SECRET=whsec_stutter_local",
+    "BASE_URL=http://{ADDR}",
+    "AUTH_SECRET=stutter_local_auth_secret_0123456789",
+    "NEXT_TELEMETRY_DISABLED=1"
+  ],
+  "health": "/api/stripe/webhook",
+  "start_timeout": "20s",
+  "prepare": {
+    "migrate_cmd": ["../../.targets/saas-starter/node_modules/.bin/drizzle-kit", "migrate"],
+    "migrate_env": ["POSTGRES_URL={DATABASE_URL}"],
+    "seed_file": "fixtures.sql"
+  },
+  "schemas": ["public"],
+  "webhooks": {
+    "prefix": "/api/stripe/webhook",
+    "signing": "stripe",
+    "secret": "whsec_stutter_local",
+    "retry": "non-2xx",
+    "max_attempts": 5,
+    "object_path": "data.object.customer"
+  },
+  "trace": "trace.jsonl"
+}

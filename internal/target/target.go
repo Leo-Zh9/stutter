@@ -18,6 +18,7 @@ import (
 //
 //	{DSN}           libpq keyword string (unix socket)
 //	{DATABASE_URL}  postgres:// URL over TCP
+//	{DATABASE_URL_SOCKET}  postgres:// URL over the unix socket
 //	{ADDR}          127.0.0.1:<port> the service must listen on
 //	{HOST} {PORT}   the two halves of {ADDR}
 //
@@ -32,8 +33,9 @@ type Spec struct {
 
 // DB is the database a run hands to the service.
 type DB struct {
-	DSN string
-	URL string
+	DSN       string
+	URL       string
+	SocketURL string
 }
 
 type Process struct {
@@ -66,7 +68,7 @@ func Start(ctx context.Context, s Spec, db DB) (*Process, error) {
 			return nil, err
 		}
 		addr := "127.0.0.1:" + port
-		r := strings.NewReplacer("{DSN}", db.DSN, "{DATABASE_URL}", db.URL, "{ADDR}", addr, "{HOST}", "127.0.0.1", "{PORT}", port)
+		r := strings.NewReplacer("{DATABASE_URL_SOCKET}", db.SocketURL, "{DSN}", db.DSN, "{DATABASE_URL}", db.URL, "{ADDR}", addr, "{HOST}", "127.0.0.1", "{PORT}", port)
 		args := make([]string, len(s.Command))
 		for i, a := range s.Command {
 			args[i] = fill(a, r)
@@ -87,6 +89,7 @@ func Start(ctx context.Context, s Spec, db DB) (*Process, error) {
 		}
 		p := &Process{BaseURL: "http://" + addr, cmd: cmd, exited: make(chan struct{})}
 		go func() { cmd.Wait(); close(p.exited) }()
+		hc := &http.Client{Timeout: 2 * time.Second}
 		deadline := time.Now().Add(timeout)
 		healthy := false
 		for time.Now().Before(deadline) && !healthy {
@@ -97,7 +100,7 @@ func Start(ctx context.Context, s Spec, db DB) (*Process, error) {
 				continue
 			default:
 			}
-			if resp, err := http.Get(p.BaseURL + s.HealthPath); err == nil {
+			if resp, err := hc.Get(p.BaseURL + s.HealthPath); err == nil {
 				resp.Body.Close()
 				healthy = resp.StatusCode < 500
 			}

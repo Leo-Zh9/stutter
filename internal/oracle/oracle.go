@@ -24,6 +24,7 @@ import (
 	"fmt"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
@@ -54,6 +55,15 @@ type State struct {
 var temporalTypes = map[string]bool{
 	"timestamp with time zone": true, "timestamp without time zone": true,
 	"date": true, "time with time zone": true, "time without time zone": true, "interval": true,
+}
+
+var precision = regexp.MustCompile(`\(\d+\)`)
+
+// isTemporal matches date and time types with or without a precision
+// modifier: Prisma declares timestamp(3) without time zone.
+func isTemporal(typ string) bool {
+	return temporalTypes[strings.TrimSpace(precision.ReplaceAllString(typ, ""))] ||
+		temporalTypes[strings.Join(strings.Fields(precision.ReplaceAllString(typ, "")), " ")]
 }
 
 var funcCall = regexp.MustCompile(`([A-Za-z_][A-Za-z0-9_]*)\s*\(`)
@@ -110,7 +120,7 @@ func Snapshot(ctx context.Context, conn *pgx.Conn, schemas []string) (*State, er
 				gen = true
 			}
 		}
-		t.Columns = append(t.Columns, Column{Name: col, Type: typ, Generated: gen, Temporal: temporalTypes[typ]})
+		t.Columns = append(t.Columns, Column{Name: col, Type: typ, Generated: gen, Temporal: isTemporal(typ)})
 	}
 	rows.Close()
 
@@ -188,6 +198,9 @@ func (t *Table) col(name string) *Column {
 type Options struct {
 	Ignore  map[string]bool
 	Schemas []string // schemas to snapshot; default public
+	// Inf, when set, adds inferred integer ids (see Infer): owners act as
+	// generated columns, derived paths become edges, volatile paths drop.
+	Inf *Inference
 }
 
 type rowRef struct {
@@ -235,6 +248,57 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 		}
 	}
 
+	// Inferred integer ids: owner column values, per band.
+	var volatile map[string]bool
+	ownerOf := map[string]int{}
+	genNum := map[int]map[int64]rowRef{}
+	if inf := opt.Inf; inf != nil {
+		volatile = map[string]bool{}
+		for _, v := range inf.Volatile {
+			volatile[v] = true
+		}
+		for k, col := range inf.Owners {
+			ownerOf[col] = k
+			genNum[k] = map[int64]rowRef{}
+		}
+		for _, t := range st.Tables {
+			for i, row := range st.Rows[t.Name] {
+				for _, c := range t.Columns {
+					if k, ok := ownerOf[t.Name+"."+c.Name]; ok {
+						if n, ok := numberOf(row[c.Name]); ok {
+							genNum[k][n] = rowRef{t.Name, i}
+						}
+					}
+				}
+			}
+		}
+	}
+	numRef := func(path string, v any, me rowRef, label string, children map[rowRef][]edge) (string, bool) {
+		if opt.Inf == nil {
+			return "", false
+		}
+		k, ok := opt.Inf.Derived[path]
+		if !ok {
+			return "", false
+		}
+		if _, isOwner := ownerOf[path]; isOwner {
+			return "", false
+		}
+		n, ok := numberOf(v)
+		if !ok {
+			return "", false
+		}
+		p, ok := genNum[k][n]
+		if !ok {
+			return "<dangling:" + opt.Inf.Bands[k].Seq + ">", true
+		}
+		if p == me {
+			return "<self>", true
+		}
+		children[p] = append(children[p], edge{label, me})
+		return "<ref:" + p.table + ">", true
+	}
+
 	own := map[rowRef]string{}
 	cols := map[string]map[string]int{}
 	children := map[rowRef][]edge{}
@@ -244,10 +308,17 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 			fields := map[string]any{}
 			for _, c := range t.Columns {
 				label := t.Name + "." + c.Name
-				if c.Generated || c.Temporal || opt.Ignore[label] {
+				if c.Generated || c.Temporal || opt.Ignore[label] || volatile[label] {
 					continue
 				}
+				if _, isOwner := ownerOf[label]; isOwner {
+					continue // an inferred id column: generated in all but name
+				}
 				v := row[c.Name]
+				if r, ok := numRef(label, v, me, label, children); ok {
+					fields[c.Name] = r
+					continue
+				}
 				if c.FKTable != "" && v != nil {
 					if p, ok := genAny[c.FKTable+"."+c.FKColumn][fmt.Sprint(v)]; ok {
 						fields[c.Name] = "<ref:" + p.table + ">"
@@ -257,7 +328,9 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 						continue
 					}
 				}
-				fields[c.Name] = normalize(v, func(s string) (string, bool) {
+				fields[c.Name] = normalizeAt(label, v, volatile, func(path string, x any) (string, bool) {
+					return numRef(path, x, me, label, children)
+				}, func(s string) (string, bool) {
 					p, ok := genStr[s]
 					if !ok {
 						return "", false
@@ -331,6 +404,45 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 		}
 	}
 	return out, nil
+}
+
+// normalizeAt is normalize with JSON paths: leaves at volatile paths are
+// dropped, and integer leaves at inferred id paths become references.
+func normalizeAt(path string, v any, volatile map[string]bool, num func(string, any) (string, bool), ref func(string) (string, bool)) any {
+	switch x := v.(type) {
+	case map[string]any:
+		m := make(map[string]any, len(x))
+		for k, vv := range x {
+			p := path + "." + k
+			if volatile[p] {
+				continue
+			}
+			m[k] = normalizeAt(p, vv, volatile, num, ref)
+		}
+		return m
+	case []any:
+		a := make([]any, len(x))
+		for i, vv := range x {
+			a[i] = normalizeAt(path+"[]", vv, volatile, num, ref)
+		}
+		return a
+	case json.Number, float64:
+		if r, ok := num(path, x); ok {
+			return r
+		}
+		return x
+	case string:
+		// Ids are sometimes stored as decimal strings (Formance's revert
+		// links in metadata). Only paths the inference attributed count.
+		if _, err := strconv.ParseInt(x, 10, 64); err == nil {
+			if r, ok := num(path, json.Number(x)); ok {
+				return r
+			}
+		}
+		return normalize(v, ref)
+	default:
+		return normalize(v, ref)
+	}
 }
 
 // normalize rewrites string leaves: generated ids become references and

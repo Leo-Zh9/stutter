@@ -1,0 +1,47 @@
+{
+  "name": "Formance Ledger v2.4.18 mutant: fetchLogWithIK lookup removed",
+  "dir": "../../../.targets/formance",
+  "start": [
+    "../../../.targets/formance/ledger-no-fetch",
+    "serve",
+    "--postgres-uri",
+    "{DATABASE_URL_SOCKET}",
+    "--bind",
+    "{ADDR}",
+    "--auto-upgrade"
+  ],
+  "env": [],
+  "health": "/_healthcheck",
+  "start_timeout": "20s",
+  "prepare": {
+    "setup_requests": [
+      {
+        "method": "POST",
+        "path": "/v2/default",
+        "body": {},
+        "expect": 204
+      },
+      {
+        "method": "POST",
+        "path": "/v2/default/transactions",
+        "body": {
+          "postings": [
+            {
+              "source": "world",
+              "destination": "setup:seed",
+              "amount": 1,
+              "asset": "USD/2"
+            }
+          ]
+        }
+      }
+    ],
+    "band_sequences": true
+  },
+  "schemas": [
+    "_system",
+    "_default"
+  ],
+  "idempotency_header": "Idempotency-Key",
+  "trace": "../trace.jsonl"
+}

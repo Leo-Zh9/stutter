@@ -5,3 +5,5 @@ bin/
 .venv/
 .schema.sql
 .pgport
+.targets/
+results/logs/

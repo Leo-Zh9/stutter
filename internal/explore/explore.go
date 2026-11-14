@@ -9,6 +9,8 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/jackc/pgx/v5"
+
 	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/replay"
 	"github.com/Leo-Zh9/stutter/internal/shrink"
@@ -77,6 +79,9 @@ func (r *Runner) Baseline(ctx context.Context, seqs []int) (*oracle.Canon, error
 // mean the target has nondeterminism the catalog rule cannot see; the
 // offending columns are named so they can be marked in Options.Ignore.
 func (r *Runner) CheckStable(ctx context.Context) error {
+	if len(r.Cfg.Bands) > 0 {
+		return r.inferIDs(ctx)
+	}
 	s := replay.Full(r.Trace)
 	a := replay.Run(ctx, r.Cfg, r.Trace, s, r.Seed)
 	b := replay.Run(ctx, r.Cfg, r.Trace, s, r.Seed+1)
@@ -142,8 +147,8 @@ func (r *Runner) Parallel(n int, fn func(i int) Outcome) []Outcome {
 
 // Schedules returns every single-fault schedule in a fixed order, then
 // `random` multi-fault schedules of 2 to 4 faults drawn with the seed.
-func Schedules(tr []trace.Entry, keyHeader string, seed int64, random int) []replay.Schedule {
-	singles := replay.Faults(tr, keyHeader)
+func Schedules(tr []trace.Entry, sp replay.Space, seed int64, random int) []replay.Schedule {
+	singles := replay.Faults(tr, sp)
 	var out []replay.Schedule
 	for _, f := range singles {
 		out = append(out, replay.Full(tr, f))
@@ -307,4 +312,111 @@ func (r *Runner) OneMinimal(ctx context.Context, s replay.Schedule, k int) bool 
 		return Outcome{}
 	})
 	return ok
+}
+
+// inferIDs runs the fault-free trace three times: twice normally (A, A2) and
+// once with every banded sequence shifted by its own offset (B). From A and
+// B it infers which columns and JSON paths hold whose sequence ids, then
+// requires A, A2 and B to canonicalize to the same state. A mismatch means
+// nondeterminism the inference could not explain, and nothing runs.
+func (r *Runner) inferIDs(ctx context.Context) error {
+	s := replay.Full(r.Trace)
+	shifted := r.Cfg
+	shifted.Shift = true
+	a := replay.Run(ctx, r.Cfg, r.Trace, s, r.Seed)
+	a2 := replay.Run(ctx, r.Cfg, r.Trace, s, r.Seed+1)
+	b := replay.Run(ctx, shifted, r.Trace, s, r.Seed)
+	for i := 0; i < 3; i++ {
+		r.count()
+	}
+	for _, x := range []replay.Result{a, a2, b} {
+		if x.Err != nil {
+			return x.Err
+		}
+	}
+	conn, err := pgx.Connect(ctx, r.Cfg.Env.DSN(r.Cfg.Template))
+	if err != nil {
+		return err
+	}
+	owners, err := oracle.SeqOwners(ctx, conn, r.Cfg.Oracle.Schemas)
+	conn.Close(ctx)
+	if err != nil {
+		return err
+	}
+	var bands []oracle.Band
+	for _, bd := range r.Cfg.Bands {
+		bands = append(bands, oracle.Band{Seq: bd.Seq, Start: bd.Start, Width: bd.Width, Offset: bd.Offset})
+	}
+	inf, err := oracle.Infer(a.State, b.State, bands, owners)
+	if err != nil {
+		return fmt.Errorf("id inference: %w", err)
+	}
+	r.Cfg.Oracle.Inf = inf
+	ca, err := oracle.Canonicalize(a.State, r.Cfg.Oracle)
+	if err != nil {
+		return err
+	}
+	for name, x := range map[string]replay.Result{"second fault-free run": a2, "shifted-sequence run": b} {
+		cx, err := oracle.Canonicalize(x.State, r.Cfg.Oracle)
+		if err != nil {
+			return err
+		}
+		if d := oracle.Diff(ca, cx); len(d) > 0 {
+			return fmt.Errorf("%s disagrees after id inference; unstable columns: %s; first diff: %s %s %s",
+				name, strings.Join(oracle.UnstableColumns(ca, cx), ", "), d[0].Sign, d[0].Table, d[0].Row)
+		}
+	}
+	r.mu.Lock()
+	r.baselines = map[string]*oracle.Canon{key(s.Seqs): ca}
+	r.mu.Unlock()
+	return nil
+}
+
+// Inference returns what inferIDs learned, if it ran.
+func (r *Runner) Inference() *oracle.Inference { return r.Cfg.Oracle.Inf }
+
+// CrashSpace is the crash faults a trace admits.
+type CrashSpace struct {
+	Faults        []replay.Fault `json:"-"`
+	Points        int            `json:"crash_points"`
+	Nondetermined []int          `json:"crash_nondeterministic_requests"`
+	Background    int            `json:"background_commits"`
+}
+
+// CrashFaults counts commit points per request over two fault-free runs
+// through the wire proxy and returns crash(i,k) for every commit k of every
+// retryable request whose count agrees between the two runs. Requests whose
+// count differs are listed, never silently dropped.
+func (r *Runner) CrashFaults(ctx context.Context, keyHeader string) (CrashSpace, error) {
+	if keyHeader == "" {
+		keyHeader = trace.DefaultKeyHeader
+	}
+	obs := r.Cfg
+	obs.ObserveCommits = true
+	var counts [2]map[int]int
+	var cs CrashSpace
+	for i := 0; i < 2; i++ {
+		res := replay.Run(ctx, obs, r.Trace, replay.Full(r.Trace), r.Seed+int64(i))
+		r.count()
+		if res.Err != nil {
+			return cs, res.Err
+		}
+		counts[i] = res.Commits
+		cs.Background += res.BgCommits
+	}
+	for _, e := range r.Trace {
+		if !e.Retryable(keyHeader) {
+			continue
+		}
+		a, b := counts[0][e.Seq], counts[1][e.Seq]
+		if a != b {
+			cs.Nondetermined = append(cs.Nondetermined, e.Seq)
+			continue
+		}
+		for k := 1; k <= a; k++ {
+			cs.Faults = append(cs.Faults, replay.Fault{Type: replay.Crash, Seq: e.Seq, K: k})
+			cs.Points++
+		}
+	}
+	return cs, nil
 }

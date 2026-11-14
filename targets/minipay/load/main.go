@@ -68,6 +68,11 @@ func main() {
 	reuse := map[string]any{"customer": firstBody["customer"], "amount": firstBody["amount"].(int64) + 100, "currency": "usd"}
 	post("/charges", "key_ch_0", reuse)
 
+	// Payouts through the multi-phase key (three commits each).
+	for i := 0; i < 8; i++ {
+		post("/payouts", fmt.Sprintf("key_po_%d", i), map[string]any{"customer": cus[rng.Intn(len(cus))], "amount": int64(100 + rng.Intn(900))})
+	}
+
 	// Provider events, delivered in creation order during recording. Some
 	// charges get succeeded then disputed (order matters), others get a
 	// partial refund (applying it twice is the bug to find).

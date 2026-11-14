@@ -25,6 +25,10 @@ if ! .venv/bin/python -c "import pgserver" 2>/dev/null; then
 fi
 PGBIN="$(.venv/bin/python -c 'import pgserver,os;print(os.path.join(os.path.dirname(pgserver.__file__),"pginstall","bin"))')"
 echo "$PGBIN" > .pgbin
+# pgserver ships no contrib modules. Install stutter's SQL-only pgcrypto
+# digest() shim (scripts/pgcrypto-shim) so targets that need it can migrate.
+EXTDIR="$PGBIN/../share/postgresql/extension"
+cp scripts/pgcrypto-shim/pgcrypto.control scripts/pgcrypto-shim/pgcrypto--1.3.sql "$EXTDIR/"
 
 mkdir -p .pgsock
 PGPORT="${STUTTER_PGPORT:-54329}"

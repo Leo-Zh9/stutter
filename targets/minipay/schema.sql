@@ -37,5 +37,31 @@ CREATE TABLE webhook_events (
   payload     jsonb NOT NULL,
   received_at timestamptz NOT NULL DEFAULT now()
 );
+-- Transactional outbox: notifications a worker would send. A correct
+-- handler writes the row in the same transaction as the charge.
+CREATE TABLE outbox (
+  id         text PRIMARY KEY DEFAULT 'ob_' || replace(gen_random_uuid()::text, '-', ''),
+  kind       text NOT NULL,
+  charge_id  text NOT NULL REFERENCES charges(id),
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- Payouts use a multi-phase idempotency key with recovery points: each
+-- phase commits on its own and records how far the request got.
+CREATE TABLE payouts (
+  id           text PRIMARY KEY DEFAULT 'po_' || replace(gen_random_uuid()::text, '-', ''),
+  customer_id  text NOT NULL REFERENCES customers(id),
+  amount_cents bigint NOT NULL,
+  notified     boolean NOT NULL DEFAULT false,
+  created_at   timestamptz NOT NULL DEFAULT now()
+);
+CREATE TABLE payout_keys (
+  key            text PRIMARY KEY,
+  request_hash   text NOT NULL,
+  recovery_point text NOT NULL,
+  payout_id      text REFERENCES payouts(id),
+  response_body  jsonb
+);
+
 -- @unique-event-id (removed in the B5 variant)
 CREATE UNIQUE INDEX webhook_events_event_id ON webhook_events(event_id);

@@ -7,6 +7,6 @@
   "schemas": ["public"],
   "idempotency_header": "Idempotency-Key",
   "webhooks": {"prefix": "/webhooks"},
-  "ignore": ["idempotency_keys.request_hash"],
+  "ignore": ["idempotency_keys.request_hash", "payout_keys.request_hash"],
   "trace": "../../traces/minipay.jsonl"
 }
