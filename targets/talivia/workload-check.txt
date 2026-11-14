@@ -1,0 +1,1 @@
+targets/stripe/lifecycles.mjs: OK

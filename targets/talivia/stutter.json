@@ -1,0 +1,31 @@
+{
+  "name": "talivia-group/talivia @ 9b7ad2a",
+  "dir": "../../.targets/talivia",
+  "start": ["../../.targets/talivia/node_modules/.bin/next", "start", "-p", "{PORT}", "-H", "127.0.0.1"],
+  "env": [
+    "DATABASE_URL={DATABASE_URL}",
+    "APP_SECRET=stutter_local_app_secret_0123456789abcdef",
+    "NODE_ENV=production",
+    "NEXT_TELEMETRY_DISABLED=1",
+    "CHECKPOINT_DISABLE=1",
+    "PRISMA_HIDE_UPDATE_MESSAGE=1"
+  ],
+  "health": "/api/heartbeat",
+  "start_timeout": "30s",
+  "prepare": {
+    "migrate_cmd": ["../../.targets/talivia/node_modules/.bin/prisma", "migrate", "deploy"],
+    "migrate_env": ["DATABASE_URL={DATABASE_URL}", "CHECKPOINT_DISABLE=1", "PRISMA_HIDE_UPDATE_MESSAGE=1"],
+    "seed_file": "fixtures.sql"
+  },
+  "schemas": ["public"],
+  "ignore": ["provider_event.provider_event_id", "subscription.subscription_id"],
+  "webhooks": {
+    "prefix": "/api/payments/stripe/11111111-1111-4111-8111-111111111111/webhook",
+    "signing": "stripe",
+    "secret": "whsec_stutter_local",
+    "retry": "non-2xx",
+    "max_attempts": 5,
+    "object_path": "data.object.customer"
+  },
+  "trace": "trace.jsonl"
+}

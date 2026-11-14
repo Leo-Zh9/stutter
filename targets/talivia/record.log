@@ -1,0 +1,18 @@
+$ shasum -a 256 targets/stripe/lifecycles.mjs
+bc121c1f1bee7f2f8a4bb624c4a5767e2c775e068d8dde42c09474cfb345cdb6  targets/stripe/lifecycles.mjs
+expected bc121c1f1bee7f2f8a4bb624c4a5767e2c775e068d8dde42c09474cfb345cdb6
+match
+$ CHECKPOINT_DISABLE=1 PRISMA_HIDE_UPDATE_MESSAGE=1 NODE_OPTIONS="--require netlog.cjs" \
+    ./bin/stutter record -config targets/talivia/stutter.json -- \
+    node targets/stripe/lifecycles.mjs \
+      --sdk /Users/leozhang/stutter/.targets/talivia/node_modules/stripe \
+      --url {proxy}/api/payments/stripe/11111111-1111-4111-8111-111111111111/webhook \
+      --secret whsec_stutter_local --api basil
+delivered 16 events (2025-04-30.basil)
+recorded 16 requests to targets/talivia/trace.jsonl
+# All 16 deliveries returned HTTP 200 {"ok":true,"status":"processed",...}.
+# --sdk resolves to stripe@22.3.0, the copy the app imports (pins 2025-04-30.basil-era; --api basil).
+# Network check (netlog-record.txt): the node processes connected only to
+# 127.0.0.1:54329 (project-local Postgres). No Stripe or other outside call on the
+# webhook path. An earlier run showed one checkpoint.prisma.io call from the Prisma
+# migrate CLI (version telemetry); CHECKPOINT_DISABLE=1 removes it.

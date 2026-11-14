@@ -1,0 +1,7 @@
+--- netlog start pid=40145 2026-11-14T23:37:27.573Z ---
+--- netlog start pid=40212 2026-11-14T23:37:28.654Z ---
+dns.lookup 127.0.0.1
+--- netlog start pid=40223 2026-11-14T23:37:29.124Z ---
+connect :
+connect 127.0.0.1:54329
+connect :
