@@ -15,22 +15,21 @@ import (
 	"strings"
 
 	"github.com/Leo-Zh9/stutter/internal/bench"
+	"github.com/Leo-Zh9/stutter/internal/config"
 	"github.com/Leo-Zh9/stutter/internal/explore"
-	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
-	"github.com/Leo-Zh9/stutter/internal/replay"
 	"github.com/Leo-Zh9/stutter/internal/target"
 	"github.com/Leo-Zh9/stutter/internal/trace"
 )
 
 const usage = `stutter: find retry bugs by replaying traffic under faults
 
-  stutter record  -schema FILE -target CMD -out TRACE [-webhooks /webhooks] -- WORKLOAD...
-  stutter explore -schema FILE -target CMD -trace TRACE [-random N] [-lanes N] [-no-barrier]
-  stutter bench   -minipay BIN -trace TRACE [-out results]
+  stutter record  -config stutter.json [-out TRACE] -- WORKLOAD...
+  stutter explore -config stutter.json [-trace TRACE] [-env K=V,...] [-random N] [-lanes N] [-no-barrier]
+  stutter bench   [-config targets/minipay/stutter.json] [-out results]
 
-The service command must read DATABASE_URL and ADDR and answer GET /healthz.
 In WORKLOAD, {proxy} is replaced with the recording proxy's base URL.
+Exit codes: 0 no failure found, 1 failure found, 2 tool error.
 `
 
 func main() {
@@ -54,34 +53,40 @@ func main() {
 	}
 }
 
-func targetSpec(cmd string, env []string) target.Spec {
-	return target.Spec{Command: strings.Fields(cmd), Env: env, HealthPath: "/healthz"}
+func splitEnv(s string) []string {
+	if s == "" {
+		return nil
+	}
+	return strings.Split(s, ",")
 }
 
 func record(ctx context.Context, root string, args []string) {
 	fs := flag.NewFlagSet("record", flag.ExitOnError)
-	schema := fs.String("schema", "", "schema SQL file")
-	tcmd := fs.String("target", "", "service command")
-	out := fs.String("out", "trace.jsonl", "trace file to write")
-	hooks := fs.String("webhooks", "/webhooks", "path prefix of webhook deliveries")
+	cfgPath := fs.String("config", "stutter.json", "target config")
+	out := fs.String("out", "", "trace file to write (default: the config's trace)")
+	envs := fs.String("env", "", "extra env for the service, comma separated")
 	fs.Parse(args)
 	workload := fs.Args()
-	if *schema == "" || *tcmd == "" || len(workload) == 0 {
-		log.Fatal("record needs -schema, -target and a workload command after --")
+	if len(workload) == 0 {
+		fail("record needs a workload command after --")
+	}
+	cfg, err := config.Load(*cfgPath)
+	must(err)
+	if *out == "" {
+		*out = cfg.Path(cfg.Trace)
 	}
 	env, err := pgenv.FromRepo(root)
 	must(err)
-	sql, err := os.ReadFile(*schema)
-	must(err)
-	must(env.CreateTemplate(ctx, "tpl_record", string(sql)))
+	extra := splitEnv(*envs)
+	must(cfg.PrepareTemplate(ctx, env, "tpl_record", extra))
 	db, err := env.Clone(ctx, "tpl_record")
 	must(err)
 	defer env.Drop(ctx, db)
-	proc, err := target.Start(ctx, targetSpec(*tcmd, nil), env.DSN(db))
+	proc, err := target.Start(ctx, cfg.Spec(extra), target.DB{DSN: env.DSN(db), URL: env.URL(db)})
 	must(err)
 	defer proc.Stop()
 	up, _ := url.Parse(proc.BaseURL)
-	rec := trace.NewRecorder(up, *hooks)
+	rec := trace.NewRecorder(up, cfg.Webhooks.Prefix, cfg.KeyHeader)
 	l, err := net.Listen("tcp", "127.0.0.1:0")
 	must(err)
 	go http.Serve(l, rec)
@@ -99,41 +104,37 @@ func record(ctx context.Context, root string, args []string) {
 
 func exploreCmd(ctx context.Context, root string, args []string) {
 	fs := flag.NewFlagSet("explore", flag.ExitOnError)
-	schema := fs.String("schema", "", "schema SQL file")
-	tcmd := fs.String("target", "", "service command")
-	tracePath := fs.String("trace", "", "trace file")
+	cfgPath := fs.String("config", "stutter.json", "target config")
+	tracePath := fs.String("trace", "", "trace file (default: the config's trace)")
 	random := fs.Int("random", 200, "random multi-fault schedules after the single-fault sweep")
 	lanes := fs.Int("lanes", 8, "parallel replays")
 	noBarrier := fs.Bool("no-barrier", false, "send concurrent duplicates without the lock barrier")
 	envs := fs.String("env", "", "extra env for the service, comma separated (e.g. BUG=key-ignored)")
 	seed := fs.Int64("seed", 1, "seed")
-	ignore := fs.String("ignore", "", "nondeterministic columns to skip, comma separated table.column")
 	fs.Parse(args)
-	opts := oracle.Options{Ignore: map[string]bool{}}
-	for _, c := range strings.Split(*ignore, ",") {
-		if c != "" {
-			opts.Ignore[c] = true
-		}
+	cfg, err := config.Load(*cfgPath)
+	must(err)
+	if *tracePath == "" {
+		*tracePath = cfg.Path(cfg.Trace)
 	}
 	env, err := pgenv.FromRepo(root)
 	must(err)
-	sql, err := os.ReadFile(*schema)
-	must(err)
-	must(env.CreateTemplate(ctx, "tpl_explore", string(sql)))
+	extra := splitEnv(*envs)
+	must(cfg.PrepareTemplate(ctx, env, "tpl_explore", extra))
 	tr, err := trace.Read(*tracePath)
 	must(err)
-	var extra []string
-	if *envs != "" {
-		extra = strings.Split(*envs, ",")
-	}
-	r := &explore.Runner{
-		Cfg:   replay.Config{Env: env, Template: "tpl_explore", Barrier: !*noBarrier, Target: targetSpec(*tcmd, extra), Oracle: opts},
-		Trace: tr, Lanes: *lanes, Seed: *seed,
-	}
+	rc := cfg.Replay(env, "tpl_explore", extra)
+	rc.Barrier = !*noBarrier
+	r := &explore.Runner{Cfg: rc, Trace: tr, Lanes: *lanes, Seed: *seed}
 	must(r.CheckStable(ctx))
-	scheds := explore.Schedules(tr, *seed, *random)
+	scheds := explore.Schedules(tr, cfg.KeyHeader, *seed, *random)
 	fmt.Printf("%d requests, %d schedules\n", len(tr), len(scheds))
 	idx, outs := r.FirstFailure(ctx, scheds)
+	for _, o := range outs {
+		if o.Err != "" {
+			fail(o.Err)
+		}
+	}
 	if idx < 0 {
 		fmt.Printf("no fault changed the final state in %d runs\n", len(outs))
 		return
@@ -141,7 +142,7 @@ func exploreCmd(ctx context.Context, root string, args []string) {
 	fmt.Printf("run %d of %d changed the final state; shrinking\n", idx+1, len(scheds))
 	min, st := r.Shrink(ctx, outs[idx].Schedule, 3)
 	fmt.Printf("shrunk %d -> %d elements (%d candidates)\n\n", st.ElementsBefore, st.ElementsAfter, st.Candidates)
-	for _, l := range bench.Describe(tr, min) {
+	for _, l := range bench.Describe(tr, min, cfg.KeyHeader) {
 		fmt.Println("  " + l)
 	}
 	fmt.Println()
@@ -153,16 +154,17 @@ func exploreCmd(ctx context.Context, root string, args []string) {
 
 func benchCmd(ctx context.Context, root string, args []string) {
 	fs := flag.NewFlagSet("bench", flag.ExitOnError)
-	bin := fs.String("minipay", "bin/minipay", "minipay binary")
-	tracePath := fs.String("trace", "traces/minipay.jsonl", "trace file")
+	cfgPath := fs.String("config", "targets/minipay/stutter.json", "minipay config")
 	out := fs.String("out", "results", "output directory")
 	lanes := fs.Int("lanes", 8, "parallel replays")
 	random := fs.Int("random", 200, "random multi-fault schedules")
 	trials := fs.Int("trials", 100, "trials per arm in the barrier experiment")
 	seed := fs.Int64("seed", 1, "seed")
 	fs.Parse(args)
+	cfg, err := config.Load(*cfgPath)
+	must(err)
 	res, err := bench.Run(ctx, bench.Config{
-		Root: root, Minipay: *bin, Trace: *tracePath, Lanes: *lanes, Random: *random,
+		Root: root, Target: cfg, Lanes: *lanes, Random: *random,
 		Trials: *trials, Seed: *seed, OutDir: *out,
 		Progress: func(s string) { fmt.Fprintln(os.Stderr, "bench:", s) },
 	})
@@ -171,8 +173,13 @@ func benchCmd(ctx context.Context, root string, args []string) {
 	fmt.Print(bench.Markdown(res))
 }
 
+func fail(msg string) {
+	fmt.Fprintln(os.Stderr, "stutter:", msg)
+	os.Exit(2)
+}
+
 func must(err error) {
 	if err != nil {
-		log.Fatal(err)
+		fail(err.Error())
 	}
 }

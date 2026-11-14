@@ -1,0 +1,12 @@
+{
+  "name": "minipay",
+  "start": ["../../bin/minipay"],
+  "env": ["DATABASE_URL={DSN}", "ADDR={ADDR}"],
+  "health": "/healthz",
+  "prepare": {"schema_cmd": ["../../bin/minipay", "-schema"]},
+  "schemas": ["public"],
+  "idempotency_header": "Idempotency-Key",
+  "webhooks": {"prefix": "/webhooks"},
+  "ignore": ["idempotency_keys.request_hash"],
+  "trace": "../../traces/minipay.jsonl"
+}

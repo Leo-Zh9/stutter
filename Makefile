@@ -18,15 +18,14 @@ build:
 trace: traces/minipay.jsonl
 traces/minipay.jsonl: | pg build
 	@mkdir -p traces
-	./bin/stutter record -schema targets/minipay/schema.sql -target bin/minipay -out $@ -- ./bin/minipay-load -target {proxy}
+	./bin/stutter record -config targets/minipay/stutter.json -out $@ -- ./bin/minipay-load -target {proxy}
 
 bench: pg build trace
-	./bin/stutter bench -minipay bin/minipay -trace traces/minipay.jsonl -out results
+	./bin/stutter bench -config targets/minipay/stutter.json -out results
 
 # Point stutter at one variant by hand, e.g. make explore BUG=key-after-commit
 explore: pg build trace
-	BUG=$(BUG) ./bin/minipay -schema > .schema.sql
-	./bin/stutter explore -schema .schema.sql -target bin/minipay -env BUG=$(BUG) -ignore idempotency_keys.request_hash -trace traces/minipay.jsonl
+	./bin/stutter explore -config targets/minipay/stutter.json -env BUG=$(BUG)
 
 test: pg build
 	STUTTER_REQUIRE_PG=1 $(GO) test ./... -count=1
@@ -35,4 +34,4 @@ stop:
 	@$$(cat .pgbin)/pg_ctl -D .pgdata stop -m fast
 
 clean: stop
-	rm -rf bin .pgdata .pgsock .pgbin .venv .schema.sql
+	rm -rf bin .pgdata .pgsock .pgbin .pgport .venv .schema.sql

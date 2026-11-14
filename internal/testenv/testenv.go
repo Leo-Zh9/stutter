@@ -12,10 +12,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Leo-Zh9/stutter/internal/oracle"
+	"github.com/Leo-Zh9/stutter/internal/config"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
 	"github.com/Leo-Zh9/stutter/internal/replay"
-	"github.com/Leo-Zh9/stutter/internal/target"
 	"github.com/Leo-Zh9/stutter/internal/trace"
 )
 
@@ -41,31 +40,24 @@ func Env(t *testing.T) *pgenv.Env {
 
 var (
 	buildOnce sync.Once
-	binPath   string
 	buildErr  error
+	buildOut  string
 )
 
+// Minipay builds bin/minipay, the binary targets/minipay/stutter.json starts.
 func Minipay(t *testing.T) string {
 	t.Helper()
+	bin := filepath.Join(Root(), "bin", "minipay")
 	buildOnce.Do(func() {
-		dir, err := os.MkdirTemp("", "stutter-test")
-		if err != nil {
-			buildErr = err
-			return
-		}
-		binPath = filepath.Join(dir, "minipay")
-		cmd := exec.Command("go", "build", "-o", binPath, "./targets/minipay")
+		cmd := exec.Command("go", "build", "-o", bin, "./targets/minipay")
 		cmd.Dir = Root()
 		out, err := cmd.CombinedOutput()
-		if err != nil {
-			buildErr = err
-			binPath = string(out)
-		}
+		buildErr, buildOut = err, string(out)
 	})
 	if buildErr != nil {
-		t.Fatalf("build minipay: %v %s", buildErr, binPath)
+		t.Fatalf("build minipay: %v %s", buildErr, buildOut)
 	}
-	return binPath
+	return bin
 }
 
 func Trace(t *testing.T) []trace.Entry {
@@ -77,16 +69,22 @@ func Trace(t *testing.T) []trace.Entry {
 	return tr
 }
 
-// Config builds a replay config for one minipay variant on its own template.
-func Config(t *testing.T, env *pgenv.Env, bug string) replay.Config {
+// Target loads targets/minipay/stutter.json.
+func Target(t *testing.T) *config.Config {
 	t.Helper()
-	bin := Minipay(t)
-	cmd := exec.Command(bin, "-schema")
-	cmd.Env = append(os.Environ(), "BUG="+bug)
-	schema, err := cmd.Output()
+	Minipay(t)
+	c, err := config.Load(filepath.Join(Root(), "targets", "minipay", "stutter.json"))
 	if err != nil {
 		t.Fatal(err)
 	}
+	return c
+}
+
+// Config builds a replay config for one minipay variant on its own template,
+// through the same stutter.json path the CLI uses.
+func Config(t *testing.T, env *pgenv.Env, bug string) replay.Config {
+	t.Helper()
+	c := Target(t)
 	name := "tpl_test_" + strings.NewReplacer("-", "_", "/", "_").Replace(strings.ToLower(t.Name()))
 	if bug != "" {
 		name += "_" + strings.ReplaceAll(bug, "-", "_")
@@ -94,13 +92,10 @@ func Config(t *testing.T, env *pgenv.Env, bug string) replay.Config {
 	if len(name) > 60 {
 		name = name[:60]
 	}
-	if err := env.CreateTemplate(context.Background(), name, string(schema)); err != nil {
+	extra := []string{"BUG=" + bug}
+	if err := c.PrepareTemplate(context.Background(), env, name, extra); err != nil {
 		t.Fatal(err)
 	}
 	t.Cleanup(func() { env.Drop(context.Background(), name) })
-	return replay.Config{
-		Env: env, Template: name, Barrier: true,
-		Target: target.Spec{Command: []string{bin}, Env: []string{"BUG=" + bug}, HealthPath: "/healthz"},
-		Oracle: oracle.Options{Ignore: map[string]bool{"idempotency_keys.request_hash": true}},
-	}
+	return c.Replay(env, name, extra)
 }

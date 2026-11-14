@@ -35,17 +35,24 @@ type Entry struct {
 	RespBody   json.RawMessage   `json:"resp_body,omitempty"`
 }
 
-// Header names copied into the trace. Credentials are never recorded.
-var keptHeaders = []string{"Content-Type", "Idempotency-Key"}
+// DefaultKeyHeader is the idempotency header most APIs use.
+const DefaultKeyHeader = "Idempotency-Key"
 
-// Key returns the idempotency key, if the request carried one.
-func (e Entry) Key() string { return e.Headers["Idempotency-Key"] }
+// Key returns the idempotency key carried in the named header, if any.
+func (e Entry) Key(header string) string {
+	for k, v := range e.Headers {
+		if strings.EqualFold(k, header) {
+			return v
+		}
+	}
+	return ""
+}
 
 // Retryable reports whether a well-behaved sender may resend this request:
 // a provider may always redeliver a webhook, and a client may retry an API
 // call only when it carries an idempotency key.
-func (e Entry) Retryable() bool {
-	return e.Kind == Webhook || e.Key() != ""
+func (e Entry) Retryable(keyHeader string) bool {
+	return e.Kind == Webhook || e.Key(keyHeader) != ""
 }
 
 func Read(path string) ([]Entry, error) {
@@ -88,13 +95,17 @@ func Write(path string, entries []Entry) error {
 type Recorder struct {
 	proxy         *httputil.ReverseProxy
 	webhookPrefix string
+	keep          []string
 	mu            sync.Mutex
 	entries       []Entry
 }
 
-func NewRecorder(upstream *url.URL, webhookPrefix string) *Recorder {
-	r := &Recorder{proxy: httputil.NewSingleHostReverseProxy(upstream), webhookPrefix: webhookPrefix}
-	return r
+// NewRecorder proxies to upstream. Only Content-Type and the named
+// idempotency header are kept; credentials and signatures are never recorded
+// (stutter re-signs webhooks at send time when configured to).
+func NewRecorder(upstream *url.URL, webhookPrefix, keyHeader string) *Recorder {
+	return &Recorder{proxy: httputil.NewSingleHostReverseProxy(upstream), webhookPrefix: webhookPrefix,
+		keep: []string{"Content-Type", keyHeader}}
 }
 
 func (r *Recorder) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -107,7 +118,7 @@ func (r *Recorder) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if r.webhookPrefix != "" && strings.HasPrefix(req.URL.Path, r.webhookPrefix) {
 		e.Kind = Webhook
 	}
-	for _, h := range keptHeaders {
+	for _, h := range r.keep {
 		if v := req.Header.Get(h); v != "" {
 			e.Headers[h] = v
 		}

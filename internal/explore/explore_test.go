@@ -22,7 +22,7 @@ func runner(t *testing.T, bug string) *explore.Runner {
 // multi-fault budget, changes the final state.
 func TestCorrectVariantHasNoFalseAlarms(t *testing.T) {
 	r := runner(t, "")
-	ss := explore.Schedules(r.Trace, 1, 30)
+	ss := explore.Schedules(r.Trace, "", 1, 30)
 	outs := r.Parallel(len(ss), func(i int) explore.Outcome { return r.Check(context.Background(), ss[i], int64(i)) })
 	for _, o := range outs {
 		if o.Err != "" {
@@ -50,7 +50,7 @@ func TestEveryInModelBugIsDetectedAndShrunk(t *testing.T) {
 	for bug, want := range cases {
 		t.Run(bug, func(t *testing.T) {
 			r := runner(t, bug)
-			idx, outs := r.FirstFailure(context.Background(), explore.Schedules(r.Trace, 1, 0))
+			idx, outs := r.FirstFailure(context.Background(), explore.Schedules(r.Trace, "", 1, 0))
 			if idx < 0 {
 				t.Fatal("not detected")
 			}
@@ -70,7 +70,7 @@ func TestEveryInModelBugIsDetectedAndShrunk(t *testing.T) {
 func TestRaceBugsNeedConcurrency(t *testing.T) {
 	for _, bug := range []string{"key-after-commit", "webhook-check-then-insert"} {
 		r := runner(t, bug)
-		for _, s := range explore.Schedules(r.Trace, 1, 0) {
+		for _, s := range explore.Schedules(r.Trace, "", 1, 0) {
 			if s.Faults[0].Type != replay.Lost {
 				continue
 			}
@@ -85,7 +85,7 @@ func TestRaceBugsNeedConcurrency(t *testing.T) {
 // differential oracle cannot see it. The test pins that limit.
 func TestControlIsOutsideTheOracle(t *testing.T) {
 	r := runner(t, "key-unscoped")
-	if idx, _ := r.FirstFailure(context.Background(), explore.Schedules(r.Trace, 1, 0)); idx >= 0 {
+	if idx, _ := r.FirstFailure(context.Background(), explore.Schedules(r.Trace, "", 1, 0)); idx >= 0 {
 		t.Fatal("control was detected; the oracle claim in the README is wrong")
 	}
 }

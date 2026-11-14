@@ -27,6 +27,8 @@ PGBIN="$(.venv/bin/python -c 'import pgserver,os;print(os.path.join(os.path.dirn
 echo "$PGBIN" > .pgbin
 
 mkdir -p .pgsock
+PGPORT="${STUTTER_PGPORT:-54329}"
+echo "$PGPORT" > .pgport
 if [ ! -f .pgdata/PG_VERSION ]; then
   "$PGBIN/initdb" -D .pgdata -U postgres --auth=trust --encoding=UTF8 --locale=C >/dev/null
 fi
@@ -36,7 +38,7 @@ if ! "$PGBIN/pg_ctl" -D .pgdata status >/dev/null 2>&1; then
   # an OS crash. They do not change isolation levels or lock behaviour, which is
   # all stutter's faults depend on.
   "$PGBIN/pg_ctl" -D .pgdata -l .pgdata/server.log -w start -o \
-    "-k $ROOT/.pgsock -c listen_addresses='' -c max_connections=300 \
+    "-k $ROOT/.pgsock -p $PGPORT -c listen_addresses=127.0.0.1 -c max_connections=300 \
      -c fsync=off -c synchronous_commit=off -c full_page_writes=off" >/dev/null
 fi
-echo "postgres ready on $ROOT/.pgsock"
+echo "postgres ready on $ROOT/.pgsock and 127.0.0.1:$PGPORT"

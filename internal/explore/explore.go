@@ -142,8 +142,8 @@ func (r *Runner) Parallel(n int, fn func(i int) Outcome) []Outcome {
 
 // Schedules returns every single-fault schedule in a fixed order, then
 // `random` multi-fault schedules of 2 to 4 faults drawn with the seed.
-func Schedules(tr []trace.Entry, seed int64, random int) []replay.Schedule {
-	singles := replay.Faults(tr)
+func Schedules(tr []trace.Entry, keyHeader string, seed int64, random int) []replay.Schedule {
+	singles := replay.Faults(tr, keyHeader)
 	var out []replay.Schedule
 	for _, f := range singles {
 		out = append(out, replay.Full(tr, f))

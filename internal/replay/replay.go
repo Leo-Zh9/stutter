@@ -5,6 +5,9 @@ package replay
 
 import (
 	"bytes"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -81,8 +84,20 @@ type Config struct {
 	BarrierTimeout time.Duration // default 500ms
 	MaxAttempts    int           // per request, default 3
 	Oracle         oracle.Options
+	// KeyHeader names the idempotency header (default Idempotency-Key).
+	KeyHeader string
+	Webhooks  WebhookPolicy
 	// Arrival, if set, is called each time a request reaches the transport.
 	Arrival func(seq int)
+}
+
+// WebhookPolicy describes the provider that sends webhook entries.
+type WebhookPolicy struct {
+	Signing     string // "stripe": sign each delivery at send time
+	Secret      string
+	Header      string // default Stripe-Signature
+	RetryAny    bool   // provider retries any non-2xx (Stripe), not only 5xx
+	MaxAttempts int    // provider attempts per delivery; default MaxAttempts
 }
 
 type Result struct {
@@ -109,12 +124,21 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	if cfg.MaxAttempts == 0 {
 		cfg.MaxAttempts = 3
 	}
+	if cfg.KeyHeader == "" {
+		cfg.KeyHeader = trace.DefaultKeyHeader
+	}
+	if cfg.Webhooks.MaxAttempts == 0 {
+		cfg.Webhooks.MaxAttempts = cfg.MaxAttempts
+	}
+	if cfg.Webhooks.Header == "" {
+		cfg.Webhooks.Header = "Stripe-Signature"
+	}
 	db, err := cfg.Env.Clone(ctx, cfg.Template)
 	if err != nil {
 		return Result{Err: err}
 	}
 	defer cfg.Env.Drop(context.Background(), db)
-	proc, err := target.Start(ctx, cfg.Target, cfg.Env.DSN(db))
+	proc, err := target.Start(ctx, cfg.Target, target.DB{DSN: cfg.Env.DSN(db), URL: cfg.Env.URL(db)})
 	if err != nil {
 		return Result{Err: err}
 	}
@@ -139,13 +163,13 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	for _, f := range s.Faults {
 		switch f.Type {
 		case Lost:
-			if include[f.Seq] && bySeq[f.Seq].Retryable() {
+			if include[f.Seq] && bySeq[f.Seq].Retryable(cfg.KeyHeader) {
 				lost[f.Seq] = true
 			} else {
 				res.NotFired++
 			}
 		case Concurrent:
-			if include[f.Seq] && bySeq[f.Seq].Retryable() {
+			if include[f.Seq] && bySeq[f.Seq].Retryable(cfg.KeyHeader) {
 				conc[f.Seq] = true
 			} else {
 				res.NotFired++
@@ -174,7 +198,8 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		}
 		defer conn.Close(context.Background())
 		c.barrier = conn
-		rows, err := conn.Query(ctx, `SELECT quote_ident(tablename) FROM pg_tables WHERE schemaname = 'public'`)
+		rows, err := conn.Query(ctx, `SELECT quote_ident(schemaname) || '.' || quote_ident(tablename)
+			FROM pg_tables WHERE schemaname = ANY($1) ORDER BY 1`, schemas(cfg))
 		if err != nil {
 			return Result{Err: err}
 		}
@@ -217,12 +242,19 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		return Result{Err: err}
 	}
 	defer conn.Close(context.Background())
-	st, err := oracle.Snapshot(ctx, conn)
+	st, err := oracle.Snapshot(ctx, conn, schemas(cfg))
 	if err != nil {
 		return Result{Err: err}
 	}
 	res.Canon, res.Err = oracle.Canonicalize(st, cfg.Oracle)
 	return res
+}
+
+func schemas(cfg Config) []string {
+	if len(cfg.Oracle.Schemas) == 0 {
+		return []string{"public"}
+	}
+	return cfg.Oracle.Schemas
 }
 
 type response struct {
@@ -252,6 +284,9 @@ func (c *client) once(ctx context.Context, e trace.Entry) (response, error) {
 	for k, v := range e.Headers {
 		req.Header.Set(k, v)
 	}
+	if e.Kind == trace.Webhook && c.cfg.Webhooks.Signing == "stripe" {
+		req.Header.Set(c.cfg.Webhooks.Header, StripeSignature(c.cfg.Webhooks.Secret, time.Now(), body))
+	}
 	if c.cfg.Arrival != nil {
 		c.cfg.Arrival(e.Seq)
 	}
@@ -269,10 +304,13 @@ func (c *client) once(ctx context.Context, e trace.Entry) (response, error) {
 // progress), and only if the request is retryable at all. Unkeyed API calls
 // are sent exactly once.
 func (c *client) send(ctx context.Context, e trace.Entry, attempt int) (response, error) {
+	max := c.cfg.MaxAttempts
+	if e.Kind == trace.Webhook {
+		max = c.cfg.Webhooks.MaxAttempts
+	}
 	for ; ; attempt++ {
 		r, err := c.once(ctx, e)
-		ok := err == nil && r.status < 500 && r.status != 409
-		if ok || !e.Retryable() || attempt >= c.cfg.MaxAttempts {
+		if c.done(e, r, err) || !e.Retryable(c.cfg.KeyHeader) || attempt >= max {
 			return r, err
 		}
 		c.rngMu.Lock()
@@ -280,6 +318,29 @@ func (c *client) send(ctx context.Context, e trace.Entry, attempt int) (response
 		c.rngMu.Unlock()
 		time.Sleep(d)
 	}
+}
+
+// done reports whether a response ends the sender's retries. A client stops
+// on anything but a 5xx or 409; a provider like Stripe retries any non-2xx.
+func (c *client) done(e trace.Entry, r response, err error) bool {
+	if err != nil {
+		return false
+	}
+	if e.Kind == trace.Webhook && c.cfg.Webhooks.RetryAny {
+		return r.status >= 200 && r.status < 300
+	}
+	return r.status < 500 && r.status != 409
+}
+
+// StripeSignature builds a Stripe-Signature header value: t=<unix>,v1=<hex
+// HMAC-SHA256 of "<t>.<body>">. Stripe rejects signatures older than 300 s,
+// so stutter signs at send time instead of replaying recorded headers.
+func StripeSignature(secret string, now time.Time, body []byte) string {
+	t := now.Unix()
+	m := hmac.New(sha256.New, []byte(secret))
+	fmt.Fprintf(m, "%d.", t)
+	m.Write(body)
+	return fmt.Sprintf("t=%d,v1=%s", t, hex.EncodeToString(m.Sum(nil)))
 }
 
 // concurrent sends attempt A, then a duplicate B while A is still inside its
@@ -325,7 +386,7 @@ func (c *client) concurrent(ctx context.Context, e trace.Entry) (response, bool,
 	if a.err != nil {
 		return response{}, fired, a.err
 	}
-	if a.r.status >= 500 || a.r.status == 409 {
+	if !c.done(e, a.r, nil) {
 		r, err := c.send(ctx, e, 2) // A's own retry policy continues
 		return r, fired, err
 	}
@@ -436,15 +497,18 @@ func (c *client) rewritePath(p string) string {
 // Faults lists every single fault the trace admits: Lost and Concurrent on
 // each retryable request, Reorder on each pair of webhooks about the same
 // object (the first string in data that a response minted).
-func Faults(tr []trace.Entry) []Fault {
+func Faults(tr []trace.Entry, keyHeader string) []Fault {
+	if keyHeader == "" {
+		keyHeader = trace.DefaultKeyHeader
+	}
 	var out []Fault
 	for _, e := range tr {
-		if e.Retryable() {
+		if e.Retryable(keyHeader) {
 			out = append(out, Fault{Type: Lost, Seq: e.Seq})
 		}
 	}
 	for _, e := range tr {
-		if e.Retryable() {
+		if e.Retryable(keyHeader) {
 			out = append(out, Fault{Type: Concurrent, Seq: e.Seq})
 		}
 	}

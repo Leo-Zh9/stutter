@@ -8,18 +8,17 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"os/exec"
-	"path/filepath"
+		"path/filepath"
 	"runtime"
 	"sort"
 	"strings"
 	"time"
 
+	"github.com/Leo-Zh9/stutter/internal/config"
 	"github.com/Leo-Zh9/stutter/internal/explore"
 	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
 	"github.com/Leo-Zh9/stutter/internal/replay"
-	"github.com/Leo-Zh9/stutter/internal/target"
 	"github.com/Leo-Zh9/stutter/internal/trace"
 )
 
@@ -42,8 +41,7 @@ var Variants = []Variant{
 
 type Config struct {
 	Root     string // repo root
-	Minipay  string // path to built minipay binary
-	Trace    string
+	Target   *config.Config
 	Lanes    int
 	Random   int // random multi-fault schedules after the single-fault sweep
 	Trials   int // per arm for the barrier experiment
@@ -110,13 +108,6 @@ type Results struct {
 	TotalSec    float64         `json:"total_seconds"`
 }
 
-func schemaFor(bin, bug string) (string, error) {
-	cmd := exec.Command(bin, "-schema")
-	cmd.Env = append(os.Environ(), "BUG="+bug)
-	out, err := cmd.Output()
-	return string(out), err
-}
-
 func tplName(bug string) string {
 	if bug == "" {
 		return "tpl_correct"
@@ -135,7 +126,8 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 		return nil, err
 	}
 	defer env.Close()
-	tr, err := trace.Read(cfg.Trace)
+	tc := cfg.Target
+	tr, err := trace.Read(tc.Path(tc.Trace))
 	if err != nil {
 		return nil, err
 	}
@@ -143,35 +135,24 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 	res.Machine = fmt.Sprintf("%s/%s, %d CPUs", runtime.GOOS, runtime.GOARCH, runtime.NumCPU())
 	env.Admin().QueryRow(ctx, "SHOW server_version").Scan(&res.Postgres)
 	for _, e := range tr {
-		if e.Retryable() {
+		if e.Retryable(tc.KeyHeader) {
 			res.Retryable++
 		}
 		if e.Kind == trace.Webhook {
 			res.Webhooks++
 		}
 	}
-	scheds := explore.Schedules(tr, cfg.Seed, cfg.Random)
-	res.SingleFaults = len(replay.Faults(tr))
+	scheds := explore.Schedules(tr, tc.KeyHeader, cfg.Seed, cfg.Random)
+	res.SingleFaults = len(replay.Faults(tr, tc.KeyHeader))
 	res.RandomFaults = len(scheds) - res.SingleFaults
 
 	runner := func(bug string, barrier bool) *explore.Runner {
-		return &explore.Runner{
-			Cfg: replay.Config{
-				Env: env, Template: tplName(bug), Barrier: barrier,
-				// A hash of a body that embeds a generated customer id: derived
-				// nondeterminism the catalog rule cannot see. CheckStable names it.
-				Oracle: oracle.Options{Ignore: map[string]bool{"idempotency_keys.request_hash": true}},
-				Target: target.Spec{Command: []string{cfg.Minipay}, Env: []string{"BUG=" + bug}, HealthPath: "/healthz"},
-			},
-			Trace: tr, Lanes: cfg.Lanes, Seed: cfg.Seed,
-		}
+		rc := tc.Replay(env, tplName(bug), []string{"BUG=" + bug})
+		rc.Barrier = barrier
+		return &explore.Runner{Cfg: rc, Trace: tr, Lanes: cfg.Lanes, Seed: cfg.Seed}
 	}
 	for _, v := range Variants {
-		schema, err := schemaFor(cfg.Minipay, v.Bug)
-		if err != nil {
-			return nil, err
-		}
-		if err := env.CreateTemplate(ctx, tplName(v.Bug), schema); err != nil {
+		if err := tc.PrepareTemplate(ctx, env, tplName(v.Bug), []string{"BUG=" + v.Bug}); err != nil {
 			return nil, err
 		}
 	}
@@ -267,7 +248,7 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 			min, st := r.Shrink(ctx, first.Schedule, 3)
 			vr.ShrinkSec = time.Since(ts).Seconds()
 			vr.Shrink = &st
-			vr.Shrunk = Describe(tr, min)
+			vr.Shrunk = Describe(tr, min, tc.KeyHeader)
 			ok := r.OneMinimal(ctx, min, 3)
 			vr.OneMinimal = &ok
 			fin := r.Check(ctx, min, cfg.Seed)
@@ -276,7 +257,7 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 				for _, f := range min.Faults {
 					if f.Type == replay.Concurrent {
 						say("barrier trigger rate " + v.Bug)
-						res.Triggers = append(res.Triggers, triggerRate(ctx, cfg, runner(v.Bug, true), runner(v.Bug, false), tr, f))
+						res.Triggers = append(res.Triggers, triggerRate(ctx, cfg, v.Bug, runner(v.Bug, true), runner(v.Bug, false), tr, f))
 					}
 				}
 			}
@@ -290,8 +271,8 @@ func Run(ctx context.Context, cfg Config) (*Results, error) {
 // triggerRate replays the full trace with one Concurrent fault, `Trials`
 // times with the barrier and `Trials` times without it (both attempts sent
 // back to back from two goroutines), on a fresh clone each time.
-func triggerRate(ctx context.Context, cfg Config, on, off *explore.Runner, tr []trace.Entry, f replay.Fault) Trigger {
-	t := Trigger{Bug: on.Cfg.Target.Env[0][4:], Fault: f.String(), Trials: cfg.Trials}
+func triggerRate(ctx context.Context, cfg Config, bug string, on, off *explore.Runner, tr []trace.Entry, f replay.Fault) Trigger {
+	t := Trigger{Bug: bug, Fault: f.String(), Trials: cfg.Trials}
 	s := replay.Full(tr, f)
 	arm := func(r *explore.Runner) Rate {
 		var rate Rate
@@ -314,14 +295,14 @@ func triggerRate(ctx context.Context, cfg Config, on, off *explore.Runner, tr []
 }
 
 // Describe renders a schedule as one line per request plus its faults.
-func Describe(tr []trace.Entry, s replay.Schedule) []string {
+func Describe(tr []trace.Entry, s replay.Schedule, keyHeader string) []string {
 	by := map[int]trace.Entry{}
 	for _, e := range tr {
 		by[e.Seq] = e
 	}
 	var out []string
 	for _, q := range s.Seqs {
-		out = append(out, describeEntry(by[q]))
+		out = append(out, describeEntry(by[q], keyHeader))
 	}
 	for _, f := range s.Faults {
 		out = append(out, "fault "+f.String())
@@ -329,7 +310,7 @@ func Describe(tr []trace.Entry, s replay.Schedule) []string {
 	return out
 }
 
-func describeEntry(e trace.Entry) string {
+func describeEntry(e trace.Entry, keyHeader string) string {
 	if e.Kind == trace.Webhook {
 		var ev struct {
 			ID   string `json:"id"`
@@ -338,7 +319,7 @@ func describeEntry(e trace.Entry) string {
 		json.Unmarshal(e.Body, &ev)
 		return fmt.Sprintf("#%d webhook %s %s", e.Seq, ev.Type, ev.ID)
 	}
-	return fmt.Sprintf("#%d %s %s key=%s", e.Seq, e.Method, e.Path, e.Key())
+	return fmt.Sprintf("#%d %s %s key=%s", e.Seq, e.Method, e.Path, e.Key(keyHeader))
 }
 
 func Write(dir string, r *Results) error {

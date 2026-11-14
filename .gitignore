@@ -4,3 +4,4 @@ bin/
 .pgbin
 .venv/
 .schema.sql
+.pgport

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync/atomic"
 
 	"github.com/jackc/pgx/v5"
@@ -15,6 +16,7 @@ import (
 
 type Env struct {
 	SocketDir string
+	Port      string
 	User      string
 	admin     *pgxpool.Pool
 	counter   atomic.Int64
@@ -28,7 +30,16 @@ func FromRepo(root string) (*Env, error) {
 	if host == "" {
 		host = filepath.Join(root, ".pgsock")
 	}
-	e := &Env{SocketDir: host, User: "postgres", prefix: fmt.Sprintf("r%d_", os.Getpid())}
+	port := os.Getenv("STUTTER_PGPORT")
+	if port == "" {
+		if b, err := os.ReadFile(filepath.Join(root, ".pgport")); err == nil {
+			port = strings.TrimSpace(string(b))
+		}
+	}
+	if port == "" {
+		port = "5432"
+	}
+	e := &Env{SocketDir: host, Port: port, User: "postgres", prefix: fmt.Sprintf("r%d_", os.Getpid())}
 	cfg, err := pgxpool.ParseConfig(e.DSN("postgres"))
 	if err != nil {
 		return nil, err
@@ -44,8 +55,15 @@ func FromRepo(root string) (*Env, error) {
 	return e, nil
 }
 
+// DSN is a libpq keyword string over the unix socket.
 func (e *Env) DSN(db string) string {
-	return fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable", e.SocketDir, e.User, db)
+	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable", e.SocketDir, e.Port, e.User, db)
+}
+
+// URL is a postgres:// URL over TCP on 127.0.0.1, for drivers and ORMs that
+// only take URLs (Prisma, postgres.js).
+func (e *Env) URL(db string) string {
+	return fmt.Sprintf("postgres://%s@127.0.0.1:%s/%s?sslmode=disable", e.User, e.Port, db)
 }
 
 func (e *Env) Admin() *pgxpool.Pool { return e.admin }
@@ -63,7 +81,21 @@ func (e *Env) CreateTemplate(ctx context.Context, name, schema string) error {
 		return err
 	}
 	defer conn.Close(ctx)
+	if strings.TrimSpace(schema) == "" {
+		return nil
+	}
 	_, err = conn.Exec(ctx, schema)
+	return err
+}
+
+// ExecIn runs SQL in the named database.
+func (e *Env) ExecIn(ctx context.Context, db, sql string) error {
+	conn, err := pgx.Connect(ctx, e.DSN(db))
+	if err != nil {
+		return err
+	}
+	defer conn.Close(ctx)
+	_, err = conn.Exec(ctx, sql)
 	return err
 }
 

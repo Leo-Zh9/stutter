@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"sync"
 	"testing"
+	"time"
 
 	"github.com/Leo-Zh9/stutter/internal/replay"
 	"github.com/Leo-Zh9/stutter/internal/testenv"
@@ -75,7 +76,7 @@ func TestUnkeyedRequestsAreNeverFaulted(t *testing.T) {
 			t.Fatalf("%s on unkeyed call: arrivals=%d fired=%d", ft, a.count(e.Seq), res.Fired)
 		}
 	}
-	for _, f := range replay.Faults(tr) {
+	for _, f := range replay.Faults(tr, "Idempotency-Key") {
 		if f.Seq == e.Seq && f.Type != replay.Reorder {
 			t.Fatalf("enumeration offered %v on an unkeyed call", f)
 		}
@@ -128,7 +129,7 @@ func TestReorderSwapsDelivery(t *testing.T) {
 	cfg := testenv.Config(t, env, "")
 	tr := testenv.Trace(t)
 	var f replay.Fault
-	for _, x := range replay.Faults(tr) {
+	for _, x := range replay.Faults(tr, "Idempotency-Key") {
 		if x.Type == replay.Reorder {
 			f = x
 			break
@@ -167,5 +168,42 @@ func TestFaultFreeReplayIsDeterministic(t *testing.T) {
 	}
 	if len(digests) != 1 {
 		t.Fatalf("%d distinct end states", len(digests))
+	}
+}
+
+// A provider profile like Stripe's retries any non-2xx; the default client
+// rule retries only 5xx and 409. A webhook for an unknown charge gets 404.
+func TestProviderRetryProfile(t *testing.T) {
+	env := testenv.Env(t)
+	tr := testenv.Trace(t)
+	hook := firstOf(tr, trace.Webhook, "")
+	var ev map[string]any
+	json.Unmarshal(hook.Body, &ev)
+	ev["data"].(map[string]any)["charge"] = "ch_does_not_exist"
+	tr[hook.Seq].Body, _ = json.Marshal(ev)
+	for _, tc := range []struct {
+		retryAny bool
+		want     int
+	}{{false, 1}, {true, 5}} {
+		cfg := testenv.Config(t, env, "")
+		cfg.Webhooks.RetryAny, cfg.Webhooks.MaxAttempts = tc.retryAny, 5
+		var a arrivals
+		cfg.Arrival = a.add
+		if res := replay.Run(context.Background(), cfg, tr, replay.Full(tr), 1); res.Err != nil {
+			t.Fatal(res.Err)
+		}
+		if got := a.count(hook.Seq); got != tc.want {
+			t.Fatalf("retryAny=%v: %d deliveries, want %d", tc.retryAny, got, tc.want)
+		}
+	}
+}
+
+// Stripe's scheme: v1 is hex HMAC-SHA256 over "<t>.<body>" with the secret.
+func TestStripeSignature(t *testing.T) {
+	got := replay.StripeSignature("whsec_test", time.Unix(1700000000, 0), []byte(`{"id":"evt_1"}`))
+	// Computed independently: printf '1700000000.{"id":"evt_1"}' | openssl dgst -sha256 -hmac whsec_test
+	want := "t=1700000000,v1=" + stripeWant
+	if got != want {
+		t.Fatalf("got %s want %s", got, want)
 	}
 }

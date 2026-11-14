@@ -34,6 +34,8 @@ make explore BUG=webhook-stale-overwrite   # hunt one seeded bug; exits 1 when i
 make stop                                  # stop the local Postgres
 ```
 
+To point stutter at your own service, describe it in a `stutter.json`: see [docs/usage.md](docs/usage.md).
+
 ## How it works
 
 1. **Record.** A reverse proxy writes every request and response to a JSONL trace.
@@ -65,7 +67,7 @@ Target: minipay ([targets/minipay](targets/minipay)), a **simulated** payments A
 | key-unscoped (control) | key not bound to the request body | not detected, by design | - |
 
 - **5 of 5 in-model bugs found. 0 false alarms.** Every shrunk schedule was rechecked by brute force and is 1-minimal.
-- **The barrier matters.** The two race bugs triggered 100 of 100 times with the barrier, and 1 to 7 of 100 without it across two runs ([results/runs](results/runs)).
+- **The barrier matters.** The two race bugs triggered 100 of 100 times with the barrier, and 1 to 7 of 100 without it across three runs ([results/runs](results/runs)).
 - **The control marks the method's limit.** A key reused with a different body is wrong with or without faults, so comparing against a fault-free run cannot see it.
 - **Speed.** 35.7 replays per second on 8 lanes; median replay 55 ms; full suite about 90 s on a 10-core Apple Silicon Mac.
 
@@ -76,7 +78,7 @@ Target: minipay ([targets/minipay](targets/minipay)), a **simulated** payments A
 - Integer ids inside JSON and multi-column foreign keys are not matched as references.
 - A bug whose only effect is a wrong timestamp is missed.
 
-Details: [docs/oracle.md](docs/oracle.md), [docs/faults.md](docs/faults.md), [docs/shrinking.md](docs/shrinking.md), [docs/guarantees.md](docs/guarantees.md), [docs/prior-art.md](docs/prior-art.md).
+Details: [docs/usage.md](docs/usage.md), [docs/oracle.md](docs/oracle.md), [docs/faults.md](docs/faults.md), [docs/shrinking.md](docs/shrinking.md), [docs/guarantees.md](docs/guarantees.md), [docs/prior-art.md](docs/prior-art.md).
 
 ## Prior art
 
@@ -92,6 +94,7 @@ stutter combines a database-state oracle, faults placed at the commit boundary a
 
 ```
 cmd/stutter        CLI: record, explore, bench
+internal/config    stutter.json loading, template preparation
 internal/trace     trace format, recording proxy
 internal/replay    client rules, faults, lock barrier, id mapping
 internal/oracle    catalog snapshot, canonical form, diff

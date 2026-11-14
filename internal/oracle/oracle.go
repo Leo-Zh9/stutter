@@ -59,8 +59,12 @@ var temporalTypes = map[string]bool{
 var funcCall = regexp.MustCompile(`([A-Za-z_][A-Za-z0-9_]*)\s*\(`)
 var sqlValueFuncs = regexp.MustCompile(`(?i)\b(CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME|LOCALTIMESTAMP|LOCALTIME)\b`)
 
-// Snapshot reads every ordinary table in the public schema.
-func Snapshot(ctx context.Context, conn *pgx.Conn) (*State, error) {
+// Snapshot reads every ordinary table in the given schemas. Tables outside
+// public are named schema.table.
+func Snapshot(ctx context.Context, conn *pgx.Conn, schemas []string) (*State, error) {
+	if len(schemas) == 0 {
+		schemas = []string{"public"}
+	}
 	nonImmutable := map[string]bool{}
 	rows, err := conn.Query(ctx, `SELECT DISTINCT proname FROM pg_proc WHERE provolatile IN ('v','s')`)
 	if err != nil {
@@ -74,14 +78,15 @@ func Snapshot(ctx context.Context, conn *pgx.Conn) (*State, error) {
 	rows.Close()
 
 	rows, err = conn.Query(ctx, `
-		SELECT c.relname, a.attname, format_type(a.atttypid, a.atttypmod),
+		SELECT CASE WHEN n.nspname = 'public' THEN c.relname ELSE n.nspname || '.' || c.relname END,
+		       a.attname, format_type(a.atttypid, a.atttypmod),
 		       COALESCE(pg_get_expr(d.adbin, d.adrelid), ''), a.attidentity <> ''
 		FROM pg_class c
-		JOIN pg_namespace n ON n.oid = c.relnamespace AND n.nspname = 'public'
+		JOIN pg_namespace n ON n.oid = c.relnamespace AND n.nspname = ANY($1)
 		JOIN pg_attribute a ON a.attrelid = c.oid AND a.attnum > 0 AND NOT a.attisdropped
 		LEFT JOIN pg_attrdef d ON d.adrelid = c.oid AND d.adnum = a.attnum
-		WHERE c.relkind IN ('r','p')
-		ORDER BY c.relname, a.attnum`)
+		WHERE c.relkind IN ('r','p') AND NOT c.relispartition
+		ORDER BY 1, a.attnum`, schemas)
 	if err != nil {
 		return nil, err
 	}
@@ -111,10 +116,13 @@ func Snapshot(ctx context.Context, conn *pgx.Conn) (*State, error) {
 
 	// Single-column foreign keys.
 	rows, err = conn.Query(ctx, `
-		SELECT cl.relname, a.attname, pc.relname, pa.attname
+		SELECT CASE WHEN cn.nspname = 'public' THEN cl.relname ELSE cn.nspname || '.' || cl.relname END, a.attname,
+		       CASE WHEN pn.nspname = 'public' THEN pc.relname ELSE pn.nspname || '.' || pc.relname END, pa.attname
 		FROM pg_constraint k
 		JOIN pg_class cl ON cl.oid = k.conrelid
+		JOIN pg_namespace cn ON cn.oid = cl.relnamespace
 		JOIN pg_class pc ON pc.oid = k.confrelid
+		JOIN pg_namespace pn ON pn.oid = pc.relnamespace
 		JOIN pg_attribute a ON a.attrelid = k.conrelid AND a.attnum = k.conkey[1]
 		JOIN pg_attribute pa ON pa.attrelid = k.confrelid AND pa.attnum = k.confkey[1]
 		WHERE k.contype = 'f' AND array_length(k.conkey, 1) = 1`)
@@ -126,7 +134,7 @@ func Snapshot(ctx context.Context, conn *pgx.Conn) (*State, error) {
 		if err := rows.Scan(&ct, &cc, &pt, &pcol); err != nil {
 			return nil, err
 		}
-		if p, ok := byName[pt]; ok && p.col(pcol) != nil && p.col(pcol).Generated {
+		if p, ok := byName[pt]; ok && p.col(pcol) != nil && p.col(pcol).Generated && byName[ct] != nil {
 			if c := byName[ct].col(cc); c != nil {
 				c.FKTable, c.FKColumn = pt, pcol
 			}
@@ -137,7 +145,11 @@ func Snapshot(ctx context.Context, conn *pgx.Conn) (*State, error) {
 	st := &State{Rows: map[string][]Row{}}
 	for _, name := range order {
 		st.Tables = append(st.Tables, *byName[name])
-		q := fmt.Sprintf(`SELECT to_jsonb(t)::text FROM %s t`, pgx.Identifier{"public", name}.Sanitize())
+		sch, tbl := "public", name
+		if i := strings.Index(name, "."); i >= 0 {
+			sch, tbl = name[:i], name[i+1:]
+		}
+		q := fmt.Sprintf(`SELECT to_jsonb(t)::text FROM %s t`, pgx.Identifier{sch, tbl}.Sanitize())
 		r, err := conn.Query(ctx, q)
 		if err != nil {
 			return nil, err
@@ -174,7 +186,8 @@ func (t *Table) col(name string) *Column {
 
 // Options lets a user mark extra columns as nondeterministic ("table.column").
 type Options struct {
-	Ignore map[string]bool
+	Ignore  map[string]bool
+	Schemas []string // schemas to snapshot; default public
 }
 
 type rowRef struct {
