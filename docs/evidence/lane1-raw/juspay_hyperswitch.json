@@ -1,0 +1,1777 @@
+[
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:20Z",
+  "results": [
+    {
+      "number": 9979,
+      "title": "refactor(connector): finix pass idempotency key"
+    },
+    {
+      "number": 14931,
+      "title": "fix(payouts): prevent concurrent fulfillment"
+    },
+    {
+      "number": 14713,
+      "title": "feat(payments): add Twilio Generic Pay inbound adapter"
+    },
+    {
+      "number": 14850,
+      "title": "fix(revenue-recovery): handle custom billing engine retries without record-back"
+    },
+    {
+      "number": 14987,
+      "title": "docs(openapi): add telephone order charge endpoint to API reference"
+    },
+    {
+      "number": 14723,
+      "title": "feat(router): support payment and payout blocklist uploads"
+    },
+    {
+      "number": 14724,
+      "title": "feat(router): export selected payment or payout blocklists"
+    },
+    {
+      "number": 5864,
+      "title": "feat(connector): [Nexixpay] add Payment & Refunds flows for cards"
+    },
+    {
+      "number": 10758,
+      "title": "feat(connector): [FINIX] webhook + statement descriptor"
+    },
+    {
+      "number": 7249,
+      "title": "feat(connector): [Moneris] Add payments flow"
+    },
+    {
+      "number": 13727,
+      "title": "feat(offers): notify offer engine via process tracker"
+    },
+    {
+      "number": 15160,
+      "title": "feat(connector): [Checkout] add Apple Pay wallet payouts via UCS"
+    },
+    {
+      "number": 13308,
+      "title": "fix(connector): [finix] webhook handling | custom header"
+    },
+    {
+      "number": 12968,
+      "title": "feat(Connector/Core): [Peachpayments] Add Setup Mandate, CIT and MIT Flows"
+    },
+    {
+      "number": 14221,
+      "title": "docs(openapi): document X-Connected-Merchant-Id header on platform-capable v1 endpoints"
+    },
+    {
+      "number": 5225,
+      "title": "fix(connector): [adyen] remove browser info for mit and [paypal] add refund key in headers"
+    },
+    {
+      "number": 13968,
+      "title": "feat(external_services): add the chat service with Xyne and Slack clients"
+    },
+    {
+      "number": 13151,
+      "title": "feat(manual-update): add amount captured"
+    },
+    {
+      "number": 8199,
+      "title": "feat(core): accept merchant_connector_details in Payments and Psync flow"
+    },
+    {
+      "number": 13157,
+      "title": "test(cypress): add Helcim refunds and mandates coverage"
+    },
+    {
+      "number": 6454,
+      "title": "fix(dispute): change dispute currency type to currency enum"
+    },
+    {
+      "number": 13371,
+      "title": "fix(connector): [checkout] Amex reference id"
+    },
+    {
+      "number": 13042,
+      "title": "fix(ucs): thread connector_transaction_id into authorize error responses"
+    },
+    {
+      "number": 14091,
+      "title": "feat(deja): route every clock and entropy read in the router through one seam"
+    },
+    {
+      "number": 12127,
+      "title": "test(cypress): add refund manual update coverage for bankofamerica"
+    },
+    {
+      "number": 12077,
+      "title": "fix(connector): [Finix] Avs , Err msg , Fraud Session Id"
+    },
+    {
+      "number": 13553,
+      "title": "feat(payments): support offers during payments flow"
+    },
+    {
+      "number": 12764,
+      "title": "feat(connector): add deutschebank payouts support"
+    },
+    {
+      "number": 12280,
+      "title": "feat(scripts): add hyperswitch-explore.sh for zero-config local setup"
+    },
+    {
+      "number": 12752,
+      "title": "test(cypress): add Helcim card payment configurations"
+    },
+    {
+      "number": 12654,
+      "title": "feat(migration): add global ID migration for customers"
+    },
+    {
+      "number": 14210,
+      "title": "feat(connector): [Shift4] enable card and wallet mandates with connector customer creation for UCS recurring"
+    },
+    {
+      "number": 11536,
+      "title": "feat(superposition): introduce IncomingWebhookEvent dimension and migrate enum configs to superposition"
+    },
+    {
+      "number": 12742,
+      "title": "feat(core/connector): [SANTANDER] Add PixQr payment method type and migrate Santander pix_emv to pix_qr"
+    },
+    {
+      "number": 10366,
+      "title": "feat(connector): Add client_unqiue_id in Nuvei Pyament Request"
+    },
+    {
+      "number": 10137,
+      "title": "fix: ucs response masked serialize in connector event"
+    },
+    {
+      "number": 10635,
+      "title": "feat(core): Added OpenBanking PaymentMethod for Hyperswitch <> UCS Integration"
+    },
+    {
+      "number": 8548,
+      "title": "fix(RevenueRecovery): Skip record-back for failed invoices on auto-voiding billing connectors"
+    },
+    {
+      "number": 8310,
+      "title": "refactor(router): Remove `refunds_v2` feature flag"
+    },
+    {
+      "number": 8194,
+      "title": "docs: Improving API Reference"
+    },
+    {
+      "number": 6918,
+      "title": "feat(router): add /retrieve api for relay"
+    },
+    {
+      "number": 6924,
+      "title": "feat(router): add /retrieve api for relay"
+    },
+    {
+      "number": 8296,
+      "title": "feat(router): add `merchant_category_code` in business profile"
+    },
+    {
+      "number": 7191,
+      "title": "feat(router): Add Payments - List endpoint for v2"
+    },
+    {
+      "number": 6974,
+      "title": "feat(router): add support for relay refund incoming webhooks"
+    },
+    {
+      "number": 6695,
+      "title": "feat(router): Add webhooks for network tokenization "
+    },
+    {
+      "number": 2415,
+      "title": "feat(connector): [Stax] Use connector_response_reference_id as reference to merchant"
+    },
+    {
+      "number": 1980,
+      "title": "feat(connector): [SQUARE] Implement webhooks"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:24Z",
+  "results": [
+    {
+      "number": 14716,
+      "title": "feat(revenue_recovery): add cancel invoice action and cancel API for v2"
+    },
+    {
+      "number": 14268,
+      "title": "feat(observability): add alert blacklist APIs"
+    },
+    {
+      "number": 14265,
+      "title": "feat(observability): add threshold override APIs"
+    },
+    {
+      "number": 14664,
+      "title": "feat(webhooks): add automatic retry for v2 outgoing webhooks"
+    },
+    {
+      "number": 14915,
+      "title": "feat(connector): [JPMorgan] extend L2/L3 data support through UCS"
+    },
+    {
+      "number": 14507,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14489,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 11386,
+      "title": "feat(authentication): added merchantId and paymentId support for better tracing for authentication service"
+    },
+    {
+      "number": 13727,
+      "title": "feat(offers): notify offer engine via process tracker"
+    },
+    {
+      "number": 13968,
+      "title": "feat(external_services): add the chat service with Xyne and Slack clients"
+    },
+    {
+      "number": 13908,
+      "title": "feat(revenue-recovery): Add retry stats migration API"
+    },
+    {
+      "number": 13409,
+      "title": "feat(locker): create locker entity during merchant account creation"
+    },
+    {
+      "number": 13779,
+      "title": "feat(routing): add decision engine rule migration and status endpoints"
+    },
+    {
+      "number": 13745,
+      "title": "feat(routing): add decision engine rule migration and status endpoints"
+    },
+    {
+      "number": 13289,
+      "title": "feat(deja): [5/5] Kafka recording sink, boot install, Superposition sampler + enable in release"
+    },
+    {
+      "number": 13553,
+      "title": "feat(payments): support offers during payments flow"
+    },
+    {
+      "number": 13616,
+      "title": "feat(ucs): auto primary→shadow kill switch on prism/transformation failures"
+    },
+    {
+      "number": 4131,
+      "title": "feat(events): add APIs to list webhook events and webhook delivery attempts"
+    },
+    {
+      "number": 12280,
+      "title": "feat(scripts): add hyperswitch-explore.sh for zero-config local setup"
+    },
+    {
+      "number": 8307,
+      "title": "feat(authentication): create api for update profile acquirer"
+    },
+    {
+      "number": 13126,
+      "title": "feat(core): support external authentication for platform merchants"
+    },
+    {
+      "number": 11774,
+      "title": "ci(cypress): add step up retries"
+    },
+    {
+      "number": 13846,
+      "title": "fix(routing): send all dashboard routing dimensions to the Decision Engine"
+    },
+    {
+      "number": 12742,
+      "title": "feat(core/connector): [SANTANDER] Add PixQr payment method type and migrate Santander pix_emv to pix_qr"
+    },
+    {
+      "number": 8800,
+      "title": "feat(router): [worldpayvantiv] add support for moto flag for v1 and extend vantiv api contract"
+    },
+    {
+      "number": 8949,
+      "title": "feat(router): add support for overcapture"
+    },
+    {
+      "number": 11300,
+      "title": "feat(users): Introduce Soft delete for Users"
+    },
+    {
+      "number": 9405,
+      "title": "fix(webhooks): add idempotent_event_id generation using URL-safe Base64 (no padding) and SHA256 digest"
+    },
+    {
+      "number": 8034,
+      "title": "fix(core): add fix for stopping multiple event locking idempotent logs"
+    },
+    {
+      "number": 9133,
+      "title": "feat(core): add subscription table"
+    },
+    {
+      "number": 7579,
+      "title": "feat(core): add redis lock during insertion of event in event table during initial attempt of outgoing webhook delivery"
+    },
+    {
+      "number": 8310,
+      "title": "refactor(router): Remove `refunds_v2` feature flag"
+    },
+    {
+      "number": 8194,
+      "title": "docs: Improving API Reference"
+    },
+    {
+      "number": 4029,
+      "title": "feat(webhooks): store request and response payloads in `events` table"
+    },
+    {
+      "number": 3426,
+      "title": "fix: auto retry once for connection closed"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:28Z",
+  "results": [
+    {
+      "number": 15128,
+      "title": "feat(router): report session duplicate reads with accounts query origins"
+    },
+    {
+      "number": 14940,
+      "title": "feat(router): detect duplicate record reads within an API session"
+    },
+    {
+      "number": 14507,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14489,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14359,
+      "title": "fix(core): update existing PAYMENTS_SYNC process tracker instead of creating duplicate"
+    },
+    {
+      "number": 319,
+      "title": "fix(core): payment create throws duplicate payment error"
+    },
+    {
+      "number": 3016,
+      "title": "fix: throw bad request while pushing duplicate data to redis"
+    },
+    {
+      "number": 14901,
+      "title": "fix(migrations): create unique indexes on payment intent and attempt in v2 compatible migrations"
+    },
+    {
+      "number": 5023,
+      "title": "feat(router): add payment method type duplication check for `google_pay`"
+    },
+    {
+      "number": 14132,
+      "title": "fix(payouts): remove duplicate private_key headers for CertificateAuth connectors in UCS"
+    },
+    {
+      "number": 5161,
+      "title": "fix(auth_methods): Add checks for duplicate `auth_method` in create API"
+    },
+    {
+      "number": 15134,
+      "title": "chore(config): enable wallet and network-token capabilities"
+    },
+    {
+      "number": 15005,
+      "title": "fix(router): deduplicate enabled methods in client PML"
+    },
+    {
+      "number": 14886,
+      "title": "refactor(revenue_recovery): decide the recovery api action from the synced transaction status"
+    },
+    {
+      "number": 15163,
+      "title": "feat(revenue_recovery): count every recorded transaction in the cluster data"
+    },
+    {
+      "number": 15161,
+      "title": "fix(connector): [Elavon PG] add wallet settings to connector configs"
+    },
+    {
+      "number": 14779,
+      "title": "feat(router): scope payment and payout blocklists by transaction type"
+    },
+    {
+      "number": 14771,
+      "title": "feat(migration): support modular customer and card storage"
+    },
+    {
+      "number": 14691,
+      "title": "chore(payments): drop indexes made redundant by primary keys"
+    },
+    {
+      "number": 15113,
+      "title": "feat(revenue_recovery): add external trigger model with next retry schedule"
+    },
+    {
+      "number": 15145,
+      "title": "feat(connector): [Elavon PG] create shopper and stored card through UCS"
+    },
+    {
+      "number": 14760,
+      "title": "fix(cypress): fix stale offer quote id and saved-card card in offer engine spec"
+    },
+    {
+      "number": 14597,
+      "title": "fix(config): align UCS-only connectors across deployment TOMLs"
+    },
+    {
+      "number": 9963,
+      "title": "refactor(payment-methods): add support to avoid duplication while adding card to ext vault and add resource locking for payment methods for concurrent requests"
+    },
+    {
+      "number": 14067,
+      "title": "feat(observability): upload alert reports through notifier"
+    },
+    {
+      "number": 9554,
+      "title": "feat(framework): implement centralized request ID management framework"
+    },
+    {
+      "number": 14397,
+      "title": "chore(blocklist): delete blocklist entries with NULL profile_id"
+    },
+    {
+      "number": 14828,
+      "title": "feat(webhooks): Introduce IP based whitelisting for incoming webhooks"
+    },
+    {
+      "number": 14391,
+      "title": "fix(core): defer bank redirect payment method creation until terminal status"
+    },
+    {
+      "number": 14562,
+      "title": "refactor(payout_link): connector-specific required fields and add Wise/Deutschebank/Santander connectors"
+    },
+    {
+      "number": 13395,
+      "title": "fix(router): eliminate duplicate DB connection pools from building each tenant's store twice"
+    },
+    {
+      "number": 14392,
+      "title": "feat(payment-methods): generate fingerprint_id scoped at merchant level"
+    },
+    {
+      "number": 15208,
+      "title": "feat(revenue_recovery): add the recovery request workflow"
+    },
+    {
+      "number": 6454,
+      "title": "fix(dispute): change dispute currency type to currency enum"
+    },
+    {
+      "number": 14417,
+      "title": "fix(connector): [REDSYS] Preserve required fields across authentication steps"
+    },
+    {
+      "number": 8830,
+      "title": "feat(router): [worldpayvantiv] add dispute list sync and implement dispute"
+    },
+    {
+      "number": 14122,
+      "title": "feat(observability): migration runner for the observability lineage"
+    },
+    {
+      "number": 14713,
+      "title": "feat(payments): add Twilio Generic Pay inbound adapter"
+    },
+    {
+      "number": 14228,
+      "title": "feat(observability): announce only what changed since the previous evaluation"
+    },
+    {
+      "number": 14492,
+      "title": "ci: trim redundant compile steps and rework the S3 sccache"
+    },
+    {
+      "number": 1716,
+      "title": "feat(connector): [Tsys] Add cards for Payments and Refunds flow"
+    },
+    {
+      "number": 10608,
+      "title": "fix(user-role): add entity type validation in user role lineage queries"
+    },
+    {
+      "number": 12874,
+      "title": "feat(connector): [Worldpay/Worldpayxml] pass additional Mastercard authentication fields"
+    },
+    {
+      "number": 15181,
+      "title": "feat(payouts): add Superposition kill switch with OMP scopes"
+    },
+    {
+      "number": 13727,
+      "title": "feat(offers): notify offer engine via process tracker"
+    },
+    {
+      "number": 14898,
+      "title": "feat(connector): [Elavon PG] enable card mandates, NTID MIT and pre-decrypted wallets for UCS"
+    },
+    {
+      "number": 14580,
+      "title": "feat(payouts): add external vault proxy execution contract"
+    },
+    {
+      "number": 12821,
+      "title": "revert: fix duplicate entry in integration_test.toml file"
+    },
+    {
+      "number": 12810,
+      "title": "fix(config): fix duplicate entry in integration_test.toml file "
+    },
+    {
+      "number": 13908,
+      "title": "feat(revenue-recovery): Add retry stats migration API"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:32Z",
+  "results": [
+    {
+      "number": 15200,
+      "title": "fix(storage_impl): finish cache population after lock timeout"
+    },
+    {
+      "number": 14489,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14007,
+      "title": "fix(deja): record the JWT decode outcome so replay does not race the clock"
+    },
+    {
+      "number": 13151,
+      "title": "feat(manual-update): add amount captured"
+    },
+    {
+      "number": 14268,
+      "title": "feat(observability): add alert blacklist APIs"
+    },
+    {
+      "number": 14854,
+      "title": "feat(payment_methods): inactivate payment methods sharing an auxiliary fingerprint"
+    },
+    {
+      "number": 13386,
+      "title": "fix(authentication): fixed race condition for authentication cavv update and authentication status update"
+    },
+    {
+      "number": 14122,
+      "title": "feat(observability): migration runner for the observability lineage"
+    },
+    {
+      "number": 14794,
+      "title": "feat(users): expire dashboard sessions after inactivity"
+    },
+    {
+      "number": 14716,
+      "title": "feat(revenue_recovery): add cancel invoice action and cancel API for v2"
+    },
+    {
+      "number": 13629,
+      "title": "fix(db): recover from Aurora/RDS failover hangs via tcp_user_timeout"
+    },
+    {
+      "number": 14666,
+      "title": "fix(routing): pass merchant connector accounts to routing functions"
+    },
+    {
+      "number": 14513,
+      "title": "perf(cache): coordinate in-memory cache population per key"
+    },
+    {
+      "number": 14412,
+      "title": "feat(routing): preferred-connector routing for interac — pin the customer's last successful connector"
+    },
+    {
+      "number": 14023,
+      "title": "chore(deja): bump the pin to carry the recording decision on its span"
+    },
+    {
+      "number": 13374,
+      "title": "perf(routing): Reduce redundant MCA DB fetches"
+    },
+    {
+      "number": 8307,
+      "title": "feat(authentication): create api for update profile acquirer"
+    },
+    {
+      "number": 13515,
+      "title": "feat(external-3ds-vgs): Netcetera external 3DS authentication over VGS external vault (v1)"
+    },
+    {
+      "number": 13667,
+      "title": "fix(revenue_recovery): index retry ladder by total invoice attempts"
+    },
+    {
+      "number": 13275,
+      "title": "test(cypress): add refund coverage for facilitapay"
+    },
+    {
+      "number": 12852,
+      "title": "feat(cypress): add MITM proxy record/replay for connector tests"
+    },
+    {
+      "number": 12481,
+      "title": "feat(modular): harden compatibility workflows for revert use cases "
+    },
+    {
+      "number": 12226,
+      "title": "test(cypress): add payment response hash coverage"
+    },
+    {
+      "number": 11300,
+      "title": "feat(users): Introduce Soft delete for Users"
+    },
+    {
+      "number": 8741,
+      "title": "fix(connector): [Worldpay] handle multiple ddc submission for CompleteAuthorize"
+    },
+    {
+      "number": 9721,
+      "title": "feat(subscription): add support to create subscription with trial plans"
+    },
+    {
+      "number": 8846,
+      "title": "feat(revenue_recovery): Add redis-based payment processor token tracking for revenue recovery"
+    },
+    {
+      "number": 8233,
+      "title": "feat: migration api for migrating routing rules to decision_engine"
+    },
+    {
+      "number": 7102,
+      "title": "chore: bump cypress to `v14.0.0`"
+    },
+    {
+      "number": 6695,
+      "title": "feat(router): Add webhooks for network tokenization "
+    },
+    {
+      "number": 2916,
+      "title": "fix: api lock on PaymentsCreate"
+    },
+    {
+      "number": 1898,
+      "title": "feat(payments): add api locking for payments core"
+    },
+    {
+      "number": 2214,
+      "title": "feat(db): add find_config_by_key_unwrap_or"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:36Z",
+  "results": [
+    {
+      "number": 15200,
+      "title": "fix(storage_impl): finish cache population after lock timeout"
+    },
+    {
+      "number": 15139,
+      "title": "feat(connector): [Authorizedotnet] Adds MOTO support for card payments"
+    },
+    {
+      "number": 418,
+      "title": "fix(router): fix incorrect order of routing_algorithm and metadata fields in db models"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:40Z",
+  "results": [
+    {
+      "number": 15237,
+      "title": "feat(webhooks): use mTLS callback URL for production connector webhook registration"
+    },
+    {
+      "number": 15038,
+      "title": "feat(webhooks): Send back mandate amount and currency in mandate outgoing webhooks"
+    },
+    {
+      "number": 15101,
+      "title": "fix(connector): netcetera webhook"
+    },
+    {
+      "number": 15100,
+      "title": "fix(connector): netcetera webhook"
+    },
+    {
+      "number": 15159,
+      "title": "feat(core/connector): [SANTANDER] Implemented Boleto webhooks"
+    },
+    {
+      "number": 14828,
+      "title": "feat(webhooks): Introduce IP based whitelisting for incoming webhooks"
+    },
+    {
+      "number": 14974,
+      "title": "fix(webhooks): improve verification handling"
+    },
+    {
+      "number": 14973,
+      "title": "fix(webhooks): improve verification handling"
+    },
+    {
+      "number": 14972,
+      "title": "fix(webhooks): improve verification handling"
+    },
+    {
+      "number": 14965,
+      "title": "fix(webhooks): update verification handling"
+    },
+    {
+      "number": 14971,
+      "title": "fix(webhooks): improve verification handling (#14965)"
+    },
+    {
+      "number": 15046,
+      "title": "feat(core/connector): [SANTANDER] Implemented Boleto webhooks"
+    },
+    {
+      "number": 14664,
+      "title": "feat(webhooks): add automatic retry for v2 outgoing webhooks"
+    },
+    {
+      "number": 15207,
+      "title": "feat(revenue_recovery): add the recovery webhook event types and payload"
+    },
+    {
+      "number": 14787,
+      "title": "feat(webhooks): reject non-mTLS webhooks for connectors that require mTLS"
+    },
+    {
+      "number": 15094,
+      "title": "fix(authentication): added webhook ip verification support for netcetera"
+    },
+    {
+      "number": 15083,
+      "title": "fix(authentication): added webhook ip verification support for netcetera"
+    },
+    {
+      "number": 14543,
+      "title": "fix(connector): update webhook handling"
+    },
+    {
+      "number": 15127,
+      "title": "fix(authentication): fix source ip validation for netcetera"
+    },
+    {
+      "number": 13649,
+      "title": "feat(webhooks): add generic outgoing webhook event configuration"
+    },
+    {
+      "number": 15021,
+      "title": "fix(authentication): allow netcetera webhook to enter without signature verification"
+    },
+    {
+      "number": 15018,
+      "title": "fix(authentication): allow netcetera webhook to enter without signature verification"
+    },
+    {
+      "number": 15023,
+      "title": "fix(authentication): allow netcetera webhook to enter without signature verification"
+    },
+    {
+      "number": 15019,
+      "title": "fix(authentication): allow netcetera webhook to enter without signature verification"
+    },
+    {
+      "number": 14899,
+      "title": "feat(connector): [SANTANDER] Implemented MIT webhooks for PixAutomaticoPush & PixAutomaticoQr"
+    },
+    {
+      "number": 14853,
+      "title": "fix(payments): trigger webhooks for v2 proxy payments"
+    },
+    {
+      "number": 14647,
+      "title": "fix(connector): align webhook processing behavior"
+    },
+    {
+      "number": 14921,
+      "title": "fix(webhooks): include setup payment ID in outgoing mandate bodies"
+    },
+    {
+      "number": 14514,
+      "title": "fix(webhooks): prefer merchant txn id over connector id in UCS webhook bridge"
+    },
+    {
+      "number": 14875,
+      "title": "fix(webhooks): include setup payment ID in outgoing mandate bodies"
+    },
+    {
+      "number": 14900,
+      "title": "fix(webhooks): preserve setup payment id for Santander mandate API events"
+    },
+    {
+      "number": 14619,
+      "title": "fix(connector): [worldpayxml] enable webhook source verification"
+    },
+    {
+      "number": 14306,
+      "title": "refactor(connector): [Worldpayxml] webhooks body refactor and dispute webhooks implementation"
+    },
+    {
+      "number": 14587,
+      "title": "feat(router): Implement rate limiting for unverified webhooks"
+    },
+    {
+      "number": 15163,
+      "title": "feat(revenue_recovery): count every recorded transaction in the cluster data"
+    },
+    {
+      "number": 15113,
+      "title": "feat(revenue_recovery): add external trigger model with next retry schedule"
+    },
+    {
+      "number": 15257,
+      "title": "refactor(revenue_recovery): rename reports to recovery requests"
+    },
+    {
+      "number": 14546,
+      "title": "fix(connector): [worldpayxml] enable webhook source verification"
+    },
+    {
+      "number": 14545,
+      "title": "fix(connector): [worldpayxml] enable webhook source verification"
+    },
+    {
+      "number": 14814,
+      "title": "fix(webhooks): preserve setup payment id for Santander mandate API events"
+    },
+    {
+      "number": 14670,
+      "title": "feat(connector): [SANTANDER] Implemented MIT webhooks for PixAutomaticoPush & PixAutomaticoQr"
+    },
+    {
+      "number": 15051,
+      "title": "refactor(revenue_recovery): remove time-based monitoring threshold logic"
+    },
+    {
+      "number": 4176,
+      "title": "feat(webhooks): allow manually retrying delivery of outgoing webhooks"
+    },
+    {
+      "number": 14109,
+      "title": "refactor(connector): [Worldpayxml] webhooks body refactor and dispute webhooks implementation"
+    },
+    {
+      "number": 5275,
+      "title": "feat(webhooks): add support for custom outgoing webhook http headers"
+    },
+    {
+      "number": 14507,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14489,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14464,
+      "title": "feat(connector): [SANTANDER] Implemented MIT webhooks for PixAutomaticoPush & PixAutomaticoQr"
+    },
+    {
+      "number": 9707,
+      "title": "feat(connector): Loonio Webhooks"
+    },
+    {
+      "number": 14046,
+      "title": "fix(events): mask header values for outgoing webhook events"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:44Z",
+  "results": [
+    {
+      "number": 14960,
+      "title": "fix(payouts): prevent concurrent fulfillment"
+    },
+    {
+      "number": 14956,
+      "title": "fix(payouts): prevent concurrent fulfillment"
+    },
+    {
+      "number": 14931,
+      "title": "fix(payouts): prevent concurrent fulfillment"
+    },
+    {
+      "number": 14507,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14489,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14901,
+      "title": "fix(migrations): create unique indexes on payment intent and attempt in v2 compatible migrations"
+    },
+    {
+      "number": 10523,
+      "title": "fix(payouts): concurrency issue in payout webhooks"
+    },
+    {
+      "number": 14958,
+      "title": "fix(router): validate urls"
+    },
+    {
+      "number": 14940,
+      "title": "feat(router): detect duplicate record reads within an API session"
+    },
+    {
+      "number": 15167,
+      "title": "docs(api-reference): update the decide endpoint docs"
+    },
+    {
+      "number": 14854,
+      "title": "feat(payment_methods): inactivate payment methods sharing an auxiliary fingerprint"
+    },
+    {
+      "number": 14201,
+      "title": "fix(deja): move the pin past the addressing fix and name the concurrent address forks"
+    },
+    {
+      "number": 15075,
+      "title": "fix(refunds): serialize payment-scoped refund reservation"
+    },
+    {
+      "number": 14513,
+      "title": "perf(cache): coordinate in-memory cache population per key"
+    },
+    {
+      "number": 14691,
+      "title": "chore(payments): drop indexes made redundant by primary keys"
+    },
+    {
+      "number": 15093,
+      "title": "fix(router): enforce JWT profile scope for acquirer writes"
+    },
+    {
+      "number": 14455,
+      "title": "refactor(payments): optimize get_trackers in create flow"
+    },
+    {
+      "number": 14957,
+      "title": "fix(router): validate urls"
+    },
+    {
+      "number": 14779,
+      "title": "feat(router): scope payment and payout blocklists by transaction type"
+    },
+    {
+      "number": 9963,
+      "title": "refactor(payment-methods): add support to avoid duplication while adding card to ext vault and add resource locking for payment methods for concurrent requests"
+    },
+    {
+      "number": 14122,
+      "title": "feat(observability): migration runner for the observability lineage"
+    },
+    {
+      "number": 14415,
+      "title": "chore(payment_attempt): drop preprocessing_step_id_index"
+    },
+    {
+      "number": 14587,
+      "title": "feat(router): Implement rate limiting for unverified webhooks"
+    },
+    {
+      "number": 14629,
+      "title": "feat(connector): [Shift4] add wallet configuration for UCS"
+    },
+    {
+      "number": 14268,
+      "title": "feat(observability): add alert blacklist APIs"
+    },
+    {
+      "number": 14823,
+      "title": "fix(migrations): batch blocklist transaction type backfill"
+    },
+    {
+      "number": 14273,
+      "title": "fix(ucs): shared keepalive gRPC channel, fatal build errors, real health check, transport failure class"
+    },
+    {
+      "number": 14174,
+      "title": "feat(payments): keep the vault session and combined PML stable per payment"
+    },
+    {
+      "number": 14771,
+      "title": "feat(migration): support modular customer and card storage"
+    },
+    {
+      "number": 14713,
+      "title": "feat(payments): add Twilio Generic Pay inbound adapter"
+    },
+    {
+      "number": 13750,
+      "title": "feat(account_updater): apply card updates to stored payment methods"
+    },
+    {
+      "number": 14188,
+      "title": "perf(merchant_connector_account): cache MCA list queries via scope supersets"
+    },
+    {
+      "number": 14923,
+      "title": "fix(refunds): serialize payment-scoped refund reservation"
+    },
+    {
+      "number": 11649,
+      "title": "feat(platform): platform refund query update"
+    },
+    {
+      "number": 13587,
+      "title": "perf(migrations): add partial created_at indexes on events table"
+    },
+    {
+      "number": 14333,
+      "title": "fix(payments): sum connector latency across retry attempts"
+    },
+    {
+      "number": 13151,
+      "title": "feat(manual-update): add amount captured"
+    },
+    {
+      "number": 14716,
+      "title": "feat(revenue_recovery): add cancel invoice action and cancel API for v2"
+    },
+    {
+      "number": 12463,
+      "title": "fix(webhooks): build events indexes concurrently and allow profile update"
+    },
+    {
+      "number": 13875,
+      "title": "fix(routing): send all dashboard routing dimensions to the Decision Engine"
+    },
+    {
+      "number": 13505,
+      "title": "perf(payment-methods): optimize for payment method latency"
+    },
+    {
+      "number": 14828,
+      "title": "feat(webhooks): Introduce IP based whitelisting for incoming webhooks"
+    },
+    {
+      "number": 14148,
+      "title": "feat(payment): spawn async task for modular pm update"
+    },
+    {
+      "number": 12420,
+      "title": "fix(stripe): payouts mapping"
+    },
+    {
+      "number": 13506,
+      "title": "fix(ci): consolidate mock-payments batches to 3 batches of 3 parallel"
+    },
+    {
+      "number": 14228,
+      "title": "feat(observability): announce only what changed since the previous evaluation"
+    },
+    {
+      "number": 14722,
+      "title": "feat(router): separate payment and payout blocklists"
+    },
+    {
+      "number": 11351,
+      "title": "feat(platform): add processor_merchant_id and created_by to refund and dispute"
+    },
+    {
+      "number": 14147,
+      "title": "feat(pm): opt in for plain fingerprint response"
+    },
+    {
+      "number": 14078,
+      "title": "feat(blocklist): export a merchant's blocklist data as a CSV"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:48Z",
+  "results": [
+    {
+      "number": 14760,
+      "title": "fix(cypress): fix stale offer quote id and saved-card card in offer engine spec"
+    },
+    {
+      "number": 15200,
+      "title": "fix(storage_impl): finish cache population after lock timeout"
+    },
+    {
+      "number": 15072,
+      "title": "fix(config): decrypt service credentials at startup"
+    },
+    {
+      "number": 14002,
+      "title": "fix(payment_intent): drop the stale default on business_label"
+    },
+    {
+      "number": 15164,
+      "title": "feat(Proxy): Including support for extended content/types - xml in vault-proxy flows"
+    },
+    {
+      "number": 14847,
+      "title": "ci: move check-msrv sccache to S3 and run it on hyperswitch-runners"
+    },
+    {
+      "number": 15208,
+      "title": "feat(revenue_recovery): add the recovery request workflow"
+    },
+    {
+      "number": 15120,
+      "title": "fix(subscriptions): require client secret for publishable-key estimate calls and scope profile lookup to merchant"
+    },
+    {
+      "number": 15145,
+      "title": "feat(connector): [Elavon PG] create shopper and stored card through UCS"
+    },
+    {
+      "number": 14489,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14918,
+      "title": "feat(connector): [Noon] enable UCS SetupMandate and IncomingWebhook"
+    },
+    {
+      "number": 14814,
+      "title": "fix(webhooks): preserve setup payment id for Santander mandate API events"
+    },
+    {
+      "number": 14852,
+      "title": "feat(common): make diesel optional across common_enums, common_utils, common_types"
+    },
+    {
+      "number": 14494,
+      "title": "fix(FRM): FRM flow fixes [AccessToken Check] [Merchant Connector Ref Id fix]"
+    },
+    {
+      "number": 14740,
+      "title": "ci: save the check-msrv sccache cache from the merge_group run"
+    },
+    {
+      "number": 14558,
+      "title": "test(cypress): reorder VaultTokenizationDisable spec before ExternalThreeDS"
+    },
+    {
+      "number": 14470,
+      "title": "fix(core): Donot attempt step-up for GooglePay PAN_ONLY when authentication type is No3ds"
+    },
+    {
+      "number": 14996,
+      "title": "fix(connector): preserve InterPayments surcharge errors"
+    },
+    {
+      "number": 12872,
+      "title": "fix(ucs): map authentication_data into cybersource SetupMandate request"
+    },
+    {
+      "number": 14819,
+      "title": "ci: run cargo check on push and migrate workflows to self-hosted runners"
+    },
+    {
+      "number": 15188,
+      "title": "chore(deps): refresh cloud and test-tooling dependencies"
+    },
+    {
+      "number": 13333,
+      "title": "feat(superposition): added superposition seed.json file as backup for superposition service failure or local seeding"
+    },
+    {
+      "number": 13786,
+      "title": "feat(account_updater): sync stored card before merchant-initiated payments"
+    },
+    {
+      "number": 13935,
+      "title": "fix(cypress): stop customerId from leaking across specs, fix confirmCallTest mandate tracking"
+    },
+    {
+      "number": 12948,
+      "title": "fix(router): apply UCS error attempt_status on redsys authenticate failure"
+    },
+    {
+      "number": 14167,
+      "title": "refactor(routing): remove the DE-vs-HS shadow diff and its kill switch"
+    },
+    {
+      "number": 13897,
+      "title": "test(cypress): add offer engine payment coverage"
+    },
+    {
+      "number": 14492,
+      "title": "ci: trim redundant compile steps and rework the S3 sccache"
+    },
+    {
+      "number": 15113,
+      "title": "feat(revenue_recovery): add external trigger model with next retry schedule"
+    },
+    {
+      "number": 14174,
+      "title": "feat(payments): keep the vault session and combined PML stable per payment"
+    },
+    {
+      "number": 14684,
+      "title": "fix(payments): update connector mandate id in payment method irrespective of active/inactive status"
+    },
+    {
+      "number": 14480,
+      "title": "feat(observability): authorize Grafana gateway via Router"
+    },
+    {
+      "number": 13982,
+      "title": "fix(revenue_recovery): fix the invoice_billing__start_at_time which is getting overridden by multiple attempts"
+    },
+    {
+      "number": 14204,
+      "title": "feat(routing): move dynamic routing decisions to the Decision Engine"
+    },
+    {
+      "number": 14564,
+      "title": "feat(kms): add OCI Vault KMS as a secrets/encryption management backend"
+    },
+    {
+      "number": 14001,
+      "title": "fix(ucs): keep the shadow comparison path reachable when UCS is unreachable"
+    },
+    {
+      "number": 14272,
+      "title": "feat(observability): add alert lifecycle event APIs"
+    },
+    {
+      "number": 14000,
+      "title": "refactor(deja): let the gRPC boundary hold an optional transport"
+    },
+    {
+      "number": 13846,
+      "title": "fix(routing): send all dashboard routing dimensions to the Decision Engine"
+    },
+    {
+      "number": 14182,
+      "title": "feat(observability): evaluate a rule the way CloudWatch evaluates an alarm"
+    },
+    {
+      "number": 14886,
+      "title": "refactor(revenue_recovery): decide the recovery api action from the synced transaction status"
+    },
+    {
+      "number": 14846,
+      "title": "fix(payouts): surface payout metadata parse errors"
+    },
+    {
+      "number": 13042,
+      "title": "fix(ucs): thread connector_transaction_id into authorize error responses"
+    },
+    {
+      "number": 12510,
+      "title": "fix(core): Fix customer acceptance lookup and next action priority order in complete authorize"
+    },
+    {
+      "number": 13549,
+      "title": "test(cypress): add coverage for fiservcommercehub (UCS-only)"
+    },
+    {
+      "number": 12879,
+      "title": "feat(core): store external_surcharge_details in payment_attempt"
+    },
+    {
+      "number": 14043,
+      "title": "fix(routing): sync rule deactivation to DE for non-cutover profiles"
+    },
+    {
+      "number": 14227,
+      "title": "test(cypress): add amount_captured coverage for payments manual update"
+    },
+    {
+      "number": 9629,
+      "title": "refactor(core): add cache redaction for cgraph"
+    },
+    {
+      "number": 14059,
+      "title": "fix(openapi): add missing value_type for funding_source in AdditionalCardInfo"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:51Z",
+  "results": [
+    {
+      "number": 15109,
+      "title": "feat(revenue_recovery): add revenue recovery config to v2 profile"
+    },
+    {
+      "number": 15005,
+      "title": "fix(router): deduplicate enabled methods in client PML"
+    },
+    {
+      "number": 14850,
+      "title": "fix(revenue-recovery): handle custom billing engine retries without record-back"
+    },
+    {
+      "number": 15163,
+      "title": "feat(revenue_recovery): count every recorded transaction in the cluster data"
+    },
+    {
+      "number": 14228,
+      "title": "feat(observability): announce only what changed since the previous evaluation"
+    },
+    {
+      "number": 15154,
+      "title": "feat(revenue_recovery): record transactions without connector accounts on external triggers"
+    },
+    {
+      "number": 13395,
+      "title": "fix(router): eliminate duplicate DB connection pools from building each tenant's store twice"
+    },
+    {
+      "number": 14154,
+      "title": "fix(core): external 3ds retry failover and ucs failed attempts"
+    },
+    {
+      "number": 14273,
+      "title": "fix(ucs): shared keepalive gRPC channel, fatal build errors, real health check, transport failure class"
+    },
+    {
+      "number": 15208,
+      "title": "feat(revenue_recovery): add the recovery request workflow"
+    },
+    {
+      "number": 14507,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 14807,
+      "title": "chore: Address Rust 1.99 clippy warnings"
+    },
+    {
+      "number": 14420,
+      "title": "feat(payouts): check card payouts against the blocklist before the connector call"
+    },
+    {
+      "number": 3883,
+      "title": "refactor(core): updated payments response with payment_method_id & payment_method_status"
+    },
+    {
+      "number": 14131,
+      "title": "refactor(storage): find_config_by_key -> find_config_by_key_optional"
+    },
+    {
+      "number": 14447,
+      "title": "test(cypress): add network_transaction_link_id assertions for Nuvei"
+    },
+    {
+      "number": 14333,
+      "title": "fix(payments): sum connector latency across retry attempts"
+    },
+    {
+      "number": 14653,
+      "title": "perf(cache): hold redis cache entries past the in-memory lifetime, with jitter"
+    },
+    {
+      "number": 14886,
+      "title": "refactor(revenue_recovery): decide the recovery api action from the synced transaction status"
+    },
+    {
+      "number": 7232,
+      "title": "fix(payments): [Payment links] Add fix for payment link redirection url"
+    },
+    {
+      "number": 14940,
+      "title": "feat(router): detect duplicate record reads within an API session"
+    },
+    {
+      "number": 14996,
+      "title": "fix(connector): preserve InterPayments surcharge errors"
+    },
+    {
+      "number": 13968,
+      "title": "feat(external_services): add the chat service with Xyne and Slack clients"
+    },
+    {
+      "number": 9374,
+      "title": "feat(core): Added two step payment webhooks processing for Hyperswitch <> UCS Integration "
+    },
+    {
+      "number": 12715,
+      "title": "feat(core): add surcharge support for MIT"
+    },
+    {
+      "number": 13908,
+      "title": "feat(revenue-recovery): Add retry stats migration API"
+    },
+    {
+      "number": 6327,
+      "title": "fix(mandates): handle the connector_mandate creation once and only if the payment is charged"
+    },
+    {
+      "number": 9104,
+      "title": "feat(security): add XSS and sqli validation for dashboard metadata fields"
+    },
+    {
+      "number": 9963,
+      "title": "refactor(payment-methods): add support to avoid duplication while adding card to ext vault and add resource locking for payment methods for concurrent requests"
+    },
+    {
+      "number": 14639,
+      "title": "feat(payments): add network token MIT with vault card alias fallback"
+    },
+    {
+      "number": 13987,
+      "title": "feat(Generic): [FRM] Implementing FRM framework flows"
+    },
+    {
+      "number": 14417,
+      "title": "fix(connector): [REDSYS] Preserve required fields across authentication steps"
+    },
+    {
+      "number": 13477,
+      "title": "feat(core/connector): [SANTANDER] Implemented Incoming Webhooks for PixQr, PixAutomaticoQr, PixAutomaticoPush"
+    },
+    {
+      "number": 14713,
+      "title": "feat(payments): add Twilio Generic Pay inbound adapter"
+    },
+    {
+      "number": 14001,
+      "title": "fix(ucs): keep the shadow comparison path reachable when UCS is unreachable"
+    },
+    {
+      "number": 6408,
+      "title": "fix(payment_methods): fix merchant payment method list to retain a mca based on connector_name and mca_id"
+    },
+    {
+      "number": 14283,
+      "title": "feat(blocklist): clone blocklist entries across business profiles"
+    },
+    {
+      "number": 14171,
+      "title": "feat(observability): read the infrastructure alarm catalogue from configuration"
+    },
+    {
+      "number": 8728,
+      "title": "feat(connector): [BRAINTREE] Googlepay, Applepay wallets added"
+    },
+    {
+      "number": 8131,
+      "title": "feat(core): Altered the amount field in DisputePayload to StringMinorUnit"
+    },
+    {
+      "number": 14489,
+      "title": "fix(disputes): handle concurrent duplicate dispute webhook insert"
+    },
+    {
+      "number": 13834,
+      "title": "feat(external_services): add GCP Cloud KMS as a secrets/encryption manager backend"
+    },
+    {
+      "number": 14492,
+      "title": "ci: trim redundant compile steps and rework the S3 sccache"
+    },
+    {
+      "number": 13750,
+      "title": "feat(account_updater): apply card updates to stored payment methods"
+    },
+    {
+      "number": 14671,
+      "title": "refactor(external_services): add shared cloud_services crate for storage, KMS and email clients"
+    },
+    {
+      "number": 13766,
+      "title": "feat(offers): once-per-card velocity via card_alias"
+    },
+    {
+      "number": 12834,
+      "title": "fix(ucs): derive integrity_object from PaymentServiceAuthorizeResponse.amount"
+    },
+    {
+      "number": 11603,
+      "title": "feat(returning_customer): Paypal returning customer flow"
+    },
+    {
+      "number": 8009,
+      "title": "feat(connector): Implement Razorpay UPI Collect"
+    },
+    {
+      "number": 10533,
+      "title": "feat(core): Added Dual Refunds Validation - Chargeback+Refund"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "juspay/hyperswitch",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo juspay/hyperswitch --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:56Z",
+  "results": [
+    {
+      "number": 15151,
+      "title": "refactor(revenue_recovery): read max hybrid cascading retry count from config"
+    },
+    {
+      "number": 15113,
+      "title": "feat(revenue_recovery): add external trigger model with next retry schedule"
+    },
+    {
+      "number": 14916,
+      "title": "fix(revenue_recovery): count card retries only in production"
+    },
+    {
+      "number": 15090,
+      "title": "feat(revenue_recovery): add card_switching_enabled flag to choose the retry card"
+    },
+    {
+      "number": 8628,
+      "title": "feat(core): [Retry] MIT Retries"
+    },
+    {
+      "number": 14817,
+      "title": "feat(revenue_recovery): persist customer details for retry requests"
+    },
+    {
+      "number": 14664,
+      "title": "feat(webhooks): add automatic retry for v2 outgoing webhooks"
+    },
+    {
+      "number": 14486,
+      "title": "feat(revenue_recovery): systematic k retry selection"
+    },
+    {
+      "number": 14785,
+      "title": "feat(payouts): Add support for Payout FRM for automatic retries"
+    },
+    {
+      "number": 14850,
+      "title": "fix(revenue-recovery): handle custom billing engine retries without record-back"
+    },
+    {
+      "number": 14497,
+      "title": "fix(payments): sum connector latency across retry attempts"
+    },
+    {
+      "number": 13933,
+      "title": "feat(authentication): added GSM retry for external 3ds authorization failure"
+    },
+    {
+      "number": 14333,
+      "title": "fix(payments): sum connector latency across retry attempts"
+    },
+    {
+      "number": 15208,
+      "title": "feat(revenue_recovery): add the recovery request workflow"
+    },
+    {
+      "number": 15207,
+      "title": "feat(revenue_recovery): add the recovery webhook event types and payload"
+    },
+    {
+      "number": 15213,
+      "title": "feat(revenue_recovery): align recovery statuses with payment intent status"
+    },
+    {
+      "number": 9330,
+      "title": "feat(core): add manual retry cutoff duration"
+    },
+    {
+      "number": 9302,
+      "title": "refactor(core): accept manual retry from profile "
+    },
+    {
+      "number": 13375,
+      "title": "fix(core): Delete-tokenize scheduling for initial task and retries"
+    },
+    {
+      "number": 3580,
+      "title": "feat(payouts): Implement Smart Retries for Payout"
+    },
+    {
+      "number": 15163,
+      "title": "feat(revenue_recovery): count every recorded transaction in the cluster data"
+    },
+    {
+      "number": 11470,
+      "title": "feat(superposition): max payout retry superpostion config changes "
+    },
+    {
+      "number": 15148,
+      "title": "feat(revenue_recovery): add trigger model setting to the v2 profile"
+    },
+    {
+      "number": 3908,
+      "title": "feat(payouts): Implement Single Connector Retry for Payouts"
+    },
+    {
+      "number": 15109,
+      "title": "feat(revenue_recovery): add revenue recovery config to v2 profile"
+    },
+    {
+      "number": 13499,
+      "title": "feat(payments): add retries using retry_token"
+    },
+    {
+      "number": 13926,
+      "title": "fix(revenue-recovery): invoke adaptive retry algo"
+    },
+    {
+      "number": 14154,
+      "title": "fix(core): external 3ds retry failover and ucs failed attempts"
+    },
+    {
+      "number": 14995,
+      "title": "feat(revenue_recovery): set recurring mit category on recovery payment intents"
+    },
+    {
+      "number": 9266,
+      "title": "feat(business_profile): add field in profile for manual retry"
+    },
+    {
+      "number": 13908,
+      "title": "feat(revenue-recovery): Add retry stats migration API"
+    },
+    {
+      "number": 15173,
+      "title": "feat(revenue_recovery): keep customer_present and setup_future_usage on each recovery attempt"
+    },
+    {
+      "number": 15181,
+      "title": "feat(payouts): add Superposition kill switch with OMP scopes"
+    },
+    {
+      "number": 13804,
+      "title": "feat(revenue_recovery): mathmodel retry-time predictor"
+    },
+    {
+      "number": 15257,
+      "title": "refactor(revenue_recovery): rename reports to recovery requests"
+    },
+    {
+      "number": 15096,
+      "title": "fix(payment-methods): customer's pml failures during card info lookup failures"
+    },
+    {
+      "number": 13939,
+      "title": "fix(revenue_recovery): fix the token fetch for adaptive_retry"
+    },
+    {
+      "number": 15154,
+      "title": "feat(revenue_recovery): record transactions without connector accounts on external triggers"
+    },
+    {
+      "number": 13668,
+      "title": "feat(revenue_recovery): enforce billing MCA retry ceiling"
+    },
+    {
+      "number": 13570,
+      "title": "fix(revenue_recovery): honor billing retry threshold"
+    },
+    {
+      "number": 14875,
+      "title": "fix(webhooks): include setup payment ID in outgoing mandate bodies"
+    },
+    {
+      "number": 13824,
+      "title": "feat(revenue-recovery): add adaptive retry scheduling for revenue recovery"
+    },
+    {
+      "number": 14886,
+      "title": "refactor(revenue_recovery): decide the recovery api action from the synced transaction status"
+    },
+    {
+      "number": 13667,
+      "title": "fix(revenue_recovery): index retry ladder by total invoice attempts"
+    },
+    {
+      "number": 14697,
+      "title": "feat(revenue_recovery): add the HybridAdaptiveRetry algorithm"
+    },
+    {
+      "number": 14923,
+      "title": "fix(refunds): serialize payment-scoped refund reservation"
+    },
+    {
+      "number": 15119,
+      "title": "feat(revenue_recovery): add customer_present and setup_future_usage to recovery api"
+    },
+    {
+      "number": 13793,
+      "title": "feat(revenue_recovery): Add support for storing retry stats in DB"
+    },
+    {
+      "number": 14713,
+      "title": "feat(payments): add Twilio Generic Pay inbound adapter"
+    },
+    {
+      "number": 15026,
+      "title": "feat(revenue_recovery): rework recovery api docs and remove customer_present from the request"
+    }
+  ],
+  "error": null
+}
+]

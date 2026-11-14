@@ -1,0 +1,1569 @@
+[
+{
+  "repo": "saleor/saleor",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:03Z",
+  "results": [
+    {
+      "number": 19811,
+      "title": "Expose idempotencyKey on transaction action requested webhooks"
+    },
+    {
+      "number": 19813,
+      "title": "Expose idempotencyKey on transaction action requested webhooks"
+    },
+    {
+      "number": 19669,
+      "title": "Update oss sample db"
+    },
+    {
+      "number": 19510,
+      "title": "Fix products and variants with the same id overwriting each other's attribute values"
+    },
+    {
+      "number": 14991,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14996,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14997,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14999,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14998,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 15000,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 15008,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15007,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15009,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15010,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15006,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 14948,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 7441,
+      "title": "Bump boto3 from 1.17.70 to 1.17.88"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:07Z",
+  "results": [
+    {
+      "number": 19505,
+      "title": "docs: harden AGENTS.md and add Saleor review skills"
+    },
+    {
+      "number": 19669,
+      "title": "Update oss sample db"
+    },
+    {
+      "number": 18724,
+      "title": "Add Problems API for apps"
+    },
+    {
+      "number": 10350,
+      "title": "Support for payment transaction actions"
+    },
+    {
+      "number": 12401,
+      "title": "Support for payment transaction actions"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:10Z",
+  "results": [
+    {
+      "number": 19968,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19967,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19964,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19966,
+      "title": "Fix OIDC last_login duplicate writes and refresh check ignoring days"
+    },
+    {
+      "number": 19965,
+      "title": "Fix OIDC last_login duplicate writes and refresh check ignoring days"
+    },
+    {
+      "number": 19963,
+      "title": "Fix OIDC last_login duplicate writes and refresh check ignoring days"
+    },
+    {
+      "number": 19891,
+      "title": "Fix duplicate checkout line created by concurrent adds of the same variant"
+    },
+    {
+      "number": 19889,
+      "title": "Fix duplicate checkout line created by concurrent adds of the same variant"
+    },
+    {
+      "number": 17883,
+      "title": "Remove duplicated settings"
+    },
+    {
+      "number": 17266,
+      "title": "Fix duplicated checkout tests"
+    },
+    {
+      "number": 17256,
+      "title": "Fix duplicated checkout tests"
+    },
+    {
+      "number": 19973,
+      "title": "Release 3.23.45"
+    },
+    {
+      "number": 19972,
+      "title": "Release 3.22.76"
+    },
+    {
+      "number": 18610,
+      "title": "Clear and prevent duplicated gift lines"
+    },
+    {
+      "number": 18609,
+      "title": "Clear and prevent duplicated gift lines"
+    },
+    {
+      "number": 18608,
+      "title": "Clear and prevent duplicated gift lines"
+    },
+    {
+      "number": 18586,
+      "title": "Clear and prevent duplicated gift lines"
+    },
+    {
+      "number": 15848,
+      "title": "ProductsQueryset manager execute duplicated channel queries"
+    },
+    {
+      "number": 15850,
+      "title": "ProductsQueryset manager execute duplicated channel queries"
+    },
+    {
+      "number": 15852,
+      "title": "ProductsQueryset manager execute duplicated channel queries"
+    },
+    {
+      "number": 15851,
+      "title": "ProductsQueryset manager execute duplicated channel queries "
+    },
+    {
+      "number": 15854,
+      "title": "ProductsQueryset manager execute duplicated channel queries"
+    },
+    {
+      "number": 15858,
+      "title": "ProductsQueryset manager execute duplicated channel queries"
+    },
+    {
+      "number": 15787,
+      "title": "ProductsQueryset manager execute duplicated channel queries"
+    },
+    {
+      "number": 19008,
+      "title": "Fix duplicate attributes in inCategory/inCollection filters"
+    },
+    {
+      "number": 19007,
+      "title": "Fix duplicate attributes in inCategory/inCollection filters"
+    },
+    {
+      "number": 19002,
+      "title": "Fix duplicate attributes in inCategory/inCollection filters"
+    },
+    {
+      "number": 18869,
+      "title": "Drop duplicated `CACHE_EXCLUDED_SHIPPING_TIME` flag"
+    },
+    {
+      "number": 19355,
+      "title": "Fix productVariantBulkUpdate 500 error on duplicate channel listing create"
+    },
+    {
+      "number": 18465,
+      "title": "Fix: AvataxPlugin: Correct tax calculation for duplicate variant lines"
+    },
+    {
+      "number": 18464,
+      "title": "Fix: AvataxPlugin: Correct tax calculation for duplicate variant lines "
+    },
+    {
+      "number": 18453,
+      "title": "Fix: AvataxPlugin: Correct tax calculation for duplicate variant lines"
+    },
+    {
+      "number": 19899,
+      "title": "Release 3.23.41"
+    },
+    {
+      "number": 19848,
+      "title": "fix/migrations: Respect POPULATE_DEFAULTS in account migration 0103 (port of #19845 to 3.23)"
+    },
+    {
+      "number": 19845,
+      "title": "fix/migrations: Respect POPULATE_DEFAULTS in account migration 0103"
+    },
+    {
+      "number": 15317,
+      "title": "Removing duplicate of e2e tests from pytest workflow in favour of e2e workflow"
+    },
+    {
+      "number": 19228,
+      "title": "Fix: checkout deliveries invalidation"
+    },
+    {
+      "number": 18992,
+      "title": "Bump asgiref from 3.9.1 to 3.11.1"
+    },
+    {
+      "number": 19229,
+      "title": "[3.23] Fix: checkout delvieries invalidation"
+    },
+    {
+      "number": 19542,
+      "title": "Add the customerType and attributes where-filters on the customers query, deduplicating the attribute where-filter machinery shared by pages, products, and variants"
+    },
+    {
+      "number": 18612,
+      "title": "Release 3.22.20"
+    },
+    {
+      "number": 19827,
+      "title": "Release 3.21.71"
+    },
+    {
+      "number": 19826,
+      "title": "chore: bump pyjwt 2.15.0"
+    },
+    {
+      "number": 19009,
+      "title": "Release 3.22.45"
+    },
+    {
+      "number": 18614,
+      "title": "Release 3.20.105"
+    },
+    {
+      "number": 18951,
+      "title": "Add handling for RequestException(s) and simplify the code"
+    },
+    {
+      "number": 19775,
+      "title": "Release 3.21.70"
+    },
+    {
+      "number": 19772,
+      "title": "chore: upgrade pyjwt, and cryptography to latest"
+    },
+    {
+      "number": 19035,
+      "title": "Release 3.23.0-a.2"
+    },
+    {
+      "number": 19332,
+      "title": "fix: prevent transaction mutations failing when checkout is concurrently deleted"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:14Z",
+  "results": [
+    {
+      "number": 18641,
+      "title": "Fix race condition for order calculations"
+    },
+    {
+      "number": 18640,
+      "title": "Adjust race conditions for metadata updates"
+    },
+    {
+      "number": 18639,
+      "title": "Adjust race conditions for metadata updates"
+    },
+    {
+      "number": 18634,
+      "title": "Adjust race conditions for metadata updates"
+    },
+    {
+      "number": 18615,
+      "title": "Fix race condition for order calculations"
+    },
+    {
+      "number": 18135,
+      "title": "Fix race condition during price recalculation"
+    },
+    {
+      "number": 18133,
+      "title": "Fix race condition during price recalculation "
+    },
+    {
+      "number": 18115,
+      "title": "Fix race condition durign price recalculation"
+    },
+    {
+      "number": 17970,
+      "title": "Add race condition tests for TransactionProcess mutation "
+    },
+    {
+      "number": 17971,
+      "title": "Add race condition tests for TransactionProcess mutation"
+    },
+    {
+      "number": 17968,
+      "title": "Add race condition tests for TransactionProcess mutation"
+    },
+    {
+      "number": 15599,
+      "title": "Protect catalogue discount handler from thread race."
+    },
+    {
+      "number": 17156,
+      "title": "Prevent creation of fulfillment in case of race thread"
+    },
+    {
+      "number": 17152,
+      "title": "Prevent creation of fulfillment in case of race thread"
+    },
+    {
+      "number": 17789,
+      "title": "Fix race condition with checkout complete process and TransactionEventReport mutation."
+    },
+    {
+      "number": 17788,
+      "title": "Fix race condition with checkout complete process and TransactionEventReport mutation. "
+    },
+    {
+      "number": 17776,
+      "title": "Fix race condition with checkout complete process and TransactionEventReport mutation."
+    },
+    {
+      "number": 17962,
+      "title": "Fix race condition in TransactionInitialize mutation when updating checkout/order prices"
+    },
+    {
+      "number": 17961,
+      "title": "Fix race condition in TransactionInitialize mutation when updating checkout/order prices"
+    },
+    {
+      "number": 17953,
+      "title": "Fix race condition in TransactionInitialize mutation when updating checkout/order prices"
+    },
+    {
+      "number": 17943,
+      "title": "Fix race condition in TransactionUpdate mutation when updating checkout/order prices "
+    },
+    {
+      "number": 17942,
+      "title": "Fix race condition in TransactionUpdate mutation when updating checkout/order prices"
+    },
+    {
+      "number": 17915,
+      "title": "Fix race condition in TransactionUpdate mutation when updating checkout/order prices"
+    },
+    {
+      "number": 17913,
+      "title": "Fix race condition in TransactionCreate mutation when updating checkout/order prices"
+    },
+    {
+      "number": 17912,
+      "title": "Fix race condition in TransactionCreate mutation when updating checkout/order prices "
+    },
+    {
+      "number": 17893,
+      "title": "Fix race condition in TransactionCreate mutation when updating checkout/order prices"
+    },
+    {
+      "number": 17641,
+      "title": "Fix a potential race condition when creating a new user instance via the AccountRegister mutation"
+    },
+    {
+      "number": 18646,
+      "title": "Release 3.22.23"
+    },
+    {
+      "number": 18134,
+      "title": "Release 3.21.14"
+    },
+    {
+      "number": 18637,
+      "title": "Release 3.21.40"
+    },
+    {
+      "number": 17747,
+      "title": "Release 3.20.89"
+    },
+    {
+      "number": 17981,
+      "title": "Release 3.21.9"
+    },
+    {
+      "number": 19505,
+      "title": "docs: harden AGENTS.md and add Saleor review skills"
+    },
+    {
+      "number": 17784,
+      "title": "Release 3.20.90"
+    },
+    {
+      "number": 17993,
+      "title": "Release 3.21.10"
+    },
+    {
+      "number": 17992,
+      "title": "Release 3.20.96"
+    },
+    {
+      "number": 17155,
+      "title": "Release 3.20.61"
+    },
+    {
+      "number": 17403,
+      "title": "Release 3.20.72"
+    },
+    {
+      "number": 17930,
+      "title": "Release 3.21.7"
+    },
+    {
+      "number": 17756,
+      "title": "Release 3.21.1"
+    },
+    {
+      "number": 18141,
+      "title": "Release 3.20.98"
+    },
+    {
+      "number": 17666,
+      "title": "Release 3.20.83"
+    },
+    {
+      "number": 17929,
+      "title": "Release 3.20.93"
+    },
+    {
+      "number": 17794,
+      "title": "Release 3.21.3"
+    },
+    {
+      "number": 19311,
+      "title": "Update psycopg[binary] requirement from <4,>=3.2.9 to >=3.3.4,<4"
+    },
+    {
+      "number": 19040,
+      "title": "Fix a possible crash that could happen when channel would be deleted (#19015)"
+    },
+    {
+      "number": 19041,
+      "title": "Fix a possible crash that could happen when channel would be deleted (#19015)"
+    },
+    {
+      "number": 19015,
+      "title": "Fix a possible crash that could happen when channel would be deleted during the time ChannelsByShippingZoneIdLoader processes the request"
+    },
+    {
+      "number": 18795,
+      "title": "Add missing cache to account tests"
+    },
+    {
+      "number": 18692,
+      "title": "fix(ci): mutable workflow and template interpolation"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:17Z",
+  "results": [
+    {
+      "number": 1784,
+      "title": "[WIP] Move sending emails and creating history out of Order models"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:21Z",
+  "results": [
+    {
+      "number": 20010,
+      "title": "Keep MessageGroupId on retried Celery tasks and automatic checkout completion"
+    },
+    {
+      "number": 19968,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19967,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19964,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19986,
+      "title": "Remove the OpenTelemetry requests instrumentor"
+    },
+    {
+      "number": 19981,
+      "title": "Add app_list, app_set_active and webhook_set_active commands (#19969)"
+    },
+    {
+      "number": 19969,
+      "title": "Add app_list, app_set_active and webhook_set_active commands"
+    },
+    {
+      "number": 19982,
+      "title": "Add app_list, app_set_active and webhook_set_active commands (#19969)"
+    },
+    {
+      "number": 19834,
+      "title": "Emit webhooks when setPassword confirms an account"
+    },
+    {
+      "number": 19833,
+      "title": "Emit webhooks when setPassword confirms an account"
+    },
+    {
+      "number": 19920,
+      "title": "Add per-webhook payloadGeneration to opt out of deferred payloads"
+    },
+    {
+      "number": 19916,
+      "title": "Add per-webhook payloadGeneration to opt out of deferred payloads"
+    },
+    {
+      "number": 19813,
+      "title": "Expose idempotencyKey on transaction action requested webhooks"
+    },
+    {
+      "number": 19811,
+      "title": "Expose idempotencyKey on transaction action requested webhooks"
+    },
+    {
+      "number": 19871,
+      "title": "Fix stock webhook subscriptions failing when the variant was deleted"
+    },
+    {
+      "number": 19158,
+      "title": "Extend stock related webhooks with webhooks events info"
+    },
+    {
+      "number": 19156,
+      "title": "Extend stock related webhooks with webhooks events info"
+    },
+    {
+      "number": 19105,
+      "title": "Extract stock logic from webhook plugin to webhook module"
+    },
+    {
+      "number": 16311,
+      "title": "Control webhook queue name based on webhook protocol"
+    },
+    {
+      "number": 19092,
+      "title": "Extract stock logic from webhook plugin to webhook module"
+    },
+    {
+      "number": 19993,
+      "title": "Release 3.22.77"
+    },
+    {
+      "number": 19810,
+      "title": "Fix stock webhook subscriptions failing when the variant was deleted"
+    },
+    {
+      "number": 16564,
+      "title": "Do not call sync webhooks before async webhook when webhook's subscription query is missing"
+    },
+    {
+      "number": 16563,
+      "title": "Do not call sync webhooks before async webhook when webhook's subscription query is missing"
+    },
+    {
+      "number": 16535,
+      "title": "Do not call sync webhooks before async webhook when webhook's subscription query is missing"
+    },
+    {
+      "number": 19951,
+      "title": "Enable the OpenTelemetry threading instrumentor by default"
+    },
+    {
+      "number": 19663,
+      "title": "Deprecate export webhook events and subscription types"
+    },
+    {
+      "number": 18154,
+      "title": "Add checkoutFullyAuthorized webhook"
+    },
+    {
+      "number": 18153,
+      "title": "Add checkoutFullyAuthorized webhook"
+    },
+    {
+      "number": 16784,
+      "title": "Refactor webhooks tests"
+    },
+    {
+      "number": 16583,
+      "title": "Restructure webhook tests"
+    },
+    {
+      "number": 19557,
+      "title": "Add identifier field to Webhook model"
+    },
+    {
+      "number": 19545,
+      "title": "Add identifier field to Webhook model"
+    },
+    {
+      "number": 19973,
+      "title": "Release 3.23.45"
+    },
+    {
+      "number": 19972,
+      "title": "Release 3.22.76"
+    },
+    {
+      "number": 17255,
+      "title": "[Prevent sync webhooks in checkout bulk queries] - Add allow-sync-webhooks"
+    },
+    {
+      "number": 17636,
+      "title": "Telemetry - add webhook metrics"
+    },
+    {
+      "number": 15404,
+      "title": "Limit update webhook triggers"
+    },
+    {
+      "number": 15349,
+      "title": "Limit update webhook triggers"
+    },
+    {
+      "number": 19117,
+      "title": "Adjust stock channels webhooks descriptions"
+    },
+    {
+      "number": 19091,
+      "title": "Promisify checkout calculate taxes webhook"
+    },
+    {
+      "number": 19067,
+      "title": "Promisify checkout calculate taxes webhook"
+    },
+    {
+      "number": 16658,
+      "title": "Circuit breakers for sync webhooks"
+    },
+    {
+      "number": 16751,
+      "title": "Refactor order actions webhooks tests"
+    },
+    {
+      "number": 16747,
+      "title": "Refactor graphql mutations webhook tests"
+    },
+    {
+      "number": 19921,
+      "title": "Release 3.23.42"
+    },
+    {
+      "number": 19351,
+      "title": "Add product type created/updated/deleted webhooks"
+    },
+    {
+      "number": 19150,
+      "title": "Add channel-scoped stock availability webhooks"
+    },
+    {
+      "number": 19144,
+      "title": "Add channel-scoped stock availability webhooks"
+    },
+    {
+      "number": 19577,
+      "title": "Allow apps to reference their own webhooks by identifier"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:25Z",
+  "results": [
+    {
+      "number": 19891,
+      "title": "Fix duplicate checkout line created by concurrent adds of the same variant"
+    },
+    {
+      "number": 19394,
+      "title": "Add `concurrency` field to App model to dictate concurrency for sending webhooks"
+    },
+    {
+      "number": 19820,
+      "title": "Fix checkout payload crash when assigned delivery is deleted concurrently"
+    },
+    {
+      "number": 19889,
+      "title": "Fix duplicate checkout line created by concurrent adds of the same variant"
+    },
+    {
+      "number": 15956,
+      "title": "Handle concurrency `checkoutPaymentCreate` and `checkoutComplete`"
+    },
+    {
+      "number": 16420,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 16419,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 16418,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 16416,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 16417,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 16415,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 16414,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 16411,
+      "title": "Fix concurrent access to Checkout metadata"
+    },
+    {
+      "number": 19337,
+      "title": "fix: prevent transaction mutations failing when checkout is concurrently deleted"
+    },
+    {
+      "number": 19332,
+      "title": "fix: prevent transaction mutations failing when checkout is concurrently deleted"
+    },
+    {
+      "number": 20006,
+      "title": "Type parameter modernisation"
+    },
+    {
+      "number": 19992,
+      "title": "Bump Django to 5.2.19 + OAuth libs"
+    },
+    {
+      "number": 19991,
+      "title": "Bump Django to 5.2.19 + OAuth libs"
+    },
+    {
+      "number": 19990,
+      "title": "Bump Django to 5.2.19 + OAuth libs"
+    },
+    {
+      "number": 19997,
+      "title": "build(semgrep): add rule matching unassigned queryset"
+    },
+    {
+      "number": 19899,
+      "title": "Release 3.23.41"
+    },
+    {
+      "number": 19976,
+      "title": "Run the release lock step in UTC"
+    },
+    {
+      "number": 19975,
+      "title": "Run the release lock step in UTC"
+    },
+    {
+      "number": 17454,
+      "title": "Add a way for concurrent safe json updates in `updateMetadata` and `updatePrivateMetadata` mutations"
+    },
+    {
+      "number": 17375,
+      "title": "Add a way for concurrent safe json updates in `updateMetadata` and `updatePrivateMetadata` mutations"
+    },
+    {
+      "number": 19873,
+      "title": "Add externalReference support to Voucher"
+    },
+    {
+      "number": 19965,
+      "title": "Fix OIDC last_login duplicate writes and refresh check ignoring days"
+    },
+    {
+      "number": 19930,
+      "title": "chore: bump Pillow to v13.0.0"
+    },
+    {
+      "number": 19932,
+      "title": "chore: bump Pillow to v13.0.0"
+    },
+    {
+      "number": 19931,
+      "title": "chore: bump Pillow to v13.0.0"
+    },
+    {
+      "number": 19974,
+      "title": "Run the release lock step in UTC"
+    },
+    {
+      "number": 19954,
+      "title": "chore: bump uv & virtualenv"
+    },
+    {
+      "number": 19953,
+      "title": "chore: bump uv & virtualenv"
+    },
+    {
+      "number": 19945,
+      "title": "chore: bump certifi to 2026.10.19"
+    },
+    {
+      "number": 19944,
+      "title": "chore: bump certifi to 2026.10.19"
+    },
+    {
+      "number": 19943,
+      "title": "chore: bump certifi to 2026.10.19"
+    },
+    {
+      "number": 19941,
+      "title": "chore: bump certifi 2026.10.18"
+    },
+    {
+      "number": 19940,
+      "title": "chore: bump certifi 2026.10.18"
+    },
+    {
+      "number": 19967,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19966,
+      "title": "Fix OIDC last_login duplicate writes and refresh check ignoring days"
+    },
+    {
+      "number": 19933,
+      "title": "release: 3.23.43"
+    },
+    {
+      "number": 19962,
+      "title": "Fix OIDC access tokens rewriting is_staff on every request"
+    },
+    {
+      "number": 19934,
+      "title": "release: 3.22.74"
+    },
+    {
+      "number": 19961,
+      "title": "Fix OIDC access tokens rewriting is_staff on every request"
+    },
+    {
+      "number": 19801,
+      "title": "Store order base prices in dedicated columns so a dropped tax calculation cannot leave untaxed totals"
+    },
+    {
+      "number": 19831,
+      "title": "Feat/promotion external reference"
+    },
+    {
+      "number": 19830,
+      "title": "Add externalReference support to Category"
+    },
+    {
+      "number": 19939,
+      "title": "chore: bump certifi 2026.10.18"
+    },
+    {
+      "number": 19968,
+      "title": "Fix duplicate OIDC is_staff writes and user webhooks"
+    },
+    {
+      "number": 19883,
+      "title": "chore: bump Django to v5.2.18"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:29Z",
+  "results": [
+    {
+      "number": 19849,
+      "title": "Clear stale assigned delivery on checkout instance in payload"
+    },
+    {
+      "number": 18541,
+      "title": "Rename shipping_methods_stale_at to delivery_methods_stale_at"
+    },
+    {
+      "number": 17475,
+      "title": "Cancel stale jobs after new push"
+    },
+    {
+      "number": 17390,
+      "title": "Cancel stale jobs after new push"
+    },
+    {
+      "number": 19963,
+      "title": "Fix OIDC last_login duplicate writes and refresh check ignoring days"
+    },
+    {
+      "number": 20016,
+      "title": "build(deps): upgrade filelock and setuptools"
+    },
+    {
+      "number": 19821,
+      "title": "Fix checkout payload crash when assigned delivery is deleted "
+    },
+    {
+      "number": 18324,
+      "title": "Fix a bug where task deleting expired checkouts would end prematurely due to stale data being read from database replica"
+    },
+    {
+      "number": 19960,
+      "title": "Fix OIDC access tokens rewriting is_staff on every request"
+    },
+    {
+      "number": 19766,
+      "title": "Refresh order charge and authorize statuses when prices are recalculated"
+    },
+    {
+      "number": 18432,
+      "title": "Introduce CheckoutDelivery to store checkout's shipping methods"
+    },
+    {
+      "number": 19228,
+      "title": "Fix: checkout deliveries invalidation"
+    },
+    {
+      "number": 19229,
+      "title": "[3.23] Fix: checkout delvieries invalidation"
+    },
+    {
+      "number": 19564,
+      "title": "Fix pageAttributeAssign crash on nonexistent attribute IDs and fix productAttributeAssign's existence check"
+    },
+    {
+      "number": 18334,
+      "title": "Fix a bug where task deleting expired checkouts would end prematurely (#18324)"
+    },
+    {
+      "number": 18333,
+      "title": "Fix a bug where task deleting expired checkouts would end prematurely (#18324)"
+    },
+    {
+      "number": 17483,
+      "title": "Release 3.20.76"
+    },
+    {
+      "number": 18496,
+      "title": "Introduce CheckoutDelivery to store checkout's shipping methods"
+    },
+    {
+      "number": 19900,
+      "title": "feat(build): cache DB across workflow runs"
+    },
+    {
+      "number": 19669,
+      "title": "Update oss sample db"
+    },
+    {
+      "number": 19916,
+      "title": "Add per-webhook payloadGeneration to opt out of deferred payloads"
+    },
+    {
+      "number": 19568,
+      "title": "Add setting to block customer and anonymous traffic"
+    },
+    {
+      "number": 18554,
+      "title": "Add new delivery related problems"
+    },
+    {
+      "number": 18337,
+      "title": "Make sure to have up-to-date deliveries on complete action"
+    },
+    {
+      "number": 18917,
+      "title": "Introduce password login mode"
+    },
+    {
+      "number": 19901,
+      "title": "build(deps): bump virtualenv from 20.36.1 to 21.7.13 in the uv group across 1 directory"
+    },
+    {
+      "number": 19521,
+      "title": "Add the Customer Type CRUD API with webhook events"
+    },
+    {
+      "number": 19155,
+      "title": "Allow apps to receive their own lifecycle webhooks"
+    },
+    {
+      "number": 19442,
+      "title": "Improved Gift Card APIs"
+    },
+    {
+      "number": 19567,
+      "title": "Assigning attributes to customer entities"
+    },
+    {
+      "number": 15391,
+      "title": "Bump pytest-socket from 0.6.0 to 0.7.0"
+    },
+    {
+      "number": 19347,
+      "title": "build(deps): bump the npm_and_yarn group across 1 directory with 4 updates"
+    },
+    {
+      "number": 18201,
+      "title": "Use dataloader for settings fetching"
+    },
+    {
+      "number": 18005,
+      "title": "INFRA-732 - add cron-based testenv cleanup workflow"
+    },
+    {
+      "number": 12222,
+      "title": "Bump pytest-socket from 0.5.1 to 0.6.0"
+    },
+    {
+      "number": 12560,
+      "title": "Bump pytest-asyncio from 0.20.3 to 0.21.0"
+    },
+    {
+      "number": 12521,
+      "title": "Bump faker from 17.6.0 to 18.4.0"
+    },
+    {
+      "number": 2692,
+      "title": "Remove defunct build-args from circle-ci"
+    },
+    {
+      "number": 4767,
+      "title": "Hide OSError uwsgi errors from log and sentry"
+    },
+    {
+      "number": 5787,
+      "title": "Run pytest as a GitHub action"
+    },
+    {
+      "number": 5873,
+      "title": "Bump pytest-mock from 3.1.1 to 3.2.0"
+    },
+    {
+      "number": 4923,
+      "title": "Add Stale bot"
+    },
+    {
+      "number": 5502,
+      "title": "Bump graphene-django from 2.9.0 to 2.9.1"
+    },
+    {
+      "number": 6369,
+      "title": "Bump pytest from 6.1.1 to 6.1.2"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:33Z",
+  "results": [
+    {
+      "number": 18569,
+      "title": "Add test for ensuring the same funds are not used twice"
+    },
+    {
+      "number": 19716,
+      "title": "Drop the markdown runtime dependency"
+    },
+    {
+      "number": 17056,
+      "title": "Prevent raising an error for `AUTHORIZATION_SUCESS` in case parallel actions on transaction are performed"
+    },
+    {
+      "number": 19715,
+      "title": "feat(images): add size limits"
+    },
+    {
+      "number": 17092,
+      "title": "Prevent raising an error for `AUTHORIZATION_SUCESS` in case parallel actions on transaction are performed"
+    },
+    {
+      "number": 19678,
+      "title": "Limit the number of pixels of images we decode"
+    },
+    {
+      "number": 16814,
+      "title": "Prevent double shipping voucher discount application in generated tax payload."
+    },
+    {
+      "number": 16829,
+      "title": "Prevent double shipping voucher discount application in generated tax payload."
+    },
+    {
+      "number": 16828,
+      "title": "Prevent double shipping voucher discount application in generated tax payload."
+    },
+    {
+      "number": 15583,
+      "title": "Fix cache for shipping methods"
+    },
+    {
+      "number": 16191,
+      "title": "Fix catalogue discount application on custom price in checkout and draft orders"
+    },
+    {
+      "number": 18570,
+      "title": "Adjust customer events generation"
+    },
+    {
+      "number": 19490,
+      "title": "POC: Setting to block customer and anonymous traffic"
+    },
+    {
+      "number": 18550,
+      "title": "Add logic for cancelling and refunding gift card payments"
+    },
+    {
+      "number": 16153,
+      "title": "Fix applying `SPECIFIC_PRODUCT` and `apply_once_per_order` voucher on draft orders"
+    },
+    {
+      "number": 18123,
+      "title": "Bump pytest-django from 4.9.0 to 4.11.1"
+    },
+    {
+      "number": 18969,
+      "title": "feat: use Pydantic for EditorJS"
+    },
+    {
+      "number": 18862,
+      "title": "Implement a task for fetching product media image"
+    },
+    {
+      "number": 18917,
+      "title": "Introduce password login mode"
+    },
+    {
+      "number": 19442,
+      "title": "Improved Gift Card APIs"
+    },
+    {
+      "number": 17284,
+      "title": "Use denormalized prices during order update for vouchers"
+    },
+    {
+      "number": 16272,
+      "title": "Prevent from installing two apps with the same `App.identifier`"
+    },
+    {
+      "number": 16322,
+      "title": "Prevent from installing two apps with the same `App.identifier` (#16272)"
+    },
+    {
+      "number": 16321,
+      "title": "Prevent from installing two apps with the same `App.identifier` (#16272)"
+    },
+    {
+      "number": 17534,
+      "title": "Refactor: BaseCustomerCreate inheritance"
+    },
+    {
+      "number": 18063,
+      "title": "Prevent sending sync webhook if the previous one failed recently"
+    },
+    {
+      "number": 16213,
+      "title": "Fix catalogue discount application on custom price in checkout and draft orders"
+    },
+    {
+      "number": 17593,
+      "title": "Fix PositiveDecimal scalar"
+    },
+    {
+      "number": 11417,
+      "title": "Move orderSetting to Channel type"
+    },
+    {
+      "number": 16981,
+      "title": "Optimize ProductVariantUpdate mutation"
+    },
+    {
+      "number": 17042,
+      "title": "Optimize ProductVariantUpdate mutation"
+    },
+    {
+      "number": 10350,
+      "title": "Support for payment transaction actions"
+    },
+    {
+      "number": 11233,
+      "title": "Fix duplicated stock when calculate available quantity"
+    },
+    {
+      "number": 14996,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14997,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14999,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14998,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 15000,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 14991,
+      "title": "Migration for idempotency key"
+    },
+    {
+      "number": 15008,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15007,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15009,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15010,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 15006,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 14948,
+      "title": "Idempotency key for transaction API"
+    },
+    {
+      "number": 11509,
+      "title": "Fix double avatax requests for automatically confirmed orders"
+    },
+    {
+      "number": 14189,
+      "title": "Clear discount 0047 migration"
+    },
+    {
+      "number": 12578,
+      "title": "Fix shipping methods fetching subtotal for once per order"
+    },
+    {
+      "number": 14669,
+      "title": "Add fixes for StripePlugin"
+    },
+    {
+      "number": 14413,
+      "title": "Remove redundant webhook calls during export tasks."
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "saleor/saleor",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo saleor/saleor --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:37Z",
+  "results": [
+    {
+      "number": 20013,
+      "title": "Keep MessageGroupId on retried Celery tasks and automatic checkout completion"
+    },
+    {
+      "number": 20010,
+      "title": "Keep MessageGroupId on retried Celery tasks and automatic checkout completion"
+    },
+    {
+      "number": 18259,
+      "title": "Adjust retry backoffs policy"
+    },
+    {
+      "number": 18253,
+      "title": "Adjust retry backoffs policy"
+    },
+    {
+      "number": 18244,
+      "title": "Adjust retry backoffs policy"
+    },
+    {
+      "number": 20014,
+      "title": "Release 3.23.49"
+    },
+    {
+      "number": 17093,
+      "title": "Retry webhook request in case EventDelivery cannot be found"
+    },
+    {
+      "number": 17094,
+      "title": "Retry webhook request in case EventDelivery cannot be found"
+    },
+    {
+      "number": 17091,
+      "title": "Retry webhook request in case EventDelivery cannot be found"
+    },
+    {
+      "number": 17090,
+      "title": "Retry webhook request in case EventDelivery cannot be found"
+    },
+    {
+      "number": 17089,
+      "title": "Retry webhook request in case `EventDelivery` cannot be found"
+    },
+    {
+      "number": 17087,
+      "title": "Retry webhook request in case `EventDelivery` cannot be found"
+    },
+    {
+      "number": 17088,
+      "title": "Retry webhook request in case EventDelivery cannot be found"
+    },
+    {
+      "number": 17086,
+      "title": "Retry webhook request in case `EventDelivery` cannot be found"
+    },
+    {
+      "number": 19448,
+      "title": "app installation improvements - fetch_manifest can be retried up to two times"
+    },
+    {
+      "number": 19489,
+      "title": "[3.23] app installation improvements - fetch_manifest can be retried up to two times"
+    },
+    {
+      "number": 19980,
+      "title": "build(deps): bump the all-github-action-updates group with 2 updates"
+    },
+    {
+      "number": 19384,
+      "title": "Make logic sending messages to AWS SQS and Google PubSub more tolerant to prevent task giving up without retries"
+    },
+    {
+      "number": 19397,
+      "title": "Make logic sending messages to AWS SQS and Google PubSub more tolerant to prevent task giving up without retries (#19384)"
+    },
+    {
+      "number": 19396,
+      "title": "Make logic sending messages to AWS SQS and Google PubSub more tolerant to prevent task giving up without retries (#19384)"
+    },
+    {
+      "number": 19395,
+      "title": "Make logic sending messages to AWS SQS and Google PubSub more tolerant to prevent task giving up without retries (#19384)"
+    },
+    {
+      "number": 19848,
+      "title": "fix/migrations: Respect POPULATE_DEFAULTS in account migration 0103 (port of #19845 to 3.23)"
+    },
+    {
+      "number": 19845,
+      "title": "fix/migrations: Respect POPULATE_DEFAULTS in account migration 0103"
+    },
+    {
+      "number": 19715,
+      "title": "feat(images): add size limits"
+    },
+    {
+      "number": 19969,
+      "title": "Add app_list, app_set_active and webhook_set_active commands"
+    },
+    {
+      "number": 19401,
+      "title": "Ensure attempts sending messages to AWS SQS and Google PubSub time out in predictable time."
+    },
+    {
+      "number": 18862,
+      "title": "Implement a task for fetching product media image"
+    },
+    {
+      "number": 19400,
+      "title": "Release 3.23.14"
+    },
+    {
+      "number": 19399,
+      "title": "Release 3.22.55"
+    },
+    {
+      "number": 19398,
+      "title": "Release 3.21.61"
+    },
+    {
+      "number": 18971,
+      "title": "Fetch product media images asynchronously"
+    },
+    {
+      "number": 17146,
+      "title": "Catch and handle Integrity and Database error in automatic checkout completion"
+    },
+    {
+      "number": 17143,
+      "title": "Catch and handle Integrity and Database error in automatic checkout completion"
+    },
+    {
+      "number": 18255,
+      "title": "Release 3.21.22"
+    },
+    {
+      "number": 19507,
+      "title": "Release 3.23.19"
+    },
+    {
+      "number": 18266,
+      "title": "Release 3.20.100"
+    },
+    {
+      "number": 18916,
+      "title": "Return HTTP 503 for such ProductMedia objects it's expected to have image asynchronously fetched"
+    },
+    {
+      "number": 19811,
+      "title": "Expose idempotencyKey on transaction action requested webhooks"
+    },
+    {
+      "number": 17103,
+      "title": "Add timeout to pubsub interface used by webhook events"
+    },
+    {
+      "number": 17141,
+      "title": "Add timeout to pubsub interface used by webhook events"
+    },
+    {
+      "number": 17367,
+      "title": "Improve pre commit config"
+    },
+    {
+      "number": 18162,
+      "title": "Fix – Skip invalid span links in `TelemetryTaskContext`"
+    },
+    {
+      "number": 19155,
+      "title": "Allow apps to receive their own lifecycle webhooks"
+    },
+    {
+      "number": 19352,
+      "title": "build(deps): bump aws-actions/configure-aws-credentials from 6.1.3 to 6.2.0 in the all-github-action-updates group"
+    },
+    {
+      "number": 18128,
+      "title": "Bump SethCohen/github-releases-to-discord from 1.16.2 to 1.19.0"
+    },
+    {
+      "number": 19370,
+      "title": "build(deps): update django-storages[google] requirement from ~=1.11 to ~=1.14"
+    },
+    {
+      "number": 19643,
+      "title": "build(deps): bump the all-github-action-updates group with 4 updates"
+    },
+    {
+      "number": 19344,
+      "title": "build(deps): bump the all-github-action-updates group with 14 updates"
+    },
+    {
+      "number": 19809,
+      "title": "build(deps): bump the all-github-action-updates group across 1 directory with 3 updates"
+    },
+    {
+      "number": 20016,
+      "title": "build(deps): upgrade filelock and setuptools"
+    }
+  ],
+  "error": null
+}
+]

@@ -1,0 +1,1573 @@
+[
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:12Z",
+  "results": [
+    {
+      "number": 4773,
+      "title": "feat(core,dashboard): add verifyCustomerAccount mutation to the admin API"
+    },
+    {
+      "number": 5059,
+      "title": "fix(core): Check every element in isTranslatable, harden translateDeep against holes"
+    },
+    {
+      "number": 4864,
+      "title": "fix(core): seed StockLevel on channel assignment (multi-channel)"
+    },
+    {
+      "number": 4584,
+      "title": "feat(core): Add migrateAssetTranslationData() helper for v3.6 upgrade"
+    },
+    {
+      "number": 4928,
+      "title": "feat(core): Recalculate active orders for current pricing, promotions & shipping eligibility"
+    },
+    {
+      "number": 4765,
+      "title": "feat(dashboard): Add `additionalStylesheets` option to vendureDashboa…"
+    },
+    {
+      "number": 4933,
+      "title": "feat(core): expand telemetry to schema v2 with heartbeat and new signals"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:16Z",
+  "results": [
+    {
+      "number": 5297,
+      "title": "fix(job-queue-plugin): avoid loading retained payloads during startup indexing"
+    },
+    {
+      "number": 4914,
+      "title": "fix(dashboard): Localize configurable operation selector buttons"
+    },
+    {
+      "number": 5074,
+      "title": "feat(core): add index support for custom fields"
+    },
+    {
+      "number": 5085,
+      "title": "fix(core): Prevent exponential re-merge of shared entity references"
+    },
+    {
+      "number": 4871,
+      "title": "fix(dashboard): Regenerate Uzbek catalog and translate job cancel toast plurals"
+    },
+    {
+      "number": 4765,
+      "title": "feat(dashboard): Add `additionalStylesheets` option to vendureDashboa…"
+    },
+    {
+      "number": 5077,
+      "title": "fix(dashboard): Make Japanese and Korean selectable and complete their translations"
+    },
+    {
+      "number": 4864,
+      "title": "fix(core): seed StockLevel on channel assignment (multi-channel)"
+    },
+    {
+      "number": 4870,
+      "title": "fix(dashboard): Stop nesting t macro inside plural for job cancel toasts"
+    },
+    {
+      "number": 4933,
+      "title": "feat(core): expand telemetry to schema v2 with heartbeat and new signals"
+    },
+    {
+      "number": 5163,
+      "title": "feat(core): introduce role assignments as the core permission model"
+    },
+    {
+      "number": 4784,
+      "title": "chore: Enable npm staged publishing for releases"
+    },
+    {
+      "number": 5231,
+      "title": "ci: label dependency pull requests by published contract impact"
+    },
+    {
+      "number": 4584,
+      "title": "feat(core): Add migrateAssetTranslationData() helper for v3.6 upgrade"
+    },
+    {
+      "number": 4986,
+      "title": "fix(core): Hydrate relations missing from only some array elements"
+    },
+    {
+      "number": 5014,
+      "title": "fix(job-queue-plugin): Fix BullMQ job list query pagination, ordering & index maintenance"
+    },
+    {
+      "number": 4770,
+      "title": "refactor(core): Vendor a focused ProgressBar helper, drop `progress` dep"
+    },
+    {
+      "number": 4809,
+      "title": "fix(core): Prevent duplicate-key errors in DefaultSearchPlugin index writes"
+    },
+    {
+      "number": 4104,
+      "title": "Mollie: Allow forcefully updating payment status in case webhooks are delayed"
+    },
+    {
+      "number": 4201,
+      "title": "feat(core,job-queue-plugin): Add per-queue concurrency configuration"
+    },
+    {
+      "number": 4687,
+      "title": "feat(dashboard): support assigning multiple channels in bulk actions"
+    },
+    {
+      "number": 4774,
+      "title": "feat(cli): Add dev/build/start lifecycle commands and a distributable agent skill"
+    },
+    {
+      "number": 4192,
+      "title": "feat(core): Add anonymous telemetry collection module"
+    },
+    {
+      "number": 4394,
+      "title": "fix(dashboard): Multiple small UI fixes"
+    },
+    {
+      "number": 2462,
+      "title": "fix(payments-plugin): Idempotent 'paid' Mollie webhooks"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:20Z",
+  "results": [
+    {
+      "number": 5702,
+      "title": "fix(core): remove translation de-duplication noise from migrations"
+    },
+    {
+      "number": 5643,
+      "title": "fix(dashboard): prevent duplicate module instances in experimental bundle mode"
+    },
+    {
+      "number": 5512,
+      "title": "fix(core): respect naming strategies when de-duplicating translations"
+    },
+    {
+      "number": 5770,
+      "title": "feat(core): scope slug uniqueness to the channels an entity belongs to"
+    },
+    {
+      "number": 5766,
+      "title": "build: make the ci target a no-op that depends on build"
+    },
+    {
+      "number": 5612,
+      "title": "fix(job-queue-plugin): use a Redis or Cluster instance passed as connection"
+    },
+    {
+      "number": 5138,
+      "title": "fix(repo): Remove duplicate security report link"
+    },
+    {
+      "number": 5680,
+      "title": "fix(core): refuse an email update to an address owned by a guest Customer"
+    },
+    {
+      "number": 5007,
+      "title": "fix(core): prevent duplicate translations from concurrent saves"
+    },
+    {
+      "number": 5385,
+      "title": "feat(core): allow several variants on a product without option groups"
+    },
+    {
+      "number": 5727,
+      "title": "feat: upgrade to Vite 8 and Vitest 4"
+    },
+    {
+      "number": 5583,
+      "title": "fix(core): normalize the email address of customers created by extern…"
+    },
+    {
+      "number": 5416,
+      "title": "fix(core): dedupe variant ids from an OR-ed variant-name-filter"
+    },
+    {
+      "number": 5587,
+      "title": "fix(core): resolve the root collection in the default channel"
+    },
+    {
+      "number": 5506,
+      "title": "fix(core): don't load a facet's existing values when creating a facet value"
+    },
+    {
+      "number": 5441,
+      "title": "test(dashboard): cover useGeneratedForm create and update validity with a non-nullable custom field"
+    },
+    {
+      "number": 5465,
+      "title": "fix(core): respect find options when joining eager relations"
+    },
+    {
+      "number": 5391,
+      "title": "chore(deps): update graphql to 16.14.2 and refresh the graphql ecosystem"
+    },
+    {
+      "number": 5580,
+      "title": "feat(create): print one pricing hint after install"
+    },
+    {
+      "number": 5780,
+      "title": "ci: run dashboard e2e on ubuntu-24.04 (major)"
+    },
+    {
+      "number": 5771,
+      "title": "fix: fix the type errors in the core packages"
+    },
+    {
+      "number": 5758,
+      "title": "fix(core): keep nested paths when a parent relation path comes first"
+    },
+    {
+      "number": 5606,
+      "title": "feat(core): show a Vendure Platform banner after server and worker startup"
+    },
+    {
+      "number": 5734,
+      "title": "feat(core): default to TypeORM v1"
+    },
+    {
+      "number": 5762,
+      "title": "chore: remove baseUrl from the dashboard and docs tsconfig files"
+    },
+    {
+      "number": 5729,
+      "title": "feat(dashboard): scale role assignment editing to many channels and roles"
+    },
+    {
+      "number": 5759,
+      "title": "ci: build once and cache the unit and e2e tests"
+    },
+    {
+      "number": 5501,
+      "title": "docs(skills): add Vendure troubleshooting skill"
+    },
+    {
+      "number": 5748,
+      "title": "feat(core): per-channel enabled for Products and ProductVariants"
+    },
+    {
+      "number": 5434,
+      "title": "fix(core,cli): include composed plugins in schema generation outside bootstrap"
+    },
+    {
+      "number": 5224,
+      "title": "perf(core): remove the per-request stock query stampede"
+    },
+    {
+      "number": 5287,
+      "title": "perf(core): add missing indexes on STI discriminators and productId"
+    },
+    {
+      "number": 5154,
+      "title": "fix(telemetry-plugin): bump opentelemetry to 0.222.x (ghsa-q7rr-3cgh-j5r3, ghsa-45rx-2jwx-cxfr)"
+    },
+    {
+      "number": 5636,
+      "title": "ci: resolve back-merge conflicts in the generated docs manifest automatically"
+    },
+    {
+      "number": 5632,
+      "title": "fix(core): detect circular dependencies between blocking event handlers of any length"
+    },
+    {
+      "number": 5314,
+      "title": "feat(cli): let plugins run after a Console project link"
+    },
+    {
+      "number": 5358,
+      "title": "feat(cli): group the CLI help output by the package that provided each command"
+    },
+    {
+      "number": 5545,
+      "title": "chore(dashboard): move to stable Vendure design system releases"
+    },
+    {
+      "number": 5557,
+      "title": "fix(core): assign variant options and option groups in assignProductVariantsToChannel"
+    },
+    {
+      "number": 5756,
+      "title": "feat(core): add composable strategy layers"
+    },
+    {
+      "number": 5634,
+      "title": "chore(repo): back-merge master into minor"
+    },
+    {
+      "number": 4594,
+      "title": "feat(core, dashboard): support pluggable refund destinations"
+    },
+    {
+      "number": 5607,
+      "title": "feat(dashboard): add a build-time Platform catalog data layer"
+    },
+    {
+      "number": 4809,
+      "title": "fix(core): Prevent duplicate-key errors in DefaultSearchPlugin index writes"
+    },
+    {
+      "number": 5162,
+      "title": "feat(core): add composed Vendure plugin support"
+    },
+    {
+      "number": 5364,
+      "title": "fix(dashboard): warn when editing shared option groups"
+    },
+    {
+      "number": 5774,
+      "title": "ci: run dashboard e2e on ubuntu-24.04"
+    },
+    {
+      "number": 5340,
+      "title": "chore: restrict Dependabot major updates to development tooling"
+    },
+    {
+      "number": 5546,
+      "title": "perf(core): batch Product.facetValues lookups per request"
+    },
+    {
+      "number": 5540,
+      "title": "chore(core): remove blank-string validation of mutation inputs from 3.8"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:24Z",
+  "results": [
+    {
+      "number": 5766,
+      "title": "build: make the ci target a no-op that depends on build"
+    },
+    {
+      "number": 5727,
+      "title": "feat: upgrade to Vite 8 and Vitest 4"
+    },
+    {
+      "number": 5653,
+      "title": "fix(mcp-plugin): lock the stock levels which adjust_stock reads"
+    },
+    {
+      "number": 5565,
+      "title": "fix(core): wait for an in-flight job claim before the polling queue stops"
+    },
+    {
+      "number": 5363,
+      "title": "fix(testing): avoid races creating the sqljs data directory"
+    },
+    {
+      "number": 5650,
+      "title": "ci: retry the back-merge push when minor has moved"
+    },
+    {
+      "number": 5620,
+      "title": "fix(dashboard): show an error instead of an endless loading screen fo…"
+    },
+    {
+      "number": 5489,
+      "title": "feat(cli): add vendure auth login with a shared WorkOS session"
+    },
+    {
+      "number": 5195,
+      "title": "fix(core): enqueue apply-collection-filters job after the transaction commits"
+    },
+    {
+      "number": 5505,
+      "title": "feat(mcp-sdk): export findOrCreateActiveOrder for plugin cart tools"
+    },
+    {
+      "number": 5175,
+      "title": "fix(dashboard): match the add-payment option exactly"
+    },
+    {
+      "number": 5494,
+      "title": "feat(cli): link projects with the vendure auth login"
+    },
+    {
+      "number": 4790,
+      "title": "ci: Fix intermittent dashboard port race in Publish & Install"
+    },
+    {
+      "number": 4930,
+      "title": "fix(core): Prevent stock oversell under concurrent checkout"
+    },
+    {
+      "number": 5248,
+      "title": "fix(core): look up channels by token instead of caching every channel"
+    },
+    {
+      "number": 5224,
+      "title": "perf(core): remove the per-request stock query stampede"
+    },
+    {
+      "number": 5334,
+      "title": "feat(core): wake the job queue with LISTEN/NOTIFY instead of polling"
+    },
+    {
+      "number": 5398,
+      "title": "test(dashboard): dismiss Base UI popups reliably in e2e tests"
+    },
+    {
+      "number": 5061,
+      "title": "fix(dashboard): Activate fallback locale before extensions"
+    },
+    {
+      "number": 5007,
+      "title": "fix(core): prevent duplicate translations from concurrent saves"
+    },
+    {
+      "number": 5631,
+      "title": "fix(job-queue-plugin): subscribe to job cancellations once the connection is ready"
+    },
+    {
+      "number": 5164,
+      "title": "fix(core): prevent orphan-nullification of surcharges on Order save"
+    },
+    {
+      "number": 5683,
+      "title": "fix(core): bound RedisCacheStrategy tag sets and batch tag invalidation"
+    },
+    {
+      "number": 5293,
+      "title": "fix(core): return job snapshots from in-memory job queue strategy"
+    },
+    {
+      "number": 5370,
+      "title": "fix(core): reload surcharges before recalculating order totals"
+    },
+    {
+      "number": 5229,
+      "title": "ci: generate docs on the base branch instead of the PR branch"
+    },
+    {
+      "number": 5693,
+      "title": "fix(create): time out Docker calls when the daemon does not respond"
+    },
+    {
+      "number": 5710,
+      "title": "fix(cli): say when the stored login expired in vendure console link"
+    },
+    {
+      "number": 4660,
+      "title": "fix(core): Prevent coupon usage limit bypass via concurrent checkout race condition"
+    },
+    {
+      "number": 5526,
+      "title": "fix(job-queue-plugin): close the redis connections the bullmq strategy opens on destroy"
+    },
+    {
+      "number": 5315,
+      "title": "feat(cli): settle a Console session with the Project Link approval"
+    },
+    {
+      "number": 5438,
+      "title": "test(core): add e2e coverage for the in-memory job queue strategy and fix a timing-dependent spec"
+    },
+    {
+      "number": 4950,
+      "title": "chore(core): Fix flaky e2e search-index and scheduler tests"
+    },
+    {
+      "number": 5261,
+      "title": "Invalidate eligible shipping methods after draft-order changes"
+    },
+    {
+      "number": 5728,
+      "title": "ci: replace CLA Assistant with our own CLA check"
+    },
+    {
+      "number": 4978,
+      "title": "chore(dev-server): Add worktree-safe Portless workflow"
+    },
+    {
+      "number": 4809,
+      "title": "fix(core): Prevent duplicate-key errors in DefaultSearchPlugin index writes"
+    },
+    {
+      "number": 4746,
+      "title": "fix(dashboard): Apply column filters on list pages using OR filter operator"
+    },
+    {
+      "number": 5014,
+      "title": "fix(job-queue-plugin): Fix BullMQ job list query pagination, ordering & index maintenance"
+    },
+    {
+      "number": 4845,
+      "title": "fix(dashboard): Show full saved selection in product multi-selector"
+    },
+    {
+      "number": 4864,
+      "title": "fix(core): seed StockLevel on channel assignment (multi-channel)"
+    },
+    {
+      "number": 4747,
+      "title": "fix(dashboard): Make AlertsProvider react to extensions registered after mount"
+    },
+    {
+      "number": 4681,
+      "title": "fix(core): Prevent duplicate execution of fast scheduled tasks"
+    },
+    {
+      "number": 5231,
+      "title": "ci: label dependency pull requests by published contract impact"
+    },
+    {
+      "number": 4472,
+      "title": "fix:  set channel token before query invalidation"
+    },
+    {
+      "number": 4699,
+      "title": "fix(core): Assign new variants to all product channels"
+    },
+    {
+      "number": 4810,
+      "title": "fix(dashboard): Set default addresses when selecting customer on draft order"
+    },
+    {
+      "number": 4120,
+      "title": "fix(core): Fix SubscribableJob.updates() completing after single emission"
+    },
+    {
+      "number": 4757,
+      "title": "fix(dashboard): Resolve logout stuck in verifying state on failure"
+    },
+    {
+      "number": 4564,
+      "title": "chore(core): Dependency updates phases 1-3"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:27Z",
+  "results": [
+    {
+      "number": 5163,
+      "title": "feat(core): introduce role assignments as the core permission model"
+    },
+    {
+      "number": 4983,
+      "title": "feat(dashboard): Product list, product detail & variants editor improvements"
+    },
+    {
+      "number": 4923,
+      "title": "perf(core): resolve relation custom fields using request-scoped DataLoader batching"
+    },
+    {
+      "number": 5143,
+      "title": "fix(core): reconcile read/write quantity basis for OrderLine discounts (#5127)"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:31Z",
+  "results": [
+    {
+      "number": 5662,
+      "title": "fix(mcp-plugin): publish an AssetEvent for the asset upload_asset cre…"
+    },
+    {
+      "number": 4721,
+      "title": "fix(core): Block SSRF in DefaultAssetImportStrategy"
+    },
+    {
+      "number": 4104,
+      "title": "Mollie: Allow forcefully updating payment status in case webhooks are delayed"
+    },
+    {
+      "number": 4352,
+      "title": "fix(core): Emit post-update entity in VendureEntityEvent for updated events"
+    },
+    {
+      "number": 4644,
+      "title": "fix: Make tab view scrollable"
+    },
+    {
+      "number": 4128,
+      "title": "fix(dashboard): Collection contents not showing after saving filters"
+    },
+    {
+      "number": 3692,
+      "title": "Include metadata in createPayment function of payment method handler"
+    },
+    {
+      "number": 3420,
+      "title": "fix(payments-plugin): improve order state transition handling for channel-specific contexts and default channel as a fallback"
+    },
+    {
+      "number": 3815,
+      "title": "feat(core): API Keys"
+    },
+    {
+      "number": 3624,
+      "title": "feat(payments-plugin, stripe): Export StripeService to support more payment flows"
+    },
+    {
+      "number": 3603,
+      "title": "Migrated Mollie to Payments API"
+    },
+    {
+      "number": 3298,
+      "title": "Enhance Stripe Plugin to Support Localized Order Confirmation Emails"
+    },
+    {
+      "number": 3014,
+      "title": "Fix/mollie failing webhook"
+    },
+    {
+      "number": 3076,
+      "title": "fix: Use default channel in Stripe webhook calls to reach all orders"
+    },
+    {
+      "number": 2657,
+      "title": "feat(payments-plugin): Dont handle mollie webhook for any state after PaymentSettled"
+    },
+    {
+      "number": 2691,
+      "title": "Feat(Mollie): Prevent duplicate payments"
+    },
+    {
+      "number": 2670,
+      "title": "fix(payments-plugin): Mollie ignore order states"
+    },
+    {
+      "number": 2569,
+      "title": "fix(payments-plugin, Mollie): Ignore completed state to prevent unneccesary error throwing"
+    },
+    {
+      "number": 2462,
+      "title": "fix(payments-plugin): Idempotent 'paid' Mollie webhooks"
+    },
+    {
+      "number": 2575,
+      "title": "fix(payments-plugin): Make Mollie channel aware again!"
+    },
+    {
+      "number": 2402,
+      "title": "fix(stripe): fix stripe payment handling"
+    },
+    {
+      "number": 2454,
+      "title": "fix(payments-plugin): Stripe controller crashes server instance"
+    },
+    {
+      "number": 2192,
+      "title": "fix(payments-plugin): Removed invalid error logging"
+    },
+    {
+      "number": 2058,
+      "title": "Feat/channel aware stripe"
+    },
+    {
+      "number": 2094,
+      "title": "feat(payments-plugin): mollie plugin make `redirecturl` dynamic"
+    },
+    {
+      "number": 2004,
+      "title": "fix(payments-plugin): Fix Stripe plugin docs to reference the correct webhook host"
+    },
+    {
+      "number": 1878,
+      "title": "fix(payments-plugin): Return 200 on Stripe payment failed event"
+    },
+    {
+      "number": 1200,
+      "title": "Feature/mollie payment integration"
+    },
+    {
+      "number": 1487,
+      "title": "Fix: added a return(202) to stripe webhook in case of successfull payment"
+    },
+    {
+      "number": 1485,
+      "title": "fix(payment-plugin,stripe): fix state transitioning "
+    },
+    {
+      "number": 1417,
+      "title": "feat(payments-plugin): Add Stripe integration"
+    },
+    {
+      "number": 1437,
+      "title": "Mollie payment intent + Stripe unauthorized settlement fix"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:34Z",
+  "results": [
+    {
+      "number": 5407,
+      "title": "test(core): share default concurrency and set test job buffer id"
+    },
+    {
+      "number": 5653,
+      "title": "fix(mcp-plugin): lock the stock levels which adjust_stock reads"
+    },
+    {
+      "number": 5728,
+      "title": "ci: replace CLA Assistant with our own CLA check"
+    },
+    {
+      "number": 5007,
+      "title": "fix(core): prevent duplicate translations from concurrent saves"
+    },
+    {
+      "number": 5496,
+      "title": "fix(core): pick the next job in the sql job queue with an index seek"
+    },
+    {
+      "number": 5485,
+      "title": "test(core): make the interleaved stock update test independent of statement order"
+    },
+    {
+      "number": 5757,
+      "title": "ci: select package jobs from the Nx affected projects"
+    },
+    {
+      "number": 5396,
+      "title": "test(core): stop job-queue service spec leaking state between tests"
+    },
+    {
+      "number": 4930,
+      "title": "fix(core): Prevent stock oversell under concurrent checkout"
+    },
+    {
+      "number": 5429,
+      "title": "fix(core): stop EntityHydrator hanging when re-merging a ShippingMethod"
+    },
+    {
+      "number": 5370,
+      "title": "fix(core): reload surcharges before recalculating order totals"
+    },
+    {
+      "number": 5650,
+      "title": "ci: retry the back-merge push when minor has moved"
+    },
+    {
+      "number": 5248,
+      "title": "fix(core): look up channels by token instead of caching every channel"
+    },
+    {
+      "number": 5565,
+      "title": "fix(core): wait for an in-flight job claim before the polling queue stops"
+    },
+    {
+      "number": 5224,
+      "title": "perf(core): remove the per-request stock query stampede"
+    },
+    {
+      "number": 5168,
+      "title": "fix(core): free job queue slot when status update fails"
+    },
+    {
+      "number": 5489,
+      "title": "feat(cli): add vendure auth login with a shared WorkOS session"
+    },
+    {
+      "number": 5231,
+      "title": "ci: label dependency pull requests by published contract impact"
+    },
+    {
+      "number": 5287,
+      "title": "perf(core): add missing indexes on STI discriminators and productId"
+    },
+    {
+      "number": 5334,
+      "title": "feat(core): wake the job queue with LISTEN/NOTIFY instead of polling"
+    },
+    {
+      "number": 5293,
+      "title": "fix(core): return job snapshots from in-memory job queue strategy"
+    },
+    {
+      "number": 5475,
+      "title": "feat(cli): discover workspace projects for dev"
+    },
+    {
+      "number": 5164,
+      "title": "fix(core): prevent orphan-nullification of surcharges on Order save"
+    },
+    {
+      "number": 5591,
+      "title": "test(cli): cover login isolation between config directories"
+    },
+    {
+      "number": 4907,
+      "title": "fix(create): install workspace deps from root in monorepo mode"
+    },
+    {
+      "number": 5058,
+      "title": "fix(core): Price every ProductVariant in relation arrays, avoid spread RangeError"
+    },
+    {
+      "number": 5477,
+      "title": "fix(dashboard): generate the slug of a translation added to an existing entity"
+    },
+    {
+      "number": 5229,
+      "title": "ci: generate docs on the base branch instead of the PR branch"
+    },
+    {
+      "number": 5363,
+      "title": "fix(testing): avoid races creating the sqljs data directory"
+    },
+    {
+      "number": 4898,
+      "title": "test(create): Fix stale dev script assertion after master into minor merge"
+    },
+    {
+      "number": 5494,
+      "title": "feat(cli): link projects with the vendure auth login"
+    },
+    {
+      "number": 4916,
+      "title": "feat(dashboard): Send only changed fields on detail page updates"
+    },
+    {
+      "number": 4982,
+      "title": "chore(repo): Resolve master to minor back-merge"
+    },
+    {
+      "number": 5092,
+      "title": "feat(dashboard): add per file upload progress modal for assets"
+    },
+    {
+      "number": 5297,
+      "title": "fix(job-queue-plugin): avoid loading retained payloads during startup indexing"
+    },
+    {
+      "number": 5710,
+      "title": "fix(cli): say when the stored login expired in vendure console link"
+    },
+    {
+      "number": 4923,
+      "title": "perf(core): resolve relation custom fields using request-scoped DataLoader batching"
+    },
+    {
+      "number": 4660,
+      "title": "fix(core): Prevent coupon usage limit bypass via concurrent checkout race condition"
+    },
+    {
+      "number": 4834,
+      "title": "fix(dashboard): only send edited stock levels on variant update"
+    },
+    {
+      "number": 5386,
+      "title": "feat(core): update to NestJS 12, @nestjs/graphql 14 and Apollo Server 5"
+    },
+    {
+      "number": 4790,
+      "title": "ci: Fix intermittent dashboard port race in Publish & Install"
+    },
+    {
+      "number": 4864,
+      "title": "fix(core): seed StockLevel on channel assignment (multi-channel)"
+    },
+    {
+      "number": 4978,
+      "title": "chore(dev-server): Add worktree-safe Portless workflow"
+    },
+    {
+      "number": 4948,
+      "title": "chore: Share CI-aware vitest timeout and worker settings across packages"
+    },
+    {
+      "number": 4928,
+      "title": "feat(core): Recalculate active orders for current pricing, promotions & shipping eligibility"
+    },
+    {
+      "number": 4877,
+      "title": "fix(create): Detect package manager for dependency install"
+    },
+    {
+      "number": 4488,
+      "title": "fix(core): Make OrderService.mergeOrders atomic and concurrency-safe"
+    },
+    {
+      "number": 4746,
+      "title": "fix(dashboard): Apply column filters on list pages using OR filter operator"
+    },
+    {
+      "number": 4683,
+      "title": "feat(core): Add CouponRemovedDuringCheckoutError to AddPaymentToOrderResult"
+    },
+    {
+      "number": 5014,
+      "title": "fix(job-queue-plugin): Fix BullMQ job list query pagination, ordering & index maintenance"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:38Z",
+  "results": [
+    {
+      "number": 5714,
+      "title": "fix(dashboard): show the tone icon on destructive order and shipping alerts"
+    },
+    {
+      "number": 5712,
+      "title": "feat: Remove the Angular Admin UI"
+    },
+    {
+      "number": 5643,
+      "title": "fix(dashboard): prevent duplicate module instances in experimental bundle mode"
+    },
+    {
+      "number": 5489,
+      "title": "feat(cli): add vendure auth login with a shared WorkOS session"
+    },
+    {
+      "number": 5663,
+      "title": "fix(core): clear item promotion adjustments before testing conditions"
+    },
+    {
+      "number": 5412,
+      "title": "fix(email-plugin): recreate nodemailer transport when options can't be compared"
+    },
+    {
+      "number": 5761,
+      "title": "ci: shard the core e2e specs and make the e2e ports unique"
+    },
+    {
+      "number": 5533,
+      "title": "fix(mcp-sdk): Require NestJS 12 and add package READMEs"
+    },
+    {
+      "number": 5772,
+      "title": "fix(dashboard): make chunk file names unique to each build"
+    },
+    {
+      "number": 5229,
+      "title": "ci: generate docs on the base branch instead of the PR branch"
+    },
+    {
+      "number": 5644,
+      "title": "fix(dashboard): keep stored user settings when signing in from a signed-out page"
+    },
+    {
+      "number": 5728,
+      "title": "ci: replace CLA Assistant with our own CLA check"
+    },
+    {
+      "number": 5706,
+      "title": "fix(dashboard): reload expanded child collections when the content language changes"
+    },
+    {
+      "number": 5370,
+      "title": "fix(core): reload surcharges before recalculating order totals"
+    },
+    {
+      "number": 5399,
+      "title": "perf(dashboard): fix slow move-collections dialog on deeply nested trees"
+    },
+    {
+      "number": 5517,
+      "title": "fix(core): apply OrderLine custom field defaults and validation to nested inputs"
+    },
+    {
+      "number": 5248,
+      "title": "fix(core): look up channels by token instead of caching every channel"
+    },
+    {
+      "number": 5471,
+      "title": "docs: fix broken default email handlers link in email guide"
+    },
+    {
+      "number": 5747,
+      "title": "feat(core): add channel assignment entities for ChannelAware entities"
+    },
+    {
+      "number": 5669,
+      "title": "fix(dashboard): initialize user settings from the next session after logout"
+    },
+    {
+      "number": 4898,
+      "title": "test(create): Fix stale dev script assertion after master into minor merge"
+    },
+    {
+      "number": 5323,
+      "title": "fix(cli): keep vendure dev resilient to a compile-error crash"
+    },
+    {
+      "number": 5164,
+      "title": "fix(core): prevent orphan-nullification of surcharges on Order save"
+    },
+    {
+      "number": 5416,
+      "title": "fix(core): dedupe variant ids from an OR-ed variant-name-filter"
+    },
+    {
+      "number": 5261,
+      "title": "Invalidate eligible shipping methods after draft-order changes"
+    },
+    {
+      "number": 5750,
+      "title": "build: replace Lerna with Nx"
+    },
+    {
+      "number": 5190,
+      "title": "fix(dashboard): make entity selectors refetch on mount"
+    },
+    {
+      "number": 5487,
+      "title": "fix(mcp-plugin): run cart tools in the cart's currency"
+    },
+    {
+      "number": 5624,
+      "title": "fix(dashboard): show the permitted navigation after switching user without a reload"
+    },
+    {
+      "number": 5178,
+      "title": "fix(dashboard): refresh tax category selector after mutations"
+    },
+    {
+      "number": 5087,
+      "title": "fix(core): Invalidate stock location channel id cache correctly"
+    },
+    {
+      "number": 5203,
+      "title": "feat(core): add timezone option for scheduled tasks"
+    },
+    {
+      "number": 5157,
+      "title": "feat(cli): add Console project linking"
+    },
+    {
+      "number": 5257,
+      "title": "ci: skip SonarQube scan on dispatched feature branch runs"
+    },
+    {
+      "number": 5362,
+      "title": "ci: grant pull-requests write to the dependency impact workflow"
+    },
+    {
+      "number": 5633,
+      "title": "revert(dashboard): move the Platform catalog data layer to the next minor"
+    },
+    {
+      "number": 5224,
+      "title": "perf(core): remove the per-request stock query stampede"
+    },
+    {
+      "number": 5163,
+      "title": "feat(core): introduce role assignments as the core permission model"
+    },
+    {
+      "number": 5360,
+      "title": "perf(core): batch stockLevels lookups per request"
+    },
+    {
+      "number": 4928,
+      "title": "feat(core): Recalculate active orders for current pricing, promotions & shipping eligibility"
+    },
+    {
+      "number": 5014,
+      "title": "fix(job-queue-plugin): Fix BullMQ job list query pagination, ordering & index maintenance"
+    },
+    {
+      "number": 5012,
+      "title": "feat(core): Add entity id properties for relation custom fields"
+    },
+    {
+      "number": 5143,
+      "title": "fix(core): reconcile read/write quantity basis for OrderLine discounts (#5127)"
+    },
+    {
+      "number": 4950,
+      "title": "chore(core): Fix flaky e2e search-index and scheduler tests"
+    },
+    {
+      "number": 5494,
+      "title": "feat(cli): link projects with the vendure auth login"
+    },
+    {
+      "number": 4916,
+      "title": "feat(dashboard): Send only changed fields on detail page updates"
+    },
+    {
+      "number": 5255,
+      "title": "fix(asset-server-plugin): name cached svg transforms with the png extension"
+    },
+    {
+      "number": 4978,
+      "title": "chore(dev-server): Add worktree-safe Portless workflow"
+    },
+    {
+      "number": 5066,
+      "title": "fix(dashboard): Forward transformQueryKey and view options from ListPage"
+    },
+    {
+      "number": 4930,
+      "title": "fix(core): Prevent stock oversell under concurrent checkout"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:42Z",
+  "results": [
+    {
+      "number": 5727,
+      "title": "feat: upgrade to Vite 8 and Vitest 4"
+    },
+    {
+      "number": 5766,
+      "title": "build: make the ci target a no-op that depends on build"
+    },
+    {
+      "number": 5534,
+      "title": "docs: update telemetry, auth and migration helper docs for v3.8"
+    },
+    {
+      "number": 5747,
+      "title": "feat(core): add channel assignment entities for ChannelAware entities"
+    },
+    {
+      "number": 5650,
+      "title": "ci: retry the back-merge push when minor has moved"
+    },
+    {
+      "number": 5544,
+      "title": "fix(dashboard): activate UI language as a BCP 47 tag"
+    },
+    {
+      "number": 5470,
+      "title": "docs(mcp-plugin): make the MCP guides easier to read"
+    },
+    {
+      "number": 5565,
+      "title": "fix(core): wait for an in-flight job claim before the polling queue stops"
+    },
+    {
+      "number": 5748,
+      "title": "feat(core): per-channel enabled for Products and ProductVariants"
+    },
+    {
+      "number": 5255,
+      "title": "fix(asset-server-plugin): name cached svg transforms with the png extension"
+    },
+    {
+      "number": 5778,
+      "title": "feat(core): add the buyer price of a variant to the Shop API"
+    },
+    {
+      "number": 5358,
+      "title": "feat(cli): group the CLI help output by the package that provided each command"
+    },
+    {
+      "number": 5334,
+      "title": "feat(core): wake the job queue with LISTEN/NOTIFY instead of polling"
+    },
+    {
+      "number": 5300,
+      "title": "feat(cli): support commands that have both an action and subcommands"
+    },
+    {
+      "number": 5362,
+      "title": "ci: grant pull-requests write to the dependency impact workflow"
+    },
+    {
+      "number": 5315,
+      "title": "feat(cli): settle a Console session with the Project Link approval"
+    },
+    {
+      "number": 5277,
+      "title": "fix(core): log stack trace and error class for failed scheduled tasks"
+    },
+    {
+      "number": 5275,
+      "title": "fix(core): export SubscribableJob and documented entities from the package barrel"
+    },
+    {
+      "number": 5557,
+      "title": "fix(core): assign variant options and option groups in assignProductVariantsToChannel"
+    },
+    {
+      "number": 5400,
+      "title": "feat(cli): support globally installed CLI and plugin packages"
+    },
+    {
+      "number": 5314,
+      "title": "feat(cli): let plugins run after a Console project link"
+    },
+    {
+      "number": 5361,
+      "title": "fix(dashboard): add json import attributes when compiling in esm mode"
+    },
+    {
+      "number": 5391,
+      "title": "chore(deps): update graphql to 16.14.2 and refresh the graphql ecosystem"
+    },
+    {
+      "number": 5573,
+      "title": "fix(asset-server-plugin): apply Cache-Control to newly generated images"
+    },
+    {
+      "number": 5263,
+      "title": "feat(cli): add nested command trees and shared options to the plugin API"
+    },
+    {
+      "number": 5068,
+      "title": "fix(core): Scope customFields auto-init to this server's entities"
+    },
+    {
+      "number": 5170,
+      "title": "perf(core): reduce server and worker bootstrap time"
+    },
+    {
+      "number": 5243,
+      "title": "fix(core): allow external auth to set an Administrator avatar"
+    },
+    {
+      "number": 5338,
+      "title": "fix(create): use real storefront port in scaffolded vendure-config"
+    },
+    {
+      "number": 4809,
+      "title": "fix(core): Prevent duplicate-key errors in DefaultSearchPlugin index writes"
+    },
+    {
+      "number": 5007,
+      "title": "fix(core): prevent duplicate translations from concurrent saves"
+    },
+    {
+      "number": 5085,
+      "title": "fix(core): Prevent exponential re-merge of shared entity references"
+    },
+    {
+      "number": 5156,
+      "title": "feat(dashboard): user-aware navigation and route visibility context"
+    },
+    {
+      "number": 5092,
+      "title": "feat(dashboard): add per file upload progress modal for assets"
+    },
+    {
+      "number": 5014,
+      "title": "fix(job-queue-plugin): Fix BullMQ job list query pagination, ordering & index maintenance"
+    },
+    {
+      "number": 5198,
+      "title": "feat(core): support localized custom fields on Seller"
+    },
+    {
+      "number": 4740,
+      "title": "fix(core): prevent double-decoding of ID args in updatePromotion"
+    },
+    {
+      "number": 5010,
+      "title": "docs(dashboard): Document contributing UI translations to the Dashboard"
+    },
+    {
+      "number": 5075,
+      "title": "fix(dashboard): Omit source line numbers from i18n catalogs"
+    },
+    {
+      "number": 4965,
+      "title": "feat(core): Auto-initialise customFields for entities that support them"
+    },
+    {
+      "number": 5224,
+      "title": "perf(core): remove the per-request stock query stampede"
+    },
+    {
+      "number": 5194,
+      "title": "fix(core): reject empty/whitespace-only strings for required fields"
+    },
+    {
+      "number": 4755,
+      "title": "feat(dashboard): Focal point editor in shared asset preview dialog"
+    },
+    {
+      "number": 4747,
+      "title": "fix(dashboard): Make AlertsProvider react to extensions registered after mount"
+    },
+    {
+      "number": 5190,
+      "title": "fix(dashboard): make entity selectors refetch on mount"
+    },
+    {
+      "number": 5174,
+      "title": "fix(core): warn when migration patterns stop matching"
+    },
+    {
+      "number": 5139,
+      "title": "feat(cli): Add plugin API to register and override commands"
+    },
+    {
+      "number": 5248,
+      "title": "fix(core): look up channels by token instead of caching every channel"
+    },
+    {
+      "number": 4986,
+      "title": "fix(core): Hydrate relations missing from only some array elements"
+    },
+    {
+      "number": 3960,
+      "title": "feat(email-plugin): allow a plain-text body to be set on an email"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "vendurehq/vendure",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo vendurehq/vendure --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:46Z",
+  "results": [
+    {
+      "number": 5650,
+      "title": "ci: retry the back-merge push when minor has moved"
+    },
+    {
+      "number": 5764,
+      "title": "refactor(cli,create): convert @vendure/cli and @vendure/create to ES modules"
+    },
+    {
+      "number": 5762,
+      "title": "chore: remove baseUrl from the dashboard and docs tsconfig files"
+    },
+    {
+      "number": 5759,
+      "title": "ci: build once and cache the unit and e2e tests"
+    },
+    {
+      "number": 5748,
+      "title": "feat(core): per-channel enabled for Products and ProductVariants"
+    },
+    {
+      "number": 5608,
+      "title": "feat(cli): add a Vendure Platform trial entry to vendure add and @vendure/create"
+    },
+    {
+      "number": 5775,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5743,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5724,
+      "title": "fix(dashboard): line up button, badge and mixed cell text with the header"
+    },
+    {
+      "number": 5723,
+      "title": "fix(dashboard): show default list states only on row hover"
+    },
+    {
+      "number": 5722,
+      "title": "fix(dashboard): reveal the scheduled task enabled badge on row hover"
+    },
+    {
+      "number": 5721,
+      "title": "fix(dashboard): line up list cell text with the column header"
+    },
+    {
+      "number": 5720,
+      "title": "feat(dashboard): show a chevron at the end of a hovered list row"
+    },
+    {
+      "number": 5780,
+      "title": "ci: run dashboard e2e on ubuntu-24.04 (major)"
+    },
+    {
+      "number": 5771,
+      "title": "fix: fix the type errors in the core packages"
+    },
+    {
+      "number": 5770,
+      "title": "feat(core): scope slug uniqueness to the channels an entity belongs to"
+    },
+    {
+      "number": 5758,
+      "title": "fix(core): keep nested paths when a parent relation path comes first"
+    },
+    {
+      "number": 5334,
+      "title": "feat(core): wake the job queue with LISTEN/NOTIFY instead of polling"
+    },
+    {
+      "number": 5734,
+      "title": "feat(core): default to TypeORM v1"
+    },
+    {
+      "number": 5729,
+      "title": "feat(dashboard): scale role assignment editing to many channels and roles"
+    },
+    {
+      "number": 5452,
+      "title": "fix(core): key in-memory job store by string id"
+    },
+    {
+      "number": 5635,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5727,
+      "title": "feat: upgrade to Vite 8 and Vitest 4"
+    },
+    {
+      "number": 5444,
+      "title": "fix(core): keep a job cancelled while running as cancelled when process returns"
+    },
+    {
+      "number": 5562,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5634,
+      "title": "chore(repo): back-merge master into minor"
+    },
+    {
+      "number": 5542,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5551,
+      "title": "test(core): read variant prices from the catalog in the price calculation strategy spec"
+    },
+    {
+      "number": 5541,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5678,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5647,
+      "title": "fix(mcp-sdk): convert numeric id strings of tool inputs to numbers"
+    },
+    {
+      "number": 5195,
+      "title": "fix(core): enqueue apply-collection-filters job after the transaction commits"
+    },
+    {
+      "number": 5728,
+      "title": "ci: replace CLA Assistant with our own CLA check"
+    },
+    {
+      "number": 5747,
+      "title": "feat(core): add channel assignment entities for ChannelAware entities"
+    },
+    {
+      "number": 5546,
+      "title": "perf(core): batch Product.facetValues lookups per request"
+    },
+    {
+      "number": 5540,
+      "title": "chore(core): remove blank-string validation of mutation inputs from 3.8"
+    },
+    {
+      "number": 5484,
+      "title": "chore(repo): Back-merge master into minor (conflicts)"
+    },
+    {
+      "number": 5534,
+      "title": "docs: update telemetry, auth and migration helper docs for v3.8"
+    },
+    {
+      "number": 5530,
+      "title": "chore: include MCP packages in release tooling and fix 3.8 notes"
+    },
+    {
+      "number": 5653,
+      "title": "fix(mcp-plugin): lock the stock levels which adjust_stock reads"
+    },
+    {
+      "number": 5516,
+      "title": "fix(core): reject secret placeholders on creates through any input type"
+    },
+    {
+      "number": 5517,
+      "title": "fix(core): apply OrderLine custom field defaults and validation to nested inputs"
+    },
+    {
+      "number": 5548,
+      "title": "fix(dashboard): point root types entry at shipped index.ts"
+    },
+    {
+      "number": 5521,
+      "title": "fix(cli): run vendure console from a workspace root"
+    },
+    {
+      "number": 5228,
+      "title": "fix(dashboard): recover active channel after deleting the current one"
+    },
+    {
+      "number": 5496,
+      "title": "fix(core): pick the next job in the sql job queue with an index seek"
+    },
+    {
+      "number": 5512,
+      "title": "fix(core): respect naming strategies when de-duplicating translations"
+    },
+    {
+      "number": 5509,
+      "title": "fix(dashboard): preserve refund allocations when destinations finish loading"
+    },
+    {
+      "number": 5510,
+      "title": "fix(core): preserve secret custom fields in fragment-wrapped and multi-field mutations"
+    },
+    {
+      "number": 5766,
+      "title": "build: make the ci target a no-op that depends on build"
+    }
+  ],
+  "error": null
+}
+]

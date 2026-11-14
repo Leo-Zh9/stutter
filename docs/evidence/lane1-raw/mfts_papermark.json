@@ -1,0 +1,91 @@
+[
+{
+  "repo": "mfts/papermark",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:39:38Z",
+  "results": null,
+  "error": "Invalid search query \"( idempotency ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:41:04Z",
+  "results": null,
+  "error": "Invalid search query \"( idempotent ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:42:31Z",
+  "results": null,
+  "error": "Invalid search query \"( duplicate ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:43:57Z",
+  "results": null,
+  "error": "Invalid search query \"( race ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:45:24Z",
+  "results": null,
+  "error": "Invalid search query \"( \\\"out of order\\\" ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:50Z",
+  "results": null,
+  "error": "Invalid search query \"( webhook ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:48:16Z",
+  "results": null,
+  "error": "Invalid search query \"( concurrent ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:49:42Z",
+  "results": null,
+  "error": "Invalid search query \"( stale ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:51:08Z",
+  "results": null,
+  "error": "Invalid search query \"( twice ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "mfts/papermark",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo mfts/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:34Z",
+  "results": null,
+  "error": "Invalid search query \"( retry ) is:merged repo:mfts/papermark type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+]

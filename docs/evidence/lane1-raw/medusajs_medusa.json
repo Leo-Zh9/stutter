@@ -1,0 +1,1896 @@
+[
+{
+  "repo": "medusajs/medusa",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:25Z",
+  "results": [
+    {
+      "number": 17579,
+      "title": "fix[adyen]: Ensure no capture override, only cards support until core improvements are done, better idempotency"
+    },
+    {
+      "number": 16951,
+      "title": "fix(notification): reuse the existing notification's id when retrying a failed idempotency key"
+    },
+    {
+      "number": 16964,
+      "title": "fix(payment,core-flows): let refunds be retried safely with an idempotency key"
+    },
+    {
+      "number": 17404,
+      "title": "docs: document running a workflow with an existing transaction ID"
+    },
+    {
+      "number": 17393,
+      "title": "chore(docs): Generated DML JSON files (automated)"
+    },
+    {
+      "number": 17406,
+      "title": "docs: document retryIntervalAwaiting and maxAwaitingRetries for async steps"
+    },
+    {
+      "number": 17365,
+      "title": "docs: add marketplace integrations guide beyond Meta/Google product feeds"
+    },
+    {
+      "number": 17065,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 16269,
+      "title": "fix(core-flows): create inventory item when enabling manage_inventory"
+    },
+    {
+      "number": 17430,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 16273,
+      "title": "fix(test-utils): restore process.env after runner cleanup"
+    },
+    {
+      "number": 15618,
+      "title": "fix(core-flows): keep customer account-holder link on a failed payment-session init"
+    },
+    {
+      "number": 15293,
+      "title": "fix(utils): preserve casing in toCamelCase for PascalCase identifiers with digits"
+    },
+    {
+      "number": 15231,
+      "title": "fix(core-flows): validate cart has items before completing"
+    },
+    {
+      "number": 14151,
+      "title": "docs: update recipes and tutorials to support locks and idempotency"
+    },
+    {
+      "number": 14356,
+      "title": "chore: Create publishable API key as part of the defaults"
+    },
+    {
+      "number": 14446,
+      "title": "fix: product pivots id format migration"
+    },
+    {
+      "number": 13236,
+      "title": "chore: idempotent cart operations"
+    },
+    {
+      "number": 14520,
+      "title": "feat(medusa-cli): add codemod command + codemod for replacing zod imports"
+    },
+    {
+      "number": 12353,
+      "title": "chore: Minor restructure of cart completion"
+    },
+    {
+      "number": 11494,
+      "title": "feat: Add support for idempotency key in payments"
+    },
+    {
+      "number": 9231,
+      "title": "fix: Idempotent cart completion"
+    },
+    {
+      "number": 8900,
+      "title": "feat(notification): Handle long running transaction and add status support"
+    },
+    {
+      "number": 9119,
+      "title": "feat: run nested async workflows"
+    },
+    {
+      "number": 7771,
+      "title": "chore(orchestration): idempotent"
+    },
+    {
+      "number": 7617,
+      "title": "feat: Fix subscribers loading + add order <> cart link"
+    },
+    {
+      "number": 6860,
+      "title": "chore(workflows-sdk): add idempotencyKey to shared context"
+    },
+    {
+      "number": 7276,
+      "title": "feat: Create the Medusa API SDK as js-sdk package"
+    },
+    {
+      "number": 7201,
+      "title": "feat(medusa,core-flows): complete cart [part-1]"
+    },
+    {
+      "number": 4039,
+      "title": "docs: added idempotency key documentation"
+    },
+    {
+      "number": 4025,
+      "title": "fix(medusa-payment-stripe): Catch on idempotency key retrieve if not found"
+    },
+    {
+      "number": 3555,
+      "title": "feat(medusa): add if statement to idempotency-key initialize"
+    },
+    {
+      "number": 3872,
+      "title": "docs: added cart conceptual guide"
+    },
+    {
+      "number": 4020,
+      "title": "Version Packages"
+    },
+    {
+      "number": 3257,
+      "title": "feat(medusa-payment-stripe-processor): Start implementing the new stripe payment plugins"
+    },
+    {
+      "number": 2701,
+      "title": "fix: allow passing idempotency key to service layer create"
+    },
+    {
+      "number": 2358,
+      "title": "fix(medusa): Idempotency workStage used within transaction"
+    },
+    {
+      "number": 2861,
+      "title": "feat(medusa): Transaction Orchestrator"
+    },
+    {
+      "number": 2612,
+      "title": "fix(medusa): Transaction lock issues on create/update cart items"
+    },
+    {
+      "number": 1790,
+      "title": "feat(medusa-payment-stripe): Migrate to the new Abstract payment service"
+    },
+    {
+      "number": 1968,
+      "title": "feat(medusa): Use transactions in CartCompletionStrategy"
+    },
+    {
+      "number": 1858,
+      "title": "chore(medusa): Add transaction on mutation actions store"
+    },
+    {
+      "number": 1995,
+      "title": "feat(medusa): Convert IdempotencyKeyService to TypeScript"
+    },
+    {
+      "number": 568,
+      "title": "fix: make packages/medusa/src/services/idempotency-key.js pass linting"
+    },
+    {
+      "number": 817,
+      "title": "feat: Typed API layer"
+    },
+    {
+      "number": 355,
+      "title": "feat: creates support for swaps on the storefront"
+    },
+    {
+      "number": 293,
+      "title": "Feat/disabling of notification"
+    },
+    {
+      "number": 178,
+      "title": "feat(medusa): Draft orders"
+    },
+    {
+      "number": 151,
+      "title": "Replaces MongoDB support with PostgreSQL"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:29Z",
+  "results": [
+    {
+      "number": 17404,
+      "title": "docs: document running a workflow with an existing transaction ID"
+    },
+    {
+      "number": 17198,
+      "title": "feat(translation): seed fa-IR default locale"
+    },
+    {
+      "number": 17430,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 16899,
+      "title": "fix(payment): avoid double-prefixing an already pp_-prefixed provider…"
+    },
+    {
+      "number": 16273,
+      "title": "fix(test-utils): restore process.env after runner cleanup"
+    },
+    {
+      "number": 16269,
+      "title": "fix(core-flows): create inventory item when enabling manage_inventory"
+    },
+    {
+      "number": 15833,
+      "title": "fix(rbac): add missing migration for RbacRoleInheritance model"
+    },
+    {
+      "number": 15618,
+      "title": "fix(core-flows): keep customer account-holder link on a failed payment-session init"
+    },
+    {
+      "number": 15702,
+      "title": "fix(framework): load workflows from index.[js,ts] files in worker mode"
+    },
+    {
+      "number": 15397,
+      "title": "fix(inventory,core-flows,medusa): add missing locking to reservation steps"
+    },
+    {
+      "number": 15293,
+      "title": "fix(utils): preserve casing in toCamelCase for PascalCase identifiers with digits"
+    },
+    {
+      "number": 15164,
+      "title": "fix(dashboard): auto-select currency row when its tax-inclusive toggle is enabled"
+    },
+    {
+      "number": 14073,
+      "title": "fix(payment): Double idempotent capture called with auto capture beha…"
+    },
+    {
+      "number": 15231,
+      "title": "fix(core-flows): validate cart has items before completing"
+    },
+    {
+      "number": 14153,
+      "title": "chore: improve completeCartWorkflow TSDocs"
+    },
+    {
+      "number": 13236,
+      "title": "chore: idempotent cart operations"
+    },
+    {
+      "number": 14004,
+      "title": "chore: configurable database migration in concurrency"
+    },
+    {
+      "number": 13336,
+      "title": "chore(core-flows): revert idempotent cart"
+    },
+    {
+      "number": 14446,
+      "title": "fix: product pivots id format migration"
+    },
+    {
+      "number": 14151,
+      "title": "docs: update recipes and tutorials to support locks and idempotency"
+    },
+    {
+      "number": 13668,
+      "title": "fix(core-flows): lock draft order workflows"
+    },
+    {
+      "number": 13345,
+      "title": "chore(): improve workflow engine storage"
+    },
+    {
+      "number": 12825,
+      "title": "fix(core-flows,workflows-sdk): compensate account holders only when its created"
+    },
+    {
+      "number": 12362,
+      "title": "feat(workflows-*): Allow to re run non idempotent but stored workflow with the same transaction id if considered done"
+    },
+    {
+      "number": 13338,
+      "title": "Version Packages"
+    },
+    {
+      "number": 10135,
+      "title": "fix(payment): Idempotent cancellation and proper creationg fail handling"
+    },
+    {
+      "number": 9231,
+      "title": "fix: Idempotent cart completion"
+    },
+    {
+      "number": 12353,
+      "title": "chore: Minor restructure of cart completion"
+    },
+    {
+      "number": 11771,
+      "title": "fix(workflow-engines): race condition when retry interval is used"
+    },
+    {
+      "number": 7771,
+      "title": "chore(orchestration): idempotent"
+    },
+    {
+      "number": 10106,
+      "title": "feat(medusa, types, utils, core-flows, order) request & accept order transfer"
+    },
+    {
+      "number": 7786,
+      "title": "fix(region): Soft deleting region unsets region on countries"
+    },
+    {
+      "number": 6962,
+      "title": "feat: Create shipping options workflow"
+    },
+    {
+      "number": 7017,
+      "title": "fix(medusa, core-flows): Delete service zone"
+    },
+    {
+      "number": 6396,
+      "title": "chore(): Prevent from soft deleting all entities"
+    },
+    {
+      "number": 6648,
+      "title": "feat(core-flows,medusa,pricing,types,utils): added price list workflows + endpoints"
+    },
+    {
+      "number": 5536,
+      "title": "feat(medusa,types,workflows,utils,product): PricingModule Integration of PriceLists into Core"
+    },
+    {
+      "number": 6308,
+      "title": "feat(payment): provider service"
+    },
+    {
+      "number": 5337,
+      "title": "chore(orchestration): prevent throwing on already defined workflow"
+    },
+    {
+      "number": 4503,
+      "title": "Feat/bulk operations for inventory service"
+    },
+    {
+      "number": 2947,
+      "title": "feat(medusa): \"Idempotent\" retries of job subscribers "
+    },
+    {
+      "number": 3835,
+      "title": "fix(medusa): Bulk create variant + pass transaction to the inventory service context methods"
+    },
+    {
+      "number": 2975,
+      "title": "feat(medusa): Nested Categories Admin Delete Endpoint "
+    },
+    {
+      "number": 2701,
+      "title": "fix: allow passing idempotency key to service layer create"
+    },
+    {
+      "number": 2430,
+      "title": "Feat/add discount condition batch"
+    },
+    {
+      "number": 2442,
+      "title": "feat(medusa): add analytics config"
+    },
+    {
+      "number": 2612,
+      "title": "fix(medusa): Transaction lock issues on create/update cart items"
+    },
+    {
+      "number": 2234,
+      "title": "Feat/decline order edit"
+    },
+    {
+      "number": 2264,
+      "title": "Feat(medusa, medusa-js, medusa-react): order edit confirmation"
+    },
+    {
+      "number": 2365,
+      "title": "feat(medusa): PaymentCollection service CRUD"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:33Z",
+  "results": [
+    {
+      "number": 17706,
+      "title": "chore: clean up unused and duplicate GitHub Actions"
+    },
+    {
+      "number": 17714,
+      "title": "fix(medusa-oas-cli): keep each tag once when merging base file tags"
+    },
+    {
+      "number": 16530,
+      "title": "fix(product): remove duplicate query call"
+    },
+    {
+      "number": 16513,
+      "title": "fix(dashboard): remove duplicate Medusa Cloud auth button"
+    },
+    {
+      "number": 17675,
+      "title": "chore: upgrade Yarn to 4.18.1 and dedupe the lockfile"
+    },
+    {
+      "number": 17590,
+      "title": "chore(eslint-plugin,workflow-engine-inmemory): update cron-parser to v5"
+    },
+    {
+      "number": 17112,
+      "title": "fix(dashboard): show collection update errors"
+    },
+    {
+      "number": 17352,
+      "title": "docs(cloud): document search-engine indexing of deployment URLs"
+    },
+    {
+      "number": 17656,
+      "title": "fix(docs): fix OAS and UI reference generation, generate RBAC docs"
+    },
+    {
+      "number": 17198,
+      "title": "feat(translation): seed fa-IR default locale"
+    },
+    {
+      "number": 16362,
+      "title": "fix(docs-ui): MainNav z-index overlap, duplicate GA key, and Windows broken-link-checker path bug"
+    },
+    {
+      "number": 17575,
+      "title": "chore(types,utils,dashboard): update bignumber.js to 11.1.5"
+    },
+    {
+      "number": 16908,
+      "title": "fix: rename misspelled orignalSet parameter to originalSet"
+    },
+    {
+      "number": 16568,
+      "title": "fix(utils): strip g/y flags in buildRegexpIfValid for CORS origins"
+    },
+    {
+      "number": 16620,
+      "title": "fix(admin-bundler): dedupe react and react-dom in the admin vite config"
+    },
+    {
+      "number": 17252,
+      "title": "docs(book): improve clarity in Get Started pages"
+    },
+    {
+      "number": 16506,
+      "title": "feat(dashboard,js-sdk): export common components, hooks"
+    },
+    {
+      "number": 17176,
+      "title": "docs: medusa security"
+    },
+    {
+      "number": 17088,
+      "title": "chore(deps): bump dompurify from 3.4.13 to 3.4.16 in the security-updates group across 1 directory"
+    },
+    {
+      "number": 15348,
+      "title": "fix(dashboard): prevent duplicate items in return create form"
+    },
+    {
+      "number": 17077,
+      "title": "fix(loyalty-plugin): correct transaction note for store credit debits"
+    },
+    {
+      "number": 16269,
+      "title": "fix(core-flows): create inventory item when enabling manage_inventory"
+    },
+    {
+      "number": 16648,
+      "title": "fix(medusa): pass failOnError: false to runLintStep in build"
+    },
+    {
+      "number": 17347,
+      "title": "fix(auth-emailpass,types): add `requireActorAssociation` option to refuse logins on unassociated actor types"
+    },
+    {
+      "number": 15811,
+      "title": "fix(file-s3,file-local): decode upload content by MIME type to stop binary file corruption"
+    },
+    {
+      "number": 16669,
+      "title": "feat(dashboard): add refund reason selector to balance settlement form"
+    },
+    {
+      "number": 16720,
+      "title": "fix(dashboard): add readable validation messages to create region form"
+    },
+    {
+      "number": 16357,
+      "title": "chore(deps-dev): bump js-yaml from 4.3.0 to 4.3.1 in the security-updates group across 1 directory"
+    },
+    {
+      "number": 16326,
+      "title": "chore(admin): upgrade vite to 7.3.6"
+    },
+    {
+      "number": 16728,
+      "title": "fix(dashboard): correct shipping profile row link path"
+    },
+    {
+      "number": 16730,
+      "title": "fix(workflow-engine-redis): nest RedisWorkflowsOptions under redis in the module options type"
+    },
+    {
+      "number": 15486,
+      "title": "fix: use unique order country column id"
+    },
+    {
+      "number": 16325,
+      "title": "chore: raise the node floor and bump rollup ahead of vite 7"
+    },
+    {
+      "number": 15638,
+      "title": "docs: add code contribution guide"
+    },
+    {
+      "number": 15614,
+      "title": "feat(core-flows,types,utils,medusa): support global product options in imports"
+    },
+    {
+      "number": 16594,
+      "title": "fix(dashboard): give the workflow execution state column its own key"
+    },
+    {
+      "number": 16370,
+      "title": "fix(framework): stabilize stateful path regexes"
+    },
+    {
+      "number": 15600,
+      "title": "chore(framework, utils, medusa): centralize NODE_ENV production check and tighten secret defaults"
+    },
+    {
+      "number": 17063,
+      "title": "chore(deps): bump multer from 2.3.0 to 2.4.0 in the security-updates group across 1 directory"
+    },
+    {
+      "number": 17387,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 16449,
+      "title": "fix(admin-bundler): allow zooming in the generated admin HTML"
+    },
+    {
+      "number": 16311,
+      "title": "chore(admin): add CI coverage for the admin Vite build"
+    },
+    {
+      "number": 16130,
+      "title": "fix(dashboard): allow same conditional shipping price amount for different conditions"
+    },
+    {
+      "number": 16010,
+      "title": "fix(file-s3): preserve directory portion of filename in object key"
+    },
+    {
+      "number": 15585,
+      "title": "perf(product): skip option work on scalar-only variant updates"
+    },
+    {
+      "number": 15635,
+      "title": "fix(cli): replace unmaintained pg-god with direct pg.Pool CREATE DATA…"
+    },
+    {
+      "number": 15934,
+      "title": "feat: Cleanup query package structure"
+    },
+    {
+      "number": 16533,
+      "title": "fix(workflow-engine-redis,link-modules,orchestration,utils): fix most flaky tests"
+    },
+    {
+      "number": 15247,
+      "title": "fix(medusa): speed up products list with `price_list_id` filter"
+    },
+    {
+      "number": 15407,
+      "title": "feat(core-flows,medusa,types): add multi shipping method carts support"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:36Z",
+  "results": [
+    {
+      "number": 17609,
+      "title": "chore(cli,orchestration,utils,workflows-sdk,test-utils,file-s3,workflow-engine-inmemory,workflow-engine-redis): update ulid to v3.0.2"
+    },
+    {
+      "number": 17489,
+      "title": "fix(payment): recompute refunded amount when a refund fails at the provider"
+    },
+    {
+      "number": 17590,
+      "title": "chore(eslint-plugin,workflow-engine-inmemory): update cron-parser to v5"
+    },
+    {
+      "number": 17536,
+      "title": "fix(core-flows): don't replace payment sessions with an active payment"
+    },
+    {
+      "number": 17419,
+      "title": "fix(index): don't skip the index data sync when types generation fails"
+    },
+    {
+      "number": 16347,
+      "title": "fix(loyalty-plugin): lock account on debit"
+    },
+    {
+      "number": 16571,
+      "title": "fix(auth): await the OAuth state cache write"
+    },
+    {
+      "number": 16533,
+      "title": "fix(workflow-engine-redis,link-modules,orchestration,utils): fix most flaky tests"
+    },
+    {
+      "number": 16476,
+      "title": "fix: Simplify how redis cache data is stored"
+    },
+    {
+      "number": 16273,
+      "title": "fix(test-utils): restore process.env after runner cleanup"
+    },
+    {
+      "number": 16563,
+      "title": "fix(event-bus-redis): move EXPIRE into same pipeline as RPUSH"
+    },
+    {
+      "number": 16097,
+      "title": "fix(payment,promotion): serialize concurrent money guards to prevent over-capture, over-refund and budget overspend"
+    },
+    {
+      "number": 15618,
+      "title": "fix(core-flows): keep customer account-holder link on a failed payment-session init"
+    },
+    {
+      "number": 15176,
+      "title": "fix(index,modules-sdk,): introduce locking to avoid race conditions in distributed systems for migrations, links and index partition creation"
+    },
+    {
+      "number": 15334,
+      "title": " chore(workflow-engine-redis): fix flaky tests by isolating job and queues between specs"
+    },
+    {
+      "number": 15620,
+      "title": "feat(dashboard,medusa,core-flows,framework,js-sdk,types,utils,link-modules,rbac): end to end RBAC implementation"
+    },
+    {
+      "number": 15363,
+      "title": "fix(core-flows): acquire lock before fetching cart in u…"
+    },
+    {
+      "number": 14801,
+      "title": "chore(cart,order,product,inventory,fulfillment,stock-location,workflow-engine-redis,workflow-engine-inmemory): add missing fields for types auto-generation"
+    },
+    {
+      "number": 15348,
+      "title": "fix(dashboard): prevent duplicate items in return create form"
+    },
+    {
+      "number": 15134,
+      "title": "fix(medusa): API workflow subscription"
+    },
+    {
+      "number": 14799,
+      "title": "feat(product-category): add external_id to product-category"
+    },
+    {
+      "number": 14111,
+      "title": "fix(core-flows): lock mark as delivered fulfillment/order flows"
+    },
+    {
+      "number": 13817,
+      "title": "feat: global product options"
+    },
+    {
+      "number": 15287,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 14202,
+      "title": "chore(): Run some commands in server mode only"
+    },
+    {
+      "number": 14495,
+      "title": "feat(translation,fulfillment,customer,product,region,tax,core-flows,medusa,types): Implement dynamic translation settings management"
+    },
+    {
+      "number": 15258,
+      "title": "Feat/quantity pricing admin"
+    },
+    {
+      "number": 14473,
+      "title": "chore: rework PPO management API"
+    },
+    {
+      "number": 13396,
+      "title": "chore(): only execute race execution checks and publish message only for async workflows"
+    },
+    {
+      "number": 13645,
+      "title": "fix(): workflows concurrency"
+    },
+    {
+      "number": 14053,
+      "title": "fix(medusa): resolve user_id from user linked to secret key on draft order edit with api-key auth"
+    },
+    {
+      "number": 14270,
+      "title": "chore: Add locks to order edit flows"
+    },
+    {
+      "number": 13760,
+      "title": "feat: promotion usage limit"
+    },
+    {
+      "number": 13434,
+      "title": "chore(): Workflow engine timers and notification improvements"
+    },
+    {
+      "number": 14343,
+      "title": "fix: product options catch-all improvements"
+    },
+    {
+      "number": 14359,
+      "title": "feat(core-flows,types,utils,medusa): Translate tax lines"
+    },
+    {
+      "number": 14454,
+      "title": "feat(translation): Add support for locale to the graph query"
+    },
+    {
+      "number": 13692,
+      "title": "fix: allow controlling hmr bind host"
+    },
+    {
+      "number": 13535,
+      "title": "fix(core-flows): Lock cart on shipping + taxes update"
+    },
+    {
+      "number": 14004,
+      "title": "chore: configurable database migration in concurrency"
+    },
+    {
+      "number": 13668,
+      "title": "fix(core-flows): lock draft order workflows"
+    },
+    {
+      "number": 12834,
+      "title": "Fix(): test utils events + workflow storage"
+    },
+    {
+      "number": 14443,
+      "title": "feat(create-medusa-app): add support for pnpm and specifying package manager"
+    },
+    {
+      "number": 13306,
+      "title": "fix: Compute \"virtual\" adjustments for order previews"
+    },
+    {
+      "number": 13345,
+      "title": "chore(): improve workflow engine storage"
+    },
+    {
+      "number": 11771,
+      "title": "fix(workflow-engines): race condition when retry interval is used"
+    },
+    {
+      "number": 14320,
+      "title": "chore(rbac): user link and utils"
+    },
+    {
+      "number": 12157,
+      "title": "fix(): Event group id propagation and event managements"
+    },
+    {
+      "number": 12137,
+      "title": "chore(medusa-test-utils): Prevent waiting for event indefinately"
+    },
+    {
+      "number": 13524,
+      "title": "Feat(): promo prefilter top level rules in db"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:40Z",
+  "results": [],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:43Z",
+  "results": [
+    {
+      "number": 17538,
+      "title": "fix(medusa): reject webhooks for nonexistent providers"
+    },
+    {
+      "number": 17498,
+      "title": "docs: add webhooks changelog entry for private-address delivery blocking [automated]"
+    },
+    {
+      "number": 17677,
+      "title": "chore(docs): add v2.22.2 OAS snapshot, dispatch specs to cloud, install docs with Yarn 4"
+    },
+    {
+      "number": 17577,
+      "title": "feat: Implement Adyen as a payment provider"
+    },
+    {
+      "number": 16845,
+      "title": "docs: add webhook plan gate and new usage metrics [automated]"
+    },
+    {
+      "number": 16899,
+      "title": "fix(payment): avoid double-prefixing an already pp_-prefixed provider…"
+    },
+    {
+      "number": 17496,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 17365,
+      "title": "docs: add marketplace integrations guide beyond Meta/Google product feeds"
+    },
+    {
+      "number": 16882,
+      "title": "docs: fix inventory_quantity semantics, user deletion session note, and payment webhook URL clarity [automated]"
+    },
+    {
+      "number": 16352,
+      "title": "docs: document webhook endpoints, webhook events, and environment error state [automated]"
+    },
+    {
+      "number": 16350,
+      "title": "docs: webhooks in cloud"
+    },
+    {
+      "number": 16228,
+      "title": "fix(payment-stripe): handle Stripe webhook signature errors"
+    },
+    {
+      "number": 16394,
+      "title": "docs: update webhook and changelog reference"
+    },
+    {
+      "number": 17048,
+      "title": "fix(utils): aggregate non-Error promise rejections without crashing"
+    },
+    {
+      "number": 16722,
+      "title": "fix(core-flows): only autocapture if payment is authorized successfully"
+    },
+    {
+      "number": 16388,
+      "title": "docs: add build/deployment webhook events and remove deprecated ones [automated]"
+    },
+    {
+      "number": 15930,
+      "title": "fix(core-flows): only complete cart from payment webhook on definitive actions"
+    },
+    {
+      "number": 16387,
+      "title": "docs: update navigation paths for environment Variables, Domains, and Previews tabs [automated]"
+    },
+    {
+      "number": 15897,
+      "title": "fix(payment-stripe): handle async payment method check gracefully in webhook"
+    },
+    {
+      "number": 15684,
+      "title": "fix(payment-stripe): warn when webhookSecret is missing"
+    },
+    {
+      "number": 15085,
+      "title": "feat(payment,payment-stripe,core-flows,medusa,dashboard,js-sdk,utils,types): introduce async payment methods support"
+    },
+    {
+      "number": 15202,
+      "title": "fix(framework): preserve rawBody for text and urlencoded body parsers"
+    },
+    {
+      "number": 16929,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 16797,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 14826,
+      "title": "chore(api,types): allow filtering on variant sku/barcode/ean/upc on both /store and /admin apis"
+    },
+    {
+      "number": 15005,
+      "title": "chore: update glob to latest version"
+    },
+    {
+      "number": 14108,
+      "title": "fix(core-flows): prevent completing cart from webhook when order already exists"
+    },
+    {
+      "number": 13805,
+      "title": "feat(payment-stripe): OXXO payment provider support with configurable expiration"
+    },
+    {
+      "number": 13914,
+      "title": "fix: Updates to medusa payments provider"
+    },
+    {
+      "number": 12809,
+      "title": "fix: Allow setting the status of a payment session when updating"
+    },
+    {
+      "number": 12263,
+      "title": "fix(core-flows): Refund and recreate payment session on cart complete failure"
+    },
+    {
+      "number": 12353,
+      "title": "chore: Minor restructure of cart completion"
+    },
+    {
+      "number": 11798,
+      "title": "fix: preserve payment sessions during certain Stripe errors for webhook reconciliation"
+    },
+    {
+      "number": 11832,
+      "title": "feat(core-flows, types): try payment cancelation if cart complete fails in the webhook"
+    },
+    {
+      "number": 12583,
+      "title": "chore: Version Packages"
+    },
+    {
+      "number": 12646,
+      "title": "fix(core-flows): complete cart improvements"
+    },
+    {
+      "number": 11356,
+      "title": "fix: Minor fixes and cleanup to the payments setup"
+    },
+    {
+      "number": 10157,
+      "title": "docs: fix provider ID in payment's webhook URL"
+    },
+    {
+      "number": 10618,
+      "title": "docs: add stripe events to provider guide"
+    },
+    {
+      "number": 9980,
+      "title": "fix(core-flows): capture before order created"
+    },
+    {
+      "number": 10958,
+      "title": "fix(core-flows): missing variable of when condition"
+    },
+    {
+      "number": 11015,
+      "title": "feat: Revamp payment provider interface"
+    },
+    {
+      "number": 6311,
+      "title": "feat(payment, payment-stripe): Add Stripe module provider"
+    },
+    {
+      "number": 5838,
+      "title": "feat(medusa-payment-stripe): Add delay to Stripe webhook"
+    },
+    {
+      "number": 6034,
+      "title": "fix(medusa-payment-stripe): change webhook environment variables to plugin options"
+    },
+    {
+      "number": 6031,
+      "title": "docs: documentation updates for v1.20"
+    },
+    {
+      "number": 5880,
+      "title": "Version Packages"
+    },
+    {
+      "number": 5588,
+      "title": "docs: updated API Routes and Middlewares docs"
+    },
+    {
+      "number": 5537,
+      "title": "feat(medusa): API routes body parser config"
+    },
+    {
+      "number": 4956,
+      "title": "docs: add paypal hook endpoint"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:47Z",
+  "results": [
+    {
+      "number": 17789,
+      "title": "fix(ci): ignore stale not-started runs in release check"
+    },
+    {
+      "number": 17763,
+      "title": "fix(framework, types): set security headers on HTTP responses"
+    },
+    {
+      "number": 17404,
+      "title": "docs: document running a workflow with an existing transaction ID"
+    },
+    {
+      "number": 17489,
+      "title": "fix(payment): recompute refunded amount when a refund fails at the provider"
+    },
+    {
+      "number": 17782,
+      "title": "fix(core-flows): assign the super admin role to created users when no super admin exists, so users provisioned through SSO on a new RBAC deployment aren't locked out"
+    },
+    {
+      "number": 17469,
+      "title": "fix(dashboard): apply the product list filters to product exports"
+    },
+    {
+      "number": 17518,
+      "title": "feat(cloud): add Medusa Cloud plugin with in-app announcements"
+    },
+    {
+      "number": 17419,
+      "title": "fix(index): don't skip the index data sync when types generation fails"
+    },
+    {
+      "number": 17430,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 16097,
+      "title": "fix(payment,promotion): serialize concurrent money guards to prevent over-capture, over-refund and budget overspend"
+    },
+    {
+      "number": 16347,
+      "title": "fix(loyalty-plugin): lock account on debit"
+    },
+    {
+      "number": 16351,
+      "title": "fix(framework): mark migration scripts as completed only after successful run"
+    },
+    {
+      "number": 16467,
+      "title": "fix(utils): make the migration skip flag actually skip migrations"
+    },
+    {
+      "number": 16533,
+      "title": "fix(workflow-engine-redis,link-modules,orchestration,utils): fix most flaky tests"
+    },
+    {
+      "number": 16269,
+      "title": "fix(core-flows): create inventory item when enabling manage_inventory"
+    },
+    {
+      "number": 15363,
+      "title": "fix(core-flows): acquire lock before fetching cart in u…"
+    },
+    {
+      "number": 15618,
+      "title": "fix(core-flows): keep customer account-holder link on a failed payment-session init"
+    },
+    {
+      "number": 16571,
+      "title": "fix(auth): await the OAuth state cache write"
+    },
+    {
+      "number": 15176,
+      "title": "fix(index,modules-sdk,): introduce locking to avoid race conditions in distributed systems for migrations, links and index partition creation"
+    },
+    {
+      "number": 15334,
+      "title": " chore(workflow-engine-redis): fix flaky tests by isolating job and queues between specs"
+    },
+    {
+      "number": 15247,
+      "title": "fix(medusa): speed up products list with `price_list_id` filter"
+    },
+    {
+      "number": 15397,
+      "title": "fix(inventory,core-flows,medusa): add missing locking to reservation steps"
+    },
+    {
+      "number": 14595,
+      "title": "chore: reset event worker concurrency to 1"
+    },
+    {
+      "number": 15608,
+      "title": "chore: improvements to reviewer and triager"
+    },
+    {
+      "number": 14477,
+      "title": "feat(config): Default event worker concurrency to 3 on cloud"
+    },
+    {
+      "number": 14004,
+      "title": "chore: configurable database migration in concurrency"
+    },
+    {
+      "number": 13769,
+      "title": "fix: workflow async concurrency"
+    },
+    {
+      "number": 13965,
+      "title": "chore(modules-sdk): db migration concurrency as envvar"
+    },
+    {
+      "number": 13645,
+      "title": "fix(): workflows concurrency"
+    },
+    {
+      "number": 15231,
+      "title": "fix(core-flows): validate cart has items before completing"
+    },
+    {
+      "number": 14201,
+      "title": "chore(event-bus, workflow-engine): Enable more granualar queues configuration"
+    },
+    {
+      "number": 15403,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 14204,
+      "title": "chore(): revert route loading parallelization"
+    },
+    {
+      "number": 14270,
+      "title": "chore: Add locks to order edit flows"
+    },
+    {
+      "number": 14153,
+      "title": "chore: improve completeCartWorkflow TSDocs"
+    },
+    {
+      "number": 13898,
+      "title": "chore(modules-sdk): parallel migrations"
+    },
+    {
+      "number": 14510,
+      "title": "Version Packages"
+    },
+    {
+      "number": 13798,
+      "title": "fix(test-utils): Duplicated subscribers re insertion"
+    },
+    {
+      "number": 13817,
+      "title": "feat: global product options"
+    },
+    {
+      "number": 13931,
+      "title": "chore(medusa): do not use transaction id on cart operations"
+    },
+    {
+      "number": 13899,
+      "title": "fix(pricing): price list prices perf issues"
+    },
+    {
+      "number": 13668,
+      "title": "fix(core-flows): lock draft order workflows"
+    },
+    {
+      "number": 14310,
+      "title": "feat(rbac): role-based access control module"
+    },
+    {
+      "number": 13760,
+      "title": "feat: promotion usage limit"
+    },
+    {
+      "number": 13424,
+      "title": "chore(core-flows): lock on cart operations"
+    },
+    {
+      "number": 13421,
+      "title": "chore(): Improve workflows sdk tooling"
+    },
+    {
+      "number": 14454,
+      "title": "feat(translation): Add support for locale to the graph query"
+    },
+    {
+      "number": 13236,
+      "title": "chore: idempotent cart operations"
+    },
+    {
+      "number": 12903,
+      "title": "fix(orchestration): Prevent workf. cancellation to execute while rescheduling"
+    },
+    {
+      "number": 13325,
+      "title": "chore(): faster serialization"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:51Z",
+  "results": [
+    {
+      "number": 17789,
+      "title": "fix(ci): ignore stale not-started runs in release check"
+    },
+    {
+      "number": 17633,
+      "title": "fix(docs): fix stale property types in allOf response schemas of the OAS"
+    },
+    {
+      "number": 17197,
+      "title": "fix(dashboard): remove stale Persian translation keys"
+    },
+    {
+      "number": 16860,
+      "title": "feat: Ensure reindex clears stale versions"
+    },
+    {
+      "number": 17746,
+      "title": "fix(utils,medusa): invalidate cached localized reads and the admin translation list when a translation is created, updated or deleted"
+    },
+    {
+      "number": 16524,
+      "title": "chore(file-s3): remove stale TODO comment"
+    },
+    {
+      "number": 17758,
+      "title": "fix(product): set a correct mpath when moving a category to the top level"
+    },
+    {
+      "number": 17096,
+      "title": "fix(medusa,loyalty-plugin): import zod from @medusajs/framework/zod instead of the undeclared zod package"
+    },
+    {
+      "number": 17435,
+      "title": "chore: changes to issue triaging and PR reviews"
+    },
+    {
+      "number": 17696,
+      "title": "chore(integration-tests): update dotenv to v18 and remove unused get-port"
+    },
+    {
+      "number": 17545,
+      "title": "fix(payment): disable payment providers removed from config on startup"
+    },
+    {
+      "number": 17651,
+      "title": "chore(docs): upgrade www/utils to TypeScript 6"
+    },
+    {
+      "number": 17453,
+      "title": "fix(product): don't run parallel queries inside category and variant creation"
+    },
+    {
+      "number": 17118,
+      "title": "i18n restore dropped placeholders in the ar, el, es, fr and ptPT dashboard locales"
+    },
+    {
+      "number": 16930,
+      "title": "fix(search): stop search index versions from piling up"
+    },
+    {
+      "number": 17134,
+      "title": "fix(promotion): prevent overlapping buy-get promotions from reusing units consumed by another promotion"
+    },
+    {
+      "number": 17825,
+      "title": "docs: Revise sign-up guide for Cloud trial and billing"
+    },
+    {
+      "number": 17058,
+      "title": "feat(core-flows): include metadata in the order passed to createOrderWorkflow's orderCreated hook"
+    },
+    {
+      "number": 17046,
+      "title": "fix(framework): only skip HTTP logging for the root `/health` endpoint"
+    },
+    {
+      "number": 17045,
+      "title": "fix(dashboard): add accessible title and description to the order edit modals"
+    },
+    {
+      "number": 17066,
+      "title": "fix(core-flows): dismiss cart and draft order promotion links created by a failed promotions update"
+    },
+    {
+      "number": 17062,
+      "title": "fix(core-flows): restore updated prices when rolling back the update price list prices step"
+    },
+    {
+      "number": 17449,
+      "title": "fix(medusa): reject deleting a variant through a product it doesn't belong to"
+    },
+    {
+      "number": 17747,
+      "title": "fix(dashboard): allow removing locales from the locales modal and label translation languages as locales"
+    },
+    {
+      "number": 16951,
+      "title": "fix(notification): reuse the existing notification's id when retrying a failed idempotency key"
+    },
+    {
+      "number": 17136,
+      "title": "feat(core-flows,utils): emit events for promotion, promotion rule, and campaign changes"
+    },
+    {
+      "number": 17488,
+      "title": "fix(utils): accept variant thumbnail and image columns in product import"
+    },
+    {
+      "number": 16960,
+      "title": "fix(core-flows, types): add is_custom_price to order mutation types, and set the property on cart completion"
+    },
+    {
+      "number": 16902,
+      "title": "fix(utils,core-flows): invoke the deepFlatMap callback for an empty terminal array, fixing inventory check for carts and returns"
+    },
+    {
+      "number": 16892,
+      "title": "fix(types): allow filtering nullable `json` columns and nullable to-many relations in `query.graph`"
+    },
+    {
+      "number": 17443,
+      "title": "fix(promotion): don't apply buyget discounts to non-discountable items"
+    },
+    {
+      "number": 17408,
+      "title": "fix(orchestration): retry steps with retryIntervalAwaiting after they fail"
+    },
+    {
+      "number": 16927,
+      "title": "chore: increase stalebot API limit"
+    },
+    {
+      "number": 16999,
+      "title": "fix(types): align `Pluralize` type with runtime pluralization for words ending in \"o\""
+    },
+    {
+      "number": 17129,
+      "title": "fix(test-utils): remove the unused inApp option"
+    },
+    {
+      "number": 17538,
+      "title": "fix(medusa): reject webhooks for nonexistent providers"
+    },
+    {
+      "number": 16763,
+      "title": "fix(dashboard): add missing Polish translations"
+    },
+    {
+      "number": 17293,
+      "title": "fix(workflows-sdk): don't compensate a completed workflow when event release fails"
+    },
+    {
+      "number": 15741,
+      "title": "docs: RBAC docs"
+    },
+    {
+      "number": 17070,
+      "title": "fix(core-flows): re-price cart shipping methods after promotions are recomputed"
+    },
+    {
+      "number": 17518,
+      "title": "feat(cloud): add Medusa Cloud plugin with in-app announcements"
+    },
+    {
+      "number": 16142,
+      "title": "feat(dashboard, core-flows, js-sdk, types, medusa): add export customers feature"
+    },
+    {
+      "number": 16669,
+      "title": "feat(dashboard): add refund reason selector to balance settlement form"
+    },
+    {
+      "number": 17489,
+      "title": "fix(payment): recompute refunded amount when a refund fails at the provider"
+    },
+    {
+      "number": 16654,
+      "title": "docs: fix typo multple -> multiple"
+    },
+    {
+      "number": 16667,
+      "title": "docs: clarify that variants.prices excludes price-list prices and document workaround [automated]"
+    },
+    {
+      "number": 16720,
+      "title": "fix(dashboard): add readable validation messages to create region form"
+    },
+    {
+      "number": 16730,
+      "title": "fix(workflow-engine-redis): nest RedisWorkflowsOptions under redis in the module options type"
+    },
+    {
+      "number": 16572,
+      "title": "fix: show successful badge for (auto)cancelled CI runs instead of error"
+    },
+    {
+      "number": 16607,
+      "title": "fix(caching): reset the size accounting on a wildcard cache clear"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:14:55Z",
+  "results": [
+    {
+      "number": 17759,
+      "title": "fix(ui,dashboard): stop DatePicker from calling onChange when its value prop changes and setSearchParams being called twice"
+    },
+    {
+      "number": 17509,
+      "title": "fix(inventory): don't re-add reserved quantity when restoring live reservations"
+    },
+    {
+      "number": 17574,
+      "title": "chore(deps,caching,types,utils, framework): update awilix to 13.0.5"
+    },
+    {
+      "number": 17252,
+      "title": "docs(book): improve clarity in Get Started pages"
+    },
+    {
+      "number": 16906,
+      "title": "docs: fix typos in Alert example and CommandBar JSDoc"
+    },
+    {
+      "number": 16370,
+      "title": "fix(framework): stabilize stateful path regexes"
+    },
+    {
+      "number": 15701,
+      "title": "fix(utils): allow alias override in defineLink InputOptions to support linking the same module twice"
+    },
+    {
+      "number": 16313,
+      "title": "fix(framework): isolate request allowed fields"
+    },
+    {
+      "number": 16563,
+      "title": "fix(event-bus-redis): move EXPIRE into same pipeline as RPUSH"
+    },
+    {
+      "number": 16467,
+      "title": "fix(utils): make the migration skip flag actually skip migrations"
+    },
+    {
+      "number": 15984,
+      "title": "feat(admin-vite-plugin,dashboard): add config.label to document title resolution seo fallback"
+    },
+    {
+      "number": 16097,
+      "title": "fix(payment,promotion): serialize concurrent money guards to prevent over-capture, over-refund and budget overspend"
+    },
+    {
+      "number": 16336,
+      "title": "fix(types): widen the vite peer range so consumers on any vite major can install"
+    },
+    {
+      "number": 16308,
+      "title": "fix(test-utils, modules-sdk, utils, medusa): fix plugin:add for monorepo projects"
+    },
+    {
+      "number": 15886,
+      "title": "fix(utils): stop double-counting tax on discounts in refundable_total for non-tax-inclusive items"
+    },
+    {
+      "number": 16150,
+      "title": "feat(eslint-plugin): prefer workflow events"
+    },
+    {
+      "number": 15293,
+      "title": "fix(utils): preserve casing in toCamelCase for PascalCase identifiers with digits"
+    },
+    {
+      "number": 15407,
+      "title": "feat(core-flows,medusa,types): add multi shipping method carts support"
+    },
+    {
+      "number": 15349,
+      "title": "fix(dashboard): fix refund form rounding for sub-cent amounts"
+    },
+    {
+      "number": 15618,
+      "title": "fix(core-flows): keep customer account-holder link on a failed payment-session init"
+    },
+    {
+      "number": 15176,
+      "title": "fix(index,modules-sdk,): introduce locking to avoid race conditions in distributed systems for migrations, links and index partition creation"
+    },
+    {
+      "number": 15134,
+      "title": "fix(medusa): API workflow subscription"
+    },
+    {
+      "number": 15164,
+      "title": "fix(dashboard): auto-select currency row when its tax-inclusive toggle is enabled"
+    },
+    {
+      "number": 14674,
+      "title": "feat(dashboard,admin-shared,core-flows,js-sdk,types,medusa,link-modules): RBAC admin dashboard CRUD"
+    },
+    {
+      "number": 15696,
+      "title": "feat: Revamp auth verification setup"
+    },
+    {
+      "number": 14234,
+      "title": "feat(core-flows,order,medusa,types): allow to update the original order.email on order customer transfer requests"
+    },
+    {
+      "number": 13533,
+      "title": "test(): Try to reproduce automatic promotion adjustments being applied twice"
+    },
+    {
+      "number": 15346,
+      "title": "fix(product): Support non-Latin characters in product handles with Un…"
+    },
+    {
+      "number": 14879,
+      "title": "feat: add support for custom arguments in Twilio Sendgrid email notifications"
+    },
+    {
+      "number": 13963,
+      "title": "fix(core-flows): refresh payment collection inside updateCartPromotionsWorkflow"
+    },
+    {
+      "number": 15258,
+      "title": "Feat/quantity pricing admin"
+    },
+    {
+      "number": 14053,
+      "title": "fix(medusa): resolve user_id from user linked to secret key on draft order edit with api-key auth"
+    },
+    {
+      "number": 13911,
+      "title": "chore(): Throw on migration up/down fail"
+    },
+    {
+      "number": 14476,
+      "title": "feat(events): Implement default priority-based event processing"
+    },
+    {
+      "number": 13151,
+      "title": "fix(workflow-engine-inmemory): fix cron job schedule"
+    },
+    {
+      "number": 14520,
+      "title": "feat(medusa-cli): add codemod command + codemod for replacing zod imports"
+    },
+    {
+      "number": 14542,
+      "title": "chore(medusa): default medusa policies"
+    },
+    {
+      "number": 12926,
+      "title": "fix(workflows-sdk): fix step name config used before default"
+    },
+    {
+      "number": 13841,
+      "title": "fix(core-flows, medusa): Prevent cart addresses duplication on update"
+    },
+    {
+      "number": 14309,
+      "title": "chore(): upgrade zod to latest"
+    },
+    {
+      "number": 14441,
+      "title": "feat(deps,framework): add zod as framework dependency"
+    },
+    {
+      "number": 12775,
+      "title": "fix(workflow-engine-redis): Ensure PK is set without errors"
+    },
+    {
+      "number": 13236,
+      "title": "chore: idempotent cart operations"
+    },
+    {
+      "number": 13296,
+      "title": "chore(): Module Internal Events"
+    },
+    {
+      "number": 13305,
+      "title": "feat(promotion): Allow buyget promotion to apply multiple times on cart"
+    },
+    {
+      "number": 14343,
+      "title": "fix: product options catch-all improvements"
+    },
+    {
+      "number": 13306,
+      "title": "fix: Compute \"virtual\" adjustments for order previews"
+    },
+    {
+      "number": 10757,
+      "title": "feat: add translation for zh-CN"
+    },
+    {
+      "number": 11767,
+      "title": "feat: add check for uniqueness when creating links with isList=false"
+    },
+    {
+      "number": 10382,
+      "title": "feat(core-flows, types): update shipping methods upon cart ops"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "medusajs/medusa",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo medusajs/medusa --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:00Z",
+  "results": [
+    {
+      "number": 17408,
+      "title": "fix(orchestration): retry steps with retryIntervalAwaiting after they fail"
+    },
+    {
+      "number": 16801,
+      "title": "feat: Implement retries for search"
+    },
+    {
+      "number": 16964,
+      "title": "fix(payment,core-flows): let refunds be retried safely with an idempotency key"
+    },
+    {
+      "number": 17809,
+      "title": "chore(dashboard): add missing translations [automated]"
+    },
+    {
+      "number": 17406,
+      "title": "docs: document retryIntervalAwaiting and maxAwaitingRetries for async steps"
+    },
+    {
+      "number": 17711,
+      "title": "chore(dashboard): add missing translations [automated]"
+    },
+    {
+      "number": 17498,
+      "title": "docs: add webhooks changelog entry for private-address delivery blocking [automated]"
+    },
+    {
+      "number": 17683,
+      "title": "chore(dashboard): add missing translations [automated]"
+    },
+    {
+      "number": 17668,
+      "title": "chore(dashboard): add missing translations [automated]"
+    },
+    {
+      "number": 17609,
+      "title": "chore(cli,orchestration,utils,workflows-sdk,test-utils,file-s3,workflow-engine-inmemory,workflow-engine-redis): update ulid to v3.0.2"
+    },
+    {
+      "number": 17536,
+      "title": "fix(core-flows): don't replace payment sessions with an active payment"
+    },
+    {
+      "number": 17430,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 17332,
+      "title": "chore(dashboard): add missing translations [automated]"
+    },
+    {
+      "number": 16951,
+      "title": "fix(notification): reuse the existing notification's id when retrying a failed idempotency key"
+    },
+    {
+      "number": 17496,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 17822,
+      "title": "fix(utils): resolve plugins installed as dependencies of @medusajs/medusa"
+    },
+    {
+      "number": 17590,
+      "title": "chore(eslint-plugin,workflow-engine-inmemory): update cron-parser to v5"
+    },
+    {
+      "number": 17065,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 17004,
+      "title": "chore(dashboard): add missing translations [automated]"
+    },
+    {
+      "number": 17489,
+      "title": "fix(payment): recompute refunded amount when a refund fails at the provider"
+    },
+    {
+      "number": 16722,
+      "title": "fix(core-flows): only autocapture if payment is authorized successfully"
+    },
+    {
+      "number": 16607,
+      "title": "fix(caching): reset the size accounting on a wildcard cache clear"
+    },
+    {
+      "number": 16571,
+      "title": "fix(auth): await the OAuth state cache write"
+    },
+    {
+      "number": 16899,
+      "title": "fix(payment): avoid double-prefixing an already pp_-prefixed provider…"
+    },
+    {
+      "number": 16573,
+      "title": "fix(core-flows): await the mutations performed in step compensations"
+    },
+    {
+      "number": 17567,
+      "title": "chore: major version updates for repo and dev tooling"
+    },
+    {
+      "number": 16533,
+      "title": "fix(workflow-engine-redis,link-modules,orchestration,utils): fix most flaky tests"
+    },
+    {
+      "number": 15274,
+      "title": "fix(locking-redis): add jitter to Redis lock retry backoff"
+    },
+    {
+      "number": 17733,
+      "title": "docs: doc changes for next release [automated]"
+    },
+    {
+      "number": 16228,
+      "title": "fix(payment-stripe): handle Stripe webhook signature errors"
+    },
+    {
+      "number": 14954,
+      "title": "fix: use exponential backoff in Redis lock acquisition retries"
+    },
+    {
+      "number": 15856,
+      "title": "fix(core-flows): only emit RETURN_RECEIVED when receive_now is true"
+    },
+    {
+      "number": 16350,
+      "title": "docs: webhooks in cloud"
+    },
+    {
+      "number": 15618,
+      "title": "fix(core-flows): keep customer account-holder link on a failed payment-session init"
+    },
+    {
+      "number": 15726,
+      "title": "fix(framework,medusa): surface real error and terminate process on db commands"
+    },
+    {
+      "number": 15334,
+      "title": " chore(workflow-engine-redis): fix flaky tests by isolating job and queues between specs"
+    },
+    {
+      "number": 15597,
+      "title": "fix(js-sdk): add RBAC ESM import extensions"
+    },
+    {
+      "number": 16797,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 15496,
+      "title": "Emailpass email verification primitives"
+    },
+    {
+      "number": 15231,
+      "title": "fix(core-flows): validate cart has items before completing"
+    },
+    {
+      "number": 13786,
+      "title": "fix: prevent jobId collisions on workflow step retries"
+    },
+    {
+      "number": 15379,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 15030,
+      "title": "Chore: Release"
+    },
+    {
+      "number": 13319,
+      "title": "fix(orchestration): Use the step definition max retries on set step failure"
+    },
+    {
+      "number": 13391,
+      "title": "chore(orchestration): add support for autoRetry, maxAwaitingRetries, retryStep"
+    },
+    {
+      "number": 13663,
+      "title": "chore(): Default caching configuration and gracefull redis error handling"
+    },
+    {
+      "number": 13516,
+      "title": "test(): test dynamic max workers and improve CI"
+    },
+    {
+      "number": 12713,
+      "title": "chore(): Add retry strategy to database connection"
+    },
+    {
+      "number": 14037,
+      "title": "fix(): Identify step that should require a save on checkpoint"
+    },
+    {
+      "number": 14476,
+      "title": "feat(events): Implement default priority-based event processing"
+    }
+  ],
+  "error": null
+}
+]

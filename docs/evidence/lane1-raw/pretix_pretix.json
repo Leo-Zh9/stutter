@@ -1,0 +1,1005 @@
+[
+{
+  "repo": "pretix/pretix",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:49Z",
+  "results": [
+    {
+      "number": 2674,
+      "title": "Silence ResponseError from redis"
+    },
+    {
+      "number": 3737,
+      "title": "Stripe: Add Support for Affirm Pay Later"
+    },
+    {
+      "number": 2494,
+      "title": "Fix #1749 -- Stripe: Rewrite for Payment Methods and Payment Intents"
+    },
+    {
+      "number": 2493,
+      "title": "PayPal: Migrate to Order v2 API and ISU authentication"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:52Z",
+  "results": [
+    {
+      "number": 6587,
+      "title": "Sendmail: Handle scheduled mails in inactive plugin (Z#23243588)"
+    },
+    {
+      "number": 6510,
+      "title": "Update isort requirement from ==8.0.* to ==9.0.*"
+    },
+    {
+      "number": 6072,
+      "title": "Update fakeredis requirement from ==2.34.* to ==2.35.*"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:56Z",
+  "results": [
+    {
+      "number": 6748,
+      "title": "Fix duplicate default check in TicketLayoutSerializer"
+    },
+    {
+      "number": 6628,
+      "title": "Update pytest-mock requirement from ==3.15.* to ==3.16.*"
+    },
+    {
+      "number": 6715,
+      "title": "Update pytest-mock requirement from ==3.16.* to ==3.17.*"
+    },
+    {
+      "number": 6561,
+      "title": "PDF: Fix background page being rotated multiple times"
+    },
+    {
+      "number": 6727,
+      "title": "Fix itemcount in list beneath cart in event series (Z#23251632)"
+    },
+    {
+      "number": 6212,
+      "title": "Remove duplicated csrftoken cookies"
+    },
+    {
+      "number": 6620,
+      "title": "Update pyjwt requirement from ==2.14.* to ==2.15.*"
+    },
+    {
+      "number": 6324,
+      "title": "filter out the 404 log records from django.request"
+    },
+    {
+      "number": 6320,
+      "title": "Improve iOS VoiceOver year dropdown selection (Z#23234442)"
+    },
+    {
+      "number": 6570,
+      "title": "Update pypdf requirement from ==6.11.* to ==6.19.*"
+    },
+    {
+      "number": 6350,
+      "title": "Update webauthn requirement from ==2.8.* to ==3.0.*"
+    },
+    {
+      "number": 6455,
+      "title": "Device list: Show online status"
+    },
+    {
+      "number": 6456,
+      "title": "Paypal2: handle incomming capture webhooks (Z#23240966)"
+    },
+    {
+      "number": 6510,
+      "title": "Update isort requirement from ==8.0.* to ==9.0.*"
+    },
+    {
+      "number": 6421,
+      "title": "Event-dashboard: Lazy-load warnings"
+    },
+    {
+      "number": 5855,
+      "title": "Remove duplicate device/revoke from api documentation"
+    },
+    {
+      "number": 6178,
+      "title": "Update requests requirement from ==2.32.* to ==2.34.*"
+    },
+    {
+      "number": 6106,
+      "title": "Enforce uniqueness of EventMetaProperty names (Z#23231419)"
+    },
+    {
+      "number": 5681,
+      "title": "Handle duplicate column names in CSV import (Z#23215261)"
+    },
+    {
+      "number": 6325,
+      "title": "Update sentry-sdk requirement from ==2.63.* to ==2.64.*"
+    },
+    {
+      "number": 5850,
+      "title": "Manual payment: Fix using hidden method for existing order (Z#23220592)"
+    },
+    {
+      "number": 5598,
+      "title": "Turn attendee emails on by default for new events (Z#23213656)"
+    },
+    {
+      "number": 6014,
+      "title": "Add length help text to customer password forms"
+    },
+    {
+      "number": 4881,
+      "title": "Queueing and mapping utilities for outbound data sync"
+    },
+    {
+      "number": 3893,
+      "title": "Event-specific fonts and Web-Embedded Fonts (Z#23130701)"
+    },
+    {
+      "number": 5867,
+      "title": "Bump @babel/preset-env from 7.28.5 to 7.29.0 in /src/pretix/static/npm_dir"
+    },
+    {
+      "number": 5884,
+      "title": "Fix address-helper wrong locale (Z#23223920)"
+    },
+    {
+      "number": 5680,
+      "title": "Refactor payment QR code generation code and add SPAYD format"
+    },
+    {
+      "number": 5230,
+      "title": "Event settings: Fix duplicate font choices (Z#23196687)"
+    },
+    {
+      "number": 5506,
+      "title": "Bump @babel/core from 7.28.3 to 7.28.4 in /src/pretix/static/npm_dir"
+    },
+    {
+      "number": 5580,
+      "title": "Bump @babel/preset-env from 7.28.3 to 7.28.5 in /src/pretix/static/npm_dir"
+    },
+    {
+      "number": 4235,
+      "title": "LogEntryType registry"
+    },
+    {
+      "number": 5450,
+      "title": "Update pytest-mock requirement from ==3.14.* to ==3.15.*"
+    },
+    {
+      "number": 4977,
+      "title": "PDF-Editor: use panel-head as topbar for common commands/tools and preview/save"
+    },
+    {
+      "number": 5020,
+      "title": "Pluggable invoice transmission methods"
+    },
+    {
+      "number": 4880,
+      "title": "Fix concurrent login and duplicate UserKnownLoginSources"
+    },
+    {
+      "number": 5364,
+      "title": "Add program times for items (Z#23178639)"
+    },
+    {
+      "number": 5371,
+      "title": "Update pypdf requirement from ==5.9.* to ==6.0.*"
+    },
+    {
+      "number": 5174,
+      "title": "Improve wording for cart-renew dialog"
+    },
+    {
+      "number": 5201,
+      "title": "Update pypdf requirement from ==5.4.* to ==5.6.*"
+    },
+    {
+      "number": 4564,
+      "title": "Seating plans: Validate duplicate seat IDs"
+    },
+    {
+      "number": 4488,
+      "title": "Check-in: Prevent duplicate auto check-outs (Z#23167003)"
+    },
+    {
+      "number": 4428,
+      "title": "Bank Transfer: Fix weird error code on duplicate match (Z#23164140)"
+    },
+    {
+      "number": 4408,
+      "title": "Do not create duplicate memberships on order changes (Z#23163336)"
+    },
+    {
+      "number": 4668,
+      "title": "API: Allow to block/unblock seats in bulk"
+    },
+    {
+      "number": 4067,
+      "title": "Introduce locking to prevent duplicate invoices (Z#23150548)"
+    },
+    {
+      "number": 4627,
+      "title": "Allow to use custom domains for some but not all events (Z#23153875)"
+    },
+    {
+      "number": 4038,
+      "title": "Fix duplicate key on SQLite"
+    },
+    {
+      "number": 4491,
+      "title": "Update redis requirement from ==5.0.* to ==5.1.*"
+    },
+    {
+      "number": 4306,
+      "title": "Update sphinx requirement from ==7.3.* to ==7.4.*"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:00Z",
+  "results": [
+    {
+      "number": 6689,
+      "title": "Device: put last_seen attribute into the defaults parameter of the get_or_create"
+    },
+    {
+      "number": 6448,
+      "title": "Password reset: Prevent race condition that uses token twice (Z#23242132)"
+    },
+    {
+      "number": 6396,
+      "title": "Vouchers: Fix race condition that allows budget to be exceeded"
+    },
+    {
+      "number": 6067,
+      "title": "Orders API: Fix race condition in voucher redemption (Z#23230391)"
+    },
+    {
+      "number": 5756,
+      "title": "Fix race conditions in OrderChange API serializer"
+    },
+    {
+      "number": 6172,
+      "title": "Bump vite from 8.0.0 to 8.0.12"
+    },
+    {
+      "number": 5415,
+      "title": "Fix PayPal2 payment creation for free cart"
+    },
+    {
+      "number": 5433,
+      "title": "Model-based mail queuing"
+    },
+    {
+      "number": 2385,
+      "title": "Add fixed scroll position when navigating calendar views (Z#177488)"
+    },
+    {
+      "number": 5557,
+      "title": "OrderChangeManager: add_position() returns a handle to the newly created position"
+    },
+    {
+      "number": 4659,
+      "title": "Update address field logic (Z#23163120)"
+    },
+    {
+      "number": 5320,
+      "title": "OrderPayment.fail: Change race condition detection condition"
+    },
+    {
+      "number": 5385,
+      "title": "Orders: Prevent race condition in manual status transition (Z#23203887)"
+    },
+    {
+      "number": 5527,
+      "title": "Update fakeredis requirement from ==2.31.* to ==2.32.*"
+    },
+    {
+      "number": 4911,
+      "title": "PayPal: Prevent race condition between refund and incoming webhook (Z#23185186)"
+    },
+    {
+      "number": 4362,
+      "title": "Prevent race condition in directory creation"
+    },
+    {
+      "number": 3988,
+      "title": "Enforce uniqueness of order codes and ticket secrets"
+    },
+    {
+      "number": 4031,
+      "title": "Update django-countries requirement from ==7.5.* to ==7.6.*"
+    },
+    {
+      "number": 3623,
+      "title": "OrderChangeManager: Prevent race conditions (Z#23131769)"
+    },
+    {
+      "number": 2408,
+      "title": "New locking mechanism"
+    },
+    {
+      "number": 3058,
+      "title": "Always make explicit which tables to lock"
+    },
+    {
+      "number": 2775,
+      "title": "Bump @babel/core from 7.18.10 to 7.18.13 in /src/pretix/static/npm_dir"
+    },
+    {
+      "number": 2787,
+      "title": "Bump @babel/preset-env from 7.18.9 to 7.19.0 in /src/pretix/static/npm_dir"
+    },
+    {
+      "number": 2142,
+      "title": "Fix celery progress: assign state/info once to avoid race-conditions"
+    },
+    {
+      "number": 2290,
+      "title": "Update django-otp requirement from ==0.7.*,>=0.7.5 to >=0.7,<1.2 in /src"
+    },
+    {
+      "number": 2458,
+      "title": "Bump @babel/core from 7.16.7 to 7.17.2 in /src/pretix/static/npm_dir"
+    },
+    {
+      "number": 2292,
+      "title": "Update sentry-sdk requirement from ==1.1.* to >=1.1,<1.5 in /src"
+    },
+    {
+      "number": 642,
+      "title": "Fix #630 -- manual check-in of attendees"
+    },
+    {
+      "number": 1433,
+      "title": "Reordering questions with drag'n'drop"
+    },
+    {
+      "number": 1572,
+      "title": "Add OrderPayment.fail() to prevent race conditions"
+    },
+    {
+      "number": 1396,
+      "title": "Support for gift cards"
+    },
+    {
+      "number": 1275,
+      "title": "Stripe SCA"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:03Z",
+  "results": [
+    {
+      "number": 6013,
+      "title": "Update djangorestframework requirement from ==3.16.* to ==3.17.*"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:07Z",
+  "results": [
+    {
+      "number": 6456,
+      "title": "Paypal2: handle incomming capture webhooks (Z#23240966)"
+    },
+    {
+      "number": 6472,
+      "title": "BasePaymentProvider & PayPal2: allow to cancel pending payments on a per payment basis (Z#23240966)"
+    },
+    {
+      "number": 6121,
+      "title": "Add webhooks for quota changes (Z#23232443)"
+    },
+    {
+      "number": 5834,
+      "title": "adds webhooks for giftcards (Z#23205473)"
+    },
+    {
+      "number": 5906,
+      "title": "include acceptor slug in log/webhook event (Z#23224691)"
+    },
+    {
+      "number": 5360,
+      "title": "Webhooks: Add vouchers (Z#23203072)"
+    },
+    {
+      "number": 5622,
+      "title": "Webhooks: Allow longer URLs (fixes #5443)"
+    },
+    {
+      "number": 3558,
+      "title": "API: Add webhooks for customer events"
+    },
+    {
+      "number": 4336,
+      "title": "API: Allow to filter enabled webhooks (Z#23160605)"
+    },
+    {
+      "number": 3958,
+      "title": "PPv2 APM: Create referenced PPObjects for APM Orders; enable webhooks to capture them"
+    },
+    {
+      "number": 5513,
+      "title": "Add prioritization to webhook/notifications queue"
+    },
+    {
+      "number": 1319,
+      "title": "Integrate django-scopes"
+    },
+    {
+      "number": 5666,
+      "title": "Add support for multiple linked_orderpositions on reusable media"
+    },
+    {
+      "number": 5512,
+      "title": "Notification queues: Optimize order for less queries"
+    },
+    {
+      "number": 5250,
+      "title": "Webhooks: Fix retry logic (Z#23197527)"
+    },
+    {
+      "number": 4911,
+      "title": "PayPal: Prevent race condition between refund and incoming webhook (Z#23185186)"
+    },
+    {
+      "number": 4797,
+      "title": "[A11y] Improve focus management + navigation in widget ajax"
+    },
+    {
+      "number": 4310,
+      "title": "Add webhook for pretix.event.order.deleted (Z#23159520)"
+    },
+    {
+      "number": 3994,
+      "title": "Fix #3974 -- Webhooks: Add type of checkin"
+    },
+    {
+      "number": 3860,
+      "title": "Stripe: Add link to Stripe App"
+    },
+    {
+      "number": 3737,
+      "title": "Stripe: Add Support for Affirm Pay Later"
+    },
+    {
+      "number": 3423,
+      "title": "Add webhooks for waiting list events"
+    },
+    {
+      "number": 3395,
+      "title": "API: add log_action/webhook for confirmed payments"
+    },
+    {
+      "number": 3216,
+      "title": "Add webhook for pretix.event.order.payment.confirmed"
+    },
+    {
+      "number": 3095,
+      "title": "Webhooks: Add comment field"
+    },
+    {
+      "number": 3096,
+      "title": "Docs: Add comment to webhook API"
+    },
+    {
+      "number": 3087,
+      "title": "Add webhooks for changes to items"
+    },
+    {
+      "number": 2790,
+      "title": "New retry logic for webhooks"
+    },
+    {
+      "number": 2614,
+      "title": "PayPal: Migrate to Order v2 API and ISU authentication (#2493)"
+    },
+    {
+      "number": 2493,
+      "title": "PayPal: Migrate to Order v2 API and ISU authentication"
+    },
+    {
+      "number": 2528,
+      "title": "PayPal: Fail early on invalid webhook payload"
+    },
+    {
+      "number": 287,
+      "title": "Pass request's user when refunding (for logging)"
+    },
+    {
+      "number": 817,
+      "title": "Fix #678 -- Data shredders for personally identifiable information"
+    },
+    {
+      "number": 952,
+      "title": "Fix #571 -- Partial payments and refunds"
+    },
+    {
+      "number": 1073,
+      "title": "Fix #526 -- Add a webhook system"
+    },
+    {
+      "number": 1385,
+      "title": "Fix issue on old-style webhook URLs"
+    },
+    {
+      "number": 1275,
+      "title": "Stripe SCA"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:10Z",
+  "results": [
+    {
+      "number": 6683,
+      "title": "Update css-inline requirement from ==0.22.* to ==0.23.*"
+    },
+    {
+      "number": 6172,
+      "title": "Bump vite from 8.0.0 to 8.0.12"
+    },
+    {
+      "number": 5373,
+      "title": "Upgrade to hierarkey 2.0"
+    },
+    {
+      "number": 5842,
+      "title": "Prevent double-clicks on SSO login providers"
+    },
+    {
+      "number": 5759,
+      "title": "Bump django-compressor from 4.5.1 to 4.6.0"
+    },
+    {
+      "number": 5520,
+      "title": "Migrate LogEntry.object_id to bigint"
+    },
+    {
+      "number": 4235,
+      "title": "LogEntryType registry"
+    },
+    {
+      "number": 5536,
+      "title": "Update sentry-sdk requirement from ==2.40.* to ==2.41.*"
+    },
+    {
+      "number": 5549,
+      "title": "Update sentry-sdk requirement from ==2.41.* to ==2.42.*"
+    },
+    {
+      "number": 4880,
+      "title": "Fix concurrent login and duplicate UserKnownLoginSources"
+    },
+    {
+      "number": 4881,
+      "title": "Queueing and mapping utilities for outbound data sync"
+    },
+    {
+      "number": 4924,
+      "title": "Update sentry-sdk requirement from ==2.22.* to ==2.23.*"
+    },
+    {
+      "number": 4855,
+      "title": "Update sentry-sdk requirement from ==2.20.* to ==2.22.*"
+    },
+    {
+      "number": 4067,
+      "title": "Introduce locking to prevent duplicate invoices (Z#23150548)"
+    },
+    {
+      "number": 4091,
+      "title": "Update celery requirement from ==5.3.* to ==5.4.*"
+    },
+    {
+      "number": 4155,
+      "title": "Update requests requirement from ==2.31.* to ==2.32.*"
+    },
+    {
+      "number": 3061,
+      "title": "Ensure total ordering of paginated lists"
+    },
+    {
+      "number": 2493,
+      "title": "PayPal: Migrate to Order v2 API and ISU authentication"
+    },
+    {
+      "number": 2290,
+      "title": "Update django-otp requirement from ==0.7.*,>=0.7.5 to >=0.7,<1.2 in /src"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:13Z",
+  "results": [
+    {
+      "number": 6673,
+      "title": "Bump django-bootstrap3 from 26.2 to 26.3"
+    },
+    {
+      "number": 6654,
+      "title": "Update fakeredis requirement from ==2.38.* to ==2.39.*"
+    },
+    {
+      "number": 6736,
+      "title": "Update python-dateutil requirement from ==3.0.* to ==4.0.*"
+    },
+    {
+      "number": 6176,
+      "title": "Update pypdf requirement from ==6.5.* to ==6.11.*"
+    },
+    {
+      "number": 6483,
+      "title": "Update sentry-sdk requirement from ==2.66.* to ==2.68.*"
+    },
+    {
+      "number": 6290,
+      "title": "Update pytest requirement from ==9.0.* to ==9.1.*"
+    },
+    {
+      "number": 5567,
+      "title": "Update redis requirement from ==6.4.* to ==7.0.*"
+    },
+    {
+      "number": 5872,
+      "title": "Update pyjwt requirement from ==2.10.* to ==2.11.*"
+    },
+    {
+      "number": 5222,
+      "title": "Update protobuf requirement from ==6.30.* to ==6.31.*"
+    },
+    {
+      "number": 4174,
+      "title": "Update protobuf requirement from ==5.26.* to ==5.27.*"
+    },
+    {
+      "number": 3986,
+      "title": "Update protobuf requirement from ==4.25.* to ==5.26.*"
+    },
+    {
+      "number": 3394,
+      "title": "Update pyjwt requirement from ==2.6.* to ==2.7.*"
+    },
+    {
+      "number": 2010,
+      "title": "Move quota cache from database to redis"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:17Z",
+  "results": [
+    {
+      "number": 6448,
+      "title": "Password reset: Prevent race condition that uses token twice (Z#23242132)"
+    },
+    {
+      "number": 6736,
+      "title": "Update python-dateutil requirement from ==3.0.* to ==4.0.*"
+    },
+    {
+      "number": 6472,
+      "title": "BasePaymentProvider & PayPal2: allow to cancel pending payments on a per payment basis (Z#23240966)"
+    },
+    {
+      "number": 4278,
+      "title": "Drop nullability on Order.organizer and OrderPosition.organizer"
+    },
+    {
+      "number": 6290,
+      "title": "Update pytest requirement from ==9.0.* to ==9.1.*"
+    },
+    {
+      "number": 5967,
+      "title": "Event lists: Show sales channels (Z#23225483)"
+    },
+    {
+      "number": 3714,
+      "title": "Add test for money filter + streamline rounding error protection logic"
+    },
+    {
+      "number": 5715,
+      "title": "Refactor validation of cart contents, fix purchase of inactive subevent (Z#23217806)"
+    },
+    {
+      "number": 4235,
+      "title": "LogEntryType registry"
+    },
+    {
+      "number": 5364,
+      "title": "Add program times for items (Z#23178639)"
+    },
+    {
+      "number": 4881,
+      "title": "Queueing and mapping utilities for outbound data sync"
+    },
+    {
+      "number": 5308,
+      "title": "Add Spanish (LatAm) and improve how we count language coverage (Z#23200505)"
+    },
+    {
+      "number": 4705,
+      "title": "Fix color differences for panel-heading in accordion-panel"
+    },
+    {
+      "number": 4327,
+      "title": "Docs: Remove redundant package dependency"
+    },
+    {
+      "number": 4419,
+      "title": "Update fakeredis requirement from ==2.23.* to ==2.24.*"
+    },
+    {
+      "number": 4177,
+      "title": "Harden timing when getting order with secret check"
+    },
+    {
+      "number": 4067,
+      "title": "Introduce locking to prevent duplicate invoices (Z#23150548)"
+    },
+    {
+      "number": 3780,
+      "title": "Stripe: Convert all payment methods to intents except multibanco"
+    },
+    {
+      "number": 3486,
+      "title": "Fix image being used twice on badge"
+    },
+    {
+      "number": 2408,
+      "title": "New locking mechanism"
+    },
+    {
+      "number": 3181,
+      "title": "Disable email rules if event is not live"
+    },
+    {
+      "number": 2975,
+      "title": "Bank transfer: Allow to send the invoice direclty to the accounting department"
+    },
+    {
+      "number": 2739,
+      "title": "Presale: fix doubled error messages (Z#23104019)"
+    },
+    {
+      "number": 2482,
+      "title": "Fix details/summary marker on privacy-modal being shown twice"
+    },
+    {
+      "number": 2384,
+      "title": "Allow to attach files to order confirmation email"
+    },
+    {
+      "number": 2335,
+      "title": "Add payment search page"
+    },
+    {
+      "number": 2184,
+      "title": "Order import: warn when char-replacement happens due to unknown encoding"
+    },
+    {
+      "number": 2290,
+      "title": "Update django-otp requirement from ==0.7.*,>=0.7.5 to >=0.7,<1.2 in /src"
+    },
+    {
+      "number": 2242,
+      "title": "[WIP] Control: Add drag and drop to sort categories and products"
+    },
+    {
+      "number": 2081,
+      "title": "A11y improvements"
+    },
+    {
+      "number": 1908,
+      "title": "Documentation typo fix"
+    },
+    {
+      "number": 271,
+      "title": "add basic instrumentation possibilities to pretix"
+    },
+    {
+      "number": 323,
+      "title": "Add empty cart button #161"
+    },
+    {
+      "number": 438,
+      "title": "Issue #308: Preview for email templates"
+    },
+    {
+      "number": 756,
+      "title": "Refs #654 -- API: Writable event endpoints"
+    },
+    {
+      "number": 752,
+      "title": "Fix #751 -- calculate payment fees in OrderChangeManager"
+    },
+    {
+      "number": 657,
+      "title": "Added quotas API write methods"
+    },
+    {
+      "number": 676,
+      "title": "Refs #654 -- API: Writable item endpoints"
+    },
+    {
+      "number": 570,
+      "title": "Ref #569 -- Include other email to history"
+    },
+    {
+      "number": 1000,
+      "title": "Prevent email enumeration"
+    },
+    {
+      "number": 1526,
+      "title": "Add a maximum budget to vouchers"
+    },
+    {
+      "number": 1668,
+      "title": "Refactor quota calculation"
+    },
+    {
+      "number": 1725,
+      "title": "Create invoice exporter mixin"
+    },
+    {
+      "number": 1358,
+      "title": "MIMEEncode inline images as CID"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "pretix/pretix",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo pretix/pretix --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:21Z",
+  "results": [
+    {
+      "number": 6581,
+      "title": "2FA: Show info on throttled request"
+    },
+    {
+      "number": 6472,
+      "title": "BasePaymentProvider & PayPal2: allow to cancel pending payments on a per payment basis (Z#23240966)"
+    },
+    {
+      "number": 6321,
+      "title": "Do not use redis cache at import time"
+    },
+    {
+      "number": 6563,
+      "title": "Update fakeredis requirement from ==2.37.* to ==2.38.*"
+    },
+    {
+      "number": 6226,
+      "title": "Update redis requirement from ==7.4.* to ==8.0.*"
+    },
+    {
+      "number": 5640,
+      "title": "Invoices: Increase retry interval"
+    },
+    {
+      "number": 5433,
+      "title": "Model-based mail queuing"
+    },
+    {
+      "number": 4881,
+      "title": "Queueing and mapping utilities for outbound data sync"
+    },
+    {
+      "number": 5250,
+      "title": "Webhooks: Fix retry logic (Z#23197527)"
+    },
+    {
+      "number": 5420,
+      "title": "Invoice email transmission: Handle permanent failures (Z#23205576)"
+    },
+    {
+      "number": 5348,
+      "title": "Update redis requirement from ==6.2.* to ==6.3.*"
+    },
+    {
+      "number": 5353,
+      "title": "Update redis requirement from ==6.3.* to ==6.4.*"
+    },
+    {
+      "number": 5010,
+      "title": "Update celery requirement from ==5.4.* to ==5.5.*"
+    },
+    {
+      "number": 5037,
+      "title": "Update sentry-sdk requirement from ==2.25.* to ==2.27.*"
+    },
+    {
+      "number": 3473,
+      "title": "Send mail on payment failure [Z#23122835]"
+    },
+    {
+      "number": 2408,
+      "title": "New locking mechanism"
+    },
+    {
+      "number": 2790,
+      "title": "New retry logic for webhooks"
+    },
+    {
+      "number": 2767,
+      "title": "Bank transfer: Minimal implementation of Swiss QR-bill"
+    },
+    {
+      "number": 2292,
+      "title": "Update sentry-sdk requirement from ==1.1.* to >=1.1,<1.5 in /src"
+    },
+    {
+      "number": 279,
+      "title": "Issue 173"
+    },
+    {
+      "number": 676,
+      "title": "Refs #654 -- API: Writable item endpoints"
+    },
+    {
+      "number": 952,
+      "title": "Fix #571 -- Partial payments and refunds"
+    },
+    {
+      "number": 1275,
+      "title": "Stripe SCA"
+    }
+  ],
+  "error": null
+}
+]

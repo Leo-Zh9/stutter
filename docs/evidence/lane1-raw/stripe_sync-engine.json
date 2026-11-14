@@ -1,0 +1,441 @@
+[
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:38Z",
+  "results": [],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:42Z",
+  "results": [],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:45Z",
+  "results": [
+    {
+      "number": 239,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 214,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 207,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 118,
+      "title": "fix: dependabot alerts"
+    },
+    {
+      "number": 104,
+      "title": "feat: auto-expand api lists"
+    },
+    {
+      "number": 68,
+      "title": "refactor: reduce duplication and upsert many"
+    },
+    {
+      "number": 66,
+      "title": "feat: add additional charge events"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:48Z",
+  "results": [],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:52Z",
+  "results": [
+    {
+      "number": 177,
+      "title": "chore: add upsert timestamp protection"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:55Z",
+  "results": [
+    {
+      "number": 349,
+      "title": "fix temporal bug"
+    },
+    {
+      "number": 134,
+      "title": "Adds support for product `marketing_features` field"
+    },
+    {
+      "number": 245,
+      "title": "[WIP]: Added support for invoice payment object"
+    },
+    {
+      "number": 235,
+      "title": "docs: add missing checkout.session.expired to webhook support list"
+    },
+    {
+      "number": 197,
+      "title": "feat: add 'paused' value to stripe.subscription_status enum"
+    },
+    {
+      "number": 185,
+      "title": "perf: only resync on non-final entity states"
+    },
+    {
+      "number": 167,
+      "title": "feat: support entitlements and features"
+    },
+    {
+      "number": 177,
+      "title": "chore: add upsert timestamp protection"
+    },
+    {
+      "number": 172,
+      "title": "feat: added checkout session"
+    },
+    {
+      "number": 186,
+      "title": "added poolConfig"
+    },
+    {
+      "number": 39,
+      "title": "adds failing webhook"
+    },
+    {
+      "number": 174,
+      "title": "Soft delete on customer"
+    },
+    {
+      "number": 53,
+      "title": "feat: implement charges webhooks"
+    },
+    {
+      "number": 135,
+      "title": "feat: webhook logging for better debugging"
+    },
+    {
+      "number": 118,
+      "title": "fix: dependabot alerts"
+    },
+    {
+      "number": 38,
+      "title": "feat: sync subscription and split subscriptionItems into separate table"
+    },
+    {
+      "number": 108,
+      "title": "feat: support tax ids"
+    },
+    {
+      "number": 104,
+      "title": "feat: auto-expand api lists"
+    },
+    {
+      "number": 65,
+      "title": "feat: support payment_method webhooks"
+    },
+    {
+      "number": 64,
+      "title": "feat: support setup_intent webhooks"
+    },
+    {
+      "number": 72,
+      "title": "fix: handling of payment_intent events"
+    },
+    {
+      "number": 12,
+      "title": "feat adds deleted webhooks for price, product, and description"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:59Z",
+  "results": [
+    {
+      "number": 293,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 214,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 125,
+      "title": "chore(deps): bump fastify from 5.2.2 to 5.3.2"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:02Z",
+  "results": [
+    {
+      "number": 349,
+      "title": "fix temporal bug"
+    },
+    {
+      "number": 282,
+      "title": "chore(deps): bump fastify from 5.7.4 to 5.8.1 in the npm_and_yarn group across 1 directory"
+    },
+    {
+      "number": 185,
+      "title": "perf: only resync on non-final entity states"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:05Z",
+  "results": [],
+  "error": null
+}
+,
+{
+  "repo": "stripe/sync-engine",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo stripe/sync-engine --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:35:09Z",
+  "results": [
+    {
+      "number": 349,
+      "title": "fix temporal bug"
+    },
+    {
+      "number": 312,
+      "title": "chore(deps): Update docker/setup-buildx-action action to v4"
+    },
+    {
+      "number": 294,
+      "title": "chore(deps): Update docker/login-action action to v4"
+    },
+    {
+      "number": 291,
+      "title": "chore(deps): Update dependency vite to v8"
+    },
+    {
+      "number": 301,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 286,
+      "title": "chore(deps): Update docker/build-push-action action to v7"
+    },
+    {
+      "number": 275,
+      "title": "chore(deps): Update dependency rimraf to v6.1.3"
+    },
+    {
+      "number": 274,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 285,
+      "title": "chore(deps): Update all non-major dependencies - autoclosed"
+    },
+    {
+      "number": 309,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 293,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 314,
+      "title": "chore(deps): Update dependency vite to v8.0.5 [SECURITY]"
+    },
+    {
+      "number": 281,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 261,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 251,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 271,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 290,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 255,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 272,
+      "title": "chore(deps): Update eslint monorepo to v10 (major)"
+    },
+    {
+      "number": 278,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 241,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 220,
+      "title": "chore(deps): Update actions/checkout action to v6"
+    },
+    {
+      "number": 256,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 208,
+      "title": "chore(deps): Update actions/setup-node action to v6"
+    },
+    {
+      "number": 200,
+      "title": "chore(deps): Update postgres Docker tag to v18"
+    },
+    {
+      "number": 239,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 249,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 263,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 203,
+      "title": "chore(deps): Update dependency pino to v10"
+    },
+    {
+      "number": 211,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 224,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 225,
+      "title": "chore(deps): Update dependency stripe to v20"
+    },
+    {
+      "number": 202,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 218,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 206,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 214,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 247,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 219,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 207,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 213,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 199,
+      "title": "chore(deps): Update all non-major dependencies - autoclosed"
+    },
+    {
+      "number": 181,
+      "title": "chore(deps): Update actions/setup-node action to v5"
+    },
+    {
+      "number": 182,
+      "title": "chore(deps): Update actions/setup-python action to v6"
+    },
+    {
+      "number": 176,
+      "title": "chore(deps): Update actions/checkout action to v5"
+    },
+    {
+      "number": 204,
+      "title": "chore(deps): Update dependency stripe to v19"
+    },
+    {
+      "number": 193,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 187,
+      "title": "chore(deps): Update all non-major dependencies"
+    },
+    {
+      "number": 160,
+      "title": "chore(deps): Update dependency vite to v7"
+    },
+    {
+      "number": 158,
+      "title": "chore(deps): Update dependency dotenv to v17"
+    },
+    {
+      "number": 184,
+      "title": "chore(deps): Update dependency vite to v7.0.7 [SECURITY]"
+    }
+  ],
+  "error": null
+}
+]

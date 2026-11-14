@@ -1,0 +1,1845 @@
+[
+{
+  "repo": "formancehq/ledger",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:03Z",
+  "results": [
+    {
+      "number": 2468,
+      "title": "fix(bootstrap): reject sub-microsecond idempotency TTL"
+    },
+    {
+      "number": 2077,
+      "title": "feat(audit): index idempotency keys"
+    },
+    {
+      "number": 2353,
+      "title": "fix(ledgerctl): EN-3043 show batch signature in audit output"
+    },
+    {
+      "number": 2472,
+      "title": "fix(admission): preserve replay after metadata limits tighten"
+    },
+    {
+      "number": 2478,
+      "title": "docs(admission): define replicated-policy validation boundary"
+    },
+    {
+      "number": 2206,
+      "title": "fix(numscript): classify script execution failures as client errors"
+    },
+    {
+      "number": 2395,
+      "title": "fix(antithesis): make insufficient-funds probe retry-safe"
+    },
+    {
+      "number": 2399,
+      "title": "fix: EN-3163 make account metadata failures deterministic"
+    },
+    {
+      "number": 1907,
+      "title": "feat(EN-1827): freeze idempotency expiry per outcome (PR3)"
+    },
+    {
+      "number": 2349,
+      "title": "fix(filter): align textual and JSON filter forms and fix ledgerctl filter help (forward-port of #2333)"
+    },
+    {
+      "number": 2433,
+      "title": "fix: stop retrying maintenance rejections"
+    },
+    {
+      "number": 2346,
+      "title": "fix(http): EN-3103 classify bulk element errors like single requests"
+    },
+    {
+      "number": 2356,
+      "title": "test(antithesis): integrate Hegel and strengthen workload checks"
+    },
+    {
+      "number": 2482,
+      "title": "feat(http): accept signed batches with signature headers"
+    },
+    {
+      "number": 2330,
+      "title": "fix(schemathesis): filter invalid HTTP header values"
+    },
+    {
+      "number": 2333,
+      "title": "fix(filter): align textual and JSON filter forms and fix ledgerctl filter help"
+    },
+    {
+      "number": 2452,
+      "title": "fix(operator): recover committed promotions"
+    },
+    {
+      "number": 2212,
+      "title": "feat(ledger): structure audited failure outcomes"
+    },
+    {
+      "number": 1755,
+      "title": "audit: add idempotency and partial failure campaign"
+    },
+    {
+      "number": 2236,
+      "title": "refactor(state): separate WriteSet merge phases"
+    },
+    {
+      "number": 2232,
+      "title": "refactor(fsm): clarify proposal apply phases"
+    },
+    {
+      "number": 2425,
+      "title": "fix(ledger): restore exact id filters for logs and transactions"
+    },
+    {
+      "number": 2098,
+      "title": "fix(actions): preserve checkpoint outcomes across retries (EN-2211)"
+    },
+    {
+      "number": 2411,
+      "title": "fix(fsm): reject unsupported technical-update compositions"
+    },
+    {
+      "number": 2180,
+      "title": "fix(tracing): stop recording expected not-found errors on spans"
+    },
+    {
+      "number": 2073,
+      "title": "fix(operator): create ledgers and initial indexes atomically (EN-2070)"
+    },
+    {
+      "number": 2404,
+      "title": "refactor(raft): use proposal payloads after a full-stop upgrade"
+    },
+    {
+      "number": 2335,
+      "title": "fix(filter): close field-coverage gaps between textual and JSON filter forms"
+    },
+    {
+      "number": 2177,
+      "title": "feat(tracing): skip OTLP error recording for selected errors"
+    },
+    {
+      "number": 2181,
+      "title": "fix(tracing): stop recording expected not-found errors on spans"
+    },
+    {
+      "number": 2144,
+      "title": "test(ledger): verify checkpoint audit history after restore (EN-1866)"
+    },
+    {
+      "number": 2138,
+      "title": "fix(ledger): canonicalize Numscript metadata validation order"
+    },
+    {
+      "number": 2183,
+      "title": "fix(openapi): preserve generated SDK payloads (EN-2685)"
+    },
+    {
+      "number": 2143,
+      "title": "fix(ci): lint the antithesis workload module in the dirty check"
+    },
+    {
+      "number": 2347,
+      "title": "feat(mirror): map v2 colored assets into v3 asset and color"
+    },
+    {
+      "number": 1650,
+      "title": "test(antithesis): model-driver idempotency replay + conflict coverage"
+    },
+    {
+      "number": 2204,
+      "title": "feat(api): add HTTP event sink creation and removal"
+    },
+    {
+      "number": 2354,
+      "title": "docs: include color in checker, restore and usage volume-key tuples"
+    },
+    {
+      "number": 2139,
+      "title": "fix(ledger): reject malformed execution plans before cache mutation"
+    },
+    {
+      "number": 1607,
+      "title": "fix(backup): rebuild idempotency keys on restore"
+    },
+    {
+      "number": 1884,
+      "title": "Ledger v3: remove chapters and cold storage (EN-1945)"
+    },
+    {
+      "number": 2150,
+      "title": "feat(prepared-queries): allow filterless contracts (EN-2003)"
+    },
+    {
+      "number": 2047,
+      "title": "feat(antithesis): report internal contract violations during fault exploration"
+    },
+    {
+      "number": 2007,
+      "title": "test(model): cover enforcement modes and skipped orders"
+    },
+    {
+      "number": 2095,
+      "title": "fix(antithesis): preserve reference outcomes across retries (EN-2209)"
+    },
+    {
+      "number": 1971,
+      "title": "fix(operator): recover index attribution from audit (EN-2002)"
+    },
+    {
+      "number": 2099,
+      "title": "fix(antithesis): respect checkpoint capacity (EN-2213)"
+    },
+    {
+      "number": 1750,
+      "title": "feat(EN-1827): replicated cluster policy (PR1)"
+    },
+    {
+      "number": 1974,
+      "title": "fix(indexes): reject duplicate creations (EN-2009)"
+    },
+    {
+      "number": 1767,
+      "title": "feat(EN-1501): enforce the query-checkpoint limit in the FSM (stacked on #1750)"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:08Z",
+  "results": [
+    {
+      "number": 2266,
+      "title": "docs(indexes): document idempotent index drop (EN-2933)"
+    },
+    {
+      "number": 2468,
+      "title": "fix(bootstrap): reject sub-microsecond idempotency TTL"
+    },
+    {
+      "number": 2238,
+      "title": "refactor(indexbuilder): separate processLogs checkpoint and progress phases"
+    },
+    {
+      "number": 2410,
+      "title": "feat(operator): prepare drain-based stopped upgrades"
+    },
+    {
+      "number": 2452,
+      "title": "fix(operator): recover committed promotions"
+    },
+    {
+      "number": 2338,
+      "title": "feat(operator): enforce adjacent RC upgrades"
+    },
+    {
+      "number": 1587,
+      "title": "feat(EN-1550): idempotent mirror ingest on v2LogId"
+    },
+    {
+      "number": 2420,
+      "title": "fix: EN-3227 reset offline bootstrap staging"
+    },
+    {
+      "number": 1892,
+      "title": "test(antithesis): use certified projection horizons (EN-1946)"
+    },
+    {
+      "number": 1923,
+      "title": "fix(storage): close Pebble batches after successful session commits"
+    },
+    {
+      "number": 2184,
+      "title": "fix(ledger): persist metadata atomically at creation (EN-2686)"
+    },
+    {
+      "number": 2291,
+      "title": "fix(node): join leader-ready callbacks on shutdown (EN-2920)"
+    },
+    {
+      "number": 2143,
+      "title": "fix(ci): lint the antithesis workload module in the dirty check"
+    },
+    {
+      "number": 2041,
+      "title": "fix(backup): reject incomplete export streams"
+    },
+    {
+      "number": 2032,
+      "title": "fix(read): preserve acquired checkpoint files (EN-2047)"
+    },
+    {
+      "number": 2093,
+      "title": "test(grpc): harden checkpoint lifecycle regression coverage"
+    },
+    {
+      "number": 2409,
+      "title": "fix: EN-2970 derive checker boundaries from verified replay"
+    },
+    {
+      "number": 2007,
+      "title": "test(model): cover enforcement modes and skipped orders"
+    },
+    {
+      "number": 2104,
+      "title": "fix(antithesis): verify permanent ledger tombstones (EN-2215)"
+    },
+    {
+      "number": 1938,
+      "title": "test(operator): fix Chainsaw cleanup schema"
+    },
+    {
+      "number": 2073,
+      "title": "fix(operator): create ledgers and initial indexes atomically (EN-2070)"
+    },
+    {
+      "number": 1894,
+      "title": "fix(reads): pin prepared query definition to snapshot (EN-1946)"
+    },
+    {
+      "number": 1952,
+      "title": "refactor(grpc)!: route audited mutations through BucketService.Apply (EN-1954)"
+    },
+    {
+      "number": 1767,
+      "title": "feat(EN-1501): enforce the query-checkpoint limit in the FSM (stacked on #1750)"
+    },
+    {
+      "number": 1567,
+      "title": "fix(EN-1436): scope stale-progress fail-fast to the JoinAsLearner boot path"
+    },
+    {
+      "number": 1912,
+      "title": "fix(EN-1526): verify audit-only histories and bound stored logs by the audit chain"
+    },
+    {
+      "number": 1750,
+      "title": "feat(EN-1827): replicated cluster policy (PR1)"
+    },
+    {
+      "number": 1633,
+      "title": "fix(query,admission): read archived logs from cold storage across replay / ListLogs / prepared-query paths"
+    },
+    {
+      "number": 1991,
+      "title": "fix(events): encode NATS ledger subject tokens (EN-2023)"
+    },
+    {
+      "number": 2158,
+      "title": "fix(raft): recover from silently stalled peer streams"
+    },
+    {
+      "number": 1474,
+      "title": "fix(EN-1424): guard incremental auditItem export on non-zero count"
+    },
+    {
+      "number": 1478,
+      "title": "fix(EN-1436): fail-fast when leader has stale Progress for a rejoining node"
+    },
+    {
+      "number": 1829,
+      "title": "fix(EN-1724): bind declared metadata types to index versions"
+    },
+    {
+      "number": 1672,
+      "title": "refactor(EN-1551): remove dead proto fields, drop all reserved, realign tags"
+    },
+    {
+      "number": 1481,
+      "title": "refactor(operator): rename LedgerService to Cluster and LedgerClusterAgent to Credentials"
+    },
+    {
+      "number": 1689,
+      "title": "fix(EN-1773): reconstruct last_mirror_v2_log_id on restore, reconcile mirror workers on deletion"
+    },
+    {
+      "number": 2082,
+      "title": "fix(grpc): share one read-only open across concurrent checkpoint readers (EN-2108)"
+    },
+    {
+      "number": 1974,
+      "title": "fix(indexes): reject duplicate creations (EN-2009)"
+    },
+    {
+      "number": 1891,
+      "title": "fix(reads): align index inspection to Raft horizon (EN-1946)"
+    },
+    {
+      "number": 1951,
+      "title": "refactor(query): parameterize the iterator algebra by direction (EN-1966)"
+    },
+    {
+      "number": 1560,
+      "title": "feat(EN-1406): resolve Numscript deps via upstream ResolveDependencies + stale-inputs check"
+    },
+    {
+      "number": 1690,
+      "title": "test(EN-1772): assert the AuditFailure message derivation for every Describable"
+    },
+    {
+      "number": 1482,
+      "title": "fix(EN-1441): propagate initIndexConfig boot errors with self-healing retry"
+    },
+    {
+      "number": 2212,
+      "title": "feat(ledger): structure audited failure outcomes"
+    },
+    {
+      "number": 1635,
+      "title": "fix(EN-1597): honor absolute SeekGE/SeekLE reposition-after-exhaustion in read-store iterators"
+    },
+    {
+      "number": 2425,
+      "title": "fix(ledger): restore exact id filters for logs and transactions"
+    },
+    {
+      "number": 1857,
+      "title": "perf(indexer): skip reverse-map reads for new transactions"
+    },
+    {
+      "number": 1698,
+      "title": "fix(EN-1288): require an explicit selector on executable numscript references"
+    },
+    {
+      "number": 1775,
+      "title": "feat(EN-1859): expose server-side request timing on QueryProfile"
+    },
+    {
+      "number": 1572,
+      "title": "fix(EN-1533): stop mutating initial account types before CreateLedger audit capture"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:12Z",
+  "results": [
+    {
+      "number": 2294,
+      "title": "fix(auth): reject duplicate Ed25519 key IDs (EN-2918)"
+    },
+    {
+      "number": 1974,
+      "title": "fix(indexes): reject duplicate creations (EN-2009)"
+    },
+    {
+      "number": 2509,
+      "title": "chore(deps): update go-jose to v3.0.5 and v4.1.6"
+    },
+    {
+      "number": 2462,
+      "title": "ci: skip Coverage job on merge_group runs"
+    },
+    {
+      "number": 2445,
+      "title": "ci(ledger): parallelize coverage test suites"
+    },
+    {
+      "number": 2482,
+      "title": "feat(http): accept signed batches with signature headers"
+    },
+    {
+      "number": 2228,
+      "title": "ci(ledger): merge coverage counters with covdata instead of concatenating profiles"
+    },
+    {
+      "number": 2373,
+      "title": "fix(backup): reject manifest-inconsistent export segments (EN-1846)"
+    },
+    {
+      "number": 2159,
+      "title": "fix(api): correct openapi.yml contract gaps"
+    },
+    {
+      "number": 2397,
+      "title": "fix(ledger): align gRPC retry attempts with election budget"
+    },
+    {
+      "number": 2463,
+      "title": "fix(auth): trust every configured OIDC issuer (EN-3232)"
+    },
+    {
+      "number": 2501,
+      "title": "fix(openapi): model query templates as a union discriminated on the template resource"
+    },
+    {
+      "number": 2016,
+      "title": "docs(audit): strengthen accounting invariant contract"
+    },
+    {
+      "number": 2266,
+      "title": "docs(indexes): document idempotent index drop (EN-2933)"
+    },
+    {
+      "number": 2409,
+      "title": "fix: EN-2970 derive checker boundaries from verified replay"
+    },
+    {
+      "number": 2500,
+      "title": "fix(openapi): decode plain query params without breaking Go SDK types"
+    },
+    {
+      "number": 2139,
+      "title": "fix(ledger): reject malformed execution plans before cache mutation"
+    },
+    {
+      "number": 1921,
+      "title": "perf(query): share the unfiltered aggregation fast path"
+    },
+    {
+      "number": 1882,
+      "title": "fix(logging): dedupe cmp field and quiet noisy raft debug logs"
+    },
+    {
+      "number": 2332,
+      "title": "fix(checker): EN-2968 verify ledger policy projections"
+    },
+    {
+      "number": 1924,
+      "title": "refactor(plan): share technical proposal retry and cleanup lifecycle"
+    },
+    {
+      "number": 2472,
+      "title": "fix(admission): preserve replay after metadata limits tighten"
+    },
+    {
+      "number": 2017,
+      "title": "docs(audit): strengthen Raft transition contracts"
+    },
+    {
+      "number": 2244,
+      "title": "fix(health): retry writes until leader health verdict"
+    },
+    {
+      "number": 1937,
+      "title": "test(http): lock metadata schema wire shape"
+    },
+    {
+      "number": 1973,
+      "title": "docs(audit): define API boundary contracts domain"
+    },
+    {
+      "number": 1985,
+      "title": "docs(audit): define mirror ingestion contracts domain"
+    },
+    {
+      "number": 1765,
+      "title": "docs: correct pagination snapshot consistency contract"
+    },
+    {
+      "number": 1755,
+      "title": "audit: add idempotency and partial failure campaign"
+    },
+    {
+      "number": 1866,
+      "title": "perf(tooling): reuse exact same-run validation"
+    },
+    {
+      "number": 1880,
+      "title": "refactor(tooling): establish cooperative PR safety boundary"
+    },
+    {
+      "number": 2341,
+      "title": "fix(cluster): EN-2904 preserve uint64 node identities"
+    },
+    {
+      "number": 2362,
+      "title": "fix(node): EN-3028 preserve historical removal barriers"
+    },
+    {
+      "number": 2446,
+      "title": "fix(check): EN-3236 reject noncanonical index-registry keys"
+    },
+    {
+      "number": 2095,
+      "title": "fix(antithesis): preserve reference outcomes across retries (EN-2209)"
+    },
+    {
+      "number": 2154,
+      "title": "docs(api): publish Ledger v2 to v3 endpoint map"
+    },
+    {
+      "number": 1930,
+      "title": "perf(EN-1966): avoid draining all matches for descending pages"
+    },
+    {
+      "number": 1998,
+      "title": "fix(deps): enforce shutdown timeout through go-libs (EN-1994)"
+    },
+    {
+      "number": 1312,
+      "title": "fix(openapi): remove duplicate cursor wrapping in pipelines/exporters responses"
+    },
+    {
+      "number": 1844,
+      "title": "feat(operator): reconcile EventSink resources"
+    },
+    {
+      "number": 2315,
+      "title": "fix(operator): make ledger targets immutable"
+    },
+    {
+      "number": 2300,
+      "title": "ci(proto): enforce initial-layout conventions for new protobuf types"
+    },
+    {
+      "number": 2158,
+      "title": "fix(raft): recover from silently stalled peer streams"
+    },
+    {
+      "number": 2101,
+      "title": "fix(antithesis): retry busy backup destinations (EN-2214)"
+    },
+    {
+      "number": 1946,
+      "title": "feat(grpc)!: require a matching service protocol revision (EN-1851)"
+    },
+    {
+      "number": 2198,
+      "title": "feat(api): support opt-in string monetary amounts (EN-2779)"
+    },
+    {
+      "number": 2451,
+      "title": "feat: configure standard OpenTelemetry sampling"
+    },
+    {
+      "number": 2094,
+      "title": "fix(antithesis): execute indexed query oracles (EN-2207)"
+    },
+    {
+      "number": 2471,
+      "title": "fix: preserve OIDC issuer in caller attribution"
+    },
+    {
+      "number": 2014,
+      "title": "docs(audits): refine read consistency contract"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:15Z",
+  "results": [
+    {
+      "number": 2513,
+      "title": "fix(deps): update security dependencies and exclude build binaries (v2.3)"
+    },
+    {
+      "number": 2511,
+      "title": "fix(deps): migrate Databricks OIDC to go-jose v4 (main)"
+    },
+    {
+      "number": 2516,
+      "title": "fix(deps): migrate Pulumi Vault to go-jose v4 (v2.4)"
+    },
+    {
+      "number": 2510,
+      "title": "chore(deps): update go-jose patch releases (release/v2.3)"
+    },
+    {
+      "number": 2514,
+      "title": "fix(deps): migrate Pulumi Vault to go-jose v4 (v2.3)"
+    },
+    {
+      "number": 2470,
+      "title": "fix(node): validate and retain Raft processing intervals"
+    },
+    {
+      "number": 2438,
+      "title": "fix: sanitize PostgreSQL mirror parser errors"
+    },
+    {
+      "number": 2440,
+      "title": "refactor: name query compilation inputs"
+    },
+    {
+      "number": 2537,
+      "title": "fix(upgrade): compare platform image IDs in operator test"
+    },
+    {
+      "number": 2173,
+      "title": "fix(ledgerctl): remove progress bar redraw race in restore download"
+    },
+    {
+      "number": 2437,
+      "title": "fix: align connector URL admission and redaction"
+    },
+    {
+      "number": 2431,
+      "title": "test: cover recovery after checkpoint donor loss"
+    },
+    {
+      "number": 2377,
+      "title": "fix(ledgerctl): bind verified response signatures to visible logs"
+    },
+    {
+      "number": 2425,
+      "title": "fix(ledger): restore exact id filters for logs and transactions"
+    },
+    {
+      "number": 2456,
+      "title": "docs(audits): expand core dependency coverage"
+    },
+    {
+      "number": 2432,
+      "title": "test: EN-2845 guard ledgerctl command contracts"
+    },
+    {
+      "number": 2390,
+      "title": "feat(numscript): expose read-only source analysis"
+    },
+    {
+      "number": 2400,
+      "title": "fix: EN-3161 validate CLI posting amount bounds"
+    },
+    {
+      "number": 2399,
+      "title": "fix: EN-3163 make account metadata failures deterministic"
+    },
+    {
+      "number": 2396,
+      "title": "fix(ledgerctl): reject prompts when stdin is not a terminal"
+    },
+    {
+      "number": 2451,
+      "title": "feat: configure standard OpenTelemetry sampling"
+    },
+    {
+      "number": 2439,
+      "title": "fix: redact HTTP mirror transport credentials"
+    },
+    {
+      "number": 2417,
+      "title": "test(wal): shrink etcd WAL segments in test binaries"
+    },
+    {
+      "number": 2362,
+      "title": "fix(node): EN-3028 preserve historical removal barriers"
+    },
+    {
+      "number": 2441,
+      "title": "fix: terminate stalled learner startup"
+    },
+    {
+      "number": 2539,
+      "title": "test(upgrade): assert compatibility without JSON reports"
+    },
+    {
+      "number": 2409,
+      "title": "fix: EN-2970 derive checker boundaries from verified replay"
+    },
+    {
+      "number": 2411,
+      "title": "fix(fsm): reject unsupported technical-update compositions"
+    },
+    {
+      "number": 2356,
+      "title": "test(antithesis): integrate Hegel and strengthen workload checks"
+    },
+    {
+      "number": 2403,
+      "title": "fix: EN-3165 redact HTTP sink credentials in CLI output"
+    },
+    {
+      "number": 2361,
+      "title": "refactor(antithesis): decouple scenario randomness and driver inputs"
+    },
+    {
+      "number": 2397,
+      "title": "fix(ledger): align gRPC retry attempts with election budget"
+    },
+    {
+      "number": 2476,
+      "title": "feat(ledger): detect cross-replica log divergence"
+    },
+    {
+      "number": 2473,
+      "title": "fix(events): preserve UInt256 amounts in ClickHouse inserts"
+    },
+    {
+      "number": 2454,
+      "title": "refactor: group Numscript projection lifecycle"
+    },
+    {
+      "number": 2300,
+      "title": "ci(proto): enforce initial-layout conventions for new protobuf types"
+    },
+    {
+      "number": 2433,
+      "title": "fix: stop retrying maintenance rejections"
+    },
+    {
+      "number": 2249,
+      "title": "fix(query): cap prepared-query list pages (EN-2906)"
+    },
+    {
+      "number": 2398,
+      "title": "fix(http): reject unknown query parameters (EN-3040)"
+    },
+    {
+      "number": 2316,
+      "title": "fix(mirror): preserve out-of-order PostgreSQL source commits"
+    },
+    {
+      "number": 2429,
+      "title": "fix(events): give HTTP sink and v2 source their own transport"
+    },
+    {
+      "number": 2405,
+      "title": "test: run time-dependent unit tests in synctest bubbles"
+    },
+    {
+      "number": 2315,
+      "title": "fix(operator): make ledger targets immutable"
+    },
+    {
+      "number": 2472,
+      "title": "fix(admission): preserve replay after metadata limits tighten"
+    },
+    {
+      "number": 2293,
+      "title": "fix(health): reject invalid polling intervals (EN-2922)"
+    },
+    {
+      "number": 2418,
+      "title": "fix: retain initial learner transport retries"
+    },
+    {
+      "number": 2364,
+      "title": "test(antithesis): strengthen sentinel Raft coverage"
+    },
+    {
+      "number": 2384,
+      "title": "fix(ledgerctl): isolate subcommand environment flags"
+    },
+    {
+      "number": 2239,
+      "title": "refactor(query): share numeric bound resolution"
+    },
+    {
+      "number": 2393,
+      "title": "build(nix): reuse upstream Go cache on release/v2.4"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:19Z",
+  "results": [
+    {
+      "number": 2316,
+      "title": "fix(mirror): preserve out-of-order PostgreSQL source commits"
+    },
+    {
+      "number": 1916,
+      "title": "fix(EN-1959): fence leadership worker generations"
+    },
+    {
+      "number": 1683,
+      "title": "fix(chapters): archive chapters oldest-first"
+    },
+    {
+      "number": 1529,
+      "title": "feat(numscript): immutable append-only versioned library (EN-1288)"
+    },
+    {
+      "number": 1636,
+      "title": "fix(check): seed replay with baseline transaction states under archiving"
+    },
+    {
+      "number": 1587,
+      "title": "feat(EN-1550): idempotent mirror ingest on v2LogId"
+    },
+    {
+      "number": 1659,
+      "title": "test(antithesis): model-driver query coverage — filters, indexes, typed metadata (EN-1625)"
+    },
+    {
+      "number": 1167,
+      "title": "fix: missing inserted at in logs"
+    },
+    {
+      "number": 1268,
+      "title": "chore(deps): update module github.com/nats-io/nats-server/v2 to v2.11.12 [security]"
+    },
+    {
+      "number": 1174,
+      "title": "feat: improve migration performances"
+    },
+    {
+      "number": 1168,
+      "title": "fix: missing inserted at in logs"
+    },
+    {
+      "number": 1175,
+      "title": "feat: improve migration performances"
+    },
+    {
+      "number": 1173,
+      "title": "feat: speedup migration"
+    },
+    {
+      "number": 1189,
+      "title": "fix: pagination issue with legacy store"
+    },
+    {
+      "number": 1064,
+      "title": "feat: introduce schemas"
+    },
+    {
+      "number": 1166,
+      "title": "feat: Add configuration for image registries"
+    },
+    {
+      "number": 1110,
+      "title": "feat: add update of exporters config"
+    },
+    {
+      "number": 1111,
+      "title": "feat: add update of exporters config."
+    },
+    {
+      "number": 1156,
+      "title": "backport: feat/idempotency-hit"
+    },
+    {
+      "number": 1018,
+      "title": "fix: speed up migrations"
+    },
+    {
+      "number": 1019,
+      "title": "feat: optimize migrations"
+    },
+    {
+      "number": 1155,
+      "title": "feat: Add Idempotency-Hit header"
+    },
+    {
+      "number": 892,
+      "title": "fix: make import not transactional"
+    },
+    {
+      "number": 1017,
+      "title": "fix: speed up migration 19"
+    },
+    {
+      "number": 688,
+      "title": "fix: import from 2.1"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:22Z",
+  "results": [
+    {
+      "number": 2254,
+      "title": "fix(events): stop following HTTP sink redirects (EN-2917)"
+    },
+    {
+      "number": 2429,
+      "title": "fix(events): give HTTP sink and v2 source their own transport"
+    },
+    {
+      "number": 1990,
+      "title": "fix(events): reject bodyless HTTP redirect acknowledgements (EN-2022)"
+    },
+    {
+      "number": 1843,
+      "title": "fix(events): add app and version to v3 events"
+    },
+    {
+      "number": 2368,
+      "title": "feat(operator): reconcile declarative ledger storage"
+    },
+    {
+      "number": 1589,
+      "title": "refactor(operator): rename CRD field serviceRef to clusterRef"
+    },
+    {
+      "number": 1730,
+      "title": "docs(openapi): describe the schema fields in the spec"
+    },
+    {
+      "number": 1542,
+      "title": "refactor(operator): rename LedgerBackup CRD to Backup (EN-1483)"
+    },
+    {
+      "number": 1457,
+      "title": "chore(antithesis): delegate antithesis-run skill to snouty launch"
+    },
+    {
+      "number": 1434,
+      "title": "feat(mirror): AWS RDS IAM authentication for postgres source"
+    },
+    {
+      "number": 1605,
+      "title": "fix(EN-1553): require TLS when --auth-enabled"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:26Z",
+  "results": [
+    {
+      "number": 2375,
+      "title": "test(restore): cover concurrent finalization ownership (EN-2010)"
+    },
+    {
+      "number": 2015,
+      "title": "docs(audit): extend concurrency lifecycle shutdown"
+    },
+    {
+      "number": 2382,
+      "title": "fix(ledger): bound follower snapshot preparations"
+    },
+    {
+      "number": 2371,
+      "title": "docs(adr): record WASM module constraints"
+    },
+    {
+      "number": 2405,
+      "title": "test: run time-dependent unit tests in synctest bubbles"
+    },
+    {
+      "number": 1757,
+      "title": "audit: add concurrency lifecycle shutdown campaign"
+    },
+    {
+      "number": 2372,
+      "title": "docs(ops): describe volumes as a single last-write-wins entry"
+    },
+    {
+      "number": 2082,
+      "title": "fix(grpc): share one read-only open across concurrent checkpoint readers (EN-2108)"
+    },
+    {
+      "number": 2291,
+      "title": "fix(node): join leader-ready callbacks on shutdown (EN-2920)"
+    },
+    {
+      "number": 2356,
+      "title": "test(antithesis): integrate Hegel and strengthen workload checks"
+    },
+    {
+      "number": 2445,
+      "title": "ci(ledger): parallelize coverage test suites"
+    },
+    {
+      "number": 2407,
+      "title": "fix(storage): stop the log hash trigger from scanning other ledgers' logs"
+    },
+    {
+      "number": 2373,
+      "title": "fix(backup): reject manifest-inconsistent export segments (EN-1846)"
+    },
+    {
+      "number": 2286,
+      "title": "fix(events): scope sink construction to leadership (EN-2921)"
+    },
+    {
+      "number": 2180,
+      "title": "fix(tracing): stop recording expected not-found errors on spans"
+    },
+    {
+      "number": 2246,
+      "title": "perf(scripts): inherit TMPDIR so validation test results stay cached"
+    },
+    {
+      "number": 2394,
+      "title": "docs(ledger): align remaining AUDIT mode contract (EN-3042)"
+    },
+    {
+      "number": 1965,
+      "title": "fix(validation): bound shared Go build cache"
+    },
+    {
+      "number": 2240,
+      "title": "refactor(admission): separate request conversion families (EN-2879)"
+    },
+    {
+      "number": 2181,
+      "title": "fix(tracing): stop recording expected not-found errors on spans"
+    },
+    {
+      "number": 2168,
+      "title": "docs(admission): codify cost boundaries and lifecycle audit paths"
+    },
+    {
+      "number": 2437,
+      "title": "fix: align connector URL admission and redaction"
+    },
+    {
+      "number": 2509,
+      "title": "chore(deps): update go-jose to v3.0.5 and v4.1.6"
+    },
+    {
+      "number": 2256,
+      "title": "docs(deployment): correct persisted config anchor (EN-2926)"
+    },
+    {
+      "number": 2343,
+      "title": "chore: pin Go 1.27.3 for development and release"
+    },
+    {
+      "number": 2476,
+      "title": "feat(ledger): detect cross-replica log divergence"
+    },
+    {
+      "number": 2368,
+      "title": "feat(operator): reconcile declarative ledger storage"
+    },
+    {
+      "number": 1917,
+      "title": "fix(EN-1960): keep snapshot checkpoints alive during FetchFile"
+    },
+    {
+      "number": 2136,
+      "title": "feat(ledger): persist replicated audit key for restore continuity"
+    },
+    {
+      "number": 2266,
+      "title": "docs(indexes): document idempotent index drop (EN-2933)"
+    },
+    {
+      "number": 2424,
+      "title": "fix(operator): resume PVC cleanup after persisted scale-down"
+    },
+    {
+      "number": 2006,
+      "title": "test(model): cover ledger lifecycle operations (EN-1627)"
+    },
+    {
+      "number": 2448,
+      "title": "fix(query): validate range leaves before AND merging"
+    },
+    {
+      "number": 2176,
+      "title": "refactor(query): remove PreparedQueryCursor.previous"
+    },
+    {
+      "number": 2441,
+      "title": "fix: terminate stalled learner startup"
+    },
+    {
+      "number": 2387,
+      "title": "fix(ledger): preserve unapplied Raft entries during compaction"
+    },
+    {
+      "number": 2319,
+      "title": "fix(attributes): reject key tag collisions before cache publication"
+    },
+    {
+      "number": 2452,
+      "title": "fix(operator): recover committed promotions"
+    },
+    {
+      "number": 2451,
+      "title": "feat: configure standard OpenTelemetry sampling"
+    },
+    {
+      "number": 2332,
+      "title": "fix(checker): EN-2968 verify ledger policy projections"
+    },
+    {
+      "number": 2285,
+      "title": "fix(bootstrap): retain node ownership after stop timeout (EN-2919)"
+    },
+    {
+      "number": 1871,
+      "title": "perf(tooling): adopt cooperative fast local validation"
+    },
+    {
+      "number": 2151,
+      "title": "build(deps): use Formance Pebble fork at v2.1.7"
+    },
+    {
+      "number": 2101,
+      "title": "fix(antithesis): retry busy backup destinations (EN-2214)"
+    },
+    {
+      "number": 2472,
+      "title": "fix(admission): preserve replay after metadata limits tighten"
+    },
+    {
+      "number": 2032,
+      "title": "fix(read): preserve acquired checkpoint files (EN-2047)"
+    },
+    {
+      "number": 2314,
+      "title": "fix(bootstrap): confine checkpoint downloads to staging"
+    },
+    {
+      "number": 2322,
+      "title": "fix(checker): EN-2971 report malformed projection keys"
+    },
+    {
+      "number": 2092,
+      "title": "fix(EN-1296): preserve audit stream receive failures"
+    },
+    {
+      "number": 1781,
+      "title": "fix: preserve state tracking in atomic bulks"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:30Z",
+  "results": [
+    {
+      "number": 2421,
+      "title": "ci(cache): expire stale entries from the Namespace cache volume nightly"
+    },
+    {
+      "number": 2145,
+      "title": "fix(node): fence stale leader readiness"
+    },
+    {
+      "number": 2031,
+      "title": "fix(transport): fence stale peer monitors"
+    },
+    {
+      "number": 2286,
+      "title": "fix(events): scope sink construction to leadership (EN-2921)"
+    },
+    {
+      "number": 2172,
+      "title": "feat(api): accept X-Consistency on HTTP reads"
+    },
+    {
+      "number": 2469,
+      "title": "fix(wal): replace log after received snapshot"
+    },
+    {
+      "number": 1760,
+      "title": "fix: report stale PR base before AI review"
+    },
+    {
+      "number": 2452,
+      "title": "fix(operator): recover committed promotions"
+    },
+    {
+      "number": 1830,
+      "title": "fix(EN-1904): stop the index-registry preload serving stale absence"
+    },
+    {
+      "number": 2345,
+      "title": "fix(cache): EN-3027 wait for commit before rotation"
+    },
+    {
+      "number": 2416,
+      "title": "fix(operator): act only on derived objects controlled by the Cluster"
+    },
+    {
+      "number": 2424,
+      "title": "fix(operator): resume PVC cleanup after persisted scale-down"
+    },
+    {
+      "number": 2362,
+      "title": "fix(node): EN-3028 preserve historical removal barriers"
+    },
+    {
+      "number": 2191,
+      "title": "fix(numscript): review follow-ups for #2126 — header check before version fallback, protocol doc revisions"
+    },
+    {
+      "number": 2501,
+      "title": "fix(openapi): model query templates as a union discriminated on the template resource"
+    },
+    {
+      "number": 2374,
+      "title": "fix(ledger): derive Bloom lifecycle from committed cluster config"
+    },
+    {
+      "number": 2450,
+      "title": "fix(sync): reset follower-sync staging between session retries"
+    },
+    {
+      "number": 2441,
+      "title": "fix: terminate stalled learner startup"
+    },
+    {
+      "number": 2228,
+      "title": "ci(ledger): merge coverage counters with covdata instead of concatenating profiles"
+    },
+    {
+      "number": 2245,
+      "title": "docs(upgrades): require data migration for future releases"
+    },
+    {
+      "number": 2415,
+      "title": "test(membership): run the membership service tests in synctest bubbles"
+    },
+    {
+      "number": 2367,
+      "title": "docs(ledger): record EN-2036 inventory decision as ADR"
+    },
+    {
+      "number": 2455,
+      "title": "fix: account for manual backup runs"
+    },
+    {
+      "number": 2516,
+      "title": "fix(deps): migrate Pulumi Vault to go-jose v4 (v2.4)"
+    },
+    {
+      "number": 2015,
+      "title": "docs(audit): extend concurrency lifecycle shutdown"
+    },
+    {
+      "number": 2520,
+      "title": "fix(sentinel): sum aggregated volumes in arbitrary precision"
+    },
+    {
+      "number": 2285,
+      "title": "fix(bootstrap): retain node ownership after stop timeout (EN-2919)"
+    },
+    {
+      "number": 2368,
+      "title": "feat(operator): reconcile declarative ledger storage"
+    },
+    {
+      "number": 2301,
+      "title": "fix(node): elect and resync when the newest logs are out of sync (EN-2967)"
+    },
+    {
+      "number": 2428,
+      "title": "feat(ledger): add operator-controlled drain barrier"
+    },
+    {
+      "number": 1916,
+      "title": "fix(EN-1959): fence leadership worker generations"
+    },
+    {
+      "number": 2201,
+      "title": "fix(api): keep cluster policy command private"
+    },
+    {
+      "number": 2189,
+      "title": "fix(node): survive Raft transport connection restarts in callers of the shared peer connection"
+    },
+    {
+      "number": 2267,
+      "title": "docs(api): document AUDIT enforcement as accept-without-reporting (EN-2928)"
+    },
+    {
+      "number": 2190,
+      "title": "feat(numscript): omit already-sent VM bytecode from repeat proposals"
+    },
+    {
+      "number": 2078,
+      "title": "fix(admission): reject a revert whose target admission never saw"
+    },
+    {
+      "number": 2446,
+      "title": "fix(check): EN-3236 reject noncanonical index-registry keys"
+    },
+    {
+      "number": 2298,
+      "title": "fix(grpcprotocol): freeze service protocol revision at 40 during RC"
+    },
+    {
+      "number": 2364,
+      "title": "test(antithesis): strengthen sentinel Raft coverage"
+    },
+    {
+      "number": 2420,
+      "title": "fix: EN-3227 reset offline bootstrap staging"
+    },
+    {
+      "number": 2372,
+      "title": "docs(ops): describe volumes as a single last-write-wins entry"
+    },
+    {
+      "number": 1881,
+      "title": "refactor(api): remove public minimum log sequence (EN-1946)"
+    },
+    {
+      "number": 1840,
+      "title": "fix: keep active fuzz inventory synchronized"
+    },
+    {
+      "number": 2058,
+      "title": "feat(accounts): purge empty ephemeral accounts"
+    },
+    {
+      "number": 2418,
+      "title": "fix: retain initial learner transport retries"
+    },
+    {
+      "number": 1965,
+      "title": "fix(validation): bound shared Go build cache"
+    },
+    {
+      "number": 2451,
+      "title": "feat: configure standard OpenTelemetry sampling"
+    },
+    {
+      "number": 2042,
+      "title": "fix(backup): replay prepared query mutations (EN-2058)"
+    },
+    {
+      "number": 2226,
+      "title": "chore(nix): split dev shells and drop unused flake packages"
+    },
+    {
+      "number": 2514,
+      "title": "fix(deps): migrate Pulumi Vault to go-jose v4 (v2.3)"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:34Z",
+  "results": [
+    {
+      "number": 2464,
+      "title": "fix(upgrade): load only runner-platform images into Kind"
+    },
+    {
+      "number": 2448,
+      "title": "fix(query): validate range leaves before AND merging"
+    },
+    {
+      "number": 2212,
+      "title": "feat(ledger): structure audited failure outcomes"
+    },
+    {
+      "number": 2402,
+      "title": "fix: EN-3164 prevent ReadIndex context reuse after restart"
+    },
+    {
+      "number": 2093,
+      "title": "test(grpc): harden checkpoint lifecycle regression coverage"
+    },
+    {
+      "number": 2159,
+      "title": "fix(api): correct openapi.yml contract gaps"
+    },
+    {
+      "number": 2450,
+      "title": "fix(sync): reset follower-sync staging between session retries"
+    },
+    {
+      "number": 1866,
+      "title": "perf(tooling): reuse exact same-run validation"
+    },
+    {
+      "number": 1886,
+      "title": "fix(tooling): bind native audit challenge digest"
+    },
+    {
+      "number": 2476,
+      "title": "feat(ledger): detect cross-replica log divergence"
+    },
+    {
+      "number": 2059,
+      "title": "fix: machine balance resource collisions"
+    },
+    {
+      "number": 1999,
+      "title": "fix(ci): execute optional internal test suites (EN-1993)"
+    },
+    {
+      "number": 1718,
+      "title": "fix(ci): restore clean pre-commit state"
+    },
+    {
+      "number": 2022,
+      "title": "feat(grpc): enforce RPC auth in interceptors (EN-2033)"
+    },
+    {
+      "number": 2336,
+      "title": "chore(ledger): log startup recovery and Pebble background work"
+    },
+    {
+      "number": 2301,
+      "title": "fix(node): elect and resync when the newest logs are out of sync (EN-2967)"
+    },
+    {
+      "number": 2057,
+      "title": "fix(cli): redact sink URL credentials (EN-2062)"
+    },
+    {
+      "number": 2246,
+      "title": "perf(scripts): inherit TMPDIR so validation test results stay cached"
+    },
+    {
+      "number": 2011,
+      "title": "fix(EN-1531): verify metadata logs against audited orders"
+    },
+    {
+      "number": 2110,
+      "title": "test(model): reach every coverage sonde in a local run"
+    },
+    {
+      "number": 1854,
+      "title": "fix(check): bind the checker baseline to the archived boundary"
+    },
+    {
+      "number": 1954,
+      "title": "fix(dal): materialize the query-checkpoint main store atomically (EN-1978)"
+    },
+    {
+      "number": 1663,
+      "title": "docs(openapi): document bigint response header"
+    },
+    {
+      "number": 1777,
+      "title": "fix: resolve S3 multipart InvalidPart, migrate to s3/transfermanager"
+    },
+    {
+      "number": 1960,
+      "title": "fix(EN-1987): index every log's date for a log-date index"
+    },
+    {
+      "number": 1482,
+      "title": "fix(EN-1441): propagate initIndexConfig boot errors with self-healing retry"
+    },
+    {
+      "number": 1552,
+      "title": "fix(events): use ReplacingMergeTree for the ClickHouse sink table"
+    },
+    {
+      "number": 1991,
+      "title": "fix(events): encode NATS ledger subject tokens (EN-2023)"
+    },
+    {
+      "number": 1683,
+      "title": "fix(chapters): archive chapters oldest-first"
+    },
+    {
+      "number": 1542,
+      "title": "refactor(operator): rename LedgerBackup CRD to Backup (EN-1483)"
+    },
+    {
+      "number": 1635,
+      "title": "fix(EN-1597): honor absolute SeekGE/SeekLE reposition-after-exhaustion in read-store iterators"
+    },
+    {
+      "number": 1916,
+      "title": "fix(EN-1959): fence leadership worker generations"
+    },
+    {
+      "number": 1876,
+      "title": "fix(reads): preserve routed consistency guarantees"
+    },
+    {
+      "number": 1587,
+      "title": "feat(EN-1550): idempotent mirror ingest on v2LogId"
+    },
+    {
+      "number": 2007,
+      "title": "test(model): cover enforcement modes and skipped orders"
+    },
+    {
+      "number": 1890,
+      "title": "feat(reads): align live queries to Raft horizons (EN-1946)"
+    },
+    {
+      "number": 1626,
+      "title": "fix(bulk): map business errors to their API codes instead of INTERNAL"
+    },
+    {
+      "number": 1624,
+      "title": "fix(revert): return 409/400 for idempotency errors instead of 500"
+    },
+    {
+      "number": 1977,
+      "title": "feat(EN-1632): add sensitive projections and safe sink diagnostics"
+    },
+    {
+      "number": 2015,
+      "title": "docs(audit): extend concurrency lifecycle shutdown"
+    },
+    {
+      "number": 1918,
+      "title": "docs(adr): record JSON toolchain decision for the encoding/json/v2 migration"
+    },
+    {
+      "number": 2327,
+      "title": "feat(ledger): gate future Raft protocol capabilities"
+    },
+    {
+      "number": 1908,
+      "title": "fix(restore): join downloads during Fx shutdown"
+    },
+    {
+      "number": 1689,
+      "title": "fix(EN-1773): reconstruct last_mirror_v2_log_id on restore, reconcile mirror workers on deletion"
+    },
+    {
+      "number": 1296,
+      "title": "fix(ledger): use AST analysis for lateral filter safety instead of string matching"
+    },
+    {
+      "number": 1917,
+      "title": "fix(EN-1960): keep snapshot checkpoints alive during FetchFile"
+    },
+    {
+      "number": 1418,
+      "title": "fix: serve crash with --publisher-http-enabled (TS-456)"
+    },
+    {
+      "number": 2082,
+      "title": "fix(grpc): share one read-only open across concurrent checkpoint readers (EN-2108)"
+    },
+    {
+      "number": 1923,
+      "title": "fix(storage): close Pebble batches after successful session commits"
+    },
+    {
+      "number": 1907,
+      "title": "feat(EN-1827): freeze idempotency expiry per outcome (PR3)"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "formancehq/ledger",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo formancehq/ledger --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:38Z",
+  "results": [
+    {
+      "number": 2418,
+      "title": "fix: retain initial learner transport retries"
+    },
+    {
+      "number": 2450,
+      "title": "fix(sync): reset follower-sync staging between session retries"
+    },
+    {
+      "number": 2395,
+      "title": "fix(antithesis): make insufficient-funds probe retry-safe"
+    },
+    {
+      "number": 2397,
+      "title": "fix(ledger): align gRPC retry attempts with election budget"
+    },
+    {
+      "number": 2326,
+      "title": "fix(operator): EN-2976 retry completed backup result reads"
+    },
+    {
+      "number": 2244,
+      "title": "fix(health): retry writes until leader health verdict"
+    },
+    {
+      "number": 2103,
+      "title": "fix(grpc): preserve peer-close retry outcomes (EN-2212)"
+    },
+    {
+      "number": 2098,
+      "title": "fix(actions): preserve checkpoint outcomes across retries (EN-2211)"
+    },
+    {
+      "number": 2101,
+      "title": "fix(antithesis): retry busy backup destinations (EN-2214)"
+    },
+    {
+      "number": 2095,
+      "title": "fix(antithesis): preserve reference outcomes across retries (EN-2209)"
+    },
+    {
+      "number": 2433,
+      "title": "fix: stop retrying maintenance rejections"
+    },
+    {
+      "number": 1934,
+      "title": "fix(events): retry failed sinks after startup"
+    },
+    {
+      "number": 2532,
+      "title": "chore(deps): update module golang.org/x/crypto to v0.59.0 [security] (release/v2.4)"
+    },
+    {
+      "number": 2504,
+      "title": "chore(deps): update actions/github-script action to v9 (main)"
+    },
+    {
+      "number": 2531,
+      "title": "chore(deps): update module golang.org/x/crypto to v0.59.0 [security] (release/v2.3)"
+    },
+    {
+      "number": 2530,
+      "title": "chore(deps): update module golang.org/x/crypto to v0.59.0 [security] (main)"
+    },
+    {
+      "number": 2528,
+      "title": "chore(deps): update cachix/install-nix-action action to v31.11.5 (main)"
+    },
+    {
+      "number": 2472,
+      "title": "fix(admission): preserve replay after metadata limits tighten"
+    },
+    {
+      "number": 1924,
+      "title": "refactor(plan): share technical proposal retry and cleanup lifecycle"
+    },
+    {
+      "number": 2380,
+      "title": "fix: retain membership outcomes across slow WAL persistence"
+    },
+    {
+      "number": 2503,
+      "title": "chore(deps): update github actions updates (main)"
+    },
+    {
+      "number": 2420,
+      "title": "fix: EN-3227 reset offline bootstrap staging"
+    },
+    {
+      "number": 2439,
+      "title": "fix: redact HTTP mirror transport credentials"
+    },
+    {
+      "number": 2368,
+      "title": "feat(operator): reconcile declarative ledger storage"
+    },
+    {
+      "number": 2424,
+      "title": "fix(operator): resume PVC cleanup after persisted scale-down"
+    },
+    {
+      "number": 2382,
+      "title": "fix(ledger): bound follower snapshot preparations"
+    },
+    {
+      "number": 2425,
+      "title": "fix(ledger): restore exact id filters for logs and transactions"
+    },
+    {
+      "number": 2492,
+      "title": "chore(deps): update github actions updates (release/v2.3) (major)"
+    },
+    {
+      "number": 2452,
+      "title": "fix(operator): recover committed promotions"
+    },
+    {
+      "number": 2357,
+      "title": "chore(deps): update cachix/install-nix-action action to v31.11.3"
+    },
+    {
+      "number": 2402,
+      "title": "fix: EN-3164 prevent ReadIndex context reuse after restart"
+    },
+    {
+      "number": 2513,
+      "title": "fix(deps): update security dependencies and exclude build binaries (v2.3)"
+    },
+    {
+      "number": 2478,
+      "title": "docs(admission): define replicated-policy validation boundary"
+    },
+    {
+      "number": 2346,
+      "title": "fix(http): EN-3103 classify bulk element errors like single requests"
+    },
+    {
+      "number": 2192,
+      "title": "fix(server): fail fast on a cluster-id mismatch while joining (EN-2738)"
+    },
+    {
+      "number": 2202,
+      "title": "fix(events): report sink startup failures in status"
+    },
+    {
+      "number": 2327,
+      "title": "feat(ledger): gate future Raft protocol capabilities"
+    },
+    {
+      "number": 2506,
+      "title": "chore(deps): update security updates [security] (release/v2.4)"
+    },
+    {
+      "number": 2514,
+      "title": "fix(deps): migrate Pulumi Vault to go-jose v4 (v2.3)"
+    },
+    {
+      "number": 2379,
+      "title": "feat(ledger): add snapshot donor fallback"
+    },
+    {
+      "number": 2287,
+      "title": "fix(config): reject overflowing byte sizes (EN-2924)"
+    },
+    {
+      "number": 2305,
+      "title": "fix(operator): retain TLS certificates during disable rollouts"
+    },
+    {
+      "number": 2493,
+      "title": "chore(deps): update security updates [security] (release/v2.4)"
+    },
+    {
+      "number": 2223,
+      "title": "fix(storage): re-apply the logs_blocks composite primary key when skipped"
+    },
+    {
+      "number": 2189,
+      "title": "fix(node): survive Raft transport connection restarts in callers of the shared peer connection"
+    },
+    {
+      "number": 2322,
+      "title": "fix(checker): EN-2971 report malformed projection keys"
+    },
+    {
+      "number": 2369,
+      "title": "chore(deps): update docker/login-action action to v4.7.0"
+    },
+    {
+      "number": 2408,
+      "title": "fix(cli): EN-2841 verify mutation response signatures"
+    },
+    {
+      "number": 2307,
+      "title": "chore(deps): update github actions updates"
+    },
+    {
+      "number": 2387,
+      "title": "fix(ledger): preserve unapplied Raft entries during compaction"
+    }
+  ],
+  "error": null
+}
+]

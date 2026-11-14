@@ -1,0 +1,1281 @@
+[
+{
+  "repo": "documenso/documenso",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:38Z",
+  "results": [
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 3024,
+      "title": "fix: migrate emails to jobs"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 1395,
+      "title": "feat: add template page"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:42Z",
+  "results": [
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 2977,
+      "title": "fix: rework stripe webhooks into idempotent subscription sync"
+    },
+    {
+      "number": 3135,
+      "title": "docs(api): document cancel endpoint and fix get-many body shape"
+    },
+    {
+      "number": 3024,
+      "title": "fix: migrate emails to jobs"
+    },
+    {
+      "number": 2892,
+      "title": "fix: add dynamic rate limits"
+    },
+    {
+      "number": 2657,
+      "title": "feat: add BullMQ background job provider with Bull Board dashboard"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 2564,
+      "title": "feat: add embedded envelopes"
+    },
+    {
+      "number": 1395,
+      "title": "feat: add template page"
+    },
+    {
+      "number": 1223,
+      "title": "feat: initial i18n marketing implementation"
+    },
+    {
+      "number": 846,
+      "title": "feat: account deletion"
+    },
+    {
+      "number": 384,
+      "title": "feat: add Stripe free tier subscription "
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:46Z",
+  "results": [
+    {
+      "number": 3591,
+      "title": "fix: normalise user and recipient emails to lowercase"
+    },
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 3331,
+      "title": "fix(i18n): add missing \"zu\" in German invite/reminder strings"
+    },
+    {
+      "number": 3008,
+      "title": "feat: allow additional envelope duplicate settings"
+    },
+    {
+      "number": 2841,
+      "title": "fix: remove duplicate loadingSpinnerGroup.destroy() in DROPDOWN sign"
+    },
+    {
+      "number": 2808,
+      "title": "fix(web): handle duplicate organization URL update errors gracefully"
+    },
+    {
+      "number": 3071,
+      "title": "fix(ui): improve destructive button contrast in dark mode"
+    },
+    {
+      "number": 3006,
+      "title": "fix: remove old dialogs"
+    },
+    {
+      "number": 2686,
+      "title": "fix: clean up duplicate dialogs"
+    },
+    {
+      "number": 3061,
+      "title": "Respect hidden sender details in document invite emails"
+    },
+    {
+      "number": 2954,
+      "title": "fix: update new quota and rates UX"
+    },
+    {
+      "number": 2355,
+      "title": "refactor: avoid recipient color duplication"
+    },
+    {
+      "number": 2816,
+      "title": "chore: update docs for self hosters"
+    },
+    {
+      "number": 3022,
+      "title": "chore: deprecate endpoints"
+    },
+    {
+      "number": 3031,
+      "title": "feat: add field multiselect"
+    },
+    {
+      "number": 3160,
+      "title": "fix: improve unified settings"
+    },
+    {
+      "number": 2984,
+      "title": "fix: only send S3 checksums when required to support S3-compatible storage"
+    },
+    {
+      "number": 2892,
+      "title": "fix: add dynamic rate limits"
+    },
+    {
+      "number": 2611,
+      "title": "feat: add organisation template type"
+    },
+    {
+      "number": 2728,
+      "title": "fix: render unicode characters in typed signatures"
+    },
+    {
+      "number": 2598,
+      "title": "perf: upgrade @libpdf/core to 0.3.3 and deduplicate font registration"
+    },
+    {
+      "number": 2503,
+      "title": "fix: simplify openapi field schemas to fix SDK generation"
+    },
+    {
+      "number": 3024,
+      "title": "fix: migrate emails to jobs"
+    },
+    {
+      "number": 2733,
+      "title": "feat: add envelope ids to certs"
+    },
+    {
+      "number": 2661,
+      "title": "feat: add ability to save documents as template"
+    },
+    {
+      "number": 2855,
+      "title": "fix: prevent division by zero in progress bar when requiredRecipientFields is empty"
+    },
+    {
+      "number": 2835,
+      "title": "fix: move document complete email to a job"
+    },
+    {
+      "number": 2830,
+      "title": "fix: improve field signing"
+    },
+    {
+      "number": 2645,
+      "title": "fix: replace linter with biome"
+    },
+    {
+      "number": 2739,
+      "title": "fix: remove envelope title cropping"
+    },
+    {
+      "number": 2715,
+      "title": "feat: add new field overflow methods"
+    },
+    {
+      "number": 2672,
+      "title": "fix: validate Resend API key before creating mail transport"
+    },
+    {
+      "number": 2554,
+      "title": "feat: add pdf image renderer"
+    },
+    {
+      "number": 2639,
+      "title": "feat: auto insert email and date fields"
+    },
+    {
+      "number": 2619,
+      "title": "perf: parallelize async operations in duplicateEnvelope"
+    },
+    {
+      "number": 2564,
+      "title": "feat: add embedded envelopes"
+    },
+    {
+      "number": 2170,
+      "title": "fix: remove redundant endpoint"
+    },
+    {
+      "number": 2369,
+      "title": "refactor: simplify field dialog component"
+    },
+    {
+      "number": 2693,
+      "title": "fix: lint project"
+    },
+    {
+      "number": 2557,
+      "title": "refactor: find envelopes"
+    },
+    {
+      "number": 1852,
+      "title": "fix: duplicate fields and recipients when you duplicate a document"
+    },
+    {
+      "number": 2288,
+      "title": "fix: translation extraction job"
+    },
+    {
+      "number": 2520,
+      "title": "feat: better ratelimiting"
+    },
+    {
+      "number": 1685,
+      "title": "fix: duplicate field bugs"
+    },
+    {
+      "number": 2038,
+      "title": "fix: allow dates with and without time"
+    },
+    {
+      "number": 2157,
+      "title": "fix: auto insert prefilled text and number fields"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 2271,
+      "title": "feat: add ai detection for recipients and fields"
+    },
+    {
+      "number": 2303,
+      "title": "fix: remove legacy envelope uploads"
+    },
+    {
+      "number": 2076,
+      "title": "fix: invalidate sessions on password reset and update"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:49Z",
+  "results": [
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 3057,
+      "title": "fix: improve editor autosave"
+    },
+    {
+      "number": 2852,
+      "title": "fix(prisma): stop large-team-seed running on import"
+    },
+    {
+      "number": 2482,
+      "title": "fix: envelope editor flush race condition"
+    },
+    {
+      "number": 2346,
+      "title": "feat: add license integration"
+    },
+    {
+      "number": 2728,
+      "title": "fix: render unicode characters in typed signatures"
+    },
+    {
+      "number": 2403,
+      "title": "refactor: replace pdf-sign with libpdf/core for PDF operations"
+    },
+    {
+      "number": 2602,
+      "title": "feat: add envelope pdf replacement"
+    },
+    {
+      "number": 1996,
+      "title": "fix: element visible race condition"
+    },
+    {
+      "number": 2076,
+      "title": "fix: invalidate sessions on password reset and update"
+    },
+    {
+      "number": 2564,
+      "title": "feat: add embedded envelopes"
+    },
+    {
+      "number": 2271,
+      "title": "feat: add ai detection for recipients and fields"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 2554,
+      "title": "feat: add pdf image renderer"
+    },
+    {
+      "number": 1593,
+      "title": "fix: unable to check on the checkbox field"
+    },
+    {
+      "number": 1469,
+      "title": "fix: z-index of field settings"
+    },
+    {
+      "number": 1416,
+      "title": "feat: add team user management endpoints to api"
+    },
+    {
+      "number": 1231,
+      "title": "chore: vial-blog"
+    },
+    {
+      "number": 1436,
+      "title": "chore: enable typed signature by default"
+    },
+    {
+      "number": 1191,
+      "title": "fix: show correct authentication action for account required"
+    },
+    {
+      "number": 1395,
+      "title": "feat: add template page"
+    },
+    {
+      "number": 1437,
+      "title": "feat: add document distribution setting"
+    },
+    {
+      "number": 713,
+      "title": "feat: add document search to the command menu"
+    },
+    {
+      "number": 1180,
+      "title": "feat: add public profiles"
+    },
+    {
+      "number": 989,
+      "title": "feat: add passkeys"
+    },
+    {
+      "number": 384,
+      "title": "feat: add Stripe free tier subscription "
+    },
+    {
+      "number": 537,
+      "title": "feat: templates"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:53Z",
+  "results": [
+    {
+      "number": 3057,
+      "title": "fix: improve editor autosave"
+    },
+    {
+      "number": 1290,
+      "title": "feat: signing order"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:56Z",
+  "results": [
+    {
+      "number": 3542,
+      "title": "fix: send test events only to the selected webhook"
+    },
+    {
+      "number": 3073,
+      "title": "fix: keep previous table data during pagination to avoid skeleton flash"
+    },
+    {
+      "number": 3166,
+      "title": "fix: block SSRF via IPv4-mapped IPv6 webhook URLs (#2901)"
+    },
+    {
+      "number": 3325,
+      "title": "docs: add externalId to send-for-signature workflow example"
+    },
+    {
+      "number": 3301,
+      "title": "feat: optimise posthog usage and add error tracking"
+    },
+    {
+      "number": 3132,
+      "title": "docs(webhooks): correct retry policy, timeout and payload reference"
+    },
+    {
+      "number": 3256,
+      "title": "fix(ui): add type=button to multiselect remove and clear buttons"
+    },
+    {
+      "number": 2998,
+      "title": "fix: include envelopeId in webhook payload"
+    },
+    {
+      "number": 3135,
+      "title": "docs(api): document cancel endpoint and fix get-many body shape"
+    },
+    {
+      "number": 2980,
+      "title": "fix: webhook payload contains stale deletedAt on document cancellation"
+    },
+    {
+      "number": 2977,
+      "title": "fix: rework stripe webhooks into idempotent subscription sync"
+    },
+    {
+      "number": 3076,
+      "title": "feat: redesign api tokens settings page"
+    },
+    {
+      "number": 2991,
+      "title": "fix: update stripe team member billing"
+    },
+    {
+      "number": 3068,
+      "title": "fix: replace tailwind class typos"
+    },
+    {
+      "number": 2877,
+      "title": "feat: add stripe sync"
+    },
+    {
+      "number": 2835,
+      "title": "fix: move document complete email to a job"
+    },
+    {
+      "number": 3128,
+      "title": "feat: unify settings"
+    },
+    {
+      "number": 2710,
+      "title": "fix: unwrap webhook payload before test and resend"
+    },
+    {
+      "number": 3024,
+      "title": "fix: migrate emails to jobs"
+    },
+    {
+      "number": 2654,
+      "title": "feat: webhook allow private hosts"
+    },
+    {
+      "number": 2784,
+      "title": "docs: implement global error handling and troubleshooting matrix"
+    },
+    {
+      "number": 2608,
+      "title": "fix: improve webhook execution"
+    },
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 2125,
+      "title": "feat: add more webhook events"
+    },
+    {
+      "number": 2706,
+      "title": "fix: don't block organisation member removal on billing checks"
+    },
+    {
+      "number": 2879,
+      "title": "fix: add temp email rate limit"
+    },
+    {
+      "number": 2931,
+      "title": "fix: add email disable flag"
+    },
+    {
+      "number": 2607,
+      "title": "perf: set global prisma transaction timeouts and reduce transaction scope"
+    },
+    {
+      "number": 2424,
+      "title": "fix: correct webhook event name in documentation"
+    },
+    {
+      "number": 2892,
+      "title": "fix: add dynamic rate limits"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 2483,
+      "title": "fix: revert canceled individual subscriptions to free claim"
+    },
+    {
+      "number": 2419,
+      "title": "fix: persist formValues in document creation endpoints"
+    },
+    {
+      "number": 2237,
+      "title": "feat: add webhook logs"
+    },
+    {
+      "number": 2236,
+      "title": "fix: optimize webhook routing"
+    },
+    {
+      "number": 2629,
+      "title": "feat: add page title translations"
+    },
+    {
+      "number": 2295,
+      "title": "fix: local job retry loop for webhook calls"
+    },
+    {
+      "number": 2208,
+      "title": "fix: viewed webhook had stale data"
+    },
+    {
+      "number": 2693,
+      "title": "fix: lint project"
+    },
+    {
+      "number": 2300,
+      "title": "chore: update existing pt-BR translations after commit #2289"
+    },
+    {
+      "number": 2165,
+      "title": "feat: add Portuguese (Brazil) translation support version 2.0.6"
+    },
+    {
+      "number": 1886,
+      "title": "feat: test webhook functionality"
+    },
+    {
+      "number": 1902,
+      "title": "docs: add test webhook section"
+    },
+    {
+      "number": 1955,
+      "title": "chore: add translations"
+    },
+    {
+      "number": 1795,
+      "title": "fix: improve multiselect for webhook triggers"
+    },
+    {
+      "number": 1789,
+      "title": "fix: trigger webhook for duplicated documents"
+    },
+    {
+      "number": 1694,
+      "title": "feat: migrate webhook execution to background jobs"
+    },
+    {
+      "number": 1721,
+      "title": "fix: duplicate webhook calls on document complete"
+    },
+    {
+      "number": 1820,
+      "title": "feat: add organisations"
+    },
+    {
+      "number": 1608,
+      "title": "chore: add cancelled webhook event"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:18:00Z",
+  "results": [
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 3057,
+      "title": "fix: improve editor autosave"
+    },
+    {
+      "number": 2967,
+      "title": "fix: correctly orphan envelopes and stripe cancel on delete"
+    },
+    {
+      "number": 2852,
+      "title": "fix(prisma): stop large-team-seed running on import"
+    },
+    {
+      "number": 2991,
+      "title": "fix: update stripe team member billing"
+    },
+    {
+      "number": 2728,
+      "title": "fix: render unicode characters in typed signatures"
+    },
+    {
+      "number": 2657,
+      "title": "feat: add BullMQ background job provider with Bull Board dashboard"
+    },
+    {
+      "number": 2082,
+      "title": "feat: add admin organisation creation with user"
+    },
+    {
+      "number": 2830,
+      "title": "fix: improve field signing"
+    },
+    {
+      "number": 2557,
+      "title": "refactor: find envelopes"
+    },
+    {
+      "number": 2602,
+      "title": "feat: add envelope pdf replacement"
+    },
+    {
+      "number": 2554,
+      "title": "feat: add pdf image renderer"
+    },
+    {
+      "number": 2403,
+      "title": "refactor: replace pdf-sign with libpdf/core for PDF operations"
+    },
+    {
+      "number": 2346,
+      "title": "feat: add license integration"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 2271,
+      "title": "feat: add ai detection for recipients and fields"
+    },
+    {
+      "number": 1491,
+      "title": "feat: support whitelabelling in the embedding"
+    },
+    {
+      "number": 1311,
+      "title": "feat: update createFields api endpoint"
+    },
+    {
+      "number": 1109,
+      "title": "feat: add visible completed fields"
+    },
+    {
+      "number": 990,
+      "title": "fix: remove duplicate neon pooler"
+    },
+    {
+      "number": 1388,
+      "title": "fix: improve lingui configuration"
+    },
+    {
+      "number": 1223,
+      "title": "feat: initial i18n marketing implementation"
+    },
+    {
+      "number": 1113,
+      "title": "fix: complete document when all recipients are CC"
+    },
+    {
+      "number": 1158,
+      "title": "fix: show field on pending document"
+    },
+    {
+      "number": 1395,
+      "title": "feat: add template page"
+    },
+    {
+      "number": 1228,
+      "title": "chore: team stuff"
+    },
+    {
+      "number": 1150,
+      "title": "feat: add user conversion count to admin panel"
+    },
+    {
+      "number": 1322,
+      "title": "feat: embed signing experience"
+    },
+    {
+      "number": 1290,
+      "title": "feat: signing order"
+    },
+    {
+      "number": 384,
+      "title": "feat: add Stripe free tier subscription "
+    },
+    {
+      "number": 734,
+      "title": "feat: add multi subscription support"
+    },
+    {
+      "number": 537,
+      "title": "feat: templates"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:18:04Z",
+  "results": [
+    {
+      "number": 2980,
+      "title": "fix: webhook payload contains stale deletedAt on document cancellation"
+    },
+    {
+      "number": 3228,
+      "title": "chore: add github action timeouts"
+    },
+    {
+      "number": 3057,
+      "title": "fix: improve editor autosave"
+    },
+    {
+      "number": 2868,
+      "title": "fix: use functional update in setSearchParams to prevent infinite re-render loop"
+    },
+    {
+      "number": 3160,
+      "title": "fix: improve unified settings"
+    },
+    {
+      "number": 2988,
+      "title": "fix: reconcile billing when stripe subscription is missing"
+    },
+    {
+      "number": 2633,
+      "title": "fix: stale envelope editor query"
+    },
+    {
+      "number": 2962,
+      "title": "fix: point Railway deploy button at the working template URL"
+    },
+    {
+      "number": 2592,
+      "title": "fix: move window.__ENV__ script before client bundle to prevent stale fallback"
+    },
+    {
+      "number": 3010,
+      "title": "fix: correctly use default distribute envelope tab"
+    },
+    {
+      "number": 3028,
+      "title": "fix: auto select field on drop"
+    },
+    {
+      "number": 3011,
+      "title": "fix: set send status on resend"
+    },
+    {
+      "number": 2991,
+      "title": "fix: update stripe team member billing"
+    },
+    {
+      "number": 2706,
+      "title": "fix: don't block organisation member removal on billing checks"
+    },
+    {
+      "number": 2699,
+      "title": "fix: brand logo caching"
+    },
+    {
+      "number": 2754,
+      "title": "feat: allow add myself feature for embeds"
+    },
+    {
+      "number": 2573,
+      "title": "fix: show current month data and add caching"
+    },
+    {
+      "number": 3024,
+      "title": "fix: migrate emails to jobs"
+    },
+    {
+      "number": 2730,
+      "title": "feat: add pending signed PDF downloads"
+    },
+    {
+      "number": 2208,
+      "title": "fix: viewed webhook had stale data"
+    },
+    {
+      "number": 2636,
+      "title": "fix: prevent managers from deleting admin invitations"
+    },
+    {
+      "number": 2558,
+      "title": "feat: add admin ability to move subscription between orgs"
+    },
+    {
+      "number": 2715,
+      "title": "feat: add new field overflow methods"
+    },
+    {
+      "number": 2554,
+      "title": "feat: add pdf image renderer"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 2482,
+      "title": "fix: envelope editor flush race condition"
+    },
+    {
+      "number": 2564,
+      "title": "feat: add embedded envelopes"
+    },
+    {
+      "number": 2639,
+      "title": "feat: auto insert email and date fields"
+    },
+    {
+      "number": 2376,
+      "title": "feat: implement template search functionality"
+    },
+    {
+      "number": 2581,
+      "title": "fix: performance improvements"
+    },
+    {
+      "number": 2602,
+      "title": "feat: add envelope pdf replacement"
+    },
+    {
+      "number": 2520,
+      "title": "feat: better ratelimiting"
+    },
+    {
+      "number": 2267,
+      "title": "feat: add empty emails for envelopes"
+    },
+    {
+      "number": 2271,
+      "title": "feat: add ai detection for recipients and fields"
+    },
+    {
+      "number": 1469,
+      "title": "fix: z-index of field settings"
+    },
+    {
+      "number": 1470,
+      "title": "feat: enable optional fields"
+    },
+    {
+      "number": 1419,
+      "title": "feat: open page api"
+    },
+    {
+      "number": 1195,
+      "title": "fix: limits syncing issue"
+    },
+    {
+      "number": 799,
+      "title": "chore: update the stale to prevent automatic closure of issues"
+    },
+    {
+      "number": 1300,
+      "title": "chore: upgrade next"
+    },
+    {
+      "number": 1391,
+      "title": "feat: add global settings for teams"
+    },
+    {
+      "number": 1472,
+      "title": "feat: signature rejection"
+    },
+    {
+      "number": 921,
+      "title": "fix: table layout shift while changing tabs"
+    },
+    {
+      "number": 1436,
+      "title": "chore: enable typed signature by default"
+    },
+    {
+      "number": 1376,
+      "title": "feat: add custom font sizes to fields"
+    },
+    {
+      "number": 273,
+      "title": "feat: feature flags"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:18:07Z",
+  "results": [
+    {
+      "number": 2841,
+      "title": "fix: remove duplicate loadingSpinnerGroup.destroy() in DROPDOWN sign"
+    },
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 2672,
+      "title": "fix: validate Resend API key before creating mail transport"
+    },
+    {
+      "number": 2076,
+      "title": "fix: invalidate sessions on password reset and update"
+    },
+    {
+      "number": 2564,
+      "title": "feat: add embedded envelopes"
+    },
+    {
+      "number": 2519,
+      "title": "feat: per-recipient envelope expiration"
+    },
+    {
+      "number": 1721,
+      "title": "fix: duplicate webhook calls on document complete"
+    },
+    {
+      "number": 1352,
+      "title": "chore: add document visibility section"
+    },
+    {
+      "number": 1436,
+      "title": "chore: enable typed signature by default"
+    },
+    {
+      "number": 1391,
+      "title": "feat: add global settings for teams"
+    },
+    {
+      "number": 1485,
+      "title": "chore: add translations"
+    },
+    {
+      "number": 1440,
+      "title": "feat: add certificate translations"
+    },
+    {
+      "number": 1433,
+      "title": "chore: add translations"
+    },
+    {
+      "number": 1472,
+      "title": "feat: signature rejection"
+    },
+    {
+      "number": 990,
+      "title": "fix: remove duplicate neon pooler"
+    },
+    {
+      "number": 1346,
+      "title": "feat: allow editing pending documents"
+    },
+    {
+      "number": 912,
+      "title": "feat: add team templates"
+    },
+    {
+      "number": 338,
+      "title": "feat: use nextjs.js standalone output for improvised docker image"
+    },
+    {
+      "number": 257,
+      "title": "Feat/onepage"
+    },
+    {
+      "number": 1141,
+      "title": "chore: add more field types"
+    },
+    {
+      "number": 537,
+      "title": "feat: templates"
+    },
+    {
+      "number": 374,
+      "title": "feat: vercel build script"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "documenso/documenso",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo documenso/documenso --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:18:11Z",
+  "results": [
+    {
+      "number": 3591,
+      "title": "fix: normalise user and recipient emails to lowercase"
+    },
+    {
+      "number": 3583,
+      "title": "fix: open sign field dialogs on pointerclick so inputs autofocus"
+    },
+    {
+      "number": 3137,
+      "title": "docs(getting-started): fix distribute route, pagination and retry advice"
+    },
+    {
+      "number": 3574,
+      "title": "chore: parallelise tests"
+    },
+    {
+      "number": 3602,
+      "title": "chore: upgrade deps"
+    },
+    {
+      "number": 3589,
+      "title": "fix: allow hiding the download button in embed signing"
+    },
+    {
+      "number": 3585,
+      "title": "fix: keep template field labels when prefill omits them"
+    },
+    {
+      "number": 3603,
+      "title": "chore: extract translations"
+    },
+    {
+      "number": 3601,
+      "title": "chore: update Polish translation"
+    },
+    {
+      "number": 3132,
+      "title": "docs(webhooks): correct retry policy, timeout and payload reference"
+    },
+    {
+      "number": 3582,
+      "title": "fix: respect document timezone in read-only date fields"
+    },
+    {
+      "number": 3590,
+      "title": "fix: correctly allow enterprise to bypass limits"
+    },
+    {
+      "number": 3542,
+      "title": "fix: send test events only to the selected webhook"
+    },
+    {
+      "number": 3528,
+      "title": "fix: open the 2fa code step when email is the only method"
+    },
+    {
+      "number": 3527,
+      "title": "fix: format prefilled dates with the document date format"
+    },
+    {
+      "number": 3573,
+      "title": "chore: skip the triage label for roadmap app issues"
+    },
+    {
+      "number": 3522,
+      "title": "fix(ui): ignore presses that start outside the signature pad"
+    },
+    {
+      "number": 3536,
+      "title": "chore: remove redundant waitForTimeout calls"
+    },
+    {
+      "number": 3499,
+      "title": "fix: clarify sender details setting"
+    },
+    {
+      "number": 3526,
+      "title": "fix: prevent implicit form submission in editor field settings"
+    },
+    {
+      "number": 3518,
+      "title": "fix: disable signing when undo clears the signature pad"
+    },
+    {
+      "number": 3504,
+      "title": "fix: improve text field signing ux"
+    },
+    {
+      "number": 3529,
+      "title": "chore: update document visibility tooltip"
+    },
+    {
+      "number": 3506,
+      "title": "chore: upgrade playwright and npm audit"
+    },
+    {
+      "number": 3473,
+      "title": "feat: add sort option for folders"
+    },
+    {
+      "number": 3471,
+      "title": "chore: update AGENTS.md"
+    },
+    {
+      "number": 3470,
+      "title": "fix: don't remove passkeys on user disable"
+    },
+    {
+      "number": 3469,
+      "title": "chore: update signing reminder docs"
+    },
+    {
+      "number": 3465,
+      "title": "feat: persist signatures for authless embed signers"
+    },
+    {
+      "number": 3474,
+      "title": "feat: add handwriting font option for initials fields"
+    },
+    {
+      "number": 3424,
+      "title": "fix(i18n): add missing plural to analytics"
+    },
+    {
+      "number": 3412,
+      "title": "fix: use branding primary color for field loading spinner"
+    },
+    {
+      "number": 3448,
+      "title": "chore: upgrade libpdf"
+    },
+    {
+      "number": 3446,
+      "title": "feat: disable accounts on report and show new account warning"
+    },
+    {
+      "number": 3395,
+      "title": "feat: add content fields"
+    },
+    {
+      "number": 3441,
+      "title": "fix: remove minio from development compose"
+    },
+    {
+      "number": 3438,
+      "title": "fix(i18n): translate pending signing email subject"
+    },
+    {
+      "number": 3472,
+      "title": "chore: docs/update enterprise edition"
+    },
+    {
+      "number": 3430,
+      "title": "chore: upgrade libpdf and critical deps"
+    },
+    {
+      "number": 3416,
+      "title": "fix: use placeholder for stored sso client secret"
+    },
+    {
+      "number": 3429,
+      "title": "fix: support cross-site authentication in embeds"
+    },
+    {
+      "number": 3417,
+      "title": "fix: allow v1 multisign completion with empty optional fields"
+    },
+    {
+      "number": 3423,
+      "title": "feat: add sender disabled view to signing link"
+    },
+    {
+      "number": 3431,
+      "title": "fix: reset field metadata when changing field type"
+    },
+    {
+      "number": 3420,
+      "title": "feat: allow admins to force remove non-completed recipients"
+    },
+    {
+      "number": 3419,
+      "title": "fix: update legal links on recipient routes"
+    },
+    {
+      "number": 3421,
+      "title": "fix(i18n): mark for translation admin stats table name"
+    },
+    {
+      "number": 3414,
+      "title": "fix: send notification on limits change"
+    },
+    {
+      "number": 3413,
+      "title": "docs: add data-readonly and correct field color example"
+    },
+    {
+      "number": 3411,
+      "title": "fix: prevent recipients who already signed from rejecting documents"
+    }
+  ],
+  "error": null
+}
+]

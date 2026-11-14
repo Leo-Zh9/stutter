@@ -1,0 +1,1841 @@
+[
+{
+  "repo": "getlago/lago-api",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:41Z",
+  "results": [
+    {
+      "number": 6948,
+      "title": "test(x402): Give the mainnet replay spec its request key"
+    },
+    {
+      "number": 6911,
+      "title": "fix(x402): Answer a credit purchase replay only under its request's key"
+    },
+    {
+      "number": 7063,
+      "title": "fix(payments): Refresh reused pending payment before charging"
+    },
+    {
+      "number": 6996,
+      "title": "fix(payments): answer payment provider refusals as third-party failures"
+    },
+    {
+      "number": 6443,
+      "title": "fix(stripe): skip and recover refunds stripe cannot accept"
+    },
+    {
+      "number": 6526,
+      "title": "feat(x402): Add address and payment digest helpers"
+    },
+    {
+      "number": 6550,
+      "title": "feat(x402): Add x402 connections and settlements"
+    },
+    {
+      "number": 5864,
+      "title": "fix: discard Idempotency::IdempotencyError for RecalculateAndCheckJob"
+    },
+    {
+      "number": 6393,
+      "title": "feat(catalog): create product metered fees from billing segments"
+    },
+    {
+      "number": 6545,
+      "title": "fix(billing): Deduplicate advance product fees"
+    },
+    {
+      "number": 6319,
+      "title": "fix(events): fail closed when the enqueue fails"
+    },
+    {
+      "number": 5982,
+      "title": "fix(payments-syncs): Support payments sync on async resolution paths"
+    },
+    {
+      "number": 5917,
+      "title": "perf(activity-logs): add external id bloom filter indexes"
+    },
+    {
+      "number": 6075,
+      "title": "feat(orders): execute subscription_creation orders"
+    },
+    {
+      "number": 5708,
+      "title": "fix: prevent double-charge from open Stripe checkout sessions"
+    },
+    {
+      "number": 5475,
+      "title": "feat(payment-gated-subs): add Adyen payment cancel service"
+    },
+    {
+      "number": 5386,
+      "title": "misc(invoices): Backfill updated_at from metadata"
+    },
+    {
+      "number": 5450,
+      "title": "fix(netsuite-integration): wait 5 minutes between Net::ReadTimeout retries for invoices"
+    },
+    {
+      "number": 5354,
+      "title": "feat(payment-gated-subs): add payment resolution flow for gated subscriptions"
+    },
+    {
+      "number": 5464,
+      "title": "feat(payment-gated-subs): add Stripe payment cancel service"
+    },
+    {
+      "number": 5273,
+      "title": "chore(wallet): improve wallet traceability migration rake task"
+    },
+    {
+      "number": 5426,
+      "title": "fix(clickhouse): Speedup events enriched deduplication"
+    },
+    {
+      "number": 4744,
+      "title": "misc(clickhouse): Add optional ArgMax deduplication"
+    },
+    {
+      "number": 4361,
+      "title": "fix(progressive_billing): Avoid parallel processing"
+    },
+    {
+      "number": 3494,
+      "title": "feat(Idempotency): introduce IdempotencyRecord"
+    },
+    {
+      "number": 3609,
+      "title": "feat(Idempotency): Add values to error message"
+    },
+    {
+      "number": 3630,
+      "title": "chore(logs): Log when idempotency record is not unique"
+    },
+    {
+      "number": 3893,
+      "title": "fix(progressive_billing): Avoid checking threshold on terminated subscriptions"
+    },
+    {
+      "number": 3579,
+      "title": "chore(organization): Add organization_id to idempotency_records table"
+    },
+    {
+      "number": 3578,
+      "title": "feat(Idempotency): Detect early returns and raise an error"
+    },
+    {
+      "number": 3526,
+      "title": "feat(ProgressiveBilling) - Add Idempotency.transaction to progressive billing service"
+    },
+    {
+      "number": 3694,
+      "title": "fix(estimate fees): return 1 unit for estimate count_aggr"
+    },
+    {
+      "number": 2986,
+      "title": "misc(PaymentRequest): Apply payment idempotency refactor"
+    },
+    {
+      "number": 3518,
+      "title": "feat(payment-urls): Store payment url"
+    },
+    {
+      "number": 2962,
+      "title": "misc(payment): Rely on payment provider idempotency"
+    },
+    {
+      "number": 3154,
+      "title": "bug(GracePeriod) - Make grace period update async for increased reliability"
+    },
+    {
+      "number": 2812,
+      "title": "improvement(Cascade) - Improve cascade jobs by passing in the expected amount_cents"
+    },
+    {
+      "number": 1985,
+      "title": "fix(stripe): Handle IdempotencyError when creating customer"
+    },
+    {
+      "number": 674,
+      "title": "feat (invoices): handle payment retry for specific invoice"
+    },
+    {
+      "number": 709,
+      "title": "feat (invoices): add support for invoice listing and single(batch) retry"
+    },
+    {
+      "number": 80,
+      "title": "T 997 api terminate a subscription"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:44Z",
+  "results": [
+    {
+      "number": 6987,
+      "title": "docs(agents): Require rake tasks for one-off data fixes"
+    },
+    {
+      "number": 6677,
+      "title": "feat(x402): Pay x402 credit invoices with the settled payment"
+    },
+    {
+      "number": 6145,
+      "title": "fix(seeds): make email activity logs idempotent"
+    },
+    {
+      "number": 7012,
+      "title": "fix(usage-monitoring): Announce thresholds missed before the baseline"
+    },
+    {
+      "number": 6819,
+      "title": "feat(credit-notes): apply contract credits to later invoices"
+    },
+    {
+      "number": 6631,
+      "title": "feat(account-tree): add logic for creating attribution values on ingestion"
+    },
+    {
+      "number": 6860,
+      "title": "feat(alerts): evaluate wallet alerts from a Kafka consumer"
+    },
+    {
+      "number": 6542,
+      "title": "feat(db): enforce retryable concurrent migrations"
+    },
+    {
+      "number": 6443,
+      "title": "fix(stripe): skip and recover refunds stripe cannot accept"
+    },
+    {
+      "number": 6142,
+      "title": "feat(payment_terms): Backfill customers and billing_entities"
+    },
+    {
+      "number": 6728,
+      "title": "feat(x402): Finish x402 invoice payments from reconciliation"
+    },
+    {
+      "number": 6421,
+      "title": "feat(account-tree): add attribution_labels to events_enriched"
+    },
+    {
+      "number": 6233,
+      "title": "feat(payment_terms): Subscription resolution level"
+    },
+    {
+      "number": 6162,
+      "title": "[LAGO-1326] feat(orders): add the execute REST endpoint"
+    },
+    {
+      "number": 6218,
+      "title": "fix(invoices): relax the search terms refresh lock"
+    },
+    {
+      "number": 6128,
+      "title": "fix(charges): Skip existing child charges in cascade"
+    },
+    {
+      "number": 6262,
+      "title": "feat(usage): serve usage from ClickHouse buckets [ING-586]"
+    },
+    {
+      "number": 6275,
+      "title": "fix(daily-usages): stop leaking the compute lock"
+    },
+    {
+      "number": 6155,
+      "title": "feat(invoices): backfill search_terms on existing invoices"
+    },
+    {
+      "number": 6093,
+      "title": "feat(taxes): retry void job on aggregator errors"
+    },
+    {
+      "number": 5978,
+      "title": "fix(stripe-webhooks): Remove transaction from PaymentProviderCustomers::Stripe::UpdatePaymentMethodService"
+    },
+    {
+      "number": 5855,
+      "title": "feat(superset): add guest token mutation"
+    },
+    {
+      "number": 6053,
+      "title": "fix(wallets): Use linear retry backoff on wallet refresh throttling"
+    },
+    {
+      "number": 5913,
+      "title": "fix: refactor query for removing billable metric events"
+    },
+    {
+      "number": 5917,
+      "title": "perf(activity-logs): add external id bloom filter indexes"
+    },
+    {
+      "number": 6157,
+      "title": "fix(charge_filters): cascade by filter code"
+    },
+    {
+      "number": 6185,
+      "title": "feat(quotes): let a quote state its billing entity and deal currency"
+    },
+    {
+      "number": 5838,
+      "title": "[BIL-253] fix(fees): Speed up list endpoint for large organizations"
+    },
+    {
+      "number": 5105,
+      "title": "fix(charge): Make check constraint migration idempotent"
+    },
+    {
+      "number": 5627,
+      "title": "fix(daily-usages): compute subs with time-dependent charges"
+    },
+    {
+      "number": 5391,
+      "title": "fix(eu-tax): Resolve EU tax from customer country backfill task"
+    },
+    {
+      "number": 5398,
+      "title": "fix(stripe-webhooks): Stripe webhook jobs errors for parallel processing"
+    },
+    {
+      "number": 5386,
+      "title": "misc(invoices): Backfill updated_at from metadata"
+    },
+    {
+      "number": 5450,
+      "title": "fix(netsuite-integration): wait 5 minutes between Net::ReadTimeout retries for invoices"
+    },
+    {
+      "number": 4871,
+      "title": "fix(migrations): make fixed charges boundaries index migration idempotent"
+    },
+    {
+      "number": 5439,
+      "title": "misc(invoices): Remove one-off updated_at backfill task"
+    },
+    {
+      "number": 5159,
+      "title": "fix(daily-usage): prevent duplicate ComputeAllDailyUsagesJob runs"
+    },
+    {
+      "number": 5463,
+      "title": "fix(wallets): Refresh ongoing balances on lifecycle changes"
+    },
+    {
+      "number": 5215,
+      "title": "fix(vies): standardize VIES check across all invoice creation paths"
+    },
+    {
+      "number": 4885,
+      "title": "fix(xero): Fix `external_id` usage in Xero item fetch"
+    },
+    {
+      "number": 4361,
+      "title": "fix(progressive_billing): Avoid parallel processing"
+    },
+    {
+      "number": 4568,
+      "title": "Feat/e invoices payments"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:49Z",
+  "results": [
+    {
+      "number": 6609,
+      "title": "fix(billing): Correct duplicate unique fees"
+    },
+    {
+      "number": 7134,
+      "title": "fix(email): Auto retry on SocketError"
+    },
+    {
+      "number": 6848,
+      "title": "fix(billing_entities): dedupe tax codes after normalizing case"
+    },
+    {
+      "number": 7049,
+      "title": "fix(subscriptions): match the renewal on the trial end day, not the run day"
+    },
+    {
+      "number": 6757,
+      "title": "fix(auth): match user emails case-insensitively"
+    },
+    {
+      "number": 6361,
+      "title": "[ING-504] fix(alerts): report duplicate wallet alert codes on the code field"
+    },
+    {
+      "number": 6774,
+      "title": "feat(x402): Require allowed origins on x402 connections"
+    },
+    {
+      "number": 6679,
+      "title": "test(billing): cover advance pricing changes"
+    },
+    {
+      "number": 6612,
+      "title": "fix(billing): unique count timestamp"
+    },
+    {
+      "number": 6592,
+      "title": "refactor(fees): extract advance fee attachment"
+    },
+    {
+      "number": 7112,
+      "title": "fix(subscriptions): scope the trial-end biller to subscriptions in trial"
+    },
+    {
+      "number": 6631,
+      "title": "feat(account-tree): add logic for creating attribution values on ingestion"
+    },
+    {
+      "number": 6545,
+      "title": "fix(billing): Deduplicate advance product fees"
+    },
+    {
+      "number": 6809,
+      "title": "feat(billing): reuse previous subscription snapshots"
+    },
+    {
+      "number": 6454,
+      "title": "feat(taxes): support catalog plan taxes"
+    },
+    {
+      "number": 6744,
+      "title": "feat(fees): persist billing timing and filter values on product fees"
+    },
+    {
+      "number": 6759,
+      "title": "feat(invoices): add the v2 invoice serializer"
+    },
+    {
+      "number": 6881,
+      "title": "feat(account-tree): implement attributed usage caching for the read path"
+    },
+    {
+      "number": 6082,
+      "title": "[ING-504] fix(alerts): make wallet alert codes unique"
+    },
+    {
+      "number": 6870,
+      "title": "feat: add v2 billing entity endpoints"
+    },
+    {
+      "number": 6658,
+      "title": "feat(account-tree): remove deduplication"
+    },
+    {
+      "number": 6643,
+      "title": "perf(usage): keep scan rows between usage reads"
+    },
+    {
+      "number": 7026,
+      "title": "feat: add v2 endpoints for events"
+    },
+    {
+      "number": 7051,
+      "title": "refactor(mailers): share the Lago logo header"
+    },
+    {
+      "number": 6485,
+      "title": "fix(subscriptions): prevent concurrent termination"
+    },
+    {
+      "number": 6371,
+      "title": "fix: Make contract billing migration retryable"
+    },
+    {
+      "number": 6464,
+      "title": "feat(catalog): copy plan phases onto contract cards"
+    },
+    {
+      "number": 6721,
+      "title": "feat(billing): ING-208 reuse previous subscription snapshots"
+    },
+    {
+      "number": 6379,
+      "title": "feat(alerts): accept and return notify_on over REST"
+    },
+    {
+      "number": 6728,
+      "title": "feat(x402): Finish x402 invoice payments from reconciliation"
+    },
+    {
+      "number": 6365,
+      "title": "misc(clickhouse): remove enriched expanded dedup"
+    },
+    {
+      "number": 6436,
+      "title": "feat(usage): expose hourly usage in GraphQL [ING-712]"
+    },
+    {
+      "number": 6459,
+      "title": "feat(usage): compare bucket and events store usage [ING-590]"
+    },
+    {
+      "number": 6460,
+      "title": "fix(usage): serve buckets for deduplicating orgs"
+    },
+    {
+      "number": 6322,
+      "title": "fix(billing): skip no-op fixed charge unit updates"
+    },
+    {
+      "number": 6252,
+      "title": "perf(specs): Clean up factories usage in spec/specs in directories s-w"
+    },
+    {
+      "number": 6248,
+      "title": "perf(specs): Clean up factories usage in spec/specs in directories a-e"
+    },
+    {
+      "number": 6251,
+      "title": "perf(specs): Clean up factories usage in spec/specs in directories p-r"
+    },
+    {
+      "number": 6253,
+      "title": "perf(specs): Clean up factories usage in spec/jobs"
+    },
+    {
+      "number": 6250,
+      "title": "perf(specs): Clean up factories usage in spec/specs in directories k-o"
+    },
+    {
+      "number": 6718,
+      "title": "feat(billing): compare pay in advance usage"
+    },
+    {
+      "number": 6245,
+      "title": "perf(specs): Clean up factories usage in spec/graphql"
+    },
+    {
+      "number": 6247,
+      "title": "perf(specs): Clean up factories usage in spec/serializers"
+    },
+    {
+      "number": 6246,
+      "title": "perf(specs): Clean up factories usage in spec/requests"
+    },
+    {
+      "number": 6243,
+      "title": "perf(specs): Clean up factories usage in spec/models"
+    },
+    {
+      "number": 6362,
+      "title": "perf(plans): Optimize subscription and invoice counts"
+    },
+    {
+      "number": 6370,
+      "title": "misc(clickhouse): remove the enriched events store"
+    },
+    {
+      "number": 6656,
+      "title": "fix(alerts): Do not re-fire a reached recurring threshold"
+    },
+    {
+      "number": 6249,
+      "title": "perf(specs): Clean up factories usage in spec/specs in directories f-j"
+    },
+    {
+      "number": 6942,
+      "title": "fix(events): group whitespace-only values with missing ones"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:53Z",
+  "results": [
+    {
+      "number": 7000,
+      "title": "fix(api): answer writes that race past uniqueness checks as 4xx"
+    },
+    {
+      "number": 7104,
+      "title": "feat(realtime-usage): compare recurring charges in parity task"
+    },
+    {
+      "number": 7040,
+      "title": "feat(signup): confirm the signup link and create the user [ING-824]"
+    },
+    {
+      "number": 6713,
+      "title": "feat(account-tree): add limitation for most instances"
+    },
+    {
+      "number": 6911,
+      "title": "fix(x402): Answer a credit purchase replay only under its request's key"
+    },
+    {
+      "number": 6799,
+      "title": "feat(catalog): Emit product catalog events"
+    },
+    {
+      "number": 6953,
+      "title": "fix(wallets): flag wallet refresh when a draft invoice is finalized or deleted"
+    },
+    {
+      "number": 6614,
+      "title": "feat(x402): Resolve agent customers and subscriptions"
+    },
+    {
+      "number": 6575,
+      "title": "feat(billing): read recurring sums from a snapshot"
+    },
+    {
+      "number": 6617,
+      "title": "feat(x402): Grant credits for settled purchases"
+    },
+    {
+      "number": 6783,
+      "title": "feat(contracts): bill recurring usage and persist advance state"
+    },
+    {
+      "number": 6727,
+      "title": "feat(x402): Settle invoice payments sent to x402 payment links"
+    },
+    {
+      "number": 7074,
+      "title": "fix(api_keys): keep a stale key out of the cache after invalidation"
+    },
+    {
+      "number": 6598,
+      "title": "feat(x402): Add the x402 settle pipeline"
+    },
+    {
+      "number": 6459,
+      "title": "feat(usage): compare bucket and events store usage [ING-590]"
+    },
+    {
+      "number": 6406,
+      "title": "feat(catalog): block metric filter edits that orphan product filters"
+    },
+    {
+      "number": 6728,
+      "title": "feat(x402): Finish x402 invoice payments from reconciliation"
+    },
+    {
+      "number": 6130,
+      "title": "[ING-507] fix(alerts): lock the alert while evaluating"
+    },
+    {
+      "number": 6232,
+      "title": "feat(payment_terms): Group or split invoices depending on payment_term"
+    },
+    {
+      "number": 6946,
+      "title": "fix(vies): keep retrying VIES checks after network errors"
+    },
+    {
+      "number": 6570,
+      "title": "feat(billing): ING-208 persist recurring snapshots"
+    },
+    {
+      "number": 5980,
+      "title": "fix(applied-coupons): Wrap up applying coupons with advisory lock to avoid race conditions"
+    },
+    {
+      "number": 6146,
+      "title": "fix(invitation): handle existing users"
+    },
+    {
+      "number": 6621,
+      "title": "perf(usage): cache the usage pre-filter for 5s"
+    },
+    {
+      "number": 6319,
+      "title": "fix(events): fail closed when the enqueue fails"
+    },
+    {
+      "number": 6361,
+      "title": "[ING-504] fix(alerts): report duplicate wallet alert codes on the code field"
+    },
+    {
+      "number": 6544,
+      "title": "fix(contracts): activate contracts on their start"
+    },
+    {
+      "number": 6322,
+      "title": "fix(billing): skip no-op fixed charge unit updates"
+    },
+    {
+      "number": 6284,
+      "title": "feat(exports): expose deleted rows to the pipeline"
+    },
+    {
+      "number": 6164,
+      "title": "feat(subscriptions): Allow cancelling incomplete subscriptions"
+    },
+    {
+      "number": 6606,
+      "title": "fix(docker): stop the base ENTRYPOINT from swallowing command overrides"
+    },
+    {
+      "number": 5929,
+      "title": "fix(entitlement): skip discarded features in payload"
+    },
+    {
+      "number": 6114,
+      "title": "fix(payments): allow 3DS retry on activation payments"
+    },
+    {
+      "number": 5978,
+      "title": "fix(stripe-webhooks): Remove transaction from PaymentProviderCustomers::Stripe::UpdatePaymentMethodService"
+    },
+    {
+      "number": 5931,
+      "title": "fix(payments): delay auto-payment for hosted-checkout customers"
+    },
+    {
+      "number": 5495,
+      "title": "fix(invoices): race condition on void calls"
+    },
+    {
+      "number": 5966,
+      "title": "fix(payments): scope checkout delay to manual wallet top-ups"
+    },
+    {
+      "number": 5959,
+      "title": "[ING-483] fix(cache): Ensure correct cache expiration with clickhouse"
+    },
+    {
+      "number": 5708,
+      "title": "fix: prevent double-charge from open Stripe checkout sessions"
+    },
+    {
+      "number": 5709,
+      "title": "fix(subscription): switch to cancellation_reason column"
+    },
+    {
+      "number": 5705,
+      "title": "fix(subscription): add cancellation_reason column (expand step)"
+    },
+    {
+      "number": 5578,
+      "title": "feat(payment-gated-subs): add polymorphic refundable to refunds"
+    },
+    {
+      "number": 5259,
+      "title": "feat(customer-multi-currencies): Adjust dunning campaigns and payment requests"
+    },
+    {
+      "number": 5523,
+      "title": "Fix(finalization): fix double invoice finalization"
+    },
+    {
+      "number": 5305,
+      "title": "fix(invoices): Prevent duplicate PullTaxesAndApplyJob processing"
+    },
+    {
+      "number": 5015,
+      "title": "fix: attempt to fix race condition"
+    },
+    {
+      "number": 5020,
+      "title": "fix: coupons and credit notes race condition fix"
+    },
+    {
+      "number": 5842,
+      "title": "feat(products): add rate overrides on rate phases"
+    },
+    {
+      "number": 5519,
+      "title": "feat(payment-gated-subs): expire incomplete subscriptions on timeout"
+    },
+    {
+      "number": 5223,
+      "title": "fix (multiple-payment-methods): refactor fetch default PM flow"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:15:56Z",
+  "results": [
+    {
+      "number": 6631,
+      "title": "feat(account-tree): add logic for creating attribution values on ingestion"
+    },
+    {
+      "number": 6314,
+      "title": "feat(events): recover missing pay-in-advance fees"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:00Z",
+  "results": [
+    {
+      "number": 7075,
+      "title": "feat(webhooks): Sign deliveries with Standard Webhooks"
+    },
+    {
+      "number": 7076,
+      "title": "feat(webhooks): Expose signing keys on GraphQL webhook endpoints"
+    },
+    {
+      "number": 6961,
+      "title": "refactor(webhooks): default webhook bodies to webhook: true [BIL-973]"
+    },
+    {
+      "number": 7078,
+      "title": "feat(webhooks): Add signing_keys expansion to v2 webhook endpoints"
+    },
+    {
+      "number": 6992,
+      "title": "feat(webhooks): serve webhook endpoints on API v2"
+    },
+    {
+      "number": 6920,
+      "title": "chore(webhooks): deprecate fee.tax_provider_error webhook"
+    },
+    {
+      "number": 7027,
+      "title": "feat(webhooks): Expose Standard Webhooks secret in v1 endpoint show"
+    },
+    {
+      "number": 6952,
+      "title": "refactor(webhooks): declare webhook expansions on serializers [BIL-973]"
+    },
+    {
+      "number": 6957,
+      "title": "fix(payments): scope webhook payable lookups to the webhook organization"
+    },
+    {
+      "number": 6853,
+      "title": "feat(webhooks): prioritize usage threshold and depletion webhooks"
+    },
+    {
+      "number": 6857,
+      "title": "feat(webhooks): add a dedicated worker for usage alert webhooks"
+    },
+    {
+      "number": 7067,
+      "title": "refactor(organizations): Update webhook endpoint via its services"
+    },
+    {
+      "number": 6822,
+      "title": "fix(webhooks): keep alert webhook retries on the high priority queue"
+    },
+    {
+      "number": 7077,
+      "title": "feat(webhooks): Return signing keys in the v1 endpoints API"
+    },
+    {
+      "number": 6520,
+      "title": "feat(webhooks): add high priority webhook queue"
+    },
+    {
+      "number": 6958,
+      "title": "test(payments): cover organization scoping in webhook event handlers"
+    },
+    {
+      "number": 7015,
+      "title": "fix(webhooks): Fall back to the next address when one is unreachable"
+    },
+    {
+      "number": 7033,
+      "title": "Bind verified Flutterwave transactions to payables"
+    },
+    {
+      "number": 6807,
+      "title": "fix(webhooks): Remove the former refund failure job name"
+    },
+    {
+      "number": 6812,
+      "title": "fix(webhooks): include taxes in catalog plan.deleted"
+    },
+    {
+      "number": 6640,
+      "title": "feat(webhooks): Add catalog event definitions"
+    },
+    {
+      "number": 6768,
+      "title": "feat(webhooks): send the v2 body for catalog invoices"
+    },
+    {
+      "number": 6806,
+      "title": "fix(webhooks): Enqueue the current refund failure event name"
+    },
+    {
+      "number": 6947,
+      "title": "feat: add v2 payment requests endpoints"
+    },
+    {
+      "number": 6756,
+      "title": "fix(webhooks): Align credit note refund failure event type"
+    },
+    {
+      "number": 6815,
+      "title": "feat(api): render deleted_at on v2 records [BIL-230]"
+    },
+    {
+      "number": 6832,
+      "title": "feat(webhooks): send the v2 fee body in fee.created"
+    },
+    {
+      "number": 6730,
+      "title": "docs(agents): Document worktree specs and webhook payload checks"
+    },
+    {
+      "number": 6873,
+      "title": "feat(api): render v2 tax timestamps to the microsecond [BIL-231]"
+    },
+    {
+      "number": 6916,
+      "title": "fix(webhooks): group plan rate card and contract events in their own categories"
+    },
+    {
+      "number": 6759,
+      "title": "feat(invoices): add the v2 invoice serializer"
+    },
+    {
+      "number": 6306,
+      "title": "feat(coupons): Add lifecycle webhooks"
+    },
+    {
+      "number": 7091,
+      "title": "fix(payments): Set failed status on GoCardless and Adyen refusals"
+    },
+    {
+      "number": 6373,
+      "title": "feat(alerts): send the alert.resolved webhook"
+    },
+    {
+      "number": 6799,
+      "title": "feat(catalog): Emit product catalog events"
+    },
+    {
+      "number": 6308,
+      "title": "feat(add_ons): Add lifecycle webhooks"
+    },
+    {
+      "number": 6752,
+      "title": "fix(security): mask payment provider credentials returned by GraphQL"
+    },
+    {
+      "number": 6991,
+      "title": "fix(documents): Upload files before attaching them"
+    },
+    {
+      "number": 6829,
+      "title": "feat(api): move v2 controllers onto serializable_with [BIL-230]"
+    },
+    {
+      "number": 6754,
+      "title": "fix(security): remove the unused gRPC token endpoint"
+    },
+    {
+      "number": 6987,
+      "title": "docs(agents): Require rake tasks for one-off data fixes"
+    },
+    {
+      "number": 6655,
+      "title": "test(stripe): isolate dispute closed spec org"
+    },
+    {
+      "number": 6946,
+      "title": "fix(vies): keep retrying VIES checks after network errors"
+    },
+    {
+      "number": 6996,
+      "title": "fix(payments): answer payment provider refusals as third-party failures"
+    },
+    {
+      "number": 7011,
+      "title": "fix(specs): Reset WebMock callbacks after each example"
+    },
+    {
+      "number": 6935,
+      "title": "feat: add v2 payments endpoints"
+    },
+    {
+      "number": 6912,
+      "title": "feat: add v2 organization endpoints"
+    },
+    {
+      "number": 7017,
+      "title": "fix(activity-logs): Restore the refund failure activity type"
+    },
+    {
+      "number": 6874,
+      "title": "feat(api): render v2 rate card timestamps to the microsecond [BIL-231]"
+    },
+    {
+      "number": 6872,
+      "title": "feat(api): render v2 product timestamps to the microsecond [BIL-231]"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:04Z",
+  "results": [
+    {
+      "number": 6542,
+      "title": "feat(db): enforce retryable concurrent migrations"
+    },
+    {
+      "number": 6485,
+      "title": "fix(subscriptions): prevent concurrent termination"
+    },
+    {
+      "number": 7094,
+      "title": "fix(docker): drop the dev Gemfile.lock that gems ship"
+    },
+    {
+      "number": 7000,
+      "title": "fix(api): answer writes that race past uniqueness checks as 4xx"
+    },
+    {
+      "number": 6937,
+      "title": "perf(api): index invoices on organization and created_at [BIL-740]"
+    },
+    {
+      "number": 6947,
+      "title": "feat: add v2 payment requests endpoints"
+    },
+    {
+      "number": 7040,
+      "title": "feat(signup): confirm the signup link and create the user [ING-824]"
+    },
+    {
+      "number": 7093,
+      "title": "fix(boot): use a private TMPDIR when /tmp is a non-sticky emptyDir"
+    },
+    {
+      "number": 6891,
+      "title": "perf(usage): Add triggered_at index to triggered alerts"
+    },
+    {
+      "number": 6670,
+      "title": "fix(security): hold customer locks for the whole locked block"
+    },
+    {
+      "number": 6713,
+      "title": "feat(account-tree): add limitation for most instances"
+    },
+    {
+      "number": 6513,
+      "title": "perf(db): add v2 catalog cursor indexes [BIL-228]"
+    },
+    {
+      "number": 6540,
+      "title": "fix(db): make fee provenance migration retryable"
+    },
+    {
+      "number": 6889,
+      "title": "feat(customers): serve customer payments on API v2"
+    },
+    {
+      "number": 6923,
+      "title": "feat(payment_receipts): list payment receipts on API v2"
+    },
+    {
+      "number": 6567,
+      "title": "feat(billing): ING-208 add recurring agg snapshots"
+    },
+    {
+      "number": 6564,
+      "title": "feat(x402): Add x402 columns to customers, wallets and invoices"
+    },
+    {
+      "number": 6857,
+      "title": "feat(webhooks): add a dedicated worker for usage alert webhooks"
+    },
+    {
+      "number": 6953,
+      "title": "fix(wallets): flag wallet refresh when a draft invoice is finalized or deleted"
+    },
+    {
+      "number": 6819,
+      "title": "feat(credit-notes): apply contract credits to later invoices"
+    },
+    {
+      "number": 6545,
+      "title": "fix(billing): Deduplicate advance product fees"
+    },
+    {
+      "number": 7014,
+      "title": "fix(invoices): Add list order indexes for type and overdue filters"
+    },
+    {
+      "number": 6550,
+      "title": "feat(x402): Add x402 connections and settlements"
+    },
+    {
+      "number": 6760,
+      "title": "feat(fees): add the product fees query"
+    },
+    {
+      "number": 6851,
+      "title": "fix(billing): serialize contract advance aggregation state"
+    },
+    {
+      "number": 6728,
+      "title": "feat(x402): Finish x402 invoice payments from reconciliation"
+    },
+    {
+      "number": 6799,
+      "title": "feat(catalog): Emit product catalog events"
+    },
+    {
+      "number": 7043,
+      "title": "feat(signup): sign up with a company Google account [ING-817]"
+    },
+    {
+      "number": 6887,
+      "title": "perf(billing): fetch snapshots once, lazily"
+    },
+    {
+      "number": 6712,
+      "title": "docs(agents): Add review checklist and spec habits"
+    },
+    {
+      "number": 6651,
+      "title": "feat(x402): Reconcile pending x402 settlements from the chain"
+    },
+    {
+      "number": 6614,
+      "title": "feat(x402): Resolve agent customers and subscriptions"
+    },
+    {
+      "number": 6996,
+      "title": "fix(payments): answer payment provider refusals as third-party failures"
+    },
+    {
+      "number": 6904,
+      "title": "feat(api): add native v2 credit note endpoints"
+    },
+    {
+      "number": 6617,
+      "title": "feat(x402): Grant credits for settled purchases"
+    },
+    {
+      "number": 6673,
+      "title": "fix(security): throttle auth mutations and stop password reset email enumeration"
+    },
+    {
+      "number": 7075,
+      "title": "feat(webhooks): Sign deliveries with Standard Webhooks"
+    },
+    {
+      "number": 6636,
+      "title": "feat(x402): Verify x402 connections against CDP on save"
+    },
+    {
+      "number": 6575,
+      "title": "feat(billing): read recurring sums from a snapshot"
+    },
+    {
+      "number": 6611,
+      "title": "feat(x402): Add the x402 reservation counter"
+    },
+    {
+      "number": 6893,
+      "title": "feat(api): filter native v2 lists on created_at [BIL-740]"
+    },
+    {
+      "number": 6462,
+      "title": "perf(billing): index billing segments awaiting invoicing"
+    },
+    {
+      "number": 6453,
+      "title": "feat(wallets): refresh wallets from usage triggers [ING-632]"
+    },
+    {
+      "number": 6515,
+      "title": "feat(api): cursor paginate v2 catalog [BIL-228]"
+    },
+    {
+      "number": 6416,
+      "title": "fix(payments): cancel abandoned provider redirects"
+    },
+    {
+      "number": 6130,
+      "title": "[ING-507] fix(alerts): lock the alert while evaluating"
+    },
+    {
+      "number": 6568,
+      "title": "feat(billing): ING-208 add recurring snapshot services"
+    },
+    {
+      "number": 6476,
+      "title": "feat(billing): bill advance contracts on creation"
+    },
+    {
+      "number": 6297,
+      "title": "feat(streaming): store where an organization's events should be streamed"
+    },
+    {
+      "number": 6775,
+      "title": "feat(x402): Verify agent sign-ins at the gate check"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:08Z",
+  "results": [
+    {
+      "number": 7074,
+      "title": "fix(api_keys): keep a stale key out of the cache after invalidation"
+    },
+    {
+      "number": 6546,
+      "title": "fix(ci): Detect stale model annotations"
+    },
+    {
+      "number": 6338,
+      "title": "refactor(catalog): drop stale pricing_type/plan_id ignores"
+    },
+    {
+      "number": 7045,
+      "title": "fix: stub correct Nango endpoints in specs"
+    },
+    {
+      "number": 7064,
+      "title": "fix(realtime-usage): group buckets on charge keys"
+    },
+    {
+      "number": 6905,
+      "title": "fix(billing): recompute usage on Lifetime Usage check retry"
+    },
+    {
+      "number": 6946,
+      "title": "fix(vies): keep retrying VIES checks after network errors"
+    },
+    {
+      "number": 7063,
+      "title": "fix(payments): Refresh reused pending payment before charging"
+    },
+    {
+      "number": 6954,
+      "title": "fix(wallets): flag wallet refresh when a draft gets provider taxes"
+    },
+    {
+      "number": 7042,
+      "title": "feat(auth): log in self-serve users who have no organization [ING-827]"
+    },
+    {
+      "number": 6732,
+      "title": "perf(billing): load previous subscription snapshots once"
+    },
+    {
+      "number": 7062,
+      "title": "feat(billing): prune old recurring snapshot periods"
+    },
+    {
+      "number": 6953,
+      "title": "fix(wallets): flag wallet refresh when a draft invoice is finalized or deleted"
+    },
+    {
+      "number": 6651,
+      "title": "feat(x402): Reconcile pending x402 settlements from the chain"
+    },
+    {
+      "number": 6616,
+      "title": "fix(payments): cancel open payment on void or paid"
+    },
+    {
+      "number": 6631,
+      "title": "feat(account-tree): add logic for creating attribution values on ingestion"
+    },
+    {
+      "number": 6711,
+      "title": "feat(billing): read weighted sum from snapshots"
+    },
+    {
+      "number": 6881,
+      "title": "feat(account-tree): implement attributed usage caching for the read path"
+    },
+    {
+      "number": 6682,
+      "title": "Correct weighted usage boundary precision"
+    },
+    {
+      "number": 6643,
+      "title": "perf(usage): keep scan rows between usage reads"
+    },
+    {
+      "number": 6575,
+      "title": "feat(billing): read recurring sums from a snapshot"
+    },
+    {
+      "number": 6430,
+      "title": "[ING-711] feat(alerts): expose the evaluation state on the dashboard schema"
+    },
+    {
+      "number": 6677,
+      "title": "feat(x402): Pay x402 credit invoices with the settled payment"
+    },
+    {
+      "number": 6837,
+      "title": "feat(taxes): keep custom taxes on non EU customers without tax ID"
+    },
+    {
+      "number": 6453,
+      "title": "feat(wallets): refresh wallets from usage triggers [ING-632]"
+    },
+    {
+      "number": 6568,
+      "title": "feat(billing): ING-208 add recurring snapshot services"
+    },
+    {
+      "number": 6485,
+      "title": "fix(subscriptions): prevent concurrent termination"
+    },
+    {
+      "number": 6725,
+      "title": "fix(events): ING-749 group missing and blank values together on Postgres"
+    },
+    {
+      "number": 6544,
+      "title": "fix(contracts): activate contracts on their start"
+    },
+    {
+      "number": 6721,
+      "title": "feat(billing): ING-208 reuse previous subscription snapshots"
+    },
+    {
+      "number": 6186,
+      "title": "feat(payment_terms): Dual-write to alias and jsonb"
+    },
+    {
+      "number": 6799,
+      "title": "feat(catalog): Emit product catalog events"
+    },
+    {
+      "number": 6390,
+      "title": "misc(cache): remove lazy charge usage cache flag"
+    },
+    {
+      "number": 6428,
+      "title": "refactor(usage): let a store answer precomputed [ING-586]"
+    },
+    {
+      "number": 6460,
+      "title": "fix(usage): serve buckets for deduplicating orgs"
+    },
+    {
+      "number": 6250,
+      "title": "perf(specs): Clean up factories usage in spec/specs in directories k-o"
+    },
+    {
+      "number": 6399,
+      "title": "[ING-684] perf(db): tune events analyze trigger"
+    },
+    {
+      "number": 6404,
+      "title": "fix: Retire forecasted usage endpoints"
+    },
+    {
+      "number": 6268,
+      "title": "feat(usage): route current usage to the buckets [ING-586]"
+    },
+    {
+      "number": 6243,
+      "title": "perf(specs): Clean up factories usage in spec/models"
+    },
+    {
+      "number": 6256,
+      "title": "feat: resolve taxes for product fees"
+    },
+    {
+      "number": 7036,
+      "title": "feat(signup): add self-serve gate and refuse legacy signup [ING-807]"
+    },
+    {
+      "number": 6262,
+      "title": "feat(usage): serve usage from ClickHouse buckets [ING-586]"
+    },
+    {
+      "number": 6416,
+      "title": "fix(payments): cancel abandoned provider redirects"
+    },
+    {
+      "number": 6860,
+      "title": "feat(alerts): evaluate wallet alerts from a Kafka consumer"
+    },
+    {
+      "number": 6570,
+      "title": "feat(billing): ING-208 persist recurring snapshots"
+    },
+    {
+      "number": 6633,
+      "title": "perf(usage): read the pre-filter incrementally"
+    },
+    {
+      "number": 6219,
+      "title": "perf(cache): cache full usage under a dedicated key"
+    },
+    {
+      "number": 6200,
+      "title": "feat(payment_terms): PDF and e-invoice updates"
+    },
+    {
+      "number": 6490,
+      "title": "feat(catalog): allow editing active contracts"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:12Z",
+  "results": [
+    {
+      "number": 7029,
+      "title": "chore(deps): bump test-prof to 1.6.4"
+    },
+    {
+      "number": 7132,
+      "title": "fix(license): retry the license check on transient errors"
+    },
+    {
+      "number": 6951,
+      "title": "fix(invoices): check trial at billing time on draft refresh"
+    },
+    {
+      "number": 7049,
+      "title": "fix(subscriptions): match the renewal on the trial end day, not the run day"
+    },
+    {
+      "number": 7072,
+      "title": "test(realtime-usage): add recurring sum bucket scenarios"
+    },
+    {
+      "number": 7024,
+      "title": "fix(clickhouse): Drop snapshots on store switch"
+    },
+    {
+      "number": 7075,
+      "title": "feat(webhooks): Sign deliveries with Standard Webhooks"
+    },
+    {
+      "number": 6575,
+      "title": "feat(billing): read recurring sums from a snapshot"
+    },
+    {
+      "number": 7118,
+      "title": "feat(payments): let one-off invoices skip the auto-payment delay"
+    },
+    {
+      "number": 6717,
+      "title": "feat(billing): compare snapshot usage"
+    },
+    {
+      "number": 7041,
+      "title": "feat(signup): limit how often a signup link can be resent [ING-825]"
+    },
+    {
+      "number": 6809,
+      "title": "feat(billing): reuse previous subscription snapshots"
+    },
+    {
+      "number": 6688,
+      "title": "feat(invoices): finalize contract invoices"
+    },
+    {
+      "number": 6721,
+      "title": "feat(billing): ING-208 reuse previous subscription snapshots"
+    },
+    {
+      "number": 6860,
+      "title": "feat(alerts): evaluate wallet alerts from a Kafka consumer"
+    },
+    {
+      "number": 7015,
+      "title": "fix(webhooks): Fall back to the next address when one is unreachable"
+    },
+    {
+      "number": 6910,
+      "title": "feat(account-tree): page through the filters of a split charge"
+    },
+    {
+      "number": 6656,
+      "title": "fix(alerts): Do not re-fire a reached recurring threshold"
+    },
+    {
+      "number": 6569,
+      "title": "test(fixed-charges): freeze time in emit events spec"
+    },
+    {
+      "number": 6246,
+      "title": "perf(specs): Clean up factories usage in spec/requests"
+    },
+    {
+      "number": 7096,
+      "title": "fix(events): show product events in the developer panel"
+    },
+    {
+      "number": 7104,
+      "title": "feat(realtime-usage): compare recurring charges in parity task"
+    },
+    {
+      "number": 6727,
+      "title": "feat(x402): Settle invoice payments sent to x402 payment links"
+    },
+    {
+      "number": 6762,
+      "title": "feat(api): support issuing date and mixed directions in cursor pagination"
+    },
+    {
+      "number": 6527,
+      "title": "fix(filters): bill events on one filter [ING-733]"
+    },
+    {
+      "number": 6881,
+      "title": "feat(account-tree): implement attributed usage caching for the read path"
+    },
+    {
+      "number": 6701,
+      "title": "feat(invoices): apply plan v2 design to catalog PDF"
+    },
+    {
+      "number": 6459,
+      "title": "feat(usage): compare bucket and events store usage [ING-590]"
+    },
+    {
+      "number": 6216,
+      "title": "perf(graphql): Batch plan counts with Dataloader"
+    },
+    {
+      "number": 6279,
+      "title": "feat(contracts): attach rate cards over REST"
+    },
+    {
+      "number": 6245,
+      "title": "perf(specs): Clean up factories usage in spec/graphql"
+    },
+    {
+      "number": 7059,
+      "title": "feat(contracts): add usage GraphQL queries"
+    },
+    {
+      "number": 6356,
+      "title": "fix: correct progressive billing coupon credits"
+    },
+    {
+      "number": 6321,
+      "title": "perf(events): scope fee recovery per subscription"
+    },
+    {
+      "number": 6476,
+      "title": "feat(billing): bill advance contracts on creation"
+    },
+    {
+      "number": 6251,
+      "title": "perf(specs): Clean up factories usage in spec/specs in directories p-r"
+    },
+    {
+      "number": 6407,
+      "title": "feat(contracts): expose billing, invoicing & payment settings"
+    },
+    {
+      "number": 6422,
+      "title": "feat(fees): support products and plans pay-in-advance"
+    },
+    {
+      "number": 6414,
+      "title": "refactor(billing): Use metered items for pay-in-advance"
+    },
+    {
+      "number": 6439,
+      "title": "refactor(usage): serve every current usage window [ING-587]"
+    },
+    {
+      "number": 6817,
+      "title": "feat(realtime-usage): add organization-wide real-time usage reports"
+    },
+    {
+      "number": 6128,
+      "title": "fix(charges): Skip existing child charges in cascade"
+    },
+    {
+      "number": 6173,
+      "title": "fix(billing): avoid overlaping on anniversary charges periods"
+    },
+    {
+      "number": 6133,
+      "title": "[ING-545] feat(alerts): expose notify_on on the dashboard schema"
+    },
+    {
+      "number": 6887,
+      "title": "perf(billing): fetch snapshots once, lazily"
+    },
+    {
+      "number": 6094,
+      "title": "fix(wallet): preserve billable metric limitations when applies_to is omitted"
+    },
+    {
+      "number": 6258,
+      "title": "perf(events): produce raw events without a key"
+    },
+    {
+      "number": 5982,
+      "title": "fix(payments-syncs): Support payments sync on async resolution paths"
+    },
+    {
+      "number": 6570,
+      "title": "feat(billing): ING-208 persist recurring snapshots"
+    },
+    {
+      "number": 5949,
+      "title": "chore(clickhouse): Improve clickhouse dedup perf by using FINAL"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "getlago/lago-api",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo getlago/lago-api --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:16:16Z",
+  "results": [
+    {
+      "number": 7134,
+      "title": "fix(email): Auto retry on SocketError"
+    },
+    {
+      "number": 7132,
+      "title": "fix(license): retry the license check on transient errors"
+    },
+    {
+      "number": 6905,
+      "title": "fix(billing): recompute usage on Lifetime Usage check retry"
+    },
+    {
+      "number": 6822,
+      "title": "fix(webhooks): keep alert webhook retries on the high priority queue"
+    },
+    {
+      "number": 6664,
+      "title": "feat(x402): Grant reconciled credit purchases and retry failed grants"
+    },
+    {
+      "number": 6444,
+      "title": "fix(stripe): scope dispute webhooks and retry api errors"
+    },
+    {
+      "number": 7091,
+      "title": "fix(payments): Set failed status on GoCardless and Adyen refusals"
+    },
+    {
+      "number": 7039,
+      "title": "feat(signup): email a verification link before creating users [ING-821]"
+    },
+    {
+      "number": 6946,
+      "title": "fix(vies): keep retrying VIES checks after network errors"
+    },
+    {
+      "number": 6765,
+      "title": "feat(invoices): serve catalog invoice actions on API v2"
+    },
+    {
+      "number": 7015,
+      "title": "fix(webhooks): Fall back to the next address when one is unreachable"
+    },
+    {
+      "number": 6908,
+      "title": "fix(integrations): raise RequestLimitError on provider request limits"
+    },
+    {
+      "number": 7040,
+      "title": "feat(signup): confirm the signup link and create the user [ING-824]"
+    },
+    {
+      "number": 6790,
+      "title": "feat(invoices): serve invoice update, delete and disputes on API v2"
+    },
+    {
+      "number": 7063,
+      "title": "fix(payments): Refresh reused pending payment before charging"
+    },
+    {
+      "number": 6911,
+      "title": "fix(x402): Answer a credit purchase replay only under its request's key"
+    },
+    {
+      "number": 7075,
+      "title": "feat(webhooks): Sign deliveries with Standard Webhooks"
+    },
+    {
+      "number": 7018,
+      "title": "test(x402): Remove the query plan assertion from the reconcile job spec"
+    },
+    {
+      "number": 6728,
+      "title": "feat(x402): Finish x402 invoice payments from reconciliation"
+    },
+    {
+      "number": 6994,
+      "title": "feat(billing): backfill recurring snapshots"
+    },
+    {
+      "number": 6727,
+      "title": "feat(x402): Settle invoice payments sent to x402 payment links"
+    },
+    {
+      "number": 6689,
+      "title": "feat(billing): publish finalized contract invoices"
+    },
+    {
+      "number": 6998,
+      "title": "fix(contracts): answer transient tax provider errors on current usage"
+    },
+    {
+      "number": 6819,
+      "title": "feat(credit-notes): apply contract credits to later invoices"
+    },
+    {
+      "number": 7041,
+      "title": "feat(signup): limit how often a signup link can be resent [ING-825]"
+    },
+    {
+      "number": 6223,
+      "title": "fix(stripe-customer-balance): implement auto payment retry for canceled intent with customer balance"
+    },
+    {
+      "number": 6616,
+      "title": "fix(payments): cancel open payment on void or paid"
+    },
+    {
+      "number": 6631,
+      "title": "feat(account-tree): add logic for creating attribution values on ingestion"
+    },
+    {
+      "number": 6663,
+      "title": "fix(db): Load the schema into POSTGRES_SCHEMA"
+    },
+    {
+      "number": 6975,
+      "title": "fix(api_keys): keep the API key lookup retryable on connection loss"
+    },
+    {
+      "number": 7062,
+      "title": "feat(billing): prune old recurring snapshot periods"
+    },
+    {
+      "number": 6114,
+      "title": "fix(payments): allow 3DS retry on activation payments"
+    },
+    {
+      "number": 6996,
+      "title": "fix(payments): answer payment provider refusals as third-party failures"
+    },
+    {
+      "number": 6891,
+      "title": "perf(usage): Add triggered_at index to triggered alerts"
+    },
+    {
+      "number": 6935,
+      "title": "feat: add v2 payments endpoints"
+    },
+    {
+      "number": 6093,
+      "title": "feat(taxes): retry void job on aggregator errors"
+    },
+    {
+      "number": 6860,
+      "title": "feat(alerts): evaluate wallet alerts from a Kafka consumer"
+    },
+    {
+      "number": 6769,
+      "title": "test(invoices): bill a contract invoice and drive it through API v2"
+    },
+    {
+      "number": 6039,
+      "title": "fix(search): Retry invoice index failures"
+    },
+    {
+      "number": 6907,
+      "title": "fix(contracts): return 429 when a tax provider throttles current usage"
+    },
+    {
+      "number": 6231,
+      "title": "feat(payment_terms): Add payment_term to subscriptions and wallets"
+    },
+    {
+      "number": 6540,
+      "title": "fix(db): make fee provenance migration retryable"
+    },
+    {
+      "number": 7000,
+      "title": "fix(api): answer writes that race past uniqueness checks as 4xx"
+    },
+    {
+      "number": 6767,
+      "title": "fix(invoices): answer 404 to v1-only invoice routes on API v2"
+    },
+    {
+      "number": 6443,
+      "title": "fix(stripe): skip and recover refunds stripe cannot accept"
+    },
+    {
+      "number": 6567,
+      "title": "feat(billing): ING-208 add recurring agg snapshots"
+    },
+    {
+      "number": 6529,
+      "title": "feat(x402): Add Coinbase CDP facilitator adapter"
+    },
+    {
+      "number": 6520,
+      "title": "feat(webhooks): add high priority webhook queue"
+    },
+    {
+      "number": 6857,
+      "title": "feat(webhooks): add a dedicated worker for usage alert webhooks"
+    },
+    {
+      "number": 6919,
+      "title": "fix(customers): reject unknown integration types before writing"
+    }
+  ],
+  "error": null
+}
+]

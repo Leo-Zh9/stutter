@@ -1,0 +1,1484 @@
+[
+{
+  "repo": "papermark/papermark",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:01Z",
+  "results": [
+    {
+      "number": 2067,
+      "title": "Dataroom upload notifications"
+    },
+    {
+      "number": 2087,
+      "title": "fix: slugify cjk names"
+    },
+    {
+      "number": 2148,
+      "title": "feat: improve large document uploads"
+    },
+    {
+      "number": 1973,
+      "title": "Premium vs plus features"
+    },
+    {
+      "number": 1880,
+      "title": "feat: improve pause function"
+    },
+    {
+      "number": 1926,
+      "title": "feat: add support for keynote files"
+    },
+    {
+      "number": 1919,
+      "title": "fix"
+    },
+    {
+      "number": 1885,
+      "title": "Stop trial expiration emails for paying users"
+    },
+    {
+      "number": 2130,
+      "title": "feat: upgrade trigger to v4"
+    },
+    {
+      "number": 1972,
+      "title": "feat(ee): expand ai capabilities"
+    },
+    {
+      "number": 1879,
+      "title": "feat: improve document processing"
+    },
+    {
+      "number": 1874,
+      "title": "feat: add ratelimiting"
+    },
+    {
+      "number": 1817,
+      "title": "fix: update pause behavior"
+    },
+    {
+      "number": 1965,
+      "title": "feat: improve pause limits"
+    },
+    {
+      "number": 1794,
+      "title": "feat(ee): notify team members of new conversation messages 311d"
+    },
+    {
+      "number": 1788,
+      "title": "feat: add cancel export button and recent exports"
+    },
+    {
+      "number": 1804,
+      "title": "feat: export custom fields as label value pairs 79e5"
+    },
+    {
+      "number": 1933,
+      "title": "feat(ee): dataroom invitations"
+    },
+    {
+      "number": 1915,
+      "title": "feat: updates to dataroom templates"
+    },
+    {
+      "number": 1920,
+      "title": "Iuliia fixes"
+    },
+    {
+      "number": 1762,
+      "title": "Export document visits to tinybird asynchronously"
+    },
+    {
+      "number": 1953,
+      "title": "feat(ee): add chat agent"
+    },
+    {
+      "number": 1802,
+      "title": "Feat: Slack native integration"
+    },
+    {
+      "number": 1778,
+      "title": "fix: improve code coverage"
+    },
+    {
+      "number": 1797,
+      "title": "feat: v1 cancel"
+    },
+    {
+      "number": 1801,
+      "title": "feat: emails updates and new emails"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:04Z",
+  "results": [
+    {
+      "number": 2148,
+      "title": "feat: improve large document uploads"
+    },
+    {
+      "number": 2157,
+      "title": "feat: improve bulk download"
+    },
+    {
+      "number": 2087,
+      "title": "fix: slugify cjk names"
+    },
+    {
+      "number": 2149,
+      "title": "Papermark fixes"
+    },
+    {
+      "number": 2049,
+      "title": "fix: notion value.value return"
+    },
+    {
+      "number": 2067,
+      "title": "Dataroom upload notifications"
+    },
+    {
+      "number": 2159,
+      "title": "feat(ee): add downloadable archive"
+    },
+    {
+      "number": 1880,
+      "title": "feat: improve pause function"
+    },
+    {
+      "number": 1849,
+      "title": "feat: delete convo endpoint"
+    },
+    {
+      "number": 1915,
+      "title": "feat: updates to dataroom templates"
+    },
+    {
+      "number": 1953,
+      "title": "feat(ee): add chat agent"
+    },
+    {
+      "number": 1933,
+      "title": "feat(ee): dataroom invitations"
+    },
+    {
+      "number": 1762,
+      "title": "Export document visits to tinybird asynchronously"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:08Z",
+  "results": [
+    {
+      "number": 2103,
+      "title": "Duplicated link properties"
+    },
+    {
+      "number": 2171,
+      "title": "fix: add to allow list"
+    },
+    {
+      "number": 2146,
+      "title": "feat: visitor upload notifications"
+    },
+    {
+      "number": 2111,
+      "title": "fix: move folder"
+    },
+    {
+      "number": 2070,
+      "title": "Domain validation data leak"
+    },
+    {
+      "number": 2072,
+      "title": "Document versioning resource"
+    },
+    {
+      "number": 1886,
+      "title": "Duplicate permission group for duplicated links"
+    },
+    {
+      "number": 2164,
+      "title": "feat: multi folder upload permission"
+    },
+    {
+      "number": 2076,
+      "title": "fix: download document from link"
+    },
+    {
+      "number": 2127,
+      "title": "fix: link permission groups not taking effect (stale ISR pages)"
+    },
+    {
+      "number": 2058,
+      "title": "feat: add ownerId to link"
+    },
+    {
+      "number": 2126,
+      "title": "fix: get request for settings"
+    },
+    {
+      "number": 2079,
+      "title": "fix: jackson db error"
+    },
+    {
+      "number": 2156,
+      "title": "Small improvements"
+    },
+    {
+      "number": 2138,
+      "title": "feat:new plan"
+    },
+    {
+      "number": 2052,
+      "title": "Improve domain modal validation and feedback experience"
+    },
+    {
+      "number": 2041,
+      "title": "Deal flow info"
+    },
+    {
+      "number": 1965,
+      "title": "feat: improve pause limits"
+    },
+    {
+      "number": 2147,
+      "title": "Add support for .log files as download-only documents"
+    },
+    {
+      "number": 2077,
+      "title": "Dataroom viewer background color"
+    },
+    {
+      "number": 2067,
+      "title": "Dataroom upload notifications"
+    },
+    {
+      "number": 2125,
+      "title": "feat: improve bulk upload notifications"
+    },
+    {
+      "number": 2091,
+      "title": "chore: update robots"
+    },
+    {
+      "number": 1963,
+      "title": "Fix data room brand logo"
+    },
+    {
+      "number": 2055,
+      "title": "fix: require force dynamic on jackson routes"
+    },
+    {
+      "number": 2004,
+      "title": "Dataroom upload visibility"
+    },
+    {
+      "number": 2141,
+      "title": "feat: verify page to match login"
+    },
+    {
+      "number": 1996,
+      "title": "Regular pricing and components"
+    },
+    {
+      "number": 2087,
+      "title": "fix: slugify cjk names"
+    },
+    {
+      "number": 2093,
+      "title": "feat: add notification settings for visitors"
+    },
+    {
+      "number": 2153,
+      "title": "feat: dataroom sidebar"
+    },
+    {
+      "number": 2108,
+      "title": "Dataroom session invalidation"
+    },
+    {
+      "number": 1998,
+      "title": "Hidden documents page"
+    },
+    {
+      "number": 2096,
+      "title": "File upload authentication bypass"
+    },
+    {
+      "number": 1989,
+      "title": "Datarooms API duration"
+    },
+    {
+      "number": 2073,
+      "title": "Visitor groups access"
+    },
+    {
+      "number": 2047,
+      "title": "fix: add relative download url and otp for downloads page"
+    },
+    {
+      "number": 2149,
+      "title": "Papermark fixes"
+    },
+    {
+      "number": 2102,
+      "title": "feat(ee): improve agents"
+    },
+    {
+      "number": 2061,
+      "title": "Dataroom download content"
+    },
+    {
+      "number": 2157,
+      "title": "feat: improve bulk download"
+    },
+    {
+      "number": 2050,
+      "title": "Deleted link slug handling"
+    },
+    {
+      "number": 2109,
+      "title": "Excel advanced mode preview"
+    },
+    {
+      "number": 2148,
+      "title": "feat: improve large document uploads"
+    },
+    {
+      "number": 2100,
+      "title": "Docx sanitizer additions"
+    },
+    {
+      "number": 2159,
+      "title": "feat(ee): add downloadable archive"
+    },
+    {
+      "number": 2031,
+      "title": "feat: add show individual downloads"
+    },
+    {
+      "number": 2064,
+      "title": "Dataroom bulk download"
+    },
+    {
+      "number": 2060,
+      "title": "feat(analytics): add Link Updated"
+    },
+    {
+      "number": 2130,
+      "title": "feat: upgrade trigger to v4"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:12Z",
+  "results": [
+    {
+      "number": 2170,
+      "title": "fix: send emails without race condition"
+    },
+    {
+      "number": 2127,
+      "title": "fix: link permission groups not taking effect (stale ISR pages)"
+    },
+    {
+      "number": 2148,
+      "title": "feat: improve large document uploads"
+    },
+    {
+      "number": 2096,
+      "title": "File upload authentication bypass"
+    },
+    {
+      "number": 2125,
+      "title": "feat: improve bulk upload notifications"
+    },
+    {
+      "number": 2071,
+      "title": "Custom domain slug handling"
+    },
+    {
+      "number": 2093,
+      "title": "feat: add notification settings for visitors"
+    },
+    {
+      "number": 2052,
+      "title": "Improve domain modal validation and feedback experience"
+    },
+    {
+      "number": 2007,
+      "title": "feat: add email code"
+    },
+    {
+      "number": 2055,
+      "title": "fix: require force dynamic on jackson routes"
+    },
+    {
+      "number": 2156,
+      "title": "Small improvements"
+    },
+    {
+      "number": 2067,
+      "title": "Dataroom upload notifications"
+    },
+    {
+      "number": 1898,
+      "title": "feat: datarooms folders"
+    },
+    {
+      "number": 1883,
+      "title": "feat: show archived links on documents"
+    },
+    {
+      "number": 2053,
+      "title": "SAML SCIM integration"
+    },
+    {
+      "number": 2159,
+      "title": "feat(ee): add downloadable archive"
+    },
+    {
+      "number": 1970,
+      "title": "feat: update email sending and newsletter subscription"
+    },
+    {
+      "number": 1666,
+      "title": "feat: add msg file to document types"
+    },
+    {
+      "number": 1821,
+      "title": "feat: add toggle to disallow bulk download"
+    },
+    {
+      "number": 1871,
+      "title": "feat: add performance indexes"
+    },
+    {
+      "number": 1915,
+      "title": "feat: updates to dataroom templates"
+    },
+    {
+      "number": 1647,
+      "title": "feat(dataroom): add setting for new document additions"
+    },
+    {
+      "number": 1877,
+      "title": "feat: speed improvements"
+    },
+    {
+      "number": 1621,
+      "title": "replicate folder structure from Data Room to all documents"
+    },
+    {
+      "number": 1704,
+      "title": "feat: set group permission for doc from dataroom setting"
+    },
+    {
+      "number": 1855,
+      "title": "feat: add automatic hierarchical index for dataroom items"
+    },
+    {
+      "number": 1613,
+      "title": "ui: enable 'Generate Index File' in dataroom view"
+    },
+    {
+      "number": 1868,
+      "title": "feat: add annotations"
+    },
+    {
+      "number": 1762,
+      "title": "Export document visits to tinybird asynchronously"
+    },
+    {
+      "number": 1852,
+      "title": "Slack/reform"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:15Z",
+  "results": [],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:18Z",
+  "results": [
+    {
+      "number": 2065,
+      "title": "Team links endpoint"
+    },
+    {
+      "number": 2072,
+      "title": "Document versioning resource"
+    },
+    {
+      "number": 2056,
+      "title": "feat: add link.update to api"
+    },
+    {
+      "number": 2062,
+      "title": "Notion text selection"
+    },
+    {
+      "number": 2081,
+      "title": "User team action authorization"
+    },
+    {
+      "number": 1993,
+      "title": "Subscription pause fields"
+    },
+    {
+      "number": 2127,
+      "title": "fix: link permission groups not taking effect (stale ISR pages)"
+    },
+    {
+      "number": 1938,
+      "title": "Schedule yearly renewal email reminder"
+    },
+    {
+      "number": 2138,
+      "title": "feat:new plan"
+    },
+    {
+      "number": 2156,
+      "title": "Small improvements"
+    },
+    {
+      "number": 1940,
+      "title": "fix: encrypt preset password via api"
+    },
+    {
+      "number": 1954,
+      "title": "feat: add logging for trials"
+    },
+    {
+      "number": 2087,
+      "title": "fix: slugify cjk names"
+    },
+    {
+      "number": 2026,
+      "title": "fix: errors in revalidation and logging"
+    },
+    {
+      "number": 1989,
+      "title": "Datarooms API duration"
+    },
+    {
+      "number": 1965,
+      "title": "feat: improve pause limits"
+    },
+    {
+      "number": 2083,
+      "title": "Root domain redirects"
+    },
+    {
+      "number": 1970,
+      "title": "feat: update email sending and newsletter subscription"
+    },
+    {
+      "number": 2041,
+      "title": "Deal flow info"
+    },
+    {
+      "number": 1968,
+      "title": "feat:yearly discount offer"
+    },
+    {
+      "number": 1904,
+      "title": "Add banner toggle to presets"
+    },
+    {
+      "number": 1925,
+      "title": "fix(api): respect enableNotification preset setting"
+    },
+    {
+      "number": 1935,
+      "title": "New pricing plan"
+    },
+    {
+      "number": 1874,
+      "title": "feat: add ratelimiting"
+    },
+    {
+      "number": 1886,
+      "title": "Duplicate permission group for duplicated links"
+    },
+    {
+      "number": 1671,
+      "title": "fix: detect webhook on correct id"
+    },
+    {
+      "number": 1616,
+      "title": "feat: add presetId to incoming webhooks"
+    },
+    {
+      "number": 1579,
+      "title": "feat: add createLink to incoming webhook"
+    },
+    {
+      "number": 1583,
+      "title": "feat: add more endpoints to incoming webhooks"
+    },
+    {
+      "number": 1832,
+      "title": "feat: fix missing extension"
+    },
+    {
+      "number": 2030,
+      "title": "feat: improve dataroom download"
+    },
+    {
+      "number": 1867,
+      "title": "feat: enable slack for all"
+    },
+    {
+      "number": 1829,
+      "title": "feat: add url validation"
+    },
+    {
+      "number": 1922,
+      "title": "feat: improvements"
+    },
+    {
+      "number": 1826,
+      "title": "fix: ignore allowlist/denylist from group links via presets"
+    },
+    {
+      "number": 1780,
+      "title": "fix: codeql"
+    },
+    {
+      "number": 1679,
+      "title": "feat: add highlights for features, and Free trial button"
+    },
+    {
+      "number": 1670,
+      "title": "fix: stripe webhook error"
+    },
+    {
+      "number": 1733,
+      "title": "Improvement: Unify upgrade buttons everywhere"
+    },
+    {
+      "number": 1820,
+      "title": "feat: update fallback plan"
+    },
+    {
+      "number": 1669,
+      "title": "fix: check if team can send webhooks"
+    },
+    {
+      "number": 1778,
+      "title": "fix: improve code coverage"
+    },
+    {
+      "number": 1728,
+      "title": "Improvement: Enable features in 7 day trial(and show correct popups)"
+    },
+    {
+      "number": 1801,
+      "title": "feat: emails updates and new emails"
+    },
+    {
+      "number": 1537,
+      "title": "fix: stripe webhooks"
+    },
+    {
+      "number": 1699,
+      "title": "feat(ee): granular permissions "
+    },
+    {
+      "number": 1512,
+      "title": "Webhook in setting for all users, but enable for paid plans"
+    },
+    {
+      "number": 1563,
+      "title": "feat(webhook): add link.created, document.created triggers"
+    },
+    {
+      "number": 1467,
+      "title": "Bug: Dark Mode CSS Issues on Tokens and Incoming Webhooks tab "
+    },
+    {
+      "number": 1834,
+      "title": "feat: add dub integration"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:22Z",
+  "results": [
+    {
+      "number": 2171,
+      "title": "fix: add to allow list"
+    },
+    {
+      "number": 2125,
+      "title": "feat: improve bulk upload notifications"
+    },
+    {
+      "number": 2130,
+      "title": "feat: upgrade trigger to v4"
+    },
+    {
+      "number": 2096,
+      "title": "File upload authentication bypass"
+    },
+    {
+      "number": 2071,
+      "title": "Custom domain slug handling"
+    },
+    {
+      "number": 2148,
+      "title": "feat: improve large document uploads"
+    },
+    {
+      "number": 1973,
+      "title": "Premium vs plus features"
+    },
+    {
+      "number": 2064,
+      "title": "Dataroom bulk download"
+    },
+    {
+      "number": 2146,
+      "title": "feat: visitor upload notifications"
+    },
+    {
+      "number": 2013,
+      "title": "fix: notion width and missing page references"
+    },
+    {
+      "number": 2067,
+      "title": "Dataroom upload notifications"
+    },
+    {
+      "number": 2093,
+      "title": "feat: add notification settings for visitors"
+    },
+    {
+      "number": 1937,
+      "title": "fix: ratelimit"
+    },
+    {
+      "number": 2159,
+      "title": "feat(ee): add downloadable archive"
+    },
+    {
+      "number": 2030,
+      "title": "feat: improve dataroom download"
+    },
+    {
+      "number": 2080,
+      "title": "fix: improve libreoffice conversion"
+    },
+    {
+      "number": 2156,
+      "title": "Small improvements"
+    },
+    {
+      "number": 2041,
+      "title": "Deal flow info"
+    },
+    {
+      "number": 1952,
+      "title": "feat:updates for year in review"
+    },
+    {
+      "number": 1898,
+      "title": "feat: datarooms folders"
+    },
+    {
+      "number": 2007,
+      "title": "feat: add email code"
+    },
+    {
+      "number": 2083,
+      "title": "Root domain redirects"
+    },
+    {
+      "number": 1947,
+      "title": "feat: add tags to datarooms"
+    },
+    {
+      "number": 1946,
+      "title": "data-room-update"
+    },
+    {
+      "number": 1883,
+      "title": "feat: show archived links on documents"
+    },
+    {
+      "number": 1972,
+      "title": "feat(ee): expand ai capabilities"
+    },
+    {
+      "number": 2053,
+      "title": "SAML SCIM integration"
+    },
+    {
+      "number": 1929,
+      "title": "feat: improve bulk download tracking"
+    },
+    {
+      "number": 1811,
+      "title": "feat: introduce ratelimiting to endpoint"
+    },
+    {
+      "number": 1821,
+      "title": "feat: add toggle to disallow bulk download"
+    },
+    {
+      "number": 1481,
+      "title": "feat: add tenant-based concurrency queue"
+    },
+    {
+      "number": 1877,
+      "title": "feat: speed improvements"
+    },
+    {
+      "number": 1871,
+      "title": "feat: add performance indexes"
+    },
+    {
+      "number": 1915,
+      "title": "feat: updates to dataroom templates"
+    },
+    {
+      "number": 1815,
+      "title": "feat: dynamically load code imports"
+    },
+    {
+      "number": 2034,
+      "title": "Introduction page"
+    },
+    {
+      "number": 1812,
+      "title": "feat: extend"
+    },
+    {
+      "number": 1855,
+      "title": "feat: add automatic hierarchical index for dataroom items"
+    },
+    {
+      "number": 1762,
+      "title": "Export document visits to tinybird asynchronously"
+    },
+    {
+      "number": 1865,
+      "title": "feat: add integrations"
+    },
+    {
+      "number": 1722,
+      "title": "feat: add team-aware multi-region S3 storage support"
+    },
+    {
+      "number": 1834,
+      "title": "feat: add dub integration"
+    },
+    {
+      "number": 1681,
+      "title": "Improvement: Time Tracking on view pages"
+    },
+    {
+      "number": 1647,
+      "title": "feat(dataroom): add setting for new document additions"
+    },
+    {
+      "number": 1607,
+      "title": "feat: Enable invite team members on trial"
+    },
+    {
+      "number": 1629,
+      "title": "fix: resolve conflict when uploading documents sequentially"
+    },
+    {
+      "number": 1704,
+      "title": "feat: set group permission for doc from dataroom setting"
+    },
+    {
+      "number": 1852,
+      "title": "Slack/reform"
+    },
+    {
+      "number": 522,
+      "title": "feat: add distributed locker for tus"
+    },
+    {
+      "number": 458,
+      "title": "feat: add create dataroom from folder"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:26Z",
+  "results": [
+    {
+      "number": 2127,
+      "title": "fix: link permission groups not taking effect (stale ISR pages)"
+    },
+    {
+      "number": 2061,
+      "title": "Dataroom download content"
+    },
+    {
+      "number": 2073,
+      "title": "Visitor groups access"
+    },
+    {
+      "number": 2171,
+      "title": "fix: add to allow list"
+    },
+    {
+      "number": 2071,
+      "title": "Custom domain slug handling"
+    },
+    {
+      "number": 2004,
+      "title": "Dataroom upload visibility"
+    },
+    {
+      "number": 2125,
+      "title": "feat: improve bulk upload notifications"
+    },
+    {
+      "number": 2117,
+      "title": "feat: improve document viewer "
+    },
+    {
+      "number": 2052,
+      "title": "Improve domain modal validation and feedback experience"
+    },
+    {
+      "number": 2010,
+      "title": "Delayed email verification notice"
+    },
+    {
+      "number": 2083,
+      "title": "Root domain redirects"
+    },
+    {
+      "number": 2089,
+      "title": "feat: improve dataroom audit analytics"
+    },
+    {
+      "number": 2164,
+      "title": "feat: multi folder upload permission"
+    },
+    {
+      "number": 2146,
+      "title": "feat: visitor upload notifications"
+    },
+    {
+      "number": 2072,
+      "title": "Document versioning resource"
+    },
+    {
+      "number": 2021,
+      "title": "feat: add improved table of content loading"
+    },
+    {
+      "number": 1999,
+      "title": "Folder customization options"
+    },
+    {
+      "number": 2041,
+      "title": "Deal flow info"
+    },
+    {
+      "number": 1967,
+      "title": "fix"
+    },
+    {
+      "number": 1977,
+      "title": "fix: stop pausing retroactively"
+    },
+    {
+      "number": 1899,
+      "title": "feat: improve team settings loading"
+    },
+    {
+      "number": 2149,
+      "title": "Papermark fixes"
+    },
+    {
+      "number": 2019,
+      "title": "chore: update dependencies"
+    },
+    {
+      "number": 2064,
+      "title": "Dataroom bulk download"
+    },
+    {
+      "number": 1833,
+      "title": "feat: revalidate every 60s"
+    },
+    {
+      "number": 2138,
+      "title": "feat:new plan"
+    },
+    {
+      "number": 2055,
+      "title": "fix: require force dynamic on jackson routes"
+    },
+    {
+      "number": 1811,
+      "title": "feat: introduce ratelimiting to endpoint"
+    },
+    {
+      "number": 1968,
+      "title": "feat:yearly discount offer"
+    },
+    {
+      "number": 2045,
+      "title": "feat: improve bulk download"
+    },
+    {
+      "number": 1935,
+      "title": "New pricing plan"
+    },
+    {
+      "number": 2034,
+      "title": "Introduction page"
+    },
+    {
+      "number": 1898,
+      "title": "feat: datarooms folders"
+    },
+    {
+      "number": 1883,
+      "title": "feat: show archived links on documents"
+    },
+    {
+      "number": 1859,
+      "title": "feat: server-side detection if dataroom index enabled"
+    },
+    {
+      "number": 1906,
+      "title": "Implement link deletion with warning"
+    },
+    {
+      "number": 2053,
+      "title": "SAML SCIM integration"
+    },
+    {
+      "number": 1870,
+      "title": "Add slack connection banner to sidebar"
+    },
+    {
+      "number": 1769,
+      "title": "feat: add document preview"
+    },
+    {
+      "number": 1903,
+      "title": "Iuliia/working branch"
+    },
+    {
+      "number": 1920,
+      "title": "Iuliia fixes"
+    },
+    {
+      "number": 1699,
+      "title": "feat(ee): granular permissions "
+    },
+    {
+      "number": 1932,
+      "title": "feat(ee): workflows"
+    },
+    {
+      "number": 1855,
+      "title": "feat: add automatic hierarchical index for dataroom items"
+    },
+    {
+      "number": 1693,
+      "title": "update invitation expire link time to 7days"
+    },
+    {
+      "number": 1933,
+      "title": "feat(ee): dataroom invitations"
+    },
+    {
+      "number": 1880,
+      "title": "feat: improve pause function"
+    },
+    {
+      "number": 1884,
+      "title": "chore: update dependencies"
+    },
+    {
+      "number": 1706,
+      "title": "fix: permissions and more"
+    },
+    {
+      "number": 1850,
+      "title": "Update link agreement to show compliance text"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:30Z",
+  "results": [
+    {
+      "number": 2171,
+      "title": "fix: add to allow list"
+    },
+    {
+      "number": 2125,
+      "title": "feat: improve bulk upload notifications"
+    },
+    {
+      "number": 2022,
+      "title": "refactor: replace react-pdf page count with libpdf"
+    },
+    {
+      "number": 2159,
+      "title": "feat(ee): add downloadable archive"
+    },
+    {
+      "number": 2127,
+      "title": "fix: link permission groups not taking effect (stale ISR pages)"
+    },
+    {
+      "number": 2072,
+      "title": "Document versioning resource"
+    },
+    {
+      "number": 2007,
+      "title": "feat: add email code"
+    },
+    {
+      "number": 2087,
+      "title": "fix: slugify cjk names"
+    },
+    {
+      "number": 2073,
+      "title": "Visitor groups access"
+    },
+    {
+      "number": 2053,
+      "title": "SAML SCIM integration"
+    },
+    {
+      "number": 1946,
+      "title": "data-room-update"
+    },
+    {
+      "number": 1903,
+      "title": "Iuliia/working branch"
+    },
+    {
+      "number": 1765,
+      "title": "fix: improve watermarking for non-supported characters"
+    },
+    {
+      "number": 1756,
+      "title": "fix: don't optimized mp4 files"
+    },
+    {
+      "number": 1968,
+      "title": "feat:yearly discount offer"
+    },
+    {
+      "number": 1952,
+      "title": "feat:updates for year in review"
+    },
+    {
+      "number": 1726,
+      "title": "Added data room trial button on each popup"
+    },
+    {
+      "number": 1829,
+      "title": "feat: add url validation"
+    },
+    {
+      "number": 1965,
+      "title": "feat: improve pause limits"
+    },
+    {
+      "number": 1933,
+      "title": "feat(ee): dataroom invitations"
+    },
+    {
+      "number": 1677,
+      "title": "feat: add detailed analytics for data rooms plans"
+    },
+    {
+      "number": 1932,
+      "title": "feat(ee): workflows"
+    },
+    {
+      "number": 1855,
+      "title": "feat: add automatic hierarchical index for dataroom items"
+    },
+    {
+      "number": 1704,
+      "title": "feat: set group permission for doc from dataroom setting"
+    },
+    {
+      "number": 1681,
+      "title": "Improvement: Time Tracking on view pages"
+    },
+    {
+      "number": 1852,
+      "title": "Slack/reform"
+    },
+    {
+      "number": 1131,
+      "title": "Preserve Folder Hierarchy in Multi-file Uploads (#937) Completed"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "papermark/papermark",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo papermark/papermark --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:46:34Z",
+  "results": [
+    {
+      "number": 2159,
+      "title": "feat(ee): add downloadable archive"
+    },
+    {
+      "number": 2075,
+      "title": "Trigger conversion error handling"
+    },
+    {
+      "number": 2050,
+      "title": "Deleted link slug handling"
+    },
+    {
+      "number": 2067,
+      "title": "Dataroom upload notifications"
+    },
+    {
+      "number": 2146,
+      "title": "feat: visitor upload notifications"
+    },
+    {
+      "number": 2157,
+      "title": "feat: improve bulk download"
+    },
+    {
+      "number": 2148,
+      "title": "feat: improve large document uploads"
+    },
+    {
+      "number": 2087,
+      "title": "fix: slugify cjk names"
+    },
+    {
+      "number": 1971,
+      "title": "feat: add user to segment"
+    },
+    {
+      "number": 2156,
+      "title": "Small improvements"
+    },
+    {
+      "number": 2083,
+      "title": "Root domain redirects"
+    },
+    {
+      "number": 2044,
+      "title": "feat:new papermark example document"
+    },
+    {
+      "number": 2149,
+      "title": "Papermark fixes"
+    },
+    {
+      "number": 1939,
+      "title": "feat: add invoices page"
+    },
+    {
+      "number": 1919,
+      "title": "fix"
+    },
+    {
+      "number": 2080,
+      "title": "fix: improve libreoffice conversion"
+    },
+    {
+      "number": 2117,
+      "title": "feat: improve document viewer "
+    },
+    {
+      "number": 2013,
+      "title": "fix: notion width and missing page references"
+    },
+    {
+      "number": 2101,
+      "title": "chore: update dependencies"
+    },
+    {
+      "number": 1885,
+      "title": "Stop trial expiration emails for paying users"
+    },
+    {
+      "number": 2055,
+      "title": "fix: require force dynamic on jackson routes"
+    },
+    {
+      "number": 1880,
+      "title": "feat: improve pause function"
+    },
+    {
+      "number": 1864,
+      "title": "feat: extend max duration"
+    },
+    {
+      "number": 1845,
+      "title": "feat: increase maxduration"
+    },
+    {
+      "number": 1824,
+      "title": "fix: conversion scaling for long documents"
+    },
+    {
+      "number": 1972,
+      "title": "feat(ee): expand ai capabilities"
+    },
+    {
+      "number": 1811,
+      "title": "feat: introduce ratelimiting to endpoint"
+    },
+    {
+      "number": 1938,
+      "title": "Schedule yearly renewal email reminder"
+    },
+    {
+      "number": 1874,
+      "title": "feat: add ratelimiting"
+    },
+    {
+      "number": 1812,
+      "title": "feat: extend"
+    },
+    {
+      "number": 1794,
+      "title": "feat(ee): notify team members of new conversation messages 311d"
+    },
+    {
+      "number": 1865,
+      "title": "feat: add integrations"
+    },
+    {
+      "number": 2093,
+      "title": "feat: add notification settings for visitors"
+    },
+    {
+      "number": 1898,
+      "title": "feat: datarooms folders"
+    },
+    {
+      "number": 1933,
+      "title": "feat(ee): dataroom invitations"
+    },
+    {
+      "number": 1950,
+      "title": "feat: link as a file"
+    },
+    {
+      "number": 1852,
+      "title": "Slack/reform"
+    },
+    {
+      "number": 1817,
+      "title": "fix: update pause behavior"
+    },
+    {
+      "number": 1813,
+      "title": "feat: allow download doc-less folders"
+    },
+    {
+      "number": 2045,
+      "title": "feat: improve bulk download"
+    },
+    {
+      "number": 1621,
+      "title": "replicate folder structure from Data Room to all documents"
+    },
+    {
+      "number": 1668,
+      "title": "feat: add logo on access form"
+    },
+    {
+      "number": 1762,
+      "title": "Export document visits to tinybird asynchronously"
+    },
+    {
+      "number": 1877,
+      "title": "feat: speed improvements"
+    },
+    {
+      "number": 1669,
+      "title": "fix: check if team can send webhooks"
+    },
+    {
+      "number": 1801,
+      "title": "feat: emails updates and new emails"
+    },
+    {
+      "number": 1802,
+      "title": "Feat: Slack native integration"
+    },
+    {
+      "number": 1855,
+      "title": "feat: add automatic hierarchical index for dataroom items"
+    },
+    {
+      "number": 1716,
+      "title": "improvement: Improve loading speed of visitors tab"
+    },
+    {
+      "number": 1820,
+      "title": "feat: update fallback plan"
+    }
+  ],
+  "error": null
+}
+]

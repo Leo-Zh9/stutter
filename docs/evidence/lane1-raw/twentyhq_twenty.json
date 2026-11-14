@@ -1,0 +1,2089 @@
+[
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:32:44Z",
+  "results": [
+    {
+      "number": 30333,
+      "title": "Keep chat drafts through a reconnect and explain failed sends"
+    },
+    {
+      "number": 29985,
+      "title": "Send email-style replies through app messaging providers"
+    },
+    {
+      "number": 28084,
+      "title": "fix(billing): make direct subscription creation idempotent"
+    },
+    {
+      "number": 25334,
+      "title": "feat(workflow): idempotency hint under the retry setting"
+    },
+    {
+      "number": 29869,
+      "title": "Send attachments with app channel replies (LinkedIn)"
+    },
+    {
+      "number": 29773,
+      "title": "Gate message attachments behind a feature flag until the upgrade runs"
+    },
+    {
+      "number": 30002,
+      "title": "Send email-style replies through app messaging providers"
+    },
+    {
+      "number": 29526,
+      "title": "LinkedIn app: reply to conversations from Twenty through Unipile"
+    },
+    {
+      "number": 29390,
+      "title": "[BREAKING_CHANGE] Drop object readability, writability and sharing reach usage"
+    },
+    {
+      "number": 29042,
+      "title": "Allow merging records on objects without duplicate criteria"
+    },
+    {
+      "number": 29327,
+      "title": "Reply to app conversations from the thread"
+    },
+    {
+      "number": 26818,
+      "title": "Call recorder: reschedule a re-requested bot at once after a confirmed cancel"
+    },
+    {
+      "number": 27405,
+      "title": "Send workflow chat messages through an engine inbox API"
+    },
+    {
+      "number": 27953,
+      "title": "Make logic function trigger job fan-out idempotent across retries"
+    },
+    {
+      "number": 26909,
+      "title": "Call recorder: stop recovery from creating twin Recall bots"
+    },
+    {
+      "number": 27367,
+      "title": "Add purchased credit grants and spend them after free credits"
+    },
+    {
+      "number": 25433,
+      "title": "Import Fathom recording media asynchronously"
+    },
+    {
+      "number": 28077,
+      "title": "React to AI chat messages with emojis"
+    },
+    {
+      "number": 28673,
+      "title": "Let members reply to app message channel threads"
+    },
+    {
+      "number": 29343,
+      "title": "Rename the Emails record tab to Messages"
+    },
+    {
+      "number": 26778,
+      "title": "[Onboarding 1/10] Track credit rewards"
+    },
+    {
+      "number": 24674,
+      "title": "fix(i18n): repair backslash-escaped tags in Crowdin inline code"
+    },
+    {
+      "number": 26958,
+      "title": "fix(upgrade): reapply the usageLimit period reshape skipped by 2.38.x instances"
+    },
+    {
+      "number": 27315,
+      "title": "fix(usage): throw when the recurring charge lookup fails instead of charging every fee again"
+    },
+    {
+      "number": 23633,
+      "title": "Run application uninstall hooks when deleting a workspace"
+    },
+    {
+      "number": 27949,
+      "title": "Turn the campaigns INDEX view back into a table and add a list view on top"
+    },
+    {
+      "number": 27221,
+      "title": "feat(ai): unread badge on the inbox, with inbox state sent as record events"
+    },
+    {
+      "number": 26080,
+      "title": "Make call recorder imports resumable with deterministic jobs"
+    },
+    {
+      "number": 27135,
+      "title": "feat(ai): let runAgent continue a conversation by thread key"
+    },
+    {
+      "number": 26461,
+      "title": "feat(usage-limit): consume quota on app charges"
+    },
+    {
+      "number": 24390,
+      "title": "i18n - docs translations"
+    },
+    {
+      "number": 27049,
+      "title": "Let applications and workflows start conversations in a member's chats"
+    },
+    {
+      "number": 24930,
+      "title": "Restore settings navigation command menu item labels corrupted by 2-33 upgrade"
+    },
+    {
+      "number": 25699,
+      "title": "fix(billing): stop writing a raw ISO timestamp into a credit grant's reason"
+    },
+    {
+      "number": 25204,
+      "title": "Return job handles from enqueueJob(s) and add a getJobs query"
+    },
+    {
+      "number": 24808,
+      "title": "fix(server): migrate legacy IS_NOT_NULL workflow filter operand to IS_NOT_EMPTY"
+    },
+    {
+      "number": 25603,
+      "title": "fix(billing): stop granted credits expiring when a period transition misfires"
+    },
+    {
+      "number": 25168,
+      "title": "Hide Ask AI command when in side panel"
+    },
+    {
+      "number": 24317,
+      "title": "Add retryable logic function failures with queue backoff"
+    },
+    {
+      "number": 25794,
+      "title": "Finish call recordings without a transcript when Recall rejects the transcript request"
+    },
+    {
+      "number": 26354,
+      "title": "fix(workspace cleaning) - Enqueue suspended workspace destruction instead of running it inside the cron"
+    },
+    {
+      "number": 27832,
+      "title": "[BREAKING_CHANGE] Unpin chat Share and drop the AI chat sharing dropdown flag"
+    },
+    {
+      "number": 24818,
+      "title": "Migrate call-recorder fan-out to platform jobs"
+    },
+    {
+      "number": 25945,
+      "title": "test(messaging): cover the app-facing message channel API end to end"
+    },
+    {
+      "number": 29675,
+      "title": "Notify members mentioned in app and workflow inbox messages"
+    },
+    {
+      "number": 24083,
+      "title": "perf(server): workspace-cache packing budget + class-validator fast paths"
+    },
+    {
+      "number": 26437,
+      "title": "fix(workflow): delete orphan core workflows left by deleted workflows"
+    },
+    {
+      "number": 26329,
+      "title": "[2/4] Provision agentChatThreadTarget into existing workspaces"
+    },
+    {
+      "number": 28032,
+      "title": "Backfill the head row of existing morph relation fields"
+    },
+    {
+      "number": 23973,
+      "title": "feat(billing): replace the credit balance column with a credit grant ledger"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:32:48Z",
+  "results": [
+    {
+      "number": 28084,
+      "title": "fix(billing): make direct subscription creation idempotent"
+    },
+    {
+      "number": 27953,
+      "title": "Make logic function trigger job fan-out idempotent across retries"
+    },
+    {
+      "number": 29708,
+      "title": "Ship the application role target command in 2.56"
+    },
+    {
+      "number": 29090,
+      "title": "Let apps attach records to inbox conversations"
+    },
+    {
+      "number": 28538,
+      "title": "Give the workspace custom application its own default role"
+    },
+    {
+      "number": 30031,
+      "title": "Store LinkedIn message attachments in Twenty"
+    },
+    {
+      "number": 27276,
+      "title": "Add people to a campaign list with a background job"
+    },
+    {
+      "number": 27628,
+      "title": "Restore agent.evaluationInputs where the original 2.46 drop already ran"
+    },
+    {
+      "number": 28931,
+      "title": "Add a Campaigns folder with Campaigns and Lists to the navigation menu"
+    },
+    {
+      "number": 28780,
+      "title": "Backfill record form widgets for files fields"
+    },
+    {
+      "number": 29526,
+      "title": "LinkedIn app: reply to conversations from Twenty through Unipile"
+    },
+    {
+      "number": 29577,
+      "title": "Link message attachments through the attachment object"
+    },
+    {
+      "number": 29211,
+      "title": "perf(ai): smooth out chat streaming"
+    },
+    {
+      "number": 28667,
+      "title": "Set Admin as the Twenty standard application default role"
+    },
+    {
+      "number": 28556,
+      "title": "Show only workspace-shared connections in app settings"
+    },
+    {
+      "number": 29729,
+      "title": "Job queue memory (2/3): per-tenant share of free memory"
+    },
+    {
+      "number": 27760,
+      "title": "Rename morph relations"
+    },
+    {
+      "number": 26909,
+      "title": "Call recorder: stop recovery from creating twin Recall bots"
+    },
+    {
+      "number": 26823,
+      "title": "feat(campaigns): add selected people or a whole People view to a campaign list"
+    },
+    {
+      "number": 27826,
+      "title": "Group pending invoice items monthly for invoice-paying subscriptions"
+    },
+    {
+      "number": 29592,
+      "title": "Scope workflow command menu items to a core object"
+    },
+    {
+      "number": 30195,
+      "title": "Let the permission engine create the record share and access group tables behind a flag"
+    },
+    {
+      "number": 28603,
+      "title": "Recreate application registration versions skipped on v2.48.0 instances"
+    },
+    {
+      "number": 26631,
+      "title": "Repair missing company activity history during the 2.43 upgrade"
+    },
+    {
+      "number": 29331,
+      "title": "Add the accessGroup hidden standard object"
+    },
+    {
+      "number": 26319,
+      "title": "Migrate existing recording tab defaults to Transcript"
+    },
+    {
+      "number": 26263,
+      "title": "Report workspace command failures through the CLI exit status"
+    },
+    {
+      "number": 26372,
+      "title": "perf(clickhouse) - partition objectEvent by month in ClickHouse"
+    },
+    {
+      "number": 26369,
+      "title": "feat(ai): execute chat turns as their persisted sender"
+    },
+    {
+      "number": 26132,
+      "title": "Move the unpin creation commands upgrade command to 2.42 and use the legacy path"
+    },
+    {
+      "number": 28176,
+      "title": "Drain queue jobs before the worker closes its clients"
+    },
+    {
+      "number": 27995,
+      "title": "[Campaigns 2/2] Upgrade existing workspaces"
+    },
+    {
+      "number": 27472,
+      "title": "fix(server): rebuild the foreign key when a relation's onDelete changes from unset"
+    },
+    {
+      "number": 27538,
+      "title": "Keep AI chat working for workspaces the 2.46 commands have not reached"
+    },
+    {
+      "number": 29341,
+      "title": "Add per-record access group columns to object tables"
+    },
+    {
+      "number": 29029,
+      "title": "Fix merge bugs: stale priority, hidden-field data loss, permission gating"
+    },
+    {
+      "number": 26323,
+      "title": "Hide workflows from side panel search and favorites when the core index flag is on"
+    },
+    {
+      "number": 29042,
+      "title": "Allow merging records on objects without duplicate criteria"
+    },
+    {
+      "number": 26875,
+      "title": "Show unique and total clicks and opens on campaigns"
+    },
+    {
+      "number": 25938,
+      "title": "feat(workflow): remove the See Active Version command menu item from workspaces"
+    },
+    {
+      "number": 27063,
+      "title": "Remove the See Version command menu item from workflow runs"
+    },
+    {
+      "number": 26681,
+      "title": "Scope application tokens to their own application"
+    },
+    {
+      "number": 25471,
+      "title": "Writability 2/3: declare SYSTEM writability on platform-owned standard objects"
+    },
+    {
+      "number": 27694,
+      "title": "Keep usage-limit reads compatible during rollout"
+    },
+    {
+      "number": 27045,
+      "title": "Record-level sharing 1/5: restrict records of objects open by default"
+    },
+    {
+      "number": 27442,
+      "title": "Inbox: assign chats to a member"
+    },
+    {
+      "number": 27207,
+      "title": "Replace hidden chat messages with system messages"
+    },
+    {
+      "number": 29982,
+      "title": "Let applications archive the inbox threads they wrote"
+    },
+    {
+      "number": 25161,
+      "title": "Remove the orphaned message deliveryStatus field"
+    },
+    {
+      "number": 29034,
+      "title": "Stop using writability, sharing reach and non-private readability in favor of disabled object permission actions"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:32:53Z",
+  "results": [
+    {
+      "number": 29754,
+      "title": "Fix duplicated CalDAV events created from Twenty"
+    },
+    {
+      "number": 29471,
+      "title": "Fix duplicate AI component previews and empty sample data"
+    },
+    {
+      "number": 29157,
+      "title": "Teach the crm-hygiene skill to merge duplicates"
+    },
+    {
+      "number": 29042,
+      "title": "Allow merging records on objects without duplicate criteria"
+    },
+    {
+      "number": 29115,
+      "title": "feat(ai): add merge_many database tool for duplicate records"
+    },
+    {
+      "number": 27977,
+      "title": "Fix date-sorted pagination skipping or duplicating records"
+    },
+    {
+      "number": 27428,
+      "title": "Remove dead front code and duplicate tests"
+    },
+    {
+      "number": 27882,
+      "title": "Create, rename, duplicate and delete workflows in core only"
+    },
+    {
+      "number": 26828,
+      "title": "Allow duplicating application-owned core workflows"
+    },
+    {
+      "number": 27440,
+      "title": "Remove duplicated agent run and wake-up engine code"
+    },
+    {
+      "number": 27688,
+      "title": "Stop duplicating Gmail sent emails when sync fetches them again"
+    },
+    {
+      "number": 27291,
+      "title": "Fix duplicate rows after creating records in grouped tables"
+    },
+    {
+      "number": 26990,
+      "title": "Remap step variable references when duplicating a workflow"
+    },
+    {
+      "number": 27106,
+      "title": "chore(permissions): remove dead and duplicated server permission code"
+    },
+    {
+      "number": 30051,
+      "title": "Give callers the global record permission answer"
+    },
+    {
+      "number": 27825,
+      "title": "Trim RecordFieldList to the fields it renders and drop the duplicates section"
+    },
+    {
+      "number": 29800,
+      "title": "Move repository access questions onto the permissions read services"
+    },
+    {
+      "number": 25504,
+      "title": "Fix the duplicated list page and toast after Duplicate List"
+    },
+    {
+      "number": 30109,
+      "title": "Ignore deleted records in unique field checks"
+    },
+    {
+      "number": 29799,
+      "title": "Replace recordsPermissions reads with narrower read restriction questions"
+    },
+    {
+      "number": 29759,
+      "title": "Make the field option value uniqueness a deferred constraint"
+    },
+    {
+      "number": 29984,
+      "title": "Batch attach_conversation_to_record into attach_conversation_to_records"
+    },
+    {
+      "number": 27416,
+      "title": "Keep the AI engine free of workflow code and remove duplicated agent run code"
+    },
+    {
+      "number": 28364,
+      "title": "Rename 7 server files to the singular suffix in src/engine/api/utils"
+    },
+    {
+      "number": 29563,
+      "title": "Derive repository object permissions from the permissions principal"
+    },
+    {
+      "number": 30039,
+      "title": "Lay out workflow diagrams automatically until a user places a node"
+    },
+    {
+      "number": 29804,
+      "title": "Move query errors, filter SQL and the access gate to the right layers"
+    },
+    {
+      "number": 29661,
+      "title": "Guard src/modules endpoints with AccessPolicyGuard and delete the legacy guards"
+    },
+    {
+      "number": 28929,
+      "title": "Remove the IS_MESSAGE_CAMPAIGN_ENABLED feature flag"
+    },
+    {
+      "number": 29029,
+      "title": "Fix merge bugs: stale priority, hidden-field data loss, permission gating"
+    },
+    {
+      "number": 28925,
+      "title": "Choose recipients for new inbox chats"
+    },
+    {
+      "number": 27881,
+      "title": "Write workflow version content and drafts to core only"
+    },
+    {
+      "number": 25467,
+      "title": "Add a Duplicate Campaign command pinned only on sent campaigns"
+    },
+    {
+      "number": 29229,
+      "title": "Add the related record path metadata entity"
+    },
+    {
+      "number": 30428,
+      "title": "Move thread facts from the inbox module down to the AI chat"
+    },
+    {
+      "number": 28816,
+      "title": "Preserve validation codes and friendly messages in CLI failures"
+    },
+    {
+      "number": 29888,
+      "title": "Read the create permission where code checks create, and finish the interface cleanup"
+    },
+    {
+      "number": 29156,
+      "title": "Show inbox conversations in record panels"
+    },
+    {
+      "number": 29856,
+      "title": "Add a command to reconcile orphaned job memory charges"
+    },
+    {
+      "number": 28851,
+      "title": "Cover the queue mechanics the fair worker ordering must respect"
+    },
+    {
+      "number": 25105,
+      "title": "fix(slack): tighten Slack user link consent and cut duplication"
+    },
+    {
+      "number": 28084,
+      "title": "fix(billing): make direct subscription creation idempotent"
+    },
+    {
+      "number": 28461,
+      "title": "Make the workflow flow the editor's source of truth and save it on a debounce"
+    },
+    {
+      "number": 29548,
+      "title": "CODE steps own their source instead of a hidden logic function"
+    },
+    {
+      "number": 28523,
+      "title": "Keep icon widths in flex layouts"
+    },
+    {
+      "number": 28855,
+      "title": "Share frontend vendor and shim build helpers"
+    },
+    {
+      "number": 27311,
+      "title": "fix(usage): throw when the recurring charge lookup fails instead of charging every fee again"
+    },
+    {
+      "number": 28298,
+      "title": "Unify Tooltip width defaults"
+    },
+    {
+      "number": 28975,
+      "title": "fix: add workspace member record page and backfill relations"
+    },
+    {
+      "number": 24154,
+      "title": "Fix duplicate key errors during message import"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:32:57Z",
+  "results": [
+    {
+      "number": 29125,
+      "title": "Fix the Dropdown gallery story Shift+Tab race"
+    },
+    {
+      "number": 30235,
+      "title": "Split the privacy save test so neither half races the mocked save"
+    },
+    {
+      "number": 30295,
+      "title": "fix(inbox): keep a sent message on screen when no assistant reply follows"
+    },
+    {
+      "number": 30253,
+      "title": "Split the AI chat thread loading hooks by job"
+    },
+    {
+      "number": 30226,
+      "title": "Retry hovers in the gallery tooltip tests until the tooltip opens"
+    },
+    {
+      "number": 30382,
+      "title": "Prevent removing the last server admin"
+    },
+    {
+      "number": 29833,
+      "title": "Add self-service two-factor authentication backup codes"
+    },
+    {
+      "number": 28939,
+      "title": "Apply Ada participation rules"
+    },
+    {
+      "number": 28854,
+      "title": "Share Lambda connection options"
+    },
+    {
+      "number": 29971,
+      "title": "fix(getting-started): save the step list on the first read"
+    },
+    {
+      "number": 29345,
+      "title": "Publish npm packages with npm's provenance signer"
+    },
+    {
+      "number": 30217,
+      "title": "Answer a bare mention of the Teams assistant with a hint"
+    },
+    {
+      "number": 27348,
+      "title": "feat(teams): record inbound Teams messages as assistant requests"
+    },
+    {
+      "number": 29404,
+      "title": "Refuse a two-factor code that was already accepted"
+    },
+    {
+      "number": 29603,
+      "title": "Stop chat specs from waiting out every snooze between tests"
+    },
+    {
+      "number": 28506,
+      "title": "Agent engine: runs wait for a busy conversation in one ordered line"
+    },
+    {
+      "number": 29751,
+      "title": "Wait for records permissions before opening the metadata gate"
+    },
+    {
+      "number": 30298,
+      "title": "Release job memory reservations after admin deletion"
+    },
+    {
+      "number": 29349,
+      "title": "fix(twenty-sdk): prevent infinite re-renders in useFrontComponentExecutionContext for object selectors (#29032)"
+    },
+    {
+      "number": 28462,
+      "title": "Report a superseded session as superseded when its revocation races the request"
+    },
+    {
+      "number": 28689,
+      "title": "Remove the main sources of server integration shard flakiness"
+    },
+    {
+      "number": 27811,
+      "title": "feat(teams): answer Teams assistant requests"
+    },
+    {
+      "number": 29157,
+      "title": "Teach the crm-hygiene skill to merge duplicates"
+    },
+    {
+      "number": 28328,
+      "title": "Agent engine: never drop a run outcome its caller is not ready for"
+    },
+    {
+      "number": 28306,
+      "title": "Agent engine: release a conversation's claim in one place"
+    },
+    {
+      "number": 27215,
+      "title": "perf(ai-history): check workspace history readiness once per process"
+    },
+    {
+      "number": 26648,
+      "title": "fix(workflow): stop reconciling workflows to core on the created event"
+    },
+    {
+      "number": 26763,
+      "title": "Use workspace members for live chat ownership"
+    },
+    {
+      "number": 29093,
+      "title": "Apply the verification email cooldown to email updates"
+    },
+    {
+      "number": 26296,
+      "title": "[5/5 workflows] Wait for export metadata cleanup in integration test"
+    },
+    {
+      "number": 27510,
+      "title": "Block uninstalling a server route app from its owner workspace while installed elsewhere"
+    },
+    {
+      "number": 28017,
+      "title": "Share calendar events across calendar channels"
+    },
+    {
+      "number": 27994,
+      "title": "Fix code step editor cursor jumping to the end while typing"
+    },
+    {
+      "number": 26982,
+      "title": "Prevent concurrent workspace cache refreshes from restoring stale data"
+    },
+    {
+      "number": 29578,
+      "title": "Accept and upload attachments when apps ingest messages"
+    },
+    {
+      "number": 29389,
+      "title": "Stream ai.generate runs to applications"
+    },
+    {
+      "number": 27130,
+      "title": "fix force redirect with Navigate"
+    },
+    {
+      "number": 28993,
+      "title": "Fix two integration test flakes: msw passthrough EINVAL and orphaned messages"
+    },
+    {
+      "number": 29989,
+      "title": "Keep the AI data policy controls enabled while a save runs"
+    },
+    {
+      "number": 26025,
+      "title": "Consume the OAuth authorization code atomically"
+    },
+    {
+      "number": 26431,
+      "title": "fix(billing): serialize stripe subscription webhook per customer"
+    },
+    {
+      "number": 29894,
+      "title": "Fix email thread widget spacing and composer border"
+    },
+    {
+      "number": 26363,
+      "title": "Rename workflow AI Agent to Agent and align node presentation"
+    },
+    {
+      "number": 27137,
+      "title": "fix(workflow): stop reporting queued triggers for inactive versions to Sentry"
+    },
+    {
+      "number": 27309,
+      "title": "Allow removing workflows from an application manifest"
+    },
+    {
+      "number": 26405,
+      "title": "fix(server): keep a workflow run alive when resuming a leaf step while another branch is pending"
+    },
+    {
+      "number": 26340,
+      "title": "fix: wait for workflow version before refreshing content"
+    },
+    {
+      "number": 26830,
+      "title": "fix: fall back to unconditional copy when S3 backend rejects CopySourceIfMatch"
+    },
+    {
+      "number": 30328,
+      "title": "Run access group computes as deferred workspace operations"
+    },
+    {
+      "number": 27418,
+      "title": "Use one atomic token bucket for every rate limit"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:01Z",
+  "results": [
+    {
+      "number": 28711,
+      "title": "Keep the front metadata store consistent across out-of-order updates"
+    },
+    {
+      "number": 28766,
+      "title": "Infer the code step input schema in the debounced save so keystrokes can't be saved out of order"
+    },
+    {
+      "number": 29212,
+      "title": "Order chat participant writes"
+    },
+    {
+      "number": 27994,
+      "title": "Fix code step editor cursor jumping to the end while typing"
+    },
+    {
+      "number": 27206,
+      "title": "feat(ai): ask one question per call and step through every pending request"
+    },
+    {
+      "number": 28077,
+      "title": "React to AI chat messages with emojis"
+    },
+    {
+      "number": 27221,
+      "title": "feat(ai): unread badge on the inbox, with inbox state sent as record events"
+    },
+    {
+      "number": 27835,
+      "title": "Recover SSE live updates after stream teardown and register listeners without delay"
+    },
+    {
+      "number": 27302,
+      "title": "Keep validation rules in sync with metadata events"
+    },
+    {
+      "number": 28068,
+      "title": "React to AI chat messages with emojis"
+    },
+    {
+      "number": 25660,
+      "title": "Serialize a workspace's entitlement transition"
+    },
+    {
+      "number": 24152,
+      "title": "Fireflies app settings tab with API-key-gated call history backfill"
+    },
+    {
+      "number": 27245,
+      "title": "fix(server): sync userWorkspace.locale when a workspace member's locale is updated through the record API"
+    },
+    {
+      "number": 24686,
+      "title": "Add place autocomplete to calendar event locations"
+    },
+    {
+      "number": 24209,
+      "title": "Interface scale preference via root CSS zoom"
+    },
+    {
+      "number": 25635,
+      "title": "Make the billing catalog ready for plan and price evolution"
+    },
+    {
+      "number": 29675,
+      "title": "Notify members mentioned in app and workflow inbox messages"
+    },
+    {
+      "number": 29810,
+      "title": "Add the Privacy settings tab behind the AI data policy flag"
+    },
+    {
+      "number": 24968,
+      "title": "Follow reschedules on linked timeline activities"
+    },
+    {
+      "number": 29321,
+      "title": "feat(billing): add billing arrangement entity and validation"
+    },
+    {
+      "number": 25233,
+      "title": "Host the main surface's route context store once, above the page transition"
+    },
+    {
+      "number": 29476,
+      "title": "Connect inbox behavior settings"
+    },
+    {
+      "number": 28727,
+      "title": "Render mocked frontend component previews in AI chat"
+    },
+    {
+      "number": 26349,
+      "title": "Load limits on view groups"
+    },
+    {
+      "number": 22943,
+      "title": "Decide workspace destiny from live data and all sub"
+    },
+    {
+      "number": 30287,
+      "title": "Load AI chat thread lists through one source-keyed model, and inbox tabs from the server"
+    },
+    {
+      "number": 21659,
+      "title": "Add Recall webhook status handler to the meeting bot app"
+    },
+    {
+      "number": 23216,
+      "title": "ci: run upgrade mutation guard in the merge queue against main"
+    },
+    {
+      "number": 22484,
+      "title": "fix(ai): apply stream chunks in exact server seq order via a client-side sequencer"
+    },
+    {
+      "number": 23014,
+      "title": "Reduce call-recorder Recall API load and harden bot scheduling recovery"
+    },
+    {
+      "number": 26065,
+      "title": "Split installed app detail page into settings tabs"
+    },
+    {
+      "number": 26369,
+      "title": "feat(ai): execute chat turns as their persisted sender"
+    },
+    {
+      "number": 21720,
+      "title": "Add stale Recall bot reconciliation"
+    },
+    {
+      "number": 26222,
+      "title": "Defer slow workspace migration actions to a worker job"
+    },
+    {
+      "number": 23180,
+      "title": "Feat/email settings v2"
+    },
+    {
+      "number": 24662,
+      "title": "Manage timeline activity types in application settings"
+    },
+    {
+      "number": 22157,
+      "title": "feat(applications): add type and options to application variables"
+    },
+    {
+      "number": 20453,
+      "title": "Improve linear app"
+    },
+    {
+      "number": 19508,
+      "title": "Refactor command menu items deprecated code"
+    },
+    {
+      "number": 29548,
+      "title": "CODE steps own their source instead of a hidden logic function"
+    },
+    {
+      "number": 24913,
+      "title": "feat(call-recorder): custom settings tab with grouped sections"
+    },
+    {
+      "number": 26348,
+      "title": "feat(sharing): unify record access and enable multiplayer chats"
+    },
+    {
+      "number": 25173,
+      "title": "Broadcast application and applicationRegistration changes over SSE"
+    },
+    {
+      "number": 23973,
+      "title": "feat(billing): replace the credit balance column with a credit grant ledger"
+    },
+    {
+      "number": 20686,
+      "title": "feat(server): upgrade-aware entity decorators for cross-version upgrades"
+    },
+    {
+      "number": 19256,
+      "title": "Improve apps"
+    },
+    {
+      "number": 12051,
+      "title": "Infinite scrolling in relation picker menu"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:05Z",
+  "results": [
+    {
+      "number": 29150,
+      "title": "Drop unreadable fields from webhook payloads"
+    },
+    {
+      "number": 29273,
+      "title": "[BREAKING_CHANGE] Attach a role to webhooks"
+    },
+    {
+      "number": 30381,
+      "title": "Return 403 on permission refusals from REST webhook and API key endpoints"
+    },
+    {
+      "number": 29204,
+      "title": "Route server webhooks by application registration and function universalIdentifier"
+    },
+    {
+      "number": 28417,
+      "title": "Migrate the remaining webhook tools to @DefineTool"
+    },
+    {
+      "number": 29311,
+      "title": "fix(website): drop the secret from the affiliate application webhook"
+    },
+    {
+      "number": 30301,
+      "title": "Hide unlisted views and their children from members who did not create them"
+    },
+    {
+      "number": 30413,
+      "title": "Add integration coverage to logic function route responses"
+    },
+    {
+      "number": 29514,
+      "title": "Derive permission principals straight from the auth context"
+    },
+    {
+      "number": 29278,
+      "title": "feat(website): add the affiliate partners page"
+    },
+    {
+      "number": 27933,
+      "title": "Let application workflows start from a webhook"
+    },
+    {
+      "number": 29406,
+      "title": "Replace the row access subject with a data-only PermissionsPrincipal"
+    },
+    {
+      "number": 29364,
+      "title": "Share access policies between GraphQL, REST and @DefineTool tools"
+    },
+    {
+      "number": 28210,
+      "title": "Declare tools as discovered @DefineTool providers ( only delete webhook first )"
+    },
+    {
+      "number": 29433,
+      "title": "Add user-scoped Fathom connection provider"
+    },
+    {
+      "number": 28416,
+      "title": "Gate @DefineTool tools with their own permission flags and serve the catalog from one method"
+    },
+    {
+      "number": 29835,
+      "title": "Fix settings table footer spacing"
+    },
+    {
+      "number": 29452,
+      "title": "Name permissions principals by role: main, limiting and app"
+    },
+    {
+      "number": 29357,
+      "title": "LinkedIn app: import image, video and audio attachments"
+    },
+    {
+      "number": 29116,
+      "title": "Add LinkedIn app (read-only, via Unipile v2)"
+    },
+    {
+      "number": 28597,
+      "title": "Add mcpServer syncable metadata entity with GraphQL CRUD"
+    },
+    {
+      "number": 29237,
+      "title": "Forward enterprise licensing routes to twenty-connect"
+    },
+    {
+      "number": 30148,
+      "title": "Deliver events of records reached through related record paths"
+    },
+    {
+      "number": 28381,
+      "title": "chore(billing): remove unused billingMeter table"
+    },
+    {
+      "number": 29435,
+      "title": "Run app disconnect hooks when a removed member's connections are transferred"
+    },
+    {
+      "number": 28595,
+      "title": "Add a guide to securing self-hosted instances"
+    },
+    {
+      "number": 29623,
+      "title": "Rename CoreObjectNameSingular to StandardObjectNameSingular"
+    },
+    {
+      "number": 26573,
+      "title": "Only create missing webhook subscriptions for syncing channels"
+    },
+    {
+      "number": 26572,
+      "title": "Let disconnect succeed when stopping webhook subscriptions fails"
+    },
+    {
+      "number": 26571,
+      "title": "Stop webhook subscriptions when transferring connected account ownership"
+    },
+    {
+      "number": 28978,
+      "title": "Reject object names that are not stable under camelCase"
+    },
+    {
+      "number": 29839,
+      "title": "Own the permission test workspace lifecycle in a wrapper"
+    },
+    {
+      "number": 26431,
+      "title": "fix(billing): serialize stripe subscription webhook per customer"
+    },
+    {
+      "number": 28612,
+      "title": "Let @DefineTool tools declare a catalog icon"
+    },
+    {
+      "number": 29424,
+      "title": "feat(billing): bill free and committed seats from arrangements"
+    },
+    {
+      "number": 27278,
+      "title": "chore(usage-limit): remove the webhook rate limit and execution quota feature flags"
+    },
+    {
+      "number": 25520,
+      "title": "Delete Fathom webhooks on disconnect"
+    },
+    {
+      "number": 28991,
+      "title": "Keep priority 1 ahead of the fair tickets for the platform's time-critical jobs"
+    },
+    {
+      "number": 28017,
+      "title": "Share calendar events across calendar channels"
+    },
+    {
+      "number": 28435,
+      "title": "fix(billing): drop billingPrice.stripeMeterId before dropping billingMeter"
+    },
+    {
+      "number": 29475,
+      "title": "Discriminate permissions principals by type"
+    },
+    {
+      "number": 29145,
+      "title": "Reject server route triggers on ad-hoc logic functions"
+    },
+    {
+      "number": 30116,
+      "title": "Match database-event triggers through one shared matcher with conditions"
+    },
+    {
+      "number": 25208,
+      "title": "Sync Fathom recordings from webhooks"
+    },
+    {
+      "number": 27586,
+      "title": "Subscribe to Teams transcripts in Microsoft Graph when a connection is added"
+    },
+    {
+      "number": 27608,
+      "title": "Bound outbound HTTP requests by default"
+    },
+    {
+      "number": 29877,
+      "title": "Apply the remaining record permission renames and split system writes"
+    },
+    {
+      "number": 28084,
+      "title": "fix(billing): make direct subscription creation idempotent"
+    },
+    {
+      "number": 26710,
+      "title": "fix(twenty-ui): keep IconButton tooltips on hover after loading or disabled changes"
+    },
+    {
+      "number": 26244,
+      "title": "[1/5] Enforce SYSTEM record visibility for event delivery"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:09Z",
+  "results": [
+    {
+      "number": 28270,
+      "title": "Regenerate SDK metadata client after concurrent schema changes"
+    },
+    {
+      "number": 26665,
+      "title": "fix: limit record export concurrency across workers"
+    },
+    {
+      "number": 26982,
+      "title": "Prevent concurrent workspace cache refreshes from restoring stale data"
+    },
+    {
+      "number": 25714,
+      "title": "Increase logic function concurrency"
+    },
+    {
+      "number": 29909,
+      "title": "Sign in to MCP servers through an oauth-discovery connection provider"
+    },
+    {
+      "number": 28084,
+      "title": "fix(billing): make direct subscription creation idempotent"
+    },
+    {
+      "number": 29374,
+      "title": "Add the private record column to every object table"
+    },
+    {
+      "number": 29785,
+      "title": "Expose workspace assistant profile settings"
+    },
+    {
+      "number": 30109,
+      "title": "Ignore deleted records in unique field checks"
+    },
+    {
+      "number": 30293,
+      "title": "Route workflow visibility changes through the workspace migration runner"
+    },
+    {
+      "number": 30043,
+      "title": "Show recent run health on the workflows index"
+    },
+    {
+      "number": 27540,
+      "title": "Keep 2.46 instance commands safe for a rolling deploy and large tables"
+    },
+    {
+      "number": 24850,
+      "title": "fix: prevent concurrent twenty-sdk output writes"
+    },
+    {
+      "number": 26246,
+      "title": "[3/5] Route agent history through workspace-aware persistence"
+    },
+    {
+      "number": 29509,
+      "title": "LinkedIn app: skip profile lookups that cannot change the outcome"
+    },
+    {
+      "number": 30382,
+      "title": "Prevent removing the last server admin"
+    },
+    {
+      "number": 27524,
+      "title": "chore(security): bump shell-quote to 1.12.0"
+    },
+    {
+      "number": 29286,
+      "title": "Ensure one direct message thread per member pair"
+    },
+    {
+      "number": 29404,
+      "title": "Refuse a two-factor code that was already accepted"
+    },
+    {
+      "number": 30310,
+      "title": "feat(cli): send proxy headers to servers behind authenticating proxies"
+    },
+    {
+      "number": 29028,
+      "title": "Open i18n pull requests with the Twenty PR app"
+    },
+    {
+      "number": 29550,
+      "title": "feat(billing): reject overlapping billing arrangements on insert"
+    },
+    {
+      "number": 28859,
+      "title": "Remove the free trial for users already in 2 trial workspaces"
+    },
+    {
+      "number": 30328,
+      "title": "Run access group computes as deferred workspace operations"
+    },
+    {
+      "number": 28277,
+      "title": "Index timeline activity linked record id and skip unchanged happensAt updates"
+    },
+    {
+      "number": 29891,
+      "title": "Run CI on every i18n push with a Twenty PR app commit"
+    },
+    {
+      "number": 30315,
+      "title": "Align agents with workflows: Overview tab and run columns"
+    },
+    {
+      "number": 29869,
+      "title": "Send attachments with app channel replies (LinkedIn)"
+    },
+    {
+      "number": 28213,
+      "title": "Skip identical file writes using a stored content hash"
+    },
+    {
+      "number": 29093,
+      "title": "Apply the verification email cooldown to email updates"
+    },
+    {
+      "number": 30217,
+      "title": "Answer a bare mention of the Teams assistant with a hint"
+    },
+    {
+      "number": 23252,
+      "title": "Cap nested relation query concurrency"
+    },
+    {
+      "number": 28097,
+      "title": "Agent engine 3/n: run workflow and trigger agents in their own job"
+    },
+    {
+      "number": 29578,
+      "title": "Accept and upload attachments when apps ingest messages"
+    },
+    {
+      "number": 29250,
+      "title": "Run app health checks in their configured execution mode"
+    },
+    {
+      "number": 27012,
+      "title": "fix: make tokenBucketThrottleOrThrow atomic for every caller"
+    },
+    {
+      "number": 29081,
+      "title": "Remove the IS_DEFERRED_WORKSPACE_MIGRATION_ACTIONS_ENABLED feature flag"
+    },
+    {
+      "number": 26025,
+      "title": "Consume the OAuth authorization code atomically"
+    },
+    {
+      "number": 29005,
+      "title": "fix(front): show application logo in log console app filter"
+    },
+    {
+      "number": 29424,
+      "title": "feat(billing): bill free and committed seats from arrangements"
+    },
+    {
+      "number": 26824,
+      "title": "Expose programmatic SDK build and typecheck APIs"
+    },
+    {
+      "number": 29243,
+      "title": "Add the related record path metadata API"
+    },
+    {
+      "number": 29229,
+      "title": "Add the related record path metadata entity"
+    },
+    {
+      "number": 28689,
+      "title": "Remove the main sources of server integration shard flakiness"
+    },
+    {
+      "number": 28493,
+      "title": "fix(slack): show one content-shaped skeleton while the settings tab loads"
+    },
+    {
+      "number": 28405,
+      "title": "Search help center through the docs.twenty.com MCP server"
+    },
+    {
+      "number": 26166,
+      "title": "feat(apps): run application lifecycle hooks on a dedicated queue"
+    },
+    {
+      "number": 27510,
+      "title": "Block uninstalling a server route app from its owner workspace while installed elsewhere"
+    },
+    {
+      "number": 26582,
+      "title": "fix(file-storage): create the missing file row when copying a file by path"
+    },
+    {
+      "number": 30267,
+      "title": "fix(inbox): send a new chat to one teammate as a direct message"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:13Z",
+  "results": [
+    {
+      "number": 30068,
+      "title": "Fix order-dependent integration tests and stale SDK metadata client"
+    },
+    {
+      "number": 28743,
+      "title": "fix(server): refresh stale workflow version maps before sync"
+    },
+    {
+      "number": 28429,
+      "title": "Apply loaded metadata when one stale query fails"
+    },
+    {
+      "number": 29029,
+      "title": "Fix merge bugs: stale priority, hidden-field data loss, permission gating"
+    },
+    {
+      "number": 27604,
+      "title": "Fix stale metadata in SSE events"
+    },
+    {
+      "number": 28276,
+      "title": "Only sweep workspaces with an emailing domain for stale campaigns"
+    },
+    {
+      "number": 27048,
+      "title": "Prevent stale credentials in IMAP input"
+    },
+    {
+      "number": 27026,
+      "title": "chore: remove useless and stale comments"
+    },
+    {
+      "number": 28380,
+      "title": "Fix stale selectors in create-record and create-kanban-view e2e tests"
+    },
+    {
+      "number": 26982,
+      "title": "Prevent concurrent workspace cache refreshes from restoring stale data"
+    },
+    {
+      "number": 25434,
+      "title": "Reconcile stale Fathom media imports"
+    },
+    {
+      "number": 30371,
+      "title": "Open AI catalog sync pull requests with the Twenty PR app"
+    },
+    {
+      "number": 25510,
+      "title": "[codex] Ignore stale authentication errors after session changes"
+    },
+    {
+      "number": 29517,
+      "title": "Keep a usable grouping when switching a view's layout to Kanban"
+    },
+    {
+      "number": 30073,
+      "title": "Stop the validation rule lifecycle test from deactivating a seeded company field"
+    },
+    {
+      "number": 24726,
+      "title": "Repair stale timeline activity target metadata"
+    },
+    {
+      "number": 30224,
+      "title": "Serve a merged twenty-shared build to dev servers instead of pre-bundling it"
+    },
+    {
+      "number": 30374,
+      "title": "fix: regenerate metadata client type references"
+    },
+    {
+      "number": 27240,
+      "title": "AI catalog steward: refresh stale self-host smart default (gpt-5.6-sol@high → gpt-6-astra@low)"
+    },
+    {
+      "number": 28863,
+      "title": "Add merge proposal review"
+    },
+    {
+      "number": 30328,
+      "title": "Run access group computes as deferred workspace operations"
+    },
+    {
+      "number": 29244,
+      "title": "fix(server): rebuild ORM table shapes after a field rename"
+    },
+    {
+      "number": 28497,
+      "title": "Replace CODEOWNERS with a CI approval check for sensitive paths"
+    },
+    {
+      "number": 30361,
+      "title": "docs(cli): make command and module guides easier to scan"
+    },
+    {
+      "number": 28747,
+      "title": "Show the app error fallback for errors React Router catches"
+    },
+    {
+      "number": 29607,
+      "title": "feat(getting-started): require a payment method to hide Getting started for good"
+    },
+    {
+      "number": 30011,
+      "title": "Pace workflow and logic function jobs by their jobConfig limiter"
+    },
+    {
+      "number": 28275,
+      "title": "Align Dropdown search activation"
+    },
+    {
+      "number": 29813,
+      "title": "Keep ui-documentation.json in sync during version bump"
+    },
+    {
+      "number": 29989,
+      "title": "Keep the AI data policy controls enabled while a save runs"
+    },
+    {
+      "number": 27972,
+      "title": "Keep finished workflow runs from being reverted by older query responses"
+    },
+    {
+      "number": 29784,
+      "title": "Remove WorkspaceOrmManager from permissions and move ApiKeyRoleService out"
+    },
+    {
+      "number": 28707,
+      "title": "Keep sensitive-path maintainer approvals valid after pushes"
+    },
+    {
+      "number": 29582,
+      "title": "Rewrite inbox channel grants without raw SQL"
+    },
+    {
+      "number": 27938,
+      "title": "Complete Toast lifecycle ownership"
+    },
+    {
+      "number": 30240,
+      "title": "Report the real access group propagation progress"
+    },
+    {
+      "number": 28766,
+      "title": "Infer the code step input schema in the debounced save so keystrokes can't be saved out of order"
+    },
+    {
+      "number": 29881,
+      "title": "Add canCreate permissions to roles, object permissions and RLS groups"
+    },
+    {
+      "number": 27996,
+      "title": "Let admins remove linked Teams accounts from Teams settings"
+    },
+    {
+      "number": 25202,
+      "title": "fix(billing) - fix stale seat count billed on plan and interval subscription updates"
+    },
+    {
+      "number": 28494,
+      "title": "Fix app sync recreating search rows that already exist"
+    },
+    {
+      "number": 29913,
+      "title": "Keep record access groups current and list records through them"
+    },
+    {
+      "number": 29890,
+      "title": "Keep access group rows up to date behind a feature flag"
+    },
+    {
+      "number": 25738,
+      "title": "fix: republish twenty-ui as MIT (1.0.0-alpha.2) to resolve stale AGPL artifacts"
+    },
+    {
+      "number": 28749,
+      "title": "Restore JSX attributes Crowdin translated in docs pages"
+    },
+    {
+      "number": 29970,
+      "title": "Fall back to restrictedFields for permissions persisted by an older bundle"
+    },
+    {
+      "number": 28177,
+      "title": "Share the front component JSX runtime between the SDK and the CLI"
+    },
+    {
+      "number": 29167,
+      "title": "perf(server): scope workspace migration cache invalidation to mutated maps"
+    },
+    {
+      "number": 30201,
+      "title": "Store the access groups records inherit through related record paths"
+    },
+    {
+      "number": 30287,
+      "title": "Load AI chat thread lists through one source-keyed model, and inbox tabs from the server"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:17Z",
+  "results": [
+    {
+      "number": 30421,
+      "title": "Fix the access group propagation progress spec declaring its person twice"
+    },
+    {
+      "number": 25423,
+      "title": "Deliver SSE events once instead of twice"
+    },
+    {
+      "number": 29688,
+      "title": "Fix retried first send of a new inbox chat"
+    },
+    {
+      "number": 29780,
+      "title": "Upload message attachments without copying the bytes"
+    },
+    {
+      "number": 30217,
+      "title": "Answer a bare mention of the Teams assistant with a hint"
+    },
+    {
+      "number": 29753,
+      "title": "Set ORGANIZER on CalDAV events so servers send invitations"
+    },
+    {
+      "number": 29799,
+      "title": "Replace recordsPermissions reads with narrower read restriction questions"
+    },
+    {
+      "number": 29503,
+      "title": "Bound the whole API shutdown when sockets escape HTTP tracking"
+    },
+    {
+      "number": 29989,
+      "title": "Keep the AI data policy controls enabled while a save runs"
+    },
+    {
+      "number": 29891,
+      "title": "Run CI on every i18n push with a Twenty PR app commit"
+    },
+    {
+      "number": 29148,
+      "title": "Declare the connected account shape for workflow step resolution once"
+    },
+    {
+      "number": 30207,
+      "title": "Follow related record paths through shares, creators and writes"
+    },
+    {
+      "number": 28226,
+      "title": "Write an AI summary on Call Recordings imported from Microsoft Teams"
+    },
+    {
+      "number": 27441,
+      "title": "Provide each server service from a single module"
+    },
+    {
+      "number": 28647,
+      "title": "Cache Lambda GetFunction results per logic function"
+    },
+    {
+      "number": 30241,
+      "title": "feat(inbox): browse chat images in the preview and share attachments with Messages"
+    },
+    {
+      "number": 30382,
+      "title": "Prevent removing the last server admin"
+    },
+    {
+      "number": 29865,
+      "title": "Mark app chats as read when opened in Twenty (LinkedIn)"
+    },
+    {
+      "number": 28084,
+      "title": "fix(billing): make direct subscription creation idempotent"
+    },
+    {
+      "number": 29289,
+      "title": "chore(getting-started): prepare enrichment, marketplace and AI chat pieces"
+    },
+    {
+      "number": 29345,
+      "title": "Publish npm packages with npm's provenance signer"
+    },
+    {
+      "number": 29331,
+      "title": "Add the accessGroup hidden standard object"
+    },
+    {
+      "number": 30269,
+      "title": "Keep a revoked OAuth refresh token revoked after the member authorizes again"
+    },
+    {
+      "number": 28191,
+      "title": "Fix twenty-ui checks after the Base UI 1.9.0 update"
+    },
+    {
+      "number": 29240,
+      "title": "Retry npm publish when the provenance entry conflicts in Rekor"
+    },
+    {
+      "number": 30333,
+      "title": "Keep chat drafts through a reconnect and explain failed sends"
+    },
+    {
+      "number": 29328,
+      "title": "Let app manifests declare related record paths"
+    },
+    {
+      "number": 28381,
+      "title": "chore(billing): remove unused billingMeter table"
+    },
+    {
+      "number": 29976,
+      "title": "fix(ai): bill Claude thinking tokens once and price cache writes"
+    },
+    {
+      "number": 27103,
+      "title": "fix(settings): role save onSuccess, saving state and permissions fallback"
+    },
+    {
+      "number": 29962,
+      "title": "Add successful SSO sign-up integration tests"
+    },
+    {
+      "number": 28308,
+      "title": "Agent engine: read a conversation's wait in one query"
+    },
+    {
+      "number": 27688,
+      "title": "Stop duplicating Gmail sent emails when sync fetches them again"
+    },
+    {
+      "number": 29941,
+      "title": "Import email attachments as remote files streamed from the provider"
+    },
+    {
+      "number": 28486,
+      "title": "[BREAKING_CHANGE] Convert existing rich text to TipTap in a 2.51 upgrade command"
+    },
+    {
+      "number": 29321,
+      "title": "feat(billing): add billing arrangement entity and validation"
+    },
+    {
+      "number": 27311,
+      "title": "fix(usage): throw when the recurring charge lookup fails instead of charging every fee again"
+    },
+    {
+      "number": 27298,
+      "title": "Invoke media event handlers through their own listeners"
+    },
+    {
+      "number": 29229,
+      "title": "Add the related record path metadata entity"
+    },
+    {
+      "number": 30240,
+      "title": "Report the real access group propagation progress"
+    },
+    {
+      "number": 30232,
+      "title": "feat(inbox): show direct messages in their own sidebar section"
+    },
+    {
+      "number": 28428,
+      "title": "Clean up call recordings left behind by call recorder integration tests"
+    },
+    {
+      "number": 28994,
+      "title": "Rebase the fair tickets in bounded chunks once the virtual time passes 2^20"
+    },
+    {
+      "number": 27564,
+      "title": "Gate a background run's human-input tools in one place"
+    },
+    {
+      "number": 27025,
+      "title": "Drop legacy core campaignDelivery and messageSuppression tables"
+    },
+    {
+      "number": 27188,
+      "title": "Show the information banner once in the AI chat inbox"
+    },
+    {
+      "number": 29355,
+      "title": "Add a slug to app settings tabs and land Connect and Reconnect on the app's first tab"
+    },
+    {
+      "number": 27678,
+      "title": "Count and import older Teams transcripts on request"
+    },
+    {
+      "number": 26621,
+      "title": "Reconcile call recorder meetings from batched reads"
+    },
+    {
+      "number": 29951,
+      "title": "Fix assistant settings swallowing clicks and showing the default name"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "twentyhq/twenty",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo twentyhq/twenty --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:21Z",
+  "results": [
+    {
+      "number": 29802,
+      "title": "Retry failed emailing domains in the hourly sweep"
+    },
+    {
+      "number": 29688,
+      "title": "Fix retried first send of a new inbox chat"
+    },
+    {
+      "number": 30226,
+      "title": "Retry hovers in the gallery tooltip tests until the tooltip opens"
+    },
+    {
+      "number": 29801,
+      "title": "Retry emailing domain verification on check after the provider marks it failed"
+    },
+    {
+      "number": 29240,
+      "title": "Retry npm publish when the provenance entry conflicts in Rekor"
+    },
+    {
+      "number": 28729,
+      "title": "Give integration waits a generous budget and retry cold installs"
+    },
+    {
+      "number": 27953,
+      "title": "Make logic function trigger job fan-out idempotent across retries"
+    },
+    {
+      "number": 27667,
+      "title": "Retry Twenty and Fathom rate limits in the Fathom app"
+    },
+    {
+      "number": 26371,
+      "title": "Recover and retry deferred workspace migration actions"
+    },
+    {
+      "number": 30333,
+      "title": "Keep chat drafts through a reconnect and explain failed sends"
+    },
+    {
+      "number": 30328,
+      "title": "Run access group computes as deferred workspace operations"
+    },
+    {
+      "number": 30096,
+      "title": "Add the Messages new-message view"
+    },
+    {
+      "number": 29869,
+      "title": "Send attachments with app channel replies (LinkedIn)"
+    },
+    {
+      "number": 30137,
+      "title": "Add edit and delete actions on own AI chat messages"
+    },
+    {
+      "number": 25304,
+      "title": "feat(slack): log Slack event retry deliveries"
+    },
+    {
+      "number": 30313,
+      "title": "Rename deferred workspace migration actions to deferred workspace operations"
+    },
+    {
+      "number": 30344,
+      "title": "Remove the `Boolean()` casts in ApolloFactory.ts"
+    },
+    {
+      "number": 30253,
+      "title": "Split the AI chat thread loading hooks by job"
+    },
+    {
+      "number": 30332,
+      "title": "Align the Messages widget empty state"
+    },
+    {
+      "number": 29731,
+      "title": "Job queue memory (3/3): enforce the per-tenant share"
+    },
+    {
+      "number": 30240,
+      "title": "Report the real access group propagation progress"
+    },
+    {
+      "number": 25334,
+      "title": "feat(workflow): idempotency hint under the retry setting"
+    },
+    {
+      "number": 30314,
+      "title": "Record group tabs: move All last and autoload records"
+    },
+    {
+      "number": 25776,
+      "title": "Propagate SMTP send failures so the email job actually retries"
+    },
+    {
+      "number": 29985,
+      "title": "Send email-style replies through app messaging providers"
+    },
+    {
+      "number": 30390,
+      "title": "Add a deferred operation to rebuild an object table and free its dropped column slots"
+    },
+    {
+      "number": 29345,
+      "title": "Publish npm packages with npm's provenance signer"
+    },
+    {
+      "number": 28343,
+      "title": "Run prebuilt warm-ups on a rate-limited lambda-management-queue"
+    },
+    {
+      "number": 30297,
+      "title": "Clear oversized job payloads after successful completion"
+    },
+    {
+      "number": 28705,
+      "title": "Keep app uninstall hook failures out of Sentry"
+    },
+    {
+      "number": 28507,
+      "title": "Rename 3 server files to the singular suffix in src/engine/core-modules/auth/constants"
+    },
+    {
+      "number": 30103,
+      "title": "Show a receipt in outgoing Messages bubbles"
+    },
+    {
+      "number": 28709,
+      "title": "fix(front): preserve spreadsheet imports after submission errors"
+    },
+    {
+      "number": 30430,
+      "title": "i18n - translations"
+    },
+    {
+      "number": 30011,
+      "title": "Pace workflow and logic function jobs by their jobConfig limiter"
+    },
+    {
+      "number": 29740,
+      "title": "Use query builders in DM integration tests"
+    },
+    {
+      "number": 30109,
+      "title": "Ignore deleted records in unique field checks"
+    },
+    {
+      "number": 29675,
+      "title": "Notify members mentioned in app and workflow inbox messages"
+    },
+    {
+      "number": 29843,
+      "title": "Connect assistant personalization settings"
+    },
+    {
+      "number": 29384,
+      "title": "Bundle tabler icons into twenty-ui's individual build"
+    },
+    {
+      "number": 30292,
+      "title": "i18n - translations"
+    },
+    {
+      "number": 28084,
+      "title": "fix(billing): make direct subscription creation idempotent"
+    },
+    {
+      "number": 25483,
+      "title": "fix(slack): bound Slack Web API retries to the logic function budget"
+    },
+    {
+      "number": 29386,
+      "title": "Move IconsProvider out of twenty-ui/icon so icon imports don't ship every icon"
+    },
+    {
+      "number": 30194,
+      "title": "i18n - translations"
+    },
+    {
+      "number": 29395,
+      "title": "Fix sent Outlook drafts staying as drafts"
+    },
+    {
+      "number": 29897,
+      "title": "i18n - translations"
+    },
+    {
+      "number": 29885,
+      "title": "i18n - translations"
+    },
+    {
+      "number": 30219,
+      "title": "Remove the `as any` casts in StepBar.tsx"
+    },
+    {
+      "number": 30346,
+      "title": "Remove the type-check suppressions in StepBar.tsx"
+    }
+  ],
+  "error": null
+}
+]

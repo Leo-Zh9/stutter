@@ -1,0 +1,91 @@
+[
+{
+  "repo": "dubinc/dub",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:19:37Z",
+  "results": null,
+  "error": "Invalid search query \"( idempotency ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:21:03Z",
+  "results": null,
+  "error": "Invalid search query \"( idempotent ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:22:28Z",
+  "results": null,
+  "error": "Invalid search query \"( duplicate ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:23:54Z",
+  "results": null,
+  "error": "Invalid search query \"( race ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:25:21Z",
+  "results": null,
+  "error": "Invalid search query \"( \\\"out of order\\\" ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:26:47Z",
+  "results": null,
+  "error": "Invalid search query \"( webhook ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:28:13Z",
+  "results": null,
+  "error": "Invalid search query \"( concurrent ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:29:42Z",
+  "results": null,
+  "error": "Invalid search query \"( stale ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:31:09Z",
+  "results": null,
+  "error": "Invalid search query \"( twice ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+,
+{
+  "repo": "dubinc/dub",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo dubinc/dub --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:32:39Z",
+  "results": null,
+  "error": "Invalid search query \"( retry ) is:merged repo:dubinc/dub type:pr\".\nThe listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.\n"
+}
+]

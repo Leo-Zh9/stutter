@@ -1,0 +1,2037 @@
+[
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:01Z",
+  "results": [
+    {
+      "number": 31213,
+      "title": "Fixed automation Scheduler idempotency key"
+    },
+    {
+      "number": 30639,
+      "title": "Added an idempotency key to scheduled post and page jobs"
+    },
+    {
+      "number": 30638,
+      "title": "Moved the scheduler idempotency key helper next to the other scheduling helpers"
+    },
+    {
+      "number": 32043,
+      "title": "Stopped upgrade host outages showing as Ghost maintenance"
+    },
+    {
+      "number": 31982,
+      "title": "Added the host-managed upgrade Admin API"
+    },
+    {
+      "number": 32300,
+      "title": "Fixed checkouts offering a tax ID failing for members who are already Stripe customers"
+    },
+    {
+      "number": 31983,
+      "title": "Added Ghost updates to the About screen"
+    },
+    {
+      "number": 30641,
+      "title": "🐛 Fixed scheduled posts not being sent due to race condition"
+    },
+    {
+      "number": 29490,
+      "title": "Added support for idempotency key in scheduling adapter interface"
+    },
+    {
+      "number": 31985,
+      "title": "Added the upgrade adapter contract and HTTP adapter"
+    },
+    {
+      "number": 32718,
+      "title": "drop email recipients member id index"
+    },
+    {
+      "number": 32643,
+      "title": "Changed spam prevention to rate-limiter-flexible"
+    },
+    {
+      "number": 32715,
+      "title": "Added index on email_recipients (member_id, opened_at, email_id)"
+    },
+    {
+      "number": 32099,
+      "title": "Removed redundant schema integrity hash check"
+    },
+    {
+      "number": 30540,
+      "title": "Added nullable newsletter recipient accounting columns"
+    },
+    {
+      "number": 30208,
+      "title": "Extracted a shared signed flush scheduler from the gifts service"
+    },
+    {
+      "number": 31999,
+      "title": "Added migrations for the app installation tables"
+    },
+    {
+      "number": 31630,
+      "title": "Moved the Ghost package from ghost/core to ghost"
+    },
+    {
+      "number": 32657,
+      "title": "Supported \"label added\" automation triggers in database schema"
+    },
+    {
+      "number": 32096,
+      "title": "Changed member metafield values to be keyed by field, not an id"
+    },
+    {
+      "number": 32498,
+      "title": "Promoted jobs_outbox to a real table"
+    },
+    {
+      "number": 32615,
+      "title": "Added Ghost-specific Knex adapter tests for Better Auth"
+    },
+    {
+      "number": 32263,
+      "title": "Added \"free\" scope to automation trigger rules"
+    },
+    {
+      "number": 32245,
+      "title": "Added new automation trigger type for paid subscription changed"
+    },
+    {
+      "number": 32244,
+      "title": "Added automation trigger direction column"
+    },
+    {
+      "number": 32080,
+      "title": "🎨 Allowed automations with the same name"
+    },
+    {
+      "number": 31975,
+      "title": "Added index for looking up actions by resource"
+    },
+    {
+      "number": 31752,
+      "title": "Update dependency prettier to v3.9.9"
+    },
+    {
+      "number": 32347,
+      "title": "Added characterization for the users, media inliner and member welcome emails migrations"
+    },
+    {
+      "number": 32629,
+      "title": "🐛 Fixed deadlocks when saving tiers"
+    },
+    {
+      "number": 32291,
+      "title": "Fixed column pattern checks breaking upgrades on MariaDB"
+    },
+    {
+      "number": 32213,
+      "title": "Added dormant \"automation trigger rules\" database table"
+    },
+    {
+      "number": 30834,
+      "title": "Added per-tier automation trigger migration"
+    },
+    {
+      "number": 31508,
+      "title": "Added trigger type to automations table"
+    },
+    {
+      "number": 30640,
+      "title": "Made the scheduled publish callback safe to receive twice"
+    },
+    {
+      "number": 31621,
+      "title": "Added foreign keys over several columns to the schema definition"
+    },
+    {
+      "number": 32101,
+      "title": "Changed member metafields to store the namespace each field belongs to"
+    },
+    {
+      "number": 31062,
+      "title": "Gave admins \"add automation\" permissions"
+    },
+    {
+      "number": 29729,
+      "title": "Reset automation email analytics counts"
+    },
+    {
+      "number": 30868,
+      "title": "TypeScriptified model schema validation"
+    },
+    {
+      "number": 31839,
+      "title": "🐛 Fixed paid signups failing when a Stripe price description is too long"
+    },
+    {
+      "number": 31628,
+      "title": "Added column patterns to the schema definition"
+    },
+    {
+      "number": 31539,
+      "title": "Added a site-wide design for Stripe Checkout"
+    },
+    {
+      "number": 30551,
+      "title": "TypeScriptified `defaultIndexName`\n"
+    },
+    {
+      "number": 30587,
+      "title": "Added nullable posts.auto_excerpt and posts.reading_time columns"
+    },
+    {
+      "number": 31604,
+      "title": "Added backend support for archived automations"
+    },
+    {
+      "number": 30861,
+      "title": "Added description column to automations table"
+    },
+    {
+      "number": 28978,
+      "title": "Automations: made scheduler requests idempotent"
+    },
+    {
+      "number": 31848,
+      "title": "✨ Added a way to move social web followers out of Ghost"
+    },
+    {
+      "number": 31861,
+      "title": "Added in-development transactional outbox for jobs"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:05Z",
+  "results": [
+    {
+      "number": 32847,
+      "title": "Added a shared Redis connection config schema"
+    },
+    {
+      "number": 32347,
+      "title": "Added characterization for the users, media inliner and member welcome emails migrations"
+    },
+    {
+      "number": 28978,
+      "title": "Automations: made scheduler requests idempotent"
+    },
+    {
+      "number": 32635,
+      "title": "Updated knex to 3.3.0"
+    },
+    {
+      "number": 32243,
+      "title": "Dropped obsolete automation trigger columns and table"
+    },
+    {
+      "number": 32158,
+      "title": "Added characterization for four service migrations"
+    },
+    {
+      "number": 31025,
+      "title": "Fixed multi-second Safari stalls opening Radix menus in dev"
+    },
+    {
+      "number": 31907,
+      "title": "Updated Content Import inventory coverage wording"
+    },
+    {
+      "number": 32389,
+      "title": "Updated Member welcome emails to use defineService"
+    },
+    {
+      "number": 31901,
+      "title": "Added Invites and Content Import preparation tests"
+    },
+    {
+      "number": 32066,
+      "title": "Updated service inventory ownership decisions"
+    },
+    {
+      "number": 32740,
+      "title": "Removed test-only checks from the email analytics scheduler"
+    },
+    {
+      "number": 30230,
+      "title": "🐛  Fixed dropped newsletter recipients when batch creation is interrupted"
+    },
+    {
+      "number": 30640,
+      "title": "Made the scheduled publish callback safe to receive twice"
+    },
+    {
+      "number": 30059,
+      "title": "HKG-1970: Migrate clean-tokens to the class-based jobs service"
+    },
+    {
+      "number": 32500,
+      "title": "Kept jobs outbox rows until their job settles"
+    },
+    {
+      "number": 30680,
+      "title": "Fixed scheduled newsletter publishes deadlocking on their own email"
+    },
+    {
+      "number": 32753,
+      "title": "Tweaked automation notify type defense-in-depth"
+    },
+    {
+      "number": 31993,
+      "title": "Moved \"insert action\" to new automations interface"
+    },
+    {
+      "number": 32043,
+      "title": "Stopped upgrade host outages showing as Ghost maintenance"
+    },
+    {
+      "number": 32167,
+      "title": "Moved Integrations composition into boot"
+    },
+    {
+      "number": 32082,
+      "title": "Removed Stripe secret from debug logs"
+    },
+    {
+      "number": 32455,
+      "title": "Updated the services guide for config injection and shared library wrappers"
+    },
+    {
+      "number": 31841,
+      "title": "Added identity token and internal key service tests"
+    },
+    {
+      "number": 31902,
+      "title": "Added Posts Public and Internal Keys preparation coverage"
+    },
+    {
+      "number": 31888,
+      "title": "Removed backend references to `automationAnalytics` labs flag"
+    },
+    {
+      "number": 32035,
+      "title": "Moved app installation persistence into a store"
+    },
+    {
+      "number": 32752,
+      "title": "Tweaked automation trigger existence queries for clarity"
+    },
+    {
+      "number": 31645,
+      "title": "Tidied imports in automations service"
+    },
+    {
+      "number": 29880,
+      "title": "Removed the legacy Explore integration"
+    },
+    {
+      "number": 30818,
+      "title": "Fixed internal doc link to welcome email file"
+    },
+    {
+      "number": 31551,
+      "title": "Used more accurate types in automation validation functions"
+    },
+    {
+      "number": 30789,
+      "title": "Added basic code documentation for automations"
+    },
+    {
+      "number": 32712,
+      "title": "Changed app approvals to report icon failures through the revision check"
+    },
+    {
+      "number": 32254,
+      "title": "Added characterization for three more service migrations"
+    },
+    {
+      "number": 32649,
+      "title": "Skipped unnecessary query for automation wait action execution"
+    },
+    {
+      "number": 31464,
+      "title": "Added in-memory permissions in comparison mode."
+    },
+    {
+      "number": 31186,
+      "title": "Added service root ownership and placement guidance"
+    },
+    {
+      "number": 31885,
+      "title": "Removed obsolete automation analytics test stubs"
+    },
+    {
+      "number": 31785,
+      "title": "Fixed ActivityPub errors on every local dev boot"
+    },
+    {
+      "number": 31737,
+      "title": "Removed metascraper from bookmark metadata extraction"
+    },
+    {
+      "number": 32716,
+      "title": "Added timing metrics for settings cache initialisation"
+    },
+    {
+      "number": 32690,
+      "title": "Moved \"max automation count\" constant to constants file"
+    },
+    {
+      "number": 31995,
+      "title": "Moved \"load edges\" to new automations interface"
+    },
+    {
+      "number": 32527,
+      "title": "🐛 Fixed embeds of upcoming YouTube livestreams missing from emails"
+    },
+    {
+      "number": 32650,
+      "title": "Reduced database queries in \"enqueue next automation step\" action"
+    },
+    {
+      "number": 32328,
+      "title": "Removed useless email design alias in automations code"
+    },
+    {
+      "number": 32201,
+      "title": "🐛 Fixed broken Transistor card links in emails sent without click tracking"
+    },
+    {
+      "number": 32888,
+      "title": "TypeScriptified default scheduler tests"
+    },
+    {
+      "number": 32864,
+      "title": "Logged which outbox mode Ghost boots in"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:08Z",
+  "results": [
+    {
+      "number": 32811,
+      "title": "Removed the app SDK's duplicate manifest types"
+    },
+    {
+      "number": 32766,
+      "title": "Removed the app SDK's duplicate key check"
+    },
+    {
+      "number": 32338,
+      "title": "Removed duplicate initials helper from email failures view"
+    },
+    {
+      "number": 32345,
+      "title": "Removed duplicate frontend code for automations and welcome emails"
+    },
+    {
+      "number": 32381,
+      "title": "Added Oxlint rules against focused and duplicate Vitest titles"
+    },
+    {
+      "number": 31867,
+      "title": "Added parentheses to duplicate automation names"
+    },
+    {
+      "number": 32094,
+      "title": "Started rejecting duplicate tier IDs in automations API"
+    },
+    {
+      "number": 32280,
+      "title": "🐛 Fixed duplicated pages losing their title and feature image setting"
+    },
+    {
+      "number": 31790,
+      "title": "Cleaned up duplicate dependency versions and misfiled dependencies"
+    },
+    {
+      "number": 31190,
+      "title": "Removed duplicate Admin browser acceptance coverage"
+    },
+    {
+      "number": 31794,
+      "title": "Cleaned up the dev scripts' duplicate process table readers"
+    },
+    {
+      "number": 31782,
+      "title": "Removed the duplicate ox from Ghost's production dependencies"
+    },
+    {
+      "number": 31475,
+      "title": "Improved CI speed by trimming duplicate work and adding an Admin shard"
+    },
+    {
+      "number": 30636,
+      "title": "Cleaned duplicated React editor acceptance fixtures"
+    },
+    {
+      "number": 32629,
+      "title": "🐛 Fixed deadlocks when saving tiers"
+    },
+    {
+      "number": 30223,
+      "title": "Removed duplicated admin helpers"
+    },
+    {
+      "number": 30714,
+      "title": "Removed the duplicate npm copy of kg-default-cards"
+    },
+    {
+      "number": 30710,
+      "title": "Added an opt-in duplicate-dependency check to validate-adapters"
+    },
+    {
+      "number": 30218,
+      "title": "Removed the duplicated Unsplash config literal"
+    },
+    {
+      "number": 32522,
+      "title": "Improved the app SDK's comments for its generated reference"
+    },
+    {
+      "number": 32306,
+      "title": "Update dependency hono to v4.13.14"
+    },
+    {
+      "number": 30387,
+      "title": "Cleaned duplicated labs flags out of admin acceptance specs"
+    },
+    {
+      "number": 29936,
+      "title": "Removed duplicate package license files"
+    },
+    {
+      "number": 32036,
+      "title": "Moved automation renaming to the editor header title"
+    },
+    {
+      "number": 32318,
+      "title": "Stopped dropping jobs with no registered handler"
+    },
+    {
+      "number": 30629,
+      "title": "Removed the duplicated image-upload and social-card helpers in the post editor"
+    },
+    {
+      "number": 31512,
+      "title": "Fixed tags editor E2E tests depending on a fresh database"
+    },
+    {
+      "number": 29887,
+      "title": "Single-source duplicated custom-field facts"
+    },
+    {
+      "number": 31856,
+      "title": "🎨 Updated Admin badges to use the standard Shade badge style"
+    },
+    {
+      "number": 30383,
+      "title": "🐛 Fixed duplicate requests for image dimensions of the same URL"
+    },
+    {
+      "number": 31883,
+      "title": "Removed obsolete automation editor UI"
+    },
+    {
+      "number": 32801,
+      "title": "Added dependency boundary enforcement for all services"
+    },
+    {
+      "number": 30152,
+      "title": "Changed duplicated currency and count formatting to shared helpers"
+    },
+    {
+      "number": 31924,
+      "title": "Cleaned up Ember-era e2e specs, page objects and test hooks"
+    },
+    {
+      "number": 31881,
+      "title": "Removed the automation canvas feature flag gates"
+    },
+    {
+      "number": 32191,
+      "title": "Added database tests for invite acceptance"
+    },
+    {
+      "number": 32010,
+      "title": "Added endpoint for sending support requests"
+    },
+    {
+      "number": 31838,
+      "title": "🐛 Fixed crash when activating a built-in theme after a failed install"
+    },
+    {
+      "number": 31781,
+      "title": "Fixed eslint and vite forking on jiti 1 in the Tailwind 3 packages"
+    },
+    {
+      "number": 32406,
+      "title": "Added characterization for the oEmbed, Staff and Email suppression list migrations"
+    },
+    {
+      "number": 32302,
+      "title": "Moved the i18n facade into core/shared"
+    },
+    {
+      "number": 32080,
+      "title": "🎨 Allowed automations with the same name"
+    },
+    {
+      "number": 31649,
+      "title": "Fixed remaining CI flakes and concurrent installation failures"
+    },
+    {
+      "number": 32332,
+      "title": "Added an exception log line for every failed tracked operation"
+    },
+    {
+      "number": 32552,
+      "title": "Fixed members created at once failing to save their custom fields"
+    },
+    {
+      "number": 31413,
+      "title": "Enabled automations tinybird-sync in local development"
+    },
+    {
+      "number": 31038,
+      "title": "Improved Admin acceptance test output"
+    },
+    {
+      "number": 29452,
+      "title": "Removed e2e tests duplicated by admin acceptance coverage"
+    },
+    {
+      "number": 32081,
+      "title": "Fixed chip field height and chevron alignment"
+    },
+    {
+      "number": 29685,
+      "title": "Moved duplicated admin analytics files into shared module"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:12Z",
+  "results": [
+    {
+      "number": 31749,
+      "title": "Fixed floating sidebar acceptance test config race"
+    },
+    {
+      "number": 31713,
+      "title": "Fixed automation saving acceptance test request capture race"
+    },
+    {
+      "number": 30942,
+      "title": "Fixed author acceptance test race"
+    },
+    {
+      "number": 31117,
+      "title": "Fixed member import picker dismissal test race"
+    },
+    {
+      "number": 30788,
+      "title": "🐛 Fixed activate theme replacement race"
+    },
+    {
+      "number": 32550,
+      "title": "Fixed flake risks in the custom field acceptance specs"
+    },
+    {
+      "number": 30641,
+      "title": "🐛 Fixed scheduled posts not being sent due to race condition"
+    },
+    {
+      "number": 32405,
+      "title": "Fixed the floating sidebar shortcut test racing the Labs config"
+    },
+    {
+      "number": 32391,
+      "title": "Fixed the floating sidebar spec pressing ⌘B before the sidebar floats"
+    },
+    {
+      "number": 32388,
+      "title": "🐛 Fixed a new automation showing the one just created after a save"
+    },
+    {
+      "number": 30485,
+      "title": "Fixed a race in the member attribution webhook tests"
+    },
+    {
+      "number": 30483,
+      "title": "Fixed a race in the members checkout webhook test"
+    },
+    {
+      "number": 32629,
+      "title": "🐛 Fixed deadlocks when saving tiers"
+    },
+    {
+      "number": 31155,
+      "title": "Fixed member webhooks sending old custom field values after a mixed edit"
+    },
+    {
+      "number": 29787,
+      "title": "Improved Web analytics boot race coverage"
+    },
+    {
+      "number": 30732,
+      "title": "Wired up metrics flush to server shutdown"
+    },
+    {
+      "number": 29748,
+      "title": "Fixed Koenig dev build startup race"
+    },
+    {
+      "number": 31798,
+      "title": "Fixed pnpm bootstrap failing in several new worktrees at once"
+    },
+    {
+      "number": 31321,
+      "title": "Fixed New offer showing a no-tier warning while tiers load"
+    },
+    {
+      "number": 32114,
+      "title": "Fixed the help chat not reopening after a support request is sent"
+    },
+    {
+      "number": 31465,
+      "title": "Fixed editor handoff overwriting React billing redirects"
+    },
+    {
+      "number": 31482,
+      "title": "Fixed flaky Author draft test racing the post-signin redirect"
+    },
+    {
+      "number": 31075,
+      "title": "Fixed editor exit racing a create acknowledgement"
+    },
+    {
+      "number": 32720,
+      "title": "Required jobs backends to report settlement on a deduped enqueue"
+    },
+    {
+      "number": 31150,
+      "title": "Fixed PR dispatches to Pro CD referencing an image tag that is never published"
+    },
+    {
+      "number": 31649,
+      "title": "Fixed remaining CI flakes and concurrent installation failures"
+    },
+    {
+      "number": 29323,
+      "title": "Fixed navigation race in Admin sidebar acceptance test"
+    },
+    {
+      "number": 32833,
+      "title": "Fixed flaky add-step click in the new automation trigger specs"
+    },
+    {
+      "number": 29214,
+      "title": "Fixed race condition when scheduling email analytics jobs"
+    },
+    {
+      "number": 31989,
+      "title": "🐛 Fixed paid members losing their tier when a complimentary end date passes"
+    },
+    {
+      "number": 32643,
+      "title": "Changed spam prevention to rate-limiter-flexible"
+    },
+    {
+      "number": 30461,
+      "title": "Added the editor slug machine as a pure module"
+    },
+    {
+      "number": 31714,
+      "title": "Fixed billing acceptance tests racing subscription updates"
+    },
+    {
+      "number": 30737,
+      "title": "Changed editor settings specs to assert the saved payload"
+    },
+    {
+      "number": 32107,
+      "title": "Fixed staff invitation resends at the plan limit"
+    },
+    {
+      "number": 30408,
+      "title": "Changed email tests to await send completion"
+    },
+    {
+      "number": 31188,
+      "title": "🐛 Fixed member attribution and offer redemptions sometimes missing right after a change"
+    },
+    {
+      "number": 30320,
+      "title": "Fixed flaky membership tier access acceptance test"
+    },
+    {
+      "number": 31087,
+      "title": "🐛 Fixed Unsplash search sometimes showing results for a partial term"
+    },
+    {
+      "number": 32333,
+      "title": "Fixed a new custom field replacing the field picked while it saved"
+    },
+    {
+      "number": 30420,
+      "title": "Fixed a flaky member detail E2E test failing during teardown"
+    },
+    {
+      "number": 31118,
+      "title": "Fixed acceptance teardown racing service worker request delivery"
+    },
+    {
+      "number": 30562,
+      "title": "Fixed a settings field freezing after an adoption inside a save"
+    },
+    {
+      "number": 30466,
+      "title": "Added Node 24 to the supported engines range"
+    },
+    {
+      "number": 31208,
+      "title": "Added the app installations table and Admin API"
+    },
+    {
+      "number": 29788,
+      "title": "🐛 Fixed Analytics crashing with empty growth history"
+    },
+    {
+      "number": 30083,
+      "title": "Fixed flaky comments pagination acceptance test"
+    },
+    {
+      "number": 30640,
+      "title": "Made the scheduled publish callback safe to receive twice"
+    },
+    {
+      "number": 32380,
+      "title": "Added initial BullMQ jobs backend"
+    },
+    {
+      "number": 32335,
+      "title": "Changed app icons to a copy stored by Ghost as a data URL"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:16Z",
+  "results": [
+    {
+      "number": 31360,
+      "title": "Fixed link suggestions not matching words out of order"
+    },
+    {
+      "number": 30641,
+      "title": "🐛 Fixed scheduled posts not being sent due to race condition"
+    },
+    {
+      "number": 31199,
+      "title": "Added a React Ghost(Pro) billing screen behind the billingReact flag"
+    },
+    {
+      "number": 32643,
+      "title": "Changed spam prevention to rate-limiter-flexible"
+    },
+    {
+      "number": 32187,
+      "title": "🐛 Fixed post saves failing with deadlocks under concurrent edits"
+    },
+    {
+      "number": 30592,
+      "title": "Added concurrent newsletter preparation from an upfront recipient sweep"
+    },
+    {
+      "number": 31582,
+      "title": "Fixed React editor saves re-reading whole search-index lists"
+    },
+    {
+      "number": 32320,
+      "title": "Added Shade Storybook deploy to shade.ghost.org"
+    },
+    {
+      "number": 29386,
+      "title": "Moved remaining membership settings acceptance tests into Admin"
+    },
+    {
+      "number": 31166,
+      "title": "Added sorting and pagination to automation runs"
+    },
+    {
+      "number": 30457,
+      "title": "Added the editor save engine as a pure module in Admin"
+    },
+    {
+      "number": 30458,
+      "title": "Added the editor change-detection module to Admin"
+    },
+    {
+      "number": 27399,
+      "title": "🎨 Added Preview tab to welcome email editor"
+    },
+    {
+      "number": 29405,
+      "title": "Added custom field editing to member details"
+    },
+    {
+      "number": 27185,
+      "title": "Switched from automated emails table to welcome email automation tables"
+    },
+    {
+      "number": 27624,
+      "title": "Folded gift signups into Monthly / Annual on the paid subscription breakdown chart"
+    },
+    {
+      "number": 29054,
+      "title": "Add ActivityPub sensitive media controls"
+    },
+    {
+      "number": 27109,
+      "title": "Added Shade semantic tokens"
+    },
+    {
+      "number": 28021,
+      "title": "Added capability-gated comment dislike UI"
+    },
+    {
+      "number": 25364,
+      "title": "Removed notification-group feature flag and fixed chronological grouping"
+    },
+    {
+      "number": 27188,
+      "title": "Added static UI for gift subscription redemption"
+    },
+    {
+      "number": 27542,
+      "title": "Switched to explicit imports of models"
+    },
+    {
+      "number": 27267,
+      "title": "Refactored welcome emails e2e tests"
+    },
+    {
+      "number": 27232,
+      "title": "🐛 Fixed members subscription filter returning wrong results for multi-sub members"
+    },
+    {
+      "number": 26760,
+      "title": "Moved release automation from Ghost-Release into Ghost monorepo"
+    },
+    {
+      "number": 25482,
+      "title": "Added dual-mode email analytics processing to allow batch processing"
+    },
+    {
+      "number": 21220,
+      "title": "Update prom/prometheus Docker tag to v2.55.1"
+    },
+    {
+      "number": 15901,
+      "title": "Added storage for email failures"
+    },
+    {
+      "number": 1276,
+      "title": "Converted Docs from HTML to Markdown"
+    },
+    {
+      "number": 3891,
+      "title": "Run import run operations in order."
+    },
+    {
+      "number": 6889,
+      "title": "improvement: general fixes"
+    },
+    {
+      "number": 5432,
+      "title": "Refactor pagination count query"
+    },
+    {
+      "number": 2884,
+      "title": "Get single post from API by id and query params; Auto-sort posts list"
+    },
+    {
+      "number": 6167,
+      "title": "Moving 'permalinks' and 'postsPerPage' to config.theme cache"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:20Z",
+  "results": [
+    {
+      "number": 32750,
+      "title": "Added a test that a tier change's answers reach member webhooks"
+    },
+    {
+      "number": 32450,
+      "title": "Added characterization for the Offers and Webhooks migrations"
+    },
+    {
+      "number": 32785,
+      "title": "Added outcome spans for checkout completion, Stripe webhooks and tier changes"
+    },
+    {
+      "number": 31704,
+      "title": "Fixed site webhook tests leaking published deletion events"
+    },
+    {
+      "number": 32835,
+      "title": "Removed chai from Ghost's tests"
+    },
+    {
+      "number": 30792,
+      "title": "TypeScriptified webhook integration test"
+    },
+    {
+      "number": 32841,
+      "title": "Fixed assertObjectMatches accepting an object where a primitive is expected"
+    },
+    {
+      "number": 31785,
+      "title": "Fixed ActivityPub errors on every local dev boot"
+    },
+    {
+      "number": 32810,
+      "title": "TypeScriptified leaf input validators"
+    },
+    {
+      "number": 31174,
+      "title": "Fixed custom field values collected at checkout never reaching webhooks"
+    },
+    {
+      "number": 30938,
+      "title": "Added member custom fields to the member webhook payload"
+    },
+    {
+      "number": 32332,
+      "title": "Added an exception log line for every failed tracked operation"
+    },
+    {
+      "number": 32019,
+      "title": "🐛 Fixed Portal requiring existing free members to sign in before checkout"
+    },
+    {
+      "number": 31170,
+      "title": "Fixed a member's own custom field changes never reaching webhooks"
+    },
+    {
+      "number": 31173,
+      "title": "Added the custom fields a deleted member had to member.deleted"
+    },
+    {
+      "number": 31800,
+      "title": "Fixed pnpm dev:stripe --listen not starting the Stripe CLI forwarder"
+    },
+    {
+      "number": 31958,
+      "title": "Cleaned up unnecessary dependencies"
+    },
+    {
+      "number": 32063,
+      "title": "Added phone number collection to Stripe Checkout"
+    },
+    {
+      "number": 31148,
+      "title": "Changed webhooks to build each event's payload once, and log when it fails"
+    },
+    {
+      "number": 31155,
+      "title": "Fixed member webhooks sending old custom field values after a mixed edit"
+    },
+    {
+      "number": 32467,
+      "title": "Bumped @tryghost framework packages to latest"
+    },
+    {
+      "number": 31839,
+      "title": "🐛 Fixed paid signups failing when a Stripe price description is too long"
+    },
+    {
+      "number": 32082,
+      "title": "Removed Stripe secret from debug logs"
+    },
+    {
+      "number": 31159,
+      "title": "Added the custom fields a member had before an edit to member.edited"
+    },
+    {
+      "number": 30980,
+      "title": "Added email verification for newsletters sent to removed members"
+    },
+    {
+      "number": 32737,
+      "title": "Changed the content CSV job to create its own progress record"
+    },
+    {
+      "number": 32379,
+      "title": "Updated Tiers to use defineService"
+    },
+    {
+      "number": 32447,
+      "title": "Updated Staff to use defineService"
+    },
+    {
+      "number": 30784,
+      "title": "Fixed incomplete subscriptions being counted as paid conversions"
+    },
+    {
+      "number": 31703,
+      "title": "Fixed e2e impersonation tests reading the magic link before it loads"
+    },
+    {
+      "number": 32406,
+      "title": "Added characterization for the oEmbed, Staff and Email suppression list migrations"
+    },
+    {
+      "number": 31877,
+      "title": "Added Donations boot readiness coverage"
+    },
+    {
+      "number": 30485,
+      "title": "Fixed a race in the member attribution webhook tests"
+    },
+    {
+      "number": 30483,
+      "title": "Fixed a race in the members checkout webhook test"
+    },
+    {
+      "number": 32436,
+      "title": "Added E2E tests for paid subscription started\" automations"
+    },
+    {
+      "number": 31726,
+      "title": "Changed the remaining dev modes to run Ghost on the host"
+    },
+    {
+      "number": 32748,
+      "title": "Added a phone custom field type behind a Labs flag"
+    },
+    {
+      "number": 31014,
+      "title": "🐛 Fixed local startup with Stripe CLI enabled"
+    },
+    {
+      "number": 31849,
+      "title": "Changed Slack ping to use the shared service initializer"
+    },
+    {
+      "number": 31188,
+      "title": "🐛 Fixed member attribution and offer redemptions sometimes missing right after a change"
+    },
+    {
+      "number": 32046,
+      "title": "🐛 Fixed bulk-added tags being treated as the primary tag in filters"
+    },
+    {
+      "number": 31868,
+      "title": "Changed Donations to use the shared service initializer"
+    },
+    {
+      "number": 32526,
+      "title": "Fixed the automation canvas sometimes losing its Add step control"
+    },
+    {
+      "number": 30939,
+      "title": "Changed member create to store the custom fields it was given"
+    },
+    {
+      "number": 32839,
+      "title": "TypeScriptified input serializer leaf modules"
+    },
+    {
+      "number": 31158,
+      "title": "Bumped TryGhost/framework dependencies to latest"
+    },
+    {
+      "number": 31362,
+      "title": "Removed \"please\" from site setup and signup errors"
+    },
+    {
+      "number": 31623,
+      "title": "Added shipping address collection to Stripe Checkout"
+    },
+    {
+      "number": 32364,
+      "title": "Improved how the tax ID setting shows what it does"
+    },
+    {
+      "number": 30418,
+      "title": "Changed local Stripe development to a single dev:stripe command"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:24Z",
+  "results": [
+    {
+      "number": 32187,
+      "title": "🐛 Fixed post saves failing with deadlocks under concurrent edits"
+    },
+    {
+      "number": 31822,
+      "title": "Update dependency concurrently to v10.0.6"
+    },
+    {
+      "number": 31019,
+      "title": "Improved comment report lookup concurrency"
+    },
+    {
+      "number": 31433,
+      "title": "Update dependency concurrently to v10.0.5"
+    },
+    {
+      "number": 31649,
+      "title": "Fixed remaining CI flakes and concurrent installation failures"
+    },
+    {
+      "number": 32643,
+      "title": "Changed spam prevention to rate-limiter-flexible"
+    },
+    {
+      "number": 32629,
+      "title": "🐛 Fixed deadlocks when saving tiers"
+    },
+    {
+      "number": 30592,
+      "title": "Added concurrent newsletter preparation from an upfront recipient sweep"
+    },
+    {
+      "number": 32682,
+      "title": "Fixed flaky post edit locking test counting the outbox relay's locks"
+    },
+    {
+      "number": 32002,
+      "title": "Moved recipient preparation benchmark into gx"
+    },
+    {
+      "number": 31868,
+      "title": "Changed Donations to use the shared service initializer"
+    },
+    {
+      "number": 29975,
+      "title": "Update dependency concurrently to v10.0.4"
+    },
+    {
+      "number": 32191,
+      "title": "Added database tests for invite acceptance"
+    },
+    {
+      "number": 31760,
+      "title": "Fixed timezone listener test fixture races"
+    },
+    {
+      "number": 31658,
+      "title": "🐛 Fixed intermittent 500 errors on posts with a feature image caption"
+    },
+    {
+      "number": 32320,
+      "title": "Added Shade Storybook deploy to shade.ghost.org"
+    },
+    {
+      "number": 31636,
+      "title": "Limited number of enabled automations by plan in Pro"
+    },
+    {
+      "number": 32870,
+      "title": "Moved legacy password reads and writes to user_accounts"
+    },
+    {
+      "number": 31796,
+      "title": "Fixed MySQL deadlocks when creating extra user fixtures"
+    },
+    {
+      "number": 31819,
+      "title": "Fixed DB test hook timeouts when several runs share one MySQL"
+    },
+    {
+      "number": 32107,
+      "title": "Fixed staff invitation resends at the plan limit"
+    },
+    {
+      "number": 31807,
+      "title": "Fixed dev MySQL refusing connections when several checkouts share it"
+    },
+    {
+      "number": 31323,
+      "title": "Fixed conflict test releasing reload before newer read completes"
+    },
+    {
+      "number": 31798,
+      "title": "Fixed pnpm bootstrap failing in several new worktrees at once"
+    },
+    {
+      "number": 32158,
+      "title": "Added characterization for four service migrations"
+    },
+    {
+      "number": 32635,
+      "title": "Updated knex to 3.3.0"
+    },
+    {
+      "number": 30853,
+      "title": "Replaced express-queue with an in-house request queue"
+    },
+    {
+      "number": 31528,
+      "title": "🎨 Changed the sending status to omit 0% while recipients are being selected"
+    },
+    {
+      "number": 31391,
+      "title": "🐛 Fixed member deletions not showing in History"
+    },
+    {
+      "number": 30732,
+      "title": "Wired up metrics flush to server shutdown"
+    },
+    {
+      "number": 31686,
+      "title": "Added signing-key initialization and scheduling tests"
+    },
+    {
+      "number": 29471,
+      "title": "Changed Admin acceptance test concurrency in CI"
+    },
+    {
+      "number": 30421,
+      "title": "Added queue routing to the class-based jobs service"
+    },
+    {
+      "number": 31802,
+      "title": "Fixed worktrees getting a blank site after an interrupted first pnpm dev"
+    },
+    {
+      "number": 30687,
+      "title": "Changed scheduled publishes to skip overlapping deliveries"
+    },
+    {
+      "number": 30390,
+      "title": "Migrated email sending to serialisable job"
+    },
+    {
+      "number": 31126,
+      "title": "Moved Tinybird sync onto the jobs service"
+    },
+    {
+      "number": 30383,
+      "title": "🐛 Fixed duplicate requests for image dimensions of the same URL"
+    },
+    {
+      "number": 31347,
+      "title": "Moved Sentry initialisation from Ember to the React admin shell"
+    },
+    {
+      "number": 30953,
+      "title": "Moved support code out of the services catalogue"
+    },
+    {
+      "number": 30531,
+      "title": "Improved email sending time estimates"
+    },
+    {
+      "number": 31793,
+      "title": "Bumped pnpm to 12.10.1"
+    },
+    {
+      "number": 31737,
+      "title": "Removed metascraper from bookmark metadata extraction"
+    },
+    {
+      "number": 31930,
+      "title": "Added app sessions, with a manifest re-check, to the Admin API"
+    },
+    {
+      "number": 31196,
+      "title": "Added newsletter retry eligibility to Core"
+    },
+    {
+      "number": 31520,
+      "title": "Improved E2E environment setup by snapshotting the owner account"
+    },
+    {
+      "number": 31907,
+      "title": "Updated Content Import inventory coverage wording"
+    },
+    {
+      "number": 30833,
+      "title": "Stopped letting members run the same automation twice"
+    },
+    {
+      "number": 31912,
+      "title": "Added service dependency audit and migration ratchet"
+    },
+    {
+      "number": 30790,
+      "title": "Moved members-import to serializable job"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:27Z",
+  "results": [
+    {
+      "number": 32834,
+      "title": "Removed stale job handler entries from the known boundary violations"
+    },
+    {
+      "number": 32471,
+      "title": "🐛 Fixed stale tier list in automation editor"
+    },
+    {
+      "number": 32251,
+      "title": "Cleaned up stale tooling config and dead comments"
+    },
+    {
+      "number": 31780,
+      "title": "Removed stale optional-peer packages and dead pnpm config"
+    },
+    {
+      "number": 31523,
+      "title": "Fixed stale staff link suggestions in the React editor"
+    },
+    {
+      "number": 31773,
+      "title": "Fixed pnpm dev serving stale site assets after their sources change"
+    },
+    {
+      "number": 31513,
+      "title": "Fixed 2FA resend E2E test reading a stale verification code"
+    },
+    {
+      "number": 32843,
+      "title": "Added knip's dependency check to lint and CI"
+    },
+    {
+      "number": 32840,
+      "title": "Fixed the commit hook failing for files in legacy services"
+    },
+    {
+      "number": 31569,
+      "title": "Fixed the React editor opening a stale cached copy of a post"
+    },
+    {
+      "number": 30619,
+      "title": "Removed stale api-framework release automation"
+    },
+    {
+      "number": 31278,
+      "title": "Fixed the React editor saving from a stale copy of the post"
+    },
+    {
+      "number": 32801,
+      "title": "Added dependency boundary enforcement for all services"
+    },
+    {
+      "number": 32773,
+      "title": "🐛 Fixed \"Unknown setting\" error saving design settings after theme upload"
+    },
+    {
+      "number": 30876,
+      "title": "Fixed Renovate deadlock from stale env var and PR cap counting"
+    },
+    {
+      "number": 30968,
+      "title": "Fixed React Admin caches going stale after post deletes and tag-creating saves"
+    },
+    {
+      "number": 30379,
+      "title": "Removed stale dependents from allow_self_signup"
+    },
+    {
+      "number": 30334,
+      "title": "🐛 Fixed stale sidebar selections across Admin routes"
+    },
+    {
+      "number": 30013,
+      "title": "Removed stale ignoreDeps from Renovate config"
+    },
+    {
+      "number": 32691,
+      "title": "Changed default rate limit lifetime to the sum of the backoff waits"
+    },
+    {
+      "number": 30071,
+      "title": "Fixed stale automation stats after route changes"
+    },
+    {
+      "number": 32413,
+      "title": "Update dependency dependency-cruiser to v18.7.0"
+    },
+    {
+      "number": 31632,
+      "title": "Fixed migration checks treating moved migrations as new"
+    },
+    {
+      "number": 31924,
+      "title": "Cleaned up Ember-era e2e specs, page objects and test hooks"
+    },
+    {
+      "number": 32825,
+      "title": "Added a verify command and review skill for service migrations"
+    },
+    {
+      "number": 31927,
+      "title": "Cleaned up Ember-era leftovers in tooling, Admin CSS and docs"
+    },
+    {
+      "number": 31721,
+      "title": "🐛 Fixed offer links in Settings history opening a missing page"
+    },
+    {
+      "number": 30982,
+      "title": "Stopped the Cmd-K search index loading while search is closed"
+    },
+    {
+      "number": 32088,
+      "title": "✨ Added Stripe Checkout design customisation"
+    },
+    {
+      "number": 29745,
+      "title": "Fixed stale automation data when reopening the editor"
+    },
+    {
+      "number": 31228,
+      "title": "Fixed automation data sync through the Docker development gateway"
+    },
+    {
+      "number": 31421,
+      "title": "Added a notice when a newer version of an open post is saved elsewhere"
+    },
+    {
+      "number": 30966,
+      "title": "Added a React hook that loads and searches the Cmd-K search index"
+    },
+    {
+      "number": 31747,
+      "title": "Fixed knex-migrator scripts failing until workspace packages are built"
+    },
+    {
+      "number": 32012,
+      "title": "Moved development stack commands into gx"
+    },
+    {
+      "number": 30912,
+      "title": "Changed the React editor's slug machine into an explicit state machine"
+    },
+    {
+      "number": 31614,
+      "title": "Added the Admin build to Admin's Sentry events"
+    },
+    {
+      "number": 31459,
+      "title": "Added real-Core editor conflict and role coverage"
+    },
+    {
+      "number": 32402,
+      "title": "Changed Shade's Admin 7 switch to follow the admin7Design flag"
+    },
+    {
+      "number": 32316,
+      "title": "Added automatic app SDK alpha publishing"
+    },
+    {
+      "number": 32556,
+      "title": "Added side panel to Admin for host scripts"
+    },
+    {
+      "number": 31087,
+      "title": "🐛 Fixed Unsplash search sometimes showing results for a partial term"
+    },
+    {
+      "number": 31200,
+      "title": "Improved API framework consumer type coverage"
+    },
+    {
+      "number": 31684,
+      "title": "Fixed boot module check path after the package move"
+    },
+    {
+      "number": 29687,
+      "title": "Cleaned stale package references out of lint tooling configs"
+    },
+    {
+      "number": 32189,
+      "title": "🐛 Fixed newsletter recipient picker for sites with large amount of labels"
+    },
+    {
+      "number": 31202,
+      "title": "Changed PR previews to accept a single label"
+    },
+    {
+      "number": 31451,
+      "title": "Fixed unsaved-change baseline gaps around the hidden Koenig instance"
+    },
+    {
+      "number": 31528,
+      "title": "🎨 Changed the sending status to omit 0% while recipients are being selected"
+    },
+    {
+      "number": 29296,
+      "title": "Update actions/stale digest to 1e223db"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:31Z",
+  "results": [
+    {
+      "number": 31276,
+      "title": "Fixed the React editor loading cold and Koenig downloading twice"
+    },
+    {
+      "number": 30833,
+      "title": "Stopped letting members run the same automation twice"
+    },
+    {
+      "number": 32865,
+      "title": "Made job replay after a restart opt-in"
+    },
+    {
+      "number": 30640,
+      "title": "Made the scheduled publish callback safe to receive twice"
+    },
+    {
+      "number": 32500,
+      "title": "Kept jobs outbox rows until their job settles"
+    },
+    {
+      "number": 32331,
+      "title": "DRY'd out \"is empty Lexical?\" frontend code"
+    },
+    {
+      "number": 32649,
+      "title": "Skipped unnecessary query for automation wait action execution"
+    },
+    {
+      "number": 32833,
+      "title": "Fixed flaky add-step click in the new automation trigger specs"
+    },
+    {
+      "number": 32902,
+      "title": "Added start and stop hooks to defineService"
+    },
+    {
+      "number": 32114,
+      "title": "Fixed the help chat not reopening after a support request is sent"
+    },
+    {
+      "number": 32676,
+      "title": "Removed older-Core fallbacks from Ghost Apps in Admin"
+    },
+    {
+      "number": 32451,
+      "title": "Fixed order-dependent unit tests that failed under shuffle"
+    },
+    {
+      "number": 32236,
+      "title": "Fixed flaky welcome email Escape test"
+    },
+    {
+      "number": 31722,
+      "title": "Changed Koenig acceptance tests to stop early after repeated failures"
+    },
+    {
+      "number": 32234,
+      "title": "Changed app pages in Admin to render edge to edge"
+    },
+    {
+      "number": 31658,
+      "title": "🐛 Fixed intermittent 500 errors on posts with a feature image caption"
+    },
+    {
+      "number": 32087,
+      "title": "Added a support request form to the help chat in Admin"
+    },
+    {
+      "number": 31667,
+      "title": "Improved Admin route matching by caching matches per path"
+    },
+    {
+      "number": 31685,
+      "title": "Improved admin acceptance test time by running on React's production build"
+    },
+    {
+      "number": 31249,
+      "title": "Moved the Admin client extension script to React Admin"
+    },
+    {
+      "number": 30959,
+      "title": "Added tests proving editor session construction starts nothing"
+    },
+    {
+      "number": 32475,
+      "title": "Added E2E coverage of the app install lifecycle"
+    },
+    {
+      "number": 31006,
+      "title": "Removed field-level checks from the React editor settings smoke journey"
+    },
+    {
+      "number": 31247,
+      "title": "Moved private site frontend login from Ember to React Admin"
+    },
+    {
+      "number": 32287,
+      "title": "Fixed CI jobs hanging on a second Node download from nodejs.org"
+    },
+    {
+      "number": 31532,
+      "title": "Improved E2E sign-in speed by creating the owner session through the API"
+    },
+    {
+      "number": 31691,
+      "title": "Improved Admin rendering by avoiding full-page style recalculations"
+    },
+    {
+      "number": 30708,
+      "title": "🐛 Fixed members being subscribed to all newsletters when choosing none"
+    },
+    {
+      "number": 30638,
+      "title": "Moved the scheduler idempotency key helper next to the other scheduling helpers"
+    },
+    {
+      "number": 30108,
+      "title": "🐛 Fixed inflated post counts on tags"
+    },
+    {
+      "number": 31188,
+      "title": "🐛 Fixed member attribution and offer redemptions sometimes missing right after a change"
+    },
+    {
+      "number": 30293,
+      "title": "Persisted Tinybird data across dev restarts"
+    },
+    {
+      "number": 30626,
+      "title": "Updated the email preparation status to show a percentage in the banner"
+    },
+    {
+      "number": 30554,
+      "title": "Added E2E coverage for Cmd-S in the React editor"
+    },
+    {
+      "number": 30890,
+      "title": "Changed the in-memory TTL cache adapter to lru-cache"
+    },
+    {
+      "number": 31054,
+      "title": "Added rotation of the site signing keys"
+    },
+    {
+      "number": 30609,
+      "title": "Moved both chip pickers onto one shared shell"
+    },
+    {
+      "number": 30720,
+      "title": "Replaced node-jose with jose for JWK and kid derivation"
+    },
+    {
+      "number": 29880,
+      "title": "Removed the legacy Explore integration"
+    },
+    {
+      "number": 30639,
+      "title": "Added an idempotency key to scheduled post and page jobs"
+    },
+    {
+      "number": 30730,
+      "title": "Migrated send-gift-reminders to the class-based jobs service"
+    },
+    {
+      "number": 30536,
+      "title": "Changed collected metafield writes to report failures to their caller"
+    },
+    {
+      "number": 30318,
+      "title": "Moved application styles out of the Shade stylesheet"
+    },
+    {
+      "number": 30341,
+      "title": "Changed the color scale to one gray spelling"
+    },
+    {
+      "number": 29214,
+      "title": "Fixed race condition when scheduling email analytics jobs"
+    },
+    {
+      "number": 32700,
+      "title": "Changed media thumbnail uploads to use unique filenames"
+    },
+    {
+      "number": 29729,
+      "title": "Reset automation email analytics counts"
+    },
+    {
+      "number": 29856,
+      "title": "Pinned that the members API neither reads nor writes custom fields"
+    },
+    {
+      "number": 32875,
+      "title": "Clarified automation service event listening test"
+    },
+    {
+      "number": 30748,
+      "title": "Removed the per-file SLOW timeout from the acceptance specs"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "TryGhost/Ghost",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo TryGhost/Ghost --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:34:35Z",
+  "results": [
+    {
+      "number": 31365,
+      "title": "Fixed request retries never reaching Sentry"
+    },
+    {
+      "number": 31196,
+      "title": "Added newsletter retry eligibility to Core"
+    },
+    {
+      "number": 31198,
+      "title": "Changed Admin to use Core's newsletter retry eligibility"
+    },
+    {
+      "number": 31086,
+      "title": "Fixed failed newsletters having no retry in the React editor"
+    },
+    {
+      "number": 32887,
+      "title": "Update dependency @tryghost/promise to v2.3.22"
+    },
+    {
+      "number": 32892,
+      "title": "Update dependency jose to v6.2.17"
+    },
+    {
+      "number": 32829,
+      "title": "Update dependency supertest to v7.3.2"
+    },
+    {
+      "number": 32658,
+      "title": "Update redis:7.4 Docker digest to 2e3eb11"
+    },
+    {
+      "number": 32695,
+      "title": "Update dependency glob to v14.0.4"
+    },
+    {
+      "number": 32692,
+      "title": "Update caddy Docker tag to v2.11.9"
+    },
+    {
+      "number": 32796,
+      "title": "Update NQL packages"
+    },
+    {
+      "number": 32660,
+      "title": "Update caddy Docker tag to v2.11.8"
+    },
+    {
+      "number": 32693,
+      "title": "Update dependency d3-geo to v3.1.2"
+    },
+    {
+      "number": 32644,
+      "title": "Update Docker image digests"
+    },
+    {
+      "number": 32646,
+      "title": "Update dependency @tryghost/mg-clean-html to v0.12.7"
+    },
+    {
+      "number": 32915,
+      "title": "Update better-auth monorepo to v1.7.20"
+    },
+    {
+      "number": 32816,
+      "title": "Update storybook monorepo to v10.6.6"
+    },
+    {
+      "number": 32814,
+      "title": "Update dependency typescript-eslint to v8.72.1"
+    },
+    {
+      "number": 32621,
+      "title": "Update dependency eslint-plugin-playwright to v2.12.2"
+    },
+    {
+      "number": 32490,
+      "title": "Update dependency @pnpm/workspace.workspace-manifest-reader to v1100.3.2"
+    },
+    {
+      "number": 32694,
+      "title": "Fixed rate limit deadlocks between cleanup and limiter upserts"
+    },
+    {
+      "number": 32822,
+      "title": "Changed CI to run the unit tests in a shuffled order"
+    },
+    {
+      "number": 30796,
+      "title": "Increased Tinybird request timeouts and disabled retries for server-side requests"
+    },
+    {
+      "number": 32493,
+      "title": "Update dependency moment-timezone to v0.6.6"
+    },
+    {
+      "number": 32437,
+      "title": "Update dependency @x402/evm to v2.29.0"
+    },
+    {
+      "number": 32581,
+      "title": "Update dependency fs-extra to v11.4.1"
+    },
+    {
+      "number": 32541,
+      "title": "Update dependency @aws-sdk/client-s3 to v3.1161.0"
+    },
+    {
+      "number": 32431,
+      "title": "Update dependency @x402/core to v2.29.0"
+    },
+    {
+      "number": 32414,
+      "title": "Update dependency eslint-plugin-no-relative-import-paths to v1.7.3"
+    },
+    {
+      "number": 32491,
+      "title": "Update dependency jose to v6.2.15"
+    },
+    {
+      "number": 32399,
+      "title": "Update dependency @x402/hono to v2.28.0"
+    },
+    {
+      "number": 32392,
+      "title": "Update Docker image digests"
+    },
+    {
+      "number": 32397,
+      "title": "Update dependency @x402/evm to v2.28.0"
+    },
+    {
+      "number": 32396,
+      "title": "Update dependency @x402/core to v2.28.0"
+    },
+    {
+      "number": 32710,
+      "title": "Update dependency mppx to v0.17.4"
+    },
+    {
+      "number": 32619,
+      "title": "Update dependency @xyflow/react to v12.12.1"
+    },
+    {
+      "number": 32579,
+      "title": "Update dependency @tanstack/react-query to v5.105.1"
+    },
+    {
+      "number": 32404,
+      "title": "Update dependency countries-and-timezones to v3.11.0"
+    },
+    {
+      "number": 32377,
+      "title": "Update dependency @pnpm/workspace.workspace-manifest-reader to v1100.3.1"
+    },
+    {
+      "number": 32217,
+      "title": "Fixed Koenig acceptance CI timing out on slow apt mirrors"
+    },
+    {
+      "number": 32376,
+      "title": "Update dependency @pnpm/releasing.versioning to v1100.3.8"
+    },
+    {
+      "number": 32430,
+      "title": "Update dependency @aws-sdk/client-s3 to v3.1159.0"
+    },
+    {
+      "number": 32813,
+      "title": "Update dependency dependency-cruiser to v18.7.2"
+    },
+    {
+      "number": 32582,
+      "title": "Update dependency globals to v17.14.0"
+    },
+    {
+      "number": 32393,
+      "title": "Update dependency @aws-sdk/client-s3 to v3.1158.0"
+    },
+    {
+      "number": 32267,
+      "title": "Update redis:7.4 Docker digest to b6b6e3d"
+    },
+    {
+      "number": 32830,
+      "title": "Update dependency html-minifier-next to v8.11.0"
+    },
+    {
+      "number": 32394,
+      "title": "Update dependency @sentry/vite-plugin to v5.4.1"
+    },
+    {
+      "number": 32285,
+      "title": "Fixed app SDK type check timing out on a busy CI runner"
+    },
+    {
+      "number": 32224,
+      "title": "Update dependency @types/sinon to v22.0.2"
+    }
+  ],
+  "error": null
+}
+]

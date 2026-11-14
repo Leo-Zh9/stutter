@@ -1,0 +1,1757 @@
+[
+{
+  "repo": "lukevella/rallly",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:41Z",
+  "results": [
+    {
+      "number": 3696,
+      "title": "✨ Add the API poll add-on catalog and price script"
+    },
+    {
+      "number": 3269,
+      "title": "💥 Make the v1 create request mirror the poll it returns"
+    },
+    {
+      "number": 3303,
+      "title": "✨ Resolve early supporter prices and add the Pro reprice script"
+    },
+    {
+      "number": 3407,
+      "title": "🐛 Link OIDC sign-ins to existing users by email"
+    },
+    {
+      "number": 2575,
+      "title": "♻️ Move Stripe webhook business logic into features/billing"
+    },
+    {
+      "number": 2738,
+      "title": "✨ Add close poll endpoint to private API"
+    },
+    {
+      "number": 2483,
+      "title": "♻️ Reuse a single seat-update billing portal configuration"
+    },
+    {
+      "number": 3259,
+      "title": "📝 Publish the API reference and guides in the Mintlify docs"
+    },
+    {
+      "number": 3411,
+      "title": "✨ Preview the redesigned participant page at /invite/[urlId]/vote"
+    },
+    {
+      "number": 3406,
+      "title": "✨ Set a video call when editing a poll; lock scheduled polls"
+    },
+    {
+      "number": 3429,
+      "title": "✨ Queue finalize participant emails and send them in batches"
+    },
+    {
+      "number": 2470,
+      "title": "🐛 Keep all-day poll options on the same date across timezones"
+    },
+    {
+      "number": 3368,
+      "title": "✨ Add Zoom and Google Meet conferencing integrations"
+    },
+    {
+      "number": 3281,
+      "title": "✨ Wire the nonprofit application pipeline and checkout coupon (RAL-1627, RAL-1624)"
+    },
+    {
+      "number": 2416,
+      "title": "♻️ Email package: per-template send functions + branding as props (RAL-1218)"
+    },
+    {
+      "number": 1894,
+      "title": "🐛 Fix race condition by handling customer creation in checkout"
+    },
+    {
+      "number": 3297,
+      "title": "✨ Deliver signed, retried poll webhooks from the activity log"
+    },
+    {
+      "number": 2274,
+      "title": "♻️ Refactor checkout complete hook"
+    },
+    {
+      "number": 2246,
+      "title": "♻️ Replace events server action with tRPC mutation (RAL-1024)"
+    },
+    {
+      "number": 2272,
+      "title": "♻️ Make posthog server client a singleton"
+    },
+    {
+      "number": 2119,
+      "title": "🚧 Secure access to api pages"
+    },
+    {
+      "number": 1999,
+      "title": "♻️ Move space tier to spaces and enforce subscription link "
+    },
+    {
+      "number": 2105,
+      "title": "✨ Hide powered by"
+    },
+    {
+      "number": 1905,
+      "title": "✨ Allow buying seats from billing page and add support for self-hosting"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:45Z",
+  "results": [
+    {
+      "number": 3658,
+      "title": "🗃️ Backfill email_verified for legacy Google sign-ups"
+    },
+    {
+      "number": 3576,
+      "title": "🌱 Seed every poll with a realistic activity history"
+    },
+    {
+      "number": 3297,
+      "title": "✨ Deliver signed, retried poll webhooks from the activity log"
+    },
+    {
+      "number": 3233,
+      "title": "✨ Align the /api/v1 poll resource shape and status codes"
+    },
+    {
+      "number": 3306,
+      "title": "♻️ Key billing portal configurations by the price set they allow"
+    },
+    {
+      "number": 3344,
+      "title": "✨ Deliver webhooks right after the write, in-process"
+    },
+    {
+      "number": 3157,
+      "title": "🐛 Gate space branding and attribution removal on the resolved tier"
+    },
+    {
+      "number": 2738,
+      "title": "✨ Add close poll endpoint to private API"
+    },
+    {
+      "number": 3421,
+      "title": "💄 Add response and share actions to the desktop poll empty state"
+    },
+    {
+      "number": 3612,
+      "title": "🐛 Stop page translation from crashing React DOM updates"
+    },
+    {
+      "number": 3281,
+      "title": "✨ Wire the nonprofit application pipeline and checkout coupon (RAL-1627, RAL-1624)"
+    },
+    {
+      "number": 2828,
+      "title": "✅ Harden registration test against dev-server races in full-suite runs"
+    },
+    {
+      "number": 2701,
+      "title": "✨ Alert actions, indigo primary variant, and pending invite cleanup on downgrade"
+    },
+    {
+      "number": 2540,
+      "title": "🔒️ Enforce Pro tier in API key authentication"
+    },
+    {
+      "number": 3303,
+      "title": "✨ Resolve early supporter prices and add the Pro reprice script"
+    },
+    {
+      "number": 2575,
+      "title": "♻️ Move Stripe webhook business logic into features/billing"
+    },
+    {
+      "number": 3076,
+      "title": "✨ Activity log: event vocabulary + writes from every poll mutation"
+    },
+    {
+      "number": 3657,
+      "title": "⬆️ Upgrade better-auth to 1.7.9"
+    },
+    {
+      "number": 3358,
+      "title": "📈 Share the PostHog id across rallly.co and the app"
+    },
+    {
+      "number": 2599,
+      "title": "🔒 Hide deleted poll data from unauthenticated callers"
+    },
+    {
+      "number": 2470,
+      "title": "🐛 Keep all-day poll options on the same date across timezones"
+    },
+    {
+      "number": 2380,
+      "title": "✨ Add eventTypes tRPC router + feature flag"
+    },
+    {
+      "number": 2483,
+      "title": "♻️ Reuse a single seat-update billing portal configuration"
+    },
+    {
+      "number": 2411,
+      "title": "⬆️ Upgrade i18next/react-i18next + migrate i18next-scanner → i18next-cli (RAL-1215)"
+    },
+    {
+      "number": 3156,
+      "title": "🐛 Stop PostHog minting empty person profiles: memory-only client, no cookie banner"
+    },
+    {
+      "number": 2274,
+      "title": "♻️ Refactor checkout complete hook"
+    },
+    {
+      "number": 1894,
+      "title": "🐛 Fix race condition by handling customer creation in checkout"
+    },
+    {
+      "number": 3045,
+      "title": "✨ Collect role and industry to identify professional segments"
+    },
+    {
+      "number": 2246,
+      "title": "♻️ Replace events server action with tRPC mutation (RAL-1024)"
+    },
+    {
+      "number": 2272,
+      "title": "♻️ Make posthog server client a singleton"
+    },
+    {
+      "number": 1448,
+      "title": "✨ Set retries for message queue"
+    },
+    {
+      "number": 2077,
+      "title": "🐛 Fix users not able to login with microsoft account created with legacy providers"
+    },
+    {
+      "number": 2123,
+      "title": "🧑‍💻 Add endpoint for deleting a poll"
+    },
+    {
+      "number": 1985,
+      "title": "♻️ Switch to better-auth anonymous users"
+    },
+    {
+      "number": 1776,
+      "title": "✨ Add spaces concept"
+    },
+    {
+      "number": 1890,
+      "title": "✨ Enable filtering by member for events and polls"
+    },
+    {
+      "number": 1412,
+      "title": "🔧 Use vercel config for app"
+    },
+    {
+      "number": 1977,
+      "title": "✨ Add support for password-based login"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:48Z",
+  "results": [
+    {
+      "number": 3483,
+      "title": "✨ Add Edit and Duplicate to the polls list row menu"
+    },
+    {
+      "number": 3533,
+      "title": "🔍 Fix duplicate locale URLs, add home structured data and correct llms.txt"
+    },
+    {
+      "number": 3636,
+      "title": "💄 Keep the Pro lock icon primary inside dropdown menus"
+    },
+    {
+      "number": 3693,
+      "title": "🐛 Set the login verification cookie with the code instead of a server action"
+    },
+    {
+      "number": 3482,
+      "title": "✨ Enforce open poll limits behind a kill switch"
+    },
+    {
+      "number": 3672,
+      "title": "Centralize poll admin href logic with feature flag"
+    },
+    {
+      "number": 3103,
+      "title": "🐛 Fix duplicated number in stats badge text extraction"
+    },
+    {
+      "number": 3426,
+      "title": "🐛 Gate a poll's paid features on the poll's space, not the active one"
+    },
+    {
+      "number": 3710,
+      "title": "🗃️ Sync the API poll add-on from Stripe webhooks"
+    },
+    {
+      "number": 3668,
+      "title": "💄 Show pricing plans as equal cards with an animated Pro border"
+    },
+    {
+      "number": 3657,
+      "title": "⬆️ Upgrade better-auth to 1.7.9"
+    },
+    {
+      "number": 3542,
+      "title": "🐛 Track subscription starts when payment completes, not at creation"
+    },
+    {
+      "number": 3002,
+      "title": "💄 Add duplicate polls and advanced poll settings to pricing page"
+    },
+    {
+      "number": 3633,
+      "title": "💸 Make every video call provider free"
+    },
+    {
+      "number": 3484,
+      "title": "✨ Explain the open poll limit in a dialog"
+    },
+    {
+      "number": 3711,
+      "title": "✨ Add the API poll quota warning email"
+    },
+    {
+      "number": 3409,
+      "title": "✨ Build out the poll admin overview, responses, dates and activity pages"
+    },
+    {
+      "number": 3712,
+      "title": "💄 Refine the invite page for each way it gets used"
+    },
+    {
+      "number": 3496,
+      "title": "🐛 Show a skeleton while the polls list loads after a filter change"
+    },
+    {
+      "number": 3269,
+      "title": "💥 Make the v1 create request mirror the poll it returns"
+    },
+    {
+      "number": 3386,
+      "title": "💄 Show a loading toast while a conferencing account disconnects"
+    },
+    {
+      "number": 3515,
+      "title": "💄 Pill buttons, softer fields and a stone gray scale"
+    },
+    {
+      "number": 3290,
+      "title": "📝 Add a migration guide from the private API to v1"
+    },
+    {
+      "number": 3562,
+      "title": "⬆️ Upgrade Next.js to 16.4.2 and enforce static landing routes"
+    },
+    {
+      "number": 3536,
+      "title": "⏱️ Delay the subscription feedback email and store queued email kind as text"
+    },
+    {
+      "number": 3433,
+      "title": "🔧 Add a pr-screenshots skill that hosts images outside the PR branch"
+    },
+    {
+      "number": 2597,
+      "title": "🐛 Merge duplicate ignoreErrors keys in Sentry client config"
+    },
+    {
+      "number": 3421,
+      "title": "💄 Add response and share actions to the desktop poll empty state"
+    },
+    {
+      "number": 3340,
+      "title": "📝 Document webhooks: guide, one page per event, and the OpenAPI webhooks section"
+    },
+    {
+      "number": 3076,
+      "title": "✨ Activity log: event vocabulary + writes from every poll mutation"
+    },
+    {
+      "number": 3193,
+      "title": "♻️ Drop the participant soft-delete filters from poll reads"
+    },
+    {
+      "number": 3083,
+      "title": "✨ Merge testimonial and press mentions into one social proof section"
+    },
+    {
+      "number": 2976,
+      "title": "📈 Include locale in PostHog person properties"
+    },
+    {
+      "number": 3716,
+      "title": "⬆️ Bump hono from 4.13.13 to 4.13.16"
+    },
+    {
+      "number": 3228,
+      "title": "♻️ Serve the poll invite list through a tRPC query"
+    },
+    {
+      "number": 3265,
+      "title": "🔔 Report the API rate limiter failing closed to Sentry and ship wide events as logs"
+    },
+    {
+      "number": 2990,
+      "title": "✨ Add an FAQ section to the landing and SEO pages"
+    },
+    {
+      "number": 3185,
+      "title": "💄 Append Rallly to every landing page title through a layout template"
+    },
+    {
+      "number": 3259,
+      "title": "📝 Publish the API reference and guides in the Mintlify docs"
+    },
+    {
+      "number": 3247,
+      "title": "🔒️ Stop polls.get disclosing scheduled invitee names and emails"
+    },
+    {
+      "number": 2863,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3035,
+      "title": "🐛 Restore 6 missing time zones and show modern city names"
+    },
+    {
+      "number": 2690,
+      "title": "🐛 Redirect unregistered users to register page when upgrading from paywall"
+    },
+    {
+      "number": 3338,
+      "title": "✨ Deliver the full poll lifecycle as webhook events"
+    },
+    {
+      "number": 3367,
+      "title": "♻️ Run server actions through TanStack Query and refresh from the server"
+    },
+    {
+      "number": 3297,
+      "title": "✨ Deliver signed, retried poll webhooks from the activity log"
+    },
+    {
+      "number": 3160,
+      "title": "✨ Redesign the poll share dialog with email invites"
+    },
+    {
+      "number": 2768,
+      "title": "♿ Fix accessibility gaps in app forms and states"
+    },
+    {
+      "number": 3163,
+      "title": "✨ Record when an invite link is opened"
+    },
+    {
+      "number": 3078,
+      "title": "🔍️ Fix remaining Ahrefs error-level SEO issues"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:52Z",
+  "results": [
+    {
+      "number": 3630,
+      "title": "🐛 Make the subscription created webhook upsert atomic"
+    },
+    {
+      "number": 3693,
+      "title": "🐛 Set the login verification cookie with the code instead of a server action"
+    },
+    {
+      "number": 2823,
+      "title": "✅ Fix hydration race in registration test that broke full-suite runs"
+    },
+    {
+      "number": 3455,
+      "title": "✨ Send the review request as an email instead of a finalize card"
+    },
+    {
+      "number": 2500,
+      "title": "✅ Fix race in email login test helper"
+    },
+    {
+      "number": 3071,
+      "title": "✅ Fix flaky job title select test racing the Base UI popup"
+    },
+    {
+      "number": 3245,
+      "title": "🔒️ Enforce disableComments in the comments.add mutation"
+    },
+    {
+      "number": 2884,
+      "title": "🐛 Close the license dialog when a key is activated"
+    },
+    {
+      "number": 2970,
+      "title": "🐛 Fix email change silently failing when the address is already in use"
+    },
+    {
+      "number": 3273,
+      "title": "🔒️ Show a warning page instead of a 404 for a banned creator's poll"
+    },
+    {
+      "number": 3406,
+      "title": "✨ Set a video call when editing a poll; lock scheduled polls"
+    },
+    {
+      "number": 2828,
+      "title": "✅ Harden registration test against dev-server races in full-suite runs"
+    },
+    {
+      "number": 2889,
+      "title": "♻️ Use SettingIcon for the remaining setting rows"
+    },
+    {
+      "number": 3329,
+      "title": "✨ Add webhooks settings page"
+    },
+    {
+      "number": 3685,
+      "title": "✨ Add search to the members page"
+    },
+    {
+      "number": 3338,
+      "title": "✨ Deliver the full poll lifecycle as webhook events"
+    },
+    {
+      "number": 3598,
+      "title": "🐛 Scan for due polls outside the auto close transaction"
+    },
+    {
+      "number": 3246,
+      "title": "🔒️ Reject participant writes once a poll leaves open"
+    },
+    {
+      "number": 3180,
+      "title": "✨ Let hosts remove a pending invite from the Share dialog"
+    },
+    {
+      "number": 2515,
+      "title": "✨ Add timezone cookie and segment-scoped datetime config"
+    },
+    {
+      "number": 2442,
+      "title": "🗃️ Enforce one invite per email on a scheduled event"
+    },
+    {
+      "number": 2667,
+      "title": "✨ Adopt the user's saved locale on sign-in"
+    },
+    {
+      "number": 2640,
+      "title": "⚡️ Run control panel user search queries in parallel"
+    },
+    {
+      "number": 3263,
+      "title": "⚡️ Apply vercel-doctor fixes: parallel awaits, unoptimized SVG icons, dead files"
+    },
+    {
+      "number": 2865,
+      "title": "♻️ Migrate notification preferences settings off tRPC"
+    },
+    {
+      "number": 3459,
+      "title": "✨ Per-owner daily budget for email sent on a host's behalf"
+    },
+    {
+      "number": 3160,
+      "title": "✨ Redesign the poll share dialog with email invites"
+    },
+    {
+      "number": 2483,
+      "title": "♻️ Reuse a single seat-update billing portal configuration"
+    },
+    {
+      "number": 2920,
+      "title": "⚡️ Preload the landing page hero screenshot"
+    },
+    {
+      "number": 3293,
+      "title": "♻️ Serve the invite page from server components and server actions"
+    },
+    {
+      "number": 3281,
+      "title": "✨ Wire the nonprofit application pipeline and checkout coupon (RAL-1627, RAL-1624)"
+    },
+    {
+      "number": 2643,
+      "title": "✨ Cap API keys per space and migrate writes to server actions (RAL-1268)"
+    },
+    {
+      "number": 2487,
+      "title": "🐛 Enforce minimum one option on poll create/edit server-side"
+    },
+    {
+      "number": 2790,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 2846,
+      "title": "🗃️ Add PollInvite, PollActivity and Participant.token for Poll Admin"
+    },
+    {
+      "number": 3256,
+      "title": "✨ Let organizers run plain yes/no polls"
+    },
+    {
+      "number": 1894,
+      "title": "🐛 Fix race condition by handling customer creation in checkout"
+    },
+    {
+      "number": 2392,
+      "title": "✨ Add sheets/slots/bookings tRPC router + signupSheets flag (RAL-1190)"
+    },
+    {
+      "number": 2816,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 2960,
+      "title": "♻️ Asset storage abstraction: profiles, lifecycle, generic upload control"
+    },
+    {
+      "number": 2827,
+      "title": "♻️ Render server-side Trans without context in remaining server components"
+    },
+    {
+      "number": 2733,
+      "title": "♻️ Migrate space member mutations to server actions"
+    },
+    {
+      "number": 2380,
+      "title": "✨ Add eventTypes tRPC router + feature flag"
+    },
+    {
+      "number": 2485,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3367,
+      "title": "♻️ Run server actions through TanStack Query and refresh from the server"
+    },
+    {
+      "number": 2764,
+      "title": "✨ House-keeping job to delete orphaned anonymous guest users"
+    },
+    {
+      "number": 2407,
+      "title": "✨ Public event page redesign + RSVP submission"
+    },
+    {
+      "number": 2441,
+      "title": "🚧 Public event page"
+    },
+    {
+      "number": 2575,
+      "title": "♻️ Move Stripe webhook business logic into features/billing"
+    },
+    {
+      "number": 2117,
+      "title": "⚡️ Improve participant create query performance"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:55Z",
+  "results": [
+    {
+      "number": 2851,
+      "title": "✅ Make login accessibility locators resilient to streamed Suspense reveal"
+    },
+    {
+      "number": 2575,
+      "title": "♻️ Move Stripe webhook business logic into features/billing"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:58Z",
+  "results": [
+    {
+      "number": 3710,
+      "title": "🗃️ Sync the API poll add-on from Stripe webhooks"
+    },
+    {
+      "number": 3630,
+      "title": "🐛 Make the subscription created webhook upsert atomic"
+    },
+    {
+      "number": 3682,
+      "title": "♻️ Identify the Stripe seat item by price metadata"
+    },
+    {
+      "number": 3668,
+      "title": "💄 Show pricing plans as equal cards with an animated Pro border"
+    },
+    {
+      "number": 3340,
+      "title": "📝 Document webhooks: guide, one page per event, and the OpenAPI webhooks section"
+    },
+    {
+      "number": 3329,
+      "title": "✨ Add webhooks settings page"
+    },
+    {
+      "number": 3499,
+      "title": "💄 Show conferencing, spaces, API keys and webhooks lists in cards"
+    },
+    {
+      "number": 3457,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3336,
+      "title": "✏️ Make the webhooks upgrade card event-agnostic"
+    },
+    {
+      "number": 3347,
+      "title": "🚸 Require picking webhook events instead of preselecting all"
+    },
+    {
+      "number": 3344,
+      "title": "✨ Deliver webhooks right after the write, in-process"
+    },
+    {
+      "number": 3603,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3338,
+      "title": "✨ Deliver the full poll lifecycle as webhook events"
+    },
+    {
+      "number": 3542,
+      "title": "🐛 Track subscription starts when payment completes, not at creation"
+    },
+    {
+      "number": 3536,
+      "title": "⏱️ Delay the subscription feedback email and store queued email kind as text"
+    },
+    {
+      "number": 3447,
+      "title": "✨ Show video call integrations on the pricing page"
+    },
+    {
+      "number": 3333,
+      "title": "💄 Pick webhook events with a searchable multi-select combobox"
+    },
+    {
+      "number": 3332,
+      "title": "♻️ Effect 4 pilot: rewrite the webhook dispatcher as Effects"
+    },
+    {
+      "number": 3714,
+      "title": "🗃️ Store the API poll add-on tier instead of its limit"
+    },
+    {
+      "number": 3345,
+      "title": "✨ Turn webhooks on: the capability follows the API, no switch"
+    },
+    {
+      "number": 3593,
+      "title": "🐛 Auto close polls in batches so the cron stops timing out"
+    },
+    {
+      "number": 3486,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3339,
+      "title": "✨ Make webhooks ready to flip: minute cron and per-endpoint version"
+    },
+    {
+      "number": 3346,
+      "title": "✨ Send test events and show endpoint health in the webhooks list"
+    },
+    {
+      "number": 3297,
+      "title": "✨ Deliver signed, retried poll webhooks from the activity log"
+    },
+    {
+      "number": 3532,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3373,
+      "title": "✨ Handle Zoom app deauthorization events"
+    },
+    {
+      "number": 3460,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3414,
+      "title": "✨ Record each poll setting change in the activity feed"
+    },
+    {
+      "number": 3504,
+      "title": "💄 Pin dialog header and footer and scroll the content between them"
+    },
+    {
+      "number": 3704,
+      "title": "🗃️ Add the API usage counter and quota limit resolution"
+    },
+    {
+      "number": 3413,
+      "title": "✨ Edit a poll on one page and record what each edit changed"
+    },
+    {
+      "number": 3670,
+      "title": "✨ Search polls, events and members from the command menu"
+    },
+    {
+      "number": 3707,
+      "title": "✨ Let participants change a response without an edit mode"
+    },
+    {
+      "number": 3441,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3571,
+      "title": "🥅 Answer email link scanner HEAD requests without rendering"
+    },
+    {
+      "number": 3350,
+      "title": "💄 Show the member's role next to the tier in the space dropdown"
+    },
+    {
+      "number": 3461,
+      "title": "✨ Reassign or delete a removed member's content"
+    },
+    {
+      "number": 3417,
+      "title": "⬆️ Bump effect to 4.0.0 stable"
+    },
+    {
+      "number": 3357,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3477,
+      "title": "✨ Ask the cancellation reason in app instead of the Stripe portal"
+    },
+    {
+      "number": 3348,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3001,
+      "title": "🐛 Treat subscription webhooks for deleted spaces as no-ops"
+    },
+    {
+      "number": 3478,
+      "title": "✨ Keep invoices reachable after a subscription is cancelled"
+    },
+    {
+      "number": 3278,
+      "title": "📝 Announce the API on the blog"
+    },
+    {
+      "number": 3342,
+      "title": "✨ Add GET /polls/{pollId}/participants/{participantId} with availability"
+    },
+    {
+      "number": 3533,
+      "title": "🔍 Fix duplicate locale URLs, add home structured data and correct llms.txt"
+    },
+    {
+      "number": 3455,
+      "title": "✨ Send the review request as an email instead of a finalize card"
+    },
+    {
+      "number": 3535,
+      "title": "🔍 Add FAQPage structured data and correct inaccurate FAQ answers"
+    },
+    {
+      "number": 3431,
+      "title": "✨ Redirect SES bounce and complaint reports with SES_FEEDBACK_EMAIL"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:38:02Z",
+  "results": [
+    {
+      "number": 3708,
+      "title": "🗃️ Count every API poll against its space's monthly usage"
+    },
+    {
+      "number": 3711,
+      "title": "✨ Add the API poll quota warning email"
+    },
+    {
+      "number": 3568,
+      "title": "🐛 Keep a guest's content when linking it to an account fails"
+    },
+    {
+      "number": 3598,
+      "title": "🐛 Scan for due polls outside the auto close transaction"
+    },
+    {
+      "number": 3607,
+      "title": "🔇 Stop reporting injected script and expected auth errors to Sentry"
+    },
+    {
+      "number": 3505,
+      "title": "🗃️ Keep space owners from losing their membership row"
+    },
+    {
+      "number": 3482,
+      "title": "✨ Enforce open poll limits behind a kill switch"
+    },
+    {
+      "number": 3459,
+      "title": "✨ Per-owner daily budget for email sent on a host's behalf"
+    },
+    {
+      "number": 3245,
+      "title": "🔒️ Enforce disableComments in the comments.add mutation"
+    },
+    {
+      "number": 3406,
+      "title": "✨ Set a video call when editing a poll; lock scheduled polls"
+    },
+    {
+      "number": 3332,
+      "title": "♻️ Effect 4 pilot: rewrite the webhook dispatcher as Effects"
+    },
+    {
+      "number": 3338,
+      "title": "✨ Deliver the full poll lifecycle as webhook events"
+    },
+    {
+      "number": 3413,
+      "title": "✨ Edit a poll on one page and record what each edit changed"
+    },
+    {
+      "number": 3530,
+      "title": "📝 Refresh \"Is Doodle still free?\" with the full free plan limits and pricing"
+    },
+    {
+      "number": 3426,
+      "title": "🐛 Gate a poll's paid features on the poll's space, not the active one"
+    },
+    {
+      "number": 3575,
+      "title": "⚡️ Scope space member counts and the orphaned guest scan"
+    },
+    {
+      "number": 3630,
+      "title": "🐛 Make the subscription created webhook upsert atomic"
+    },
+    {
+      "number": 3263,
+      "title": "⚡️ Apply vercel-doctor fixes: parallel awaits, unoptimized SVG icons, dead files"
+    },
+    {
+      "number": 2871,
+      "title": "🐛 Pass i18n to server-side Trans to prevent cross-request language leaks"
+    },
+    {
+      "number": 3246,
+      "title": "🔒️ Reject participant writes once a poll leaves open"
+    },
+    {
+      "number": 3344,
+      "title": "✨ Deliver webhooks right after the write, in-process"
+    },
+    {
+      "number": 3329,
+      "title": "✨ Add webhooks settings page"
+    },
+    {
+      "number": 3180,
+      "title": "✨ Let hosts remove a pending invite from the Share dialog"
+    },
+    {
+      "number": 3616,
+      "title": "📈 Track participant form opens and require email setting changes"
+    },
+    {
+      "number": 2870,
+      "title": "✨ Optimistic space switching with loading indicator"
+    },
+    {
+      "number": 3718,
+      "title": "🌐 Replace Crowdin with an OpenAI translation workflow"
+    },
+    {
+      "number": 3160,
+      "title": "✨ Redesign the poll share dialog with email invites"
+    },
+    {
+      "number": 3405,
+      "title": "✨ Let users type the seat count in the manage seats dialog"
+    },
+    {
+      "number": 3163,
+      "title": "✨ Record when an invite link is opened"
+    },
+    {
+      "number": 3256,
+      "title": "✨ Let organizers run plain yes/no polls"
+    },
+    {
+      "number": 2846,
+      "title": "🗃️ Add PollInvite, PollActivity and Participant.token for Poll Admin"
+    },
+    {
+      "number": 2764,
+      "title": "✨ House-keeping job to delete orphaned anonymous guest users"
+    },
+    {
+      "number": 2960,
+      "title": "♻️ Asset storage abstraction: profiles, lifecycle, generic upload control"
+    },
+    {
+      "number": 3603,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3407,
+      "title": "🐛 Link OIDC sign-ins to existing users by email"
+    },
+    {
+      "number": 3423,
+      "title": "🐛 Make a poll's space active when its admin page is opened from another space"
+    },
+    {
+      "number": 3421,
+      "title": "💄 Add response and share actions to the desktop poll empty state"
+    },
+    {
+      "number": 3440,
+      "title": "♻️ Replace deprecated arctic with in-house OAuth 2.0 client"
+    },
+    {
+      "number": 3076,
+      "title": "✨ Activity log: event vocabulary + writes from every poll mutation"
+    },
+    {
+      "number": 3241,
+      "title": "Bump vitest from 4.0.18 to 4.1.11"
+    },
+    {
+      "number": 2640,
+      "title": "⚡️ Run control panel user search queries in parallel"
+    },
+    {
+      "number": 3410,
+      "title": "♻️ Replace dayjs timezone conversion with Intl wall time helpers"
+    },
+    {
+      "number": 2865,
+      "title": "♻️ Migrate notification preferences settings off tRPC"
+    },
+    {
+      "number": 2892,
+      "title": "📝 Correct the i18n Trans guidance in CLAUDE.md"
+    },
+    {
+      "number": 3604,
+      "title": "⬆️ Upgrade pnpm to 12.14.0"
+    },
+    {
+      "number": 2736,
+      "title": "✨ Add list polls endpoint to private API"
+    },
+    {
+      "number": 2643,
+      "title": "✨ Cap API keys per space and migrate writes to server actions (RAL-1268)"
+    },
+    {
+      "number": 2733,
+      "title": "♻️ Migrate space member mutations to server actions"
+    },
+    {
+      "number": 2720,
+      "title": "🐛 Keep polls for 30 days after their final date"
+    },
+    {
+      "number": 2575,
+      "title": "♻️ Move Stripe webhook business logic into features/billing"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:38:05Z",
+  "results": [
+    {
+      "number": 3653,
+      "title": "🔥 Remove stale Neon preview branch cleanup workflow"
+    },
+    {
+      "number": 3222,
+      "title": "🔥 Remove the stale .cursorrules"
+    },
+    {
+      "number": 3670,
+      "title": "✨ Search polls, events and members from the command menu"
+    },
+    {
+      "number": 3718,
+      "title": "🌐 Replace Crowdin with an OpenAI translation workflow"
+    },
+    {
+      "number": 3717,
+      "title": "♻️ Read the add-on tier from the subscription row"
+    },
+    {
+      "number": 3121,
+      "title": "✨ Add nightly cleanup of stale Neon preview branches"
+    },
+    {
+      "number": 3189,
+      "title": "📝 Correct stale CLAUDE.md claims and drop the empty dayjs stub package"
+    },
+    {
+      "number": 3713,
+      "title": "✨ Build subscription updates for API add-on changes"
+    },
+    {
+      "number": 3710,
+      "title": "🗃️ Sync the API poll add-on from Stripe webhooks"
+    },
+    {
+      "number": 3690,
+      "title": "🔥 Remove the private API"
+    },
+    {
+      "number": 3585,
+      "title": "🐛 Stop guest writes when the guest session could not be created"
+    },
+    {
+      "number": 3707,
+      "title": "✨ Let participants change a response without an edit mode"
+    },
+    {
+      "number": 3612,
+      "title": "🐛 Stop page translation from crashing React DOM updates"
+    },
+    {
+      "number": 3711,
+      "title": "✨ Add the API poll quota warning email"
+    },
+    {
+      "number": 3588,
+      "title": "💬 Replace the nonprofit discount FAQ with a no discounts answer"
+    },
+    {
+      "number": 3027,
+      "title": "🐛 Fix stale, deleted and cancelled events on the public calendar routes (RAL-1561)"
+    },
+    {
+      "number": 2917,
+      "title": "💄 Replace stale landing page stats with a live 30-day activity claim"
+    },
+    {
+      "number": 3578,
+      "title": "⚡️ Shard integration tests across six CI jobs"
+    },
+    {
+      "number": 3491,
+      "title": "🐛 Show the open poll limit on a /new the client router had cached"
+    },
+    {
+      "number": 3533,
+      "title": "🔍 Fix duplicate locale URLs, add home structured data and correct llms.txt"
+    },
+    {
+      "number": 3619,
+      "title": "✨ Make require participant email free and on by default for new polls"
+    },
+    {
+      "number": 2652,
+      "title": "📝 Remove stale components/poll reference from CLAUDE.md"
+    },
+    {
+      "number": 3260,
+      "title": "🔥 Drop is_guest from the poll group"
+    },
+    {
+      "number": 3356,
+      "title": "⚡️ Select filter pills optimistically"
+    },
+    {
+      "number": 3326,
+      "title": "⬆️ Bump portless to 0.15.6 and derive dev URLs from PORTLESS_URL"
+    },
+    {
+      "number": 3418,
+      "title": "♻️ Use locale-aware links for internal hrefs in the landing app"
+    },
+    {
+      "number": 3581,
+      "title": "♻️ Render the polls list on the server with pagination"
+    },
+    {
+      "number": 3340,
+      "title": "📝 Document webhooks: guide, one page per event, and the OpenAPI webhooks section"
+    },
+    {
+      "number": 3117,
+      "title": "📝 Update backup description for Neon's continuous PITR model"
+    },
+    {
+      "number": 3400,
+      "title": "✨ Check a Microsoft account can host Teams meetings when it connects"
+    },
+    {
+      "number": 3429,
+      "title": "✨ Queue finalize participant emails and send them in batches"
+    },
+    {
+      "number": 3055,
+      "title": "🔧 Register the orphaned-guest cleanup cron"
+    },
+    {
+      "number": 3119,
+      "title": "📝 Add blog post on the team collaboration setting"
+    },
+    {
+      "number": 2998,
+      "title": "✏️ Rename footer link to Scheduling poll"
+    },
+    {
+      "number": 3228,
+      "title": "♻️ Serve the poll invite list through a tRPC query"
+    },
+    {
+      "number": 3122,
+      "title": "🔧 Lower preview branch TTL to 6 days"
+    },
+    {
+      "number": 3155,
+      "title": "✨ Add cta param to distinguish landing CTAs in attribution"
+    },
+    {
+      "number": 3159,
+      "title": "📝 State free plan limits plainly in the pricing FAQ"
+    },
+    {
+      "number": 3694,
+      "title": "✨ Switch spaces from the command menu"
+    },
+    {
+      "number": 3131,
+      "title": "💄 Truncate hero announcement text to one line"
+    },
+    {
+      "number": 3065,
+      "title": "✨ Add comparison table to Doodle alternative page"
+    },
+    {
+      "number": 3048,
+      "title": "💄 Highlight winning column and fix footer demo fade-out"
+    },
+    {
+      "number": 3168,
+      "title": "📝 Announce email invites on the blog"
+    },
+    {
+      "number": 2862,
+      "title": "🐛 Reset participant selection when a participant is deleted on mobile poll"
+    },
+    {
+      "number": 3339,
+      "title": "✨ Make webhooks ready to flip: minute cron and per-endpoint version"
+    },
+    {
+      "number": 3081,
+      "title": "💄 Dock the create poll action bar at the container bottom"
+    },
+    {
+      "number": 3358,
+      "title": "📈 Share the PostHog id across rallly.co and the app"
+    },
+    {
+      "number": 3373,
+      "title": "✨ Handle Zoom app deauthorization events"
+    },
+    {
+      "number": 3023,
+      "title": "🔒 Guard the orphaned-guest purge against new User cascade relations"
+    },
+    {
+      "number": 2999,
+      "title": "💄 Clarify pricing comparison table naming"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:38:09Z",
+  "results": [
+    {
+      "number": 3713,
+      "title": "✨ Build subscription updates for API add-on changes"
+    },
+    {
+      "number": 3693,
+      "title": "🐛 Set the login verification cookie with the code instead of a server action"
+    },
+    {
+      "number": 3361,
+      "title": "💬 Explain how to request the nonprofit discount in the pricing FAQ"
+    },
+    {
+      "number": 3103,
+      "title": "🐛 Fix duplicated number in stats badge text extraction"
+    },
+    {
+      "number": 3436,
+      "title": "🗃️ Purge queued emails 30 days after they finish"
+    },
+    {
+      "number": 3510,
+      "title": "♻️ Fire analytics from event handlers instead of effects"
+    },
+    {
+      "number": 2806,
+      "title": "💬 Reposition when2meet-alternative page copy"
+    },
+    {
+      "number": 3333,
+      "title": "💄 Pick webhook events with a searchable multi-select combobox"
+    },
+    {
+      "number": 3199,
+      "title": "💄 Refine the landing hero, headings and final CTA"
+    },
+    {
+      "number": 2974,
+      "title": "💬 Differentiate final CTA copy from the hero subheading"
+    },
+    {
+      "number": 2941,
+      "title": "🐛 Reject localhost, dotless hostnames and IPs as the cookie domain"
+    },
+    {
+      "number": 3429,
+      "title": "✨ Queue finalize participant emails and send them in batches"
+    },
+    {
+      "number": 3060,
+      "title": "🐛 Cap the orphaned-guest cleanup and run it hourly"
+    },
+    {
+      "number": 2917,
+      "title": "💄 Replace stale landing page stats with a live 30-day activity claim"
+    },
+    {
+      "number": 2781,
+      "title": "🔥 Remove legacy /p/ and /admin/ poll link redirects"
+    },
+    {
+      "number": 2908,
+      "title": "💄 Float the comments pill above the voting footer on mobile"
+    },
+    {
+      "number": 3034,
+      "title": "✨ Add scheduling for executive assistants landing page"
+    },
+    {
+      "number": 3304,
+      "title": "✨ Return from Stripe portal flows through a flash instead of a query parameter"
+    },
+    {
+      "number": 3400,
+      "title": "✨ Check a Microsoft account can host Teams meetings when it connects"
+    },
+    {
+      "number": 3523,
+      "title": "🥅 Reload once and report chunk timings on Turbopack module factory errors"
+    },
+    {
+      "number": 2978,
+      "title": "💄 Redesign landing testimonial and polish hero/stats spacing"
+    },
+    {
+      "number": 2883,
+      "title": "🐛 Fix internal server error when re-activating an installed license key"
+    },
+    {
+      "number": 3053,
+      "title": "💄 Stop animating in the final CTA"
+    },
+    {
+      "number": 2956,
+      "title": "💄 Simplify login provider options"
+    },
+    {
+      "number": 2790,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 2479,
+      "title": "♻️ Refactor email templates to self-contained docs-style i18n (RAL-1217)"
+    },
+    {
+      "number": 2476,
+      "title": "🐛 Keep env validation out of the client bundle (fixes #2474)"
+    },
+    {
+      "number": 2805,
+      "title": "🐛 Delete accounts immediately on self-hosted instances"
+    },
+    {
+      "number": 2650,
+      "title": "🐛 Fix redirect loop between / and /login (RAL-1313)"
+    },
+    {
+      "number": 3581,
+      "title": "♻️ Render the polls list on the server with pagination"
+    },
+    {
+      "number": 2888,
+      "title": "💄 Use responsive field rows on the security page"
+    },
+    {
+      "number": 2351,
+      "title": "✨ Add updates api route"
+    },
+    {
+      "number": 3190,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 2223,
+      "title": "✨ Allow content from trusted creators when flagged by moderator"
+    },
+    {
+      "number": 1448,
+      "title": "✨ Set retries for message queue"
+    },
+    {
+      "number": 2213,
+      "title": "⚡️ Move polls to client-side tRPC"
+    },
+    {
+      "number": 1988,
+      "title": "♻️ Refactor email change flow"
+    },
+    {
+      "number": 1422,
+      "title": "♻️ Move auth"
+    },
+    {
+      "number": 2235,
+      "title": "♻️ Replace requireAdmin() with tRPC data fetching (RAL-1018)"
+    },
+    {
+      "number": 2109,
+      "title": "🚀 Unlock custom branding through white-label add-on"
+    },
+    {
+      "number": 2151,
+      "title": "🧑‍💻 Implement better error logs for trpc route"
+    },
+    {
+      "number": 2100,
+      "title": "✨ Allow user to refresh instance license"
+    },
+    {
+      "number": 2069,
+      "title": "⬆️ Upgrade to Tailwind 4"
+    },
+    {
+      "number": 1717,
+      "title": "✨ Add tile descriptions"
+    },
+    {
+      "number": 1919,
+      "title": "📈 Add space group analytics"
+    },
+    {
+      "number": 1825,
+      "title": "⬆️ Upgrade to biome 2"
+    },
+    {
+      "number": 1776,
+      "title": "✨ Add spaces concept"
+    },
+    {
+      "number": 1644,
+      "title": "♻️ Refactor poll view tracking"
+    },
+    {
+      "number": 1723,
+      "title": "✨ Add licensing api"
+    },
+    {
+      "number": 1726,
+      "title": "✨ Add admin control panel"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "lukevella/rallly",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo lukevella/rallly --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:38:12Z",
+  "results": [
+    {
+      "number": 3297,
+      "title": "✨ Deliver signed, retried poll webhooks from the activity log"
+    },
+    {
+      "number": 3579,
+      "title": "🐛 Pin checkout to the pay wall currency"
+    },
+    {
+      "number": 3716,
+      "title": "⬆️ Bump hono from 4.13.13 to 4.13.16"
+    },
+    {
+      "number": 3630,
+      "title": "🐛 Make the subscription created webhook upsert atomic"
+    },
+    {
+      "number": 3701,
+      "title": "🐛 Stop one wrong moderation verdict from banning a user"
+    },
+    {
+      "number": 3718,
+      "title": "🌐 Replace Crowdin with an OpenAI translation workflow"
+    },
+    {
+      "number": 3316,
+      "title": "✨ Warn space owners when a subscription payment fails"
+    },
+    {
+      "number": 3664,
+      "title": "💄 Align footer wordmark scanlines with the page edge"
+    },
+    {
+      "number": 3654,
+      "title": "⬆️ Bump undici from 7.29.1 to 7.30.1"
+    },
+    {
+      "number": 3655,
+      "title": "⬆️ Bump follow-redirects from 1.16.1 to 1.16.2"
+    },
+    {
+      "number": 3346,
+      "title": "✨ Send test events and show endpoint health in the webhooks list"
+    },
+    {
+      "number": 3506,
+      "title": "💚 Poll for the queued email outcome in the booking invite test"
+    },
+    {
+      "number": 3563,
+      "title": "🐛 Fall back to built in prices when Stripe fails during prerender"
+    },
+    {
+      "number": 3373,
+      "title": "✨ Handle Zoom app deauthorization events"
+    },
+    {
+      "number": 3526,
+      "title": "✨ Ask for a review after the first finalized poll and split business asks between Capterra and G2"
+    },
+    {
+      "number": 3596,
+      "title": "Bump hono from 4.13.7 to 4.13.11"
+    },
+    {
+      "number": 3496,
+      "title": "🐛 Show a skeleton while the polls list loads after a filter change"
+    },
+    {
+      "number": 3564,
+      "title": "🔒️ Upgrade Next.js to 16.4.2 to patch Server Actions DoS (4.15.5 hotfix)"
+    },
+    {
+      "number": 3196,
+      "title": "✨ Cap daily API usage per space and fail closed when Redis is unavailable"
+    },
+    {
+      "number": 3585,
+      "title": "🐛 Stop guest writes when the guest session could not be created"
+    },
+    {
+      "number": 3536,
+      "title": "⏱️ Delay the subscription feedback email and store queued email kind as text"
+    },
+    {
+      "number": 3242,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 3398,
+      "title": "⬆️ Bump undici from 7.29.0 to 7.29.1"
+    },
+    {
+      "number": 3670,
+      "title": "✨ Search polls, events and members from the command menu"
+    },
+    {
+      "number": 2894,
+      "title": "🐛 Fix local Playwright runs blocked by the dev tools indicator"
+    },
+    {
+      "number": 3071,
+      "title": "✅ Fix flaky job title select test racing the Base UI popup"
+    },
+    {
+      "number": 3281,
+      "title": "✨ Wire the nonprofit application pipeline and checkout coupon (RAL-1627, RAL-1624)"
+    },
+    {
+      "number": 3340,
+      "title": "📝 Document webhooks: guide, one page per event, and the OpenAPI webhooks section"
+    },
+    {
+      "number": 3367,
+      "title": "♻️ Run server actions through TanStack Query and refresh from the server"
+    },
+    {
+      "number": 2739,
+      "title": "🐛 Fix purge-guest-profiles exiting early on eventually-consistent reads"
+    },
+    {
+      "number": 3319,
+      "title": "💄 Stop text-link forcing the brand color on colored surfaces"
+    },
+    {
+      "number": 2823,
+      "title": "✅ Fix hydration race in registration test that broke full-suite runs"
+    },
+    {
+      "number": 3228,
+      "title": "♻️ Serve the poll invite list through a tRPC query"
+    },
+    {
+      "number": 2960,
+      "title": "♻️ Asset storage abstraction: profiles, lifecycle, generic upload control"
+    },
+    {
+      "number": 3400,
+      "title": "✨ Check a Microsoft account can host Teams meetings when it connects"
+    },
+    {
+      "number": 3001,
+      "title": "🐛 Treat subscription webhooks for deleted spaces as no-ops"
+    },
+    {
+      "number": 3339,
+      "title": "✨ Make webhooks ready to flip: minute cron and per-endpoint version"
+    },
+    {
+      "number": 3710,
+      "title": "🗃️ Sync the API poll add-on from Stripe webhooks"
+    },
+    {
+      "number": 3456,
+      "title": "💄 Underline links in poll descriptions"
+    },
+    {
+      "number": 3707,
+      "title": "✨ Let participants change a response without an edit mode"
+    },
+    {
+      "number": 3329,
+      "title": "✨ Add webhooks settings page"
+    },
+    {
+      "number": 3269,
+      "title": "💥 Make the v1 create request mirror the poll it returns"
+    },
+    {
+      "number": 3565,
+      "title": "🥅 Log Turbopack chunk registrations on module factory errors"
+    },
+    {
+      "number": 2828,
+      "title": "✅ Harden registration test against dev-server races in full-suite runs"
+    },
+    {
+      "number": 2946,
+      "title": "✨ Logo upload through the branding page"
+    },
+    {
+      "number": 3142,
+      "title": "💄 Add padding around the Doodle pricing table image"
+    },
+    {
+      "number": 3072,
+      "title": "🌐 New Crowdin updates"
+    },
+    {
+      "number": 2651,
+      "title": "✨ Move to a per-space API rate limit (RAL-1262)"
+    },
+    {
+      "number": 3436,
+      "title": "🗃️ Purge queued emails 30 days after they finish"
+    },
+    {
+      "number": 3302,
+      "title": "✨ Build the nonprofit application page (RAL-1628)"
+    }
+  ],
+  "error": null
+}
+]

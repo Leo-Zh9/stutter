@@ -1,0 +1,1609 @@
+[
+{
+  "repo": "makeplane/plane",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:24Z",
+  "results": [
+    {
+      "number": 9910,
+      "title": "fix: return 204 instead of 500 for repeated module-issue deletes"
+    },
+    {
+      "number": 8225,
+      "title": "[WEB-5254] chore: add bot user to create workspace seed data"
+    },
+    {
+      "number": 7772,
+      "title": "[WEB-4873]: Add webhook log cleanup task and update Celery schedule"
+    },
+    {
+      "number": 7720,
+      "title": "refactor: live server"
+    },
+    {
+      "number": 6758,
+      "title": "Improve setup.sh script with better error handling and user feedback"
+    },
+    {
+      "number": 7172,
+      "title": "[WIKI-419] chore: new asset duplicate endpoint added"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:27Z",
+  "results": [
+    {
+      "number": 9910,
+      "title": "fix: return 204 instead of 500 for repeated module-issue deletes"
+    },
+    {
+      "number": 10074,
+      "title": "[INFRA-1160] fix(security): generate object-storage credentials per install"
+    },
+    {
+      "number": 9303,
+      "title": "[GIT-243]fix: InstanceConfiguration not created for some keys"
+    },
+    {
+      "number": 9495,
+      "title": "[SECUR-242] fix(api): scope bulk-asset associate by uploader, not project_id (regression from #9288)"
+    },
+    {
+      "number": 8324,
+      "title": "[WEB-5654]fix: custom select selection and dropdown close"
+    },
+    {
+      "number": 8225,
+      "title": "[WEB-5254] chore: add bot user to create workspace seed data"
+    },
+    {
+      "number": 8251,
+      "title": "[WEB-5592] chore: add static files update settings for static files support"
+    },
+    {
+      "number": 7720,
+      "title": "refactor: live server"
+    },
+    {
+      "number": 7927,
+      "title": "regression: editor dropdowns positioning logic"
+    },
+    {
+      "number": 8087,
+      "title": "[WIKI-718] feat: add full width options in table block menu"
+    },
+    {
+      "number": 8206,
+      "title": "[WEB-5537]refactor: rename IssueUserProperty to ProjectUserProperty and update related references "
+    },
+    {
+      "number": 8059,
+      "title": "[WEB-5237] feat: add workspace invitation and project member management endpoints"
+    },
+    {
+      "number": 7841,
+      "title": "[WIKI-638] fix: peek overview closing while dropdowns are open"
+    },
+    {
+      "number": 8294,
+      "title": "[WIKI-844] fix: realtime sync post vite migration with title editor sync and indexed db access"
+    },
+    {
+      "number": 7679,
+      "title": "[WEB-4810] feat: migrate to tsdown from tsup"
+    },
+    {
+      "number": 6307,
+      "title": "feat: add issue attachment v1 endpoint "
+    },
+    {
+      "number": 6200,
+      "title": "[WEB-2769]fix: transfer cycles mutation issue"
+    },
+    {
+      "number": 7526,
+      "title": "[WIKI-569] chore: migrate to tiptap v3"
+    },
+    {
+      "number": 5912,
+      "title": "[WEB-1435] dev: conflict free issue descriptions"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:31Z",
+  "results": [
+    {
+      "number": 10267,
+      "title": "[GIT-409] fix(editor): skip upload status sync on a destroyed editor"
+    },
+    {
+      "number": 9938,
+      "title": "fix: skip external image srcs when duplicating page assets"
+    },
+    {
+      "number": 10261,
+      "title": "fix: block restricted guests from assets of issues hidden from them"
+    },
+    {
+      "number": 10207,
+      "title": "[WEB-10009] fix: check page access on every live collaboration socket"
+    },
+    {
+      "number": 10058,
+      "title": "[INFRA-1188] fix(security): require project membership for creator access"
+    },
+    {
+      "number": 10054,
+      "title": "[INFRA-1156] fix(security): sanitize export history order_by"
+    },
+    {
+      "number": 10042,
+      "title": "[INFRA-1138] fix(security): require workspace admin to PUT/PATCH workspace"
+    },
+    {
+      "number": 10189,
+      "title": "[WEB-9436] chore: migrations lockfile and label for migration PRs"
+    },
+    {
+      "number": 10033,
+      "title": "[SECUR-247] fix(security): require project membership to publish"
+    },
+    {
+      "number": 10008,
+      "title": "[WEB-8372] fix(security): restrict state writes to project admins"
+    },
+    {
+      "number": 9804,
+      "title": "fix(web): show sub-work items on the parent in local"
+    },
+    {
+      "number": 10057,
+      "title": "[INFRA-1182] fix(security): make deploy board identity fields read-only"
+    },
+    {
+      "number": 10101,
+      "title": "[WIKI-1268] chore: upgrade Tiptap and Hocuspocus to v3"
+    },
+    {
+      "number": 9925,
+      "title": "fix: address v1.4.3 release review comments"
+    },
+    {
+      "number": 9657,
+      "title": "[INFRA-501] fix(security): enforce project membership on every workspace-level asset route"
+    },
+    {
+      "number": 9652,
+      "title": "[INFRA-496] fix(security): refuse routed actions served by unauthorized DRF mixins"
+    },
+    {
+      "number": 9697,
+      "title": "refactor: migrate web Tooltip to @makeplane/propel Tooltip"
+    },
+    {
+      "number": 10038,
+      "title": "feat: sync web, Space and Admin UI with the Propel design system"
+    },
+    {
+      "number": 9704,
+      "title": "[INFRA-772] fix(security): stop trusting body-supplied created_by/created_at on external API"
+    },
+    {
+      "number": 9719,
+      "title": "refactor: flatten editor package folder structure"
+    },
+    {
+      "number": 9743,
+      "title": "refactor: migrate web Collapsible to @makeplane/propel Collapsible"
+    },
+    {
+      "number": 9802,
+      "title": "refactor: replace @plane/ui and @plane/propel with @makeplane/propel and @plane/blocks"
+    },
+    {
+      "number": 9702,
+      "title": "refactor: migrate web Checkbox to @makeplane/propel Checkbox"
+    },
+    {
+      "number": 9698,
+      "title": "refactor: migrate web progress indicators to @makeplane/propel"
+    },
+    {
+      "number": 9737,
+      "title": "refactor: migrate Banner to @makeplane/propel across web app"
+    },
+    {
+      "number": 9840,
+      "title": "chore: remove legacy blue Plane branding assets"
+    },
+    {
+      "number": 10256,
+      "title": "[WEB-10020] fix: bind project cover uploads to URL workspace and admins"
+    },
+    {
+      "number": 9841,
+      "title": "fix(api): decode HTML entities in plain-text email bodies"
+    },
+    {
+      "number": 9443,
+      "title": "[WEB-8289] fix: scope draft-to-issue conversion to the draft owner"
+    },
+    {
+      "number": 9731,
+      "title": "refactor: migrate web icons to @makeplane/propel"
+    },
+    {
+      "number": 9874,
+      "title": "fix(power-k): shortcut matching, badge rendering, i18n and dead-code cleanup"
+    },
+    {
+      "number": 10173,
+      "title": "refactor(admin): share OAuth provider form and fix csrf input warning"
+    },
+    {
+      "number": 9531,
+      "title": "[SECUR-243] fix(security): scope issue comment + relation endpoints to the URL project"
+    },
+    {
+      "number": 9717,
+      "title": "fix(api): expand=updated_by returns the user, and null relations stay null"
+    },
+    {
+      "number": 9288,
+      "title": "[WEB-7776] fix(security): scope FileAsset queries to prevent cross-project IDOR (Cluster F)"
+    },
+    {
+      "number": 9442,
+      "title": "[WEB-8283] fix: bind Spaces board object IDs to the anchor's project"
+    },
+    {
+      "number": 10062,
+      "title": "[INFRA-1200] fix(security): apply project guest scope to issue exports"
+    },
+    {
+      "number": 9715,
+      "title": "fix(i18n): correct broken German translations"
+    },
+    {
+      "number": 9486,
+      "title": "[SECUR-236] fix: grouped-paginator cursor bound + Project mass-assignment"
+    },
+    {
+      "number": 9373,
+      "title": "[WEB-8068] fix: scope workspace cycles/modules listing to project membership"
+    },
+    {
+      "number": 10050,
+      "title": "[INFRA-1140] fix(security): bind URL issue_id to the URL project on creates"
+    },
+    {
+      "number": 9380,
+      "title": "[WEB-8095] fix: scope page-version reads to the URL project (GHSA-g49r/ghcr)"
+    },
+    {
+      "number": 9332,
+      "title": "[WEB-7894] fix: eliminate TOCTOU race in InstanceAdminSignUp (GHSA-p548-28jp-wr4p)"
+    },
+    {
+      "number": 9912,
+      "title": "fix: reject scalar JSON bodies on v1 write endpoints"
+    },
+    {
+      "number": 9730,
+      "title": "refactor: migrate admin icons to @makeplane/propel"
+    },
+    {
+      "number": 9456,
+      "title": "chore: resolve open Dependabot security alerts (axios, brace-expansion, morgan)"
+    },
+    {
+      "number": 9530,
+      "title": "chore: upgrade React to 19 and React Router to 8"
+    },
+    {
+      "number": 6199,
+      "title": "chore: add sync jobs for issue_version and issue_description_version tables"
+    },
+    {
+      "number": 9726,
+      "title": "refactor: migrate web @plane/propel Tooltip to @makeplane/propel"
+    },
+    {
+      "number": 9059,
+      "title": "fix: handle error message for special characters in Identifier of Project"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:35Z",
+  "results": [
+    {
+      "number": 9332,
+      "title": "[WEB-7894] fix: eliminate TOCTOU race in InstanceAdminSignUp (GHSA-p548-28jp-wr4p)"
+    },
+    {
+      "number": 10059,
+      "title": "[INFRA-1189] fix(security): throttle auth endpoints for every caller"
+    },
+    {
+      "number": 9673,
+      "title": "chore(ci): build images natively per architecture and merge by digest"
+    },
+    {
+      "number": 9130,
+      "title": "fix(api): rate-limit magic-code verify, bound per-token attempts (GHSA-9pvm-fcf6-9234)"
+    },
+    {
+      "number": 9160,
+      "title": "release: v1.4.0"
+    },
+    {
+      "number": 9288,
+      "title": "[WEB-7776] fix(security): scope FileAsset queries to prevent cross-project IDOR (Cluster F)"
+    },
+    {
+      "number": 9094,
+      "title": "fix(web): add requestIdleCallback fallback for Safari/iOS"
+    },
+    {
+      "number": 8813,
+      "title": "fix: tsdown watch"
+    },
+    {
+      "number": 8839,
+      "title": "[WEB-6813] fix: module not associated when accepting intake work items"
+    },
+    {
+      "number": 8298,
+      "title": "[WEB-4440] fix: Fix duplicate sequence when creating multiple workitems in rapid succession"
+    },
+    {
+      "number": 8417,
+      "title": "[WEB-5775] fix: mentions search on empty query"
+    },
+    {
+      "number": 8440,
+      "title": "[WIKI-852] chore: update page version save logic"
+    },
+    {
+      "number": 8115,
+      "title": "[WIKI-770] fix: update editor ref after editor ready"
+    },
+    {
+      "number": 8120,
+      "title": "[WEB-5430] feat: allow users to change email"
+    },
+    {
+      "number": 7960,
+      "title": "[WEB-5141]chore: project features refactor"
+    },
+    {
+      "number": 8439,
+      "title": "chore: workspace events"
+    },
+    {
+      "number": 8380,
+      "title": "[WIKI-849] feat: debounce for mention search"
+    },
+    {
+      "number": 8097,
+      "title": "[WEB-5399] chore: update dependencies and improve PostHog integration"
+    },
+    {
+      "number": 8226,
+      "title": "[WEB-5569] chore: top nav search enhancements"
+    },
+    {
+      "number": 8181,
+      "title": "[WEB-5506] fix: new navigation pre release bugs"
+    },
+    {
+      "number": 7880,
+      "title": "[WIKI-682] feat: hocuspocus v3 server migration"
+    },
+    {
+      "number": 7388,
+      "title": "[WEB-4428] fix: duplicate labels "
+    },
+    {
+      "number": 8197,
+      "title": "[WEB-5527] fix: extended sidebar"
+    },
+    {
+      "number": 7841,
+      "title": "[WIKI-638] fix: peek overview closing while dropdowns are open"
+    },
+    {
+      "number": 8210,
+      "title": "[WIKI-804] fix: refactor image uploader"
+    },
+    {
+      "number": 8294,
+      "title": "[WIKI-844] fix: realtime sync post vite migration with title editor sync and indexed db access"
+    },
+    {
+      "number": 6877,
+      "title": "[WEB-3728] fix: duplicate sequence ids being generated due to race condition"
+    },
+    {
+      "number": 7357,
+      "title": "[WIKI-510] feat: enhance issue description input with unsaved changes tracking"
+    },
+    {
+      "number": 8087,
+      "title": "[WIKI-718] feat: add full width options in table block menu"
+    },
+    {
+      "number": 8741,
+      "title": "chore(deps): bump the actions group across 1 directory with 11 updates"
+    },
+    {
+      "number": 7410,
+      "title": "[WEB-4506] fix: date range modal z-index"
+    },
+    {
+      "number": 7275,
+      "title": "[WIKI-402] feat: emoji support for all editors"
+    },
+    {
+      "number": 7852,
+      "title": "[WEB-4981] fix: analytics modal portal"
+    },
+    {
+      "number": 7653,
+      "title": "[WEB-4761] fix: resolve circular import between IssueService and local db"
+    },
+    {
+      "number": 8150,
+      "title": "[WEB-5267] fix: analytics enhancements"
+    },
+    {
+      "number": 8072,
+      "title": "[WEB-5312] migration: work item comments"
+    },
+    {
+      "number": 7381,
+      "title": "fix: packages dev command failing due to missing dependency mapping"
+    },
+    {
+      "number": 8351,
+      "title": "[WEB-5614] fix: new design system consistency"
+    },
+    {
+      "number": 7720,
+      "title": "refactor: live server"
+    },
+    {
+      "number": 7366,
+      "title": "[WIKI-534] fix: save title input on closing"
+    },
+    {
+      "number": 8229,
+      "title": "[WIKI-830] fix: copy clipboard functionality in the editor"
+    },
+    {
+      "number": 7084,
+      "title": "fix: prevent prematurely triggered Japanese label creation"
+    },
+    {
+      "number": 7453,
+      "title": "[WEB-4533] feat: read replica functionality"
+    },
+    {
+      "number": 8032,
+      "title": "[WEB-4944] feat: add base layouts for kanban and list with drag-and-drop support"
+    },
+    {
+      "number": 8206,
+      "title": "[WEB-5537]refactor: rename IssueUserProperty to ProjectUserProperty and update related references "
+    },
+    {
+      "number": 8059,
+      "title": "[WEB-5237] feat: add workspace invitation and project member management endpoints"
+    },
+    {
+      "number": 7286,
+      "title": "[WIKI-497] feat: table insert column and row handles"
+    },
+    {
+      "number": 7314,
+      "title": "fix: live server runtime errors"
+    },
+    {
+      "number": 7526,
+      "title": "[WIKI-569] chore: migrate to tiptap v3"
+    },
+    {
+      "number": 7905,
+      "title": "[WEB-5088] feat: Power K `v2`"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:38Z",
+  "results": [
+    {
+      "number": 7624,
+      "title": "[WIKI-498] [WIKI-567] feat: ability to rearrange columns and rows in table"
+    },
+    {
+      "number": 7905,
+      "title": "[WEB-5088] feat: Power K `v2`"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:42Z",
+  "results": [
+    {
+      "number": 10178,
+      "title": "fix: address design-system QA review across the web app"
+    },
+    {
+      "number": 9867,
+      "title": "release: v1.4.3"
+    },
+    {
+      "number": 10063,
+      "title": "[INFRA-1208] fix(security): limit public comment writes to content fields"
+    },
+    {
+      "number": 10211,
+      "title": "[WEB-10019] fix: make DynamicBaseSerializer honor fields= allowlists"
+    },
+    {
+      "number": 10048,
+      "title": "[INFRA-1118] fix(security): make work item system fields read-only"
+    },
+    {
+      "number": 9696,
+      "title": "refactor: migrate ToggleSwitch to @makeplane/propel"
+    },
+    {
+      "number": 9702,
+      "title": "refactor: migrate web Checkbox to @makeplane/propel Checkbox"
+    },
+    {
+      "number": 10038,
+      "title": "feat: sync web, Space and Admin UI with the Propel design system"
+    },
+    {
+      "number": 10011,
+      "title": "chore(deps): resolve open Dependabot alerts"
+    },
+    {
+      "number": 9708,
+      "title": "refactor: migrate web Input to @makeplane/propel Input"
+    },
+    {
+      "number": 9382,
+      "title": "[WEB-8103] fix: stop leaking webhook HMAC secret_key on reads"
+    },
+    {
+      "number": 9704,
+      "title": "[INFRA-772] fix(security): stop trusting body-supplied created_by/created_at on external API"
+    },
+    {
+      "number": 7312,
+      "title": "[WEB-4405] chore: workspace settings  events"
+    },
+    {
+      "number": 9699,
+      "title": "chore: wire @makeplane/propel into web"
+    },
+    {
+      "number": 9882,
+      "title": "[GIT-349] chore: flatten web hooks and store out of core/"
+    },
+    {
+      "number": 9232,
+      "title": "feat(api): add workspace_slug to webhook delivery payload"
+    },
+    {
+      "number": 9078,
+      "title": "fix: add WEBHOOK_ALLOWED_HOSTS allowlist for internal webhook targets"
+    },
+    {
+      "number": 9847,
+      "title": "chore: add migration check GitHub Action"
+    },
+    {
+      "number": 9731,
+      "title": "refactor: migrate web icons to @makeplane/propel"
+    },
+    {
+      "number": 9881,
+      "title": "[GIT-350] chore: flatten web layouts, lib, and services out of core/"
+    },
+    {
+      "number": 9652,
+      "title": "[INFRA-496] fix(security): refuse routed actions served by unauthorized DRF mixins"
+    },
+    {
+      "number": 9163,
+      "title": "fix: harden webhook/link/OAuth-avatar SSRF (advisory clusters A/B/C/E)"
+    },
+    {
+      "number": 9148,
+      "title": "refactor: logging with retention + API token hardening"
+    },
+    {
+      "number": 9160,
+      "title": "release: v1.4.0"
+    },
+    {
+      "number": 9679,
+      "title": "chore(i18n): improve Japanese translations"
+    },
+    {
+      "number": 8884,
+      "title": "fix: replace IS_SELF_MANAGED with WEBHOOK_ALLOWED_IPS allowlist"
+    },
+    {
+      "number": 8917,
+      "title": "release: v1.3.1"
+    },
+    {
+      "number": 9488,
+      "title": "fix: resolve React Doctor errors and restore its PR baseline"
+    },
+    {
+      "number": 9639,
+      "title": "feat(i18n): add Dutch (nl) language support"
+    },
+    {
+      "number": 8792,
+      "title": "fix: add missing model_activity.delay() for API-driven issue webhooks"
+    },
+    {
+      "number": 8716,
+      "title": "[SECUR-116] fix: ssrf webhook url for ip address"
+    },
+    {
+      "number": 9481,
+      "title": "[WEB-8400] fix(security): scope DeployBoardViewSet queryset to the URL workspace/project"
+    },
+    {
+      "number": 9291,
+      "title": "[WEB-7805] fix: remove hardcoded SECRET_KEY from community deployment manifests"
+    },
+    {
+      "number": 8835,
+      "title": "release: v1.3.0"
+    },
+    {
+      "number": 8790,
+      "title": "fix: update Twitter icon and links to X"
+    },
+    {
+      "number": 8717,
+      "title": "release: v1.2.3"
+    },
+    {
+      "number": 8603,
+      "title": "i18n(ru): expand Russian translation coverage"
+    },
+    {
+      "number": 8312,
+      "title": "[WEB-5624] chore: added webhook translactions "
+    },
+    {
+      "number": 8535,
+      "title": "[WEB-5917] fix: generate clean plain text from HTML email template."
+    },
+    {
+      "number": 8339,
+      "title": "migration: added webhook version, navigation related fields and allowed_rate_limit for APIToken"
+    },
+    {
+      "number": 8579,
+      "title": "Fully translated into Ukrainian language"
+    },
+    {
+      "number": 8149,
+      "title": "fix: eslint errors and warnings"
+    },
+    {
+      "number": 8657,
+      "title": "[WEB-6420] chore: migrate community references from Discord to Forum"
+    },
+    {
+      "number": 8489,
+      "title": "[WEB-5890] migration: added getting_started_checklist, tips, explored_feature fields on the workspace member table"
+    },
+    {
+      "number": 7896,
+      "title": "[WEB-5071] chore: implement webhook logging to MongoDB and fallback to database "
+    },
+    {
+      "number": 8575,
+      "title": "[WEB-5990] migration: back migrate product tour JSON fields with true values"
+    },
+    {
+      "number": 8465,
+      "title": "Chore remove posthog events"
+    },
+    {
+      "number": 7996,
+      "title": "[WEB-5224] chore: raise warning instead of logging an exception for webhook_send_task"
+    },
+    {
+      "number": 8014,
+      "title": "[WEB-3567] chore:  empty state refactoring and translation fix"
+    },
+    {
+      "number": 7772,
+      "title": "[WEB-4873]: Add webhook log cleanup task and update Celery schedule"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:46Z",
+  "results": [
+    {
+      "number": 10059,
+      "title": "[INFRA-1189] fix(security): throttle auth endpoints for every caller"
+    },
+    {
+      "number": 10038,
+      "title": "feat: sync web, Space and Admin UI with the Propel design system"
+    },
+    {
+      "number": 9944,
+      "title": "[WEB-9302] fix: unsnooze expired intake items at project-timezone midnight"
+    },
+    {
+      "number": 10008,
+      "title": "[WEB-8372] fix(security): restrict state writes to project admins"
+    },
+    {
+      "number": 10101,
+      "title": "[WIKI-1268] chore: upgrade Tiptap and Hocuspocus to v3"
+    },
+    {
+      "number": 9460,
+      "title": "[WEB-8332] fix(security): block workspace-member mass-assignment"
+    },
+    {
+      "number": 9332,
+      "title": "[WEB-7894] fix: eliminate TOCTOU race in InstanceAdminSignUp (GHSA-p548-28jp-wr4p)"
+    },
+    {
+      "number": 9632,
+      "title": "release: v1.4.2"
+    },
+    {
+      "number": 9925,
+      "title": "fix: address v1.4.3 release review comments"
+    },
+    {
+      "number": 10069,
+      "title": "[INFRA-1158] fix(security): require a non-empty matching OAuth state"
+    },
+    {
+      "number": 10040,
+      "title": "[INFRA-1114] fix(security): keep magic-code regeneration limit"
+    },
+    {
+      "number": 9444,
+      "title": "[WEB-8291] fix: gate project invitation list/retrieve/destroy to project admins"
+    },
+    {
+      "number": 9303,
+      "title": "[GIT-243]fix: InstanceConfiguration not created for some keys"
+    },
+    {
+      "number": 9483,
+      "title": "[WEB-8401] fix(security): scope public Space asset mutations to the creator"
+    },
+    {
+      "number": 9223,
+      "title": "chore: integrate react-doctor scanning"
+    },
+    {
+      "number": 9520,
+      "title": "[WEB-8512] feat: add workspace member reactivation command"
+    },
+    {
+      "number": 9130,
+      "title": "fix(api): rate-limit magic-code verify, bound per-token attempts (GHSA-9pvm-fcf6-9234)"
+    },
+    {
+      "number": 8298,
+      "title": "[WEB-4440] fix: Fix duplicate sequence when creating multiple workitems in rapid succession"
+    },
+    {
+      "number": 7870,
+      "title": "[MOB-1199] dev: update index constraints for notifications to optimize query performance"
+    },
+    {
+      "number": 8411,
+      "title": "[WIKI-740] refactor: editor table performance"
+    },
+    {
+      "number": 8813,
+      "title": "fix: tsdown watch"
+    },
+    {
+      "number": 7691,
+      "title": "[WEB-4823] chore: Add compound indexing for notification fields to improve query performance"
+    },
+    {
+      "number": 7657,
+      "title": "feat(repo): add diff checks in CI flows"
+    },
+    {
+      "number": 8440,
+      "title": "[WIKI-852] chore: update page version save logic"
+    },
+    {
+      "number": 8431,
+      "title": "[WEB-5798] refactor: web and admin auth related components and update admin designs"
+    },
+    {
+      "number": 7396,
+      "title": "[WEB-4484]chore: streamline issue saving process with advisory locks for sequence management"
+    },
+    {
+      "number": 7822,
+      "title": "[WEB-4956] fix: onboarding redirect with cache busting and code refactor"
+    },
+    {
+      "number": 8294,
+      "title": "[WIKI-844] fix: realtime sync post vite migration with title editor sync and indexed db access"
+    },
+    {
+      "number": 7388,
+      "title": "[WEB-4428] fix: duplicate labels "
+    },
+    {
+      "number": 7625,
+      "title": "[WEB-4723] fix: disable project features on project create"
+    },
+    {
+      "number": 7438,
+      "title": "fix: update tsup build packages"
+    },
+    {
+      "number": 7453,
+      "title": "[WEB-4533] feat: read replica functionality"
+    },
+    {
+      "number": 8120,
+      "title": "[WEB-5430] feat: allow users to change email"
+    },
+    {
+      "number": 8225,
+      "title": "[WEB-5254] chore: add bot user to create workspace seed data"
+    },
+    {
+      "number": 6975,
+      "title": "[WEB-3953] fix: issue description assets upload when project id is switched"
+    },
+    {
+      "number": 7172,
+      "title": "[WIKI-419] chore: new asset duplicate endpoint added"
+    },
+    {
+      "number": 7969,
+      "title": "[WEB-5153] chore: optimised the cycle transfer issues"
+    },
+    {
+      "number": 8206,
+      "title": "[WEB-5537]refactor: rename IssueUserProperty to ProjectUserProperty and update related references "
+    },
+    {
+      "number": 6311,
+      "title": "chore: duplicate the uploaded assets for duplicated page"
+    },
+    {
+      "number": 6877,
+      "title": "[WEB-3728] fix: duplicate sequence ids being generated due to race condition"
+    },
+    {
+      "number": 7629,
+      "title": "[WEB-4687] feat: propel switch"
+    },
+    {
+      "number": 7120,
+      "title": "chore(deps): bump requests from 2.31.0 to 2.32.2 in /apiserver/requirements in the pip group across 1 directory"
+    },
+    {
+      "number": 7720,
+      "title": "refactor: live server"
+    },
+    {
+      "number": 7679,
+      "title": "[WEB-4810] feat: migrate to tsdown from tsup"
+    },
+    {
+      "number": 7275,
+      "title": "[WIKI-402] feat: emoji support for all editors"
+    },
+    {
+      "number": 7604,
+      "title": "[WEB-4720] chore: refactor and extend cleanup tasks for logs and versions"
+    },
+    {
+      "number": 7061,
+      "title": "[WEB-4094]chore: workspace notifications refactor"
+    },
+    {
+      "number": 6085,
+      "title": "[WEB-2706] fix: Make SQL transactions smaller "
+    },
+    {
+      "number": 5919,
+      "title": "[WEB-2706] fix:  Fix issue with SQLite transactions"
+    },
+    {
+      "number": 7526,
+      "title": "[WIKI-569] chore: migrate to tiptap v3"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:50Z",
+  "results": [
+    {
+      "number": 9876,
+      "title": "chore: remove stale Google IDX workspace config"
+    },
+    {
+      "number": 10025,
+      "title": "refactor(space): align public issue presentation with Propel"
+    },
+    {
+      "number": 10211,
+      "title": "[WEB-10019] fix: make DynamicBaseSerializer honor fields= allowlists"
+    },
+    {
+      "number": 10189,
+      "title": "[WEB-9436] chore: migrations lockfile and label for migration PRs"
+    },
+    {
+      "number": 10263,
+      "title": "docs: verify and refresh repo documentation against the code"
+    },
+    {
+      "number": 9579,
+      "title": "[WEB-8632] fix(web): auto-reload on stale chunk load failure during navigation"
+    },
+    {
+      "number": 10064,
+      "title": "[INFRA-1116] fix(security): restrict user-scoped FKs on users/me updates"
+    },
+    {
+      "number": 9944,
+      "title": "[WEB-9302] fix: unsnooze expired intake items at project-timezone midnight"
+    },
+    {
+      "number": 10011,
+      "title": "chore(deps): resolve open Dependabot alerts"
+    },
+    {
+      "number": 9632,
+      "title": "release: v1.4.2"
+    },
+    {
+      "number": 9720,
+      "title": "feat: add Georgian (ka-ge) language support"
+    },
+    {
+      "number": 9851,
+      "title": "fix(i18n): add missing Polish plural form for epic.label"
+    },
+    {
+      "number": 9867,
+      "title": "release: v1.4.3"
+    },
+    {
+      "number": 9987,
+      "title": "[INFRA-1096] fix: persist generated AIO secrets and avoid regenerating SECRET_KEY for an existing database"
+    },
+    {
+      "number": 9919,
+      "title": "fix(security): bump the fast-uri pin to 3.1.8"
+    },
+    {
+      "number": 10101,
+      "title": "[WIKI-1268] chore: upgrade Tiptap and Hocuspocus to v3"
+    },
+    {
+      "number": 9285,
+      "title": "[GIT-260] fix(user): Profile cover image uses stale image after update"
+    },
+    {
+      "number": 10072,
+      "title": "[INFRA-1165] fix(security): reset role when rejoining a public project"
+    },
+    {
+      "number": 9962,
+      "title": "[INFRA-1089] chore(deps): switch MinIO image to pgsty/silo"
+    },
+    {
+      "number": 9866,
+      "title": "[WEB-9166] fix(project): scope project-join membership lookup to the invited project"
+    },
+    {
+      "number": 9460,
+      "title": "[WEB-8332] fix(security): block workspace-member mass-assignment"
+    },
+    {
+      "number": 9704,
+      "title": "[INFRA-772] fix(security): stop trusting body-supplied created_by/created_at on external API"
+    },
+    {
+      "number": 9546,
+      "title": "fix(web): guard unguarded data derefs causing work-item and layout crashes"
+    },
+    {
+      "number": 9504,
+      "title": "chore: retire departed code owners (apps/live, ox configs)"
+    },
+    {
+      "number": 9874,
+      "title": "fix(power-k): shortcut matching, badge rendering, i18n and dead-code cleanup"
+    },
+    {
+      "number": 9747,
+      "title": "refactor: migrate web TextArea to @makeplane/propel TextArea"
+    },
+    {
+      "number": 9773,
+      "title": "fix(security): clear the HIGH/CRITICAL Trivy findings in the community images"
+    },
+    {
+      "number": 9634,
+      "title": "chore: remove posthog integration and analytics scaffold"
+    },
+    {
+      "number": 9881,
+      "title": "[GIT-350] chore: flatten web layouts, lib, and services out of core/"
+    },
+    {
+      "number": 9726,
+      "title": "refactor: migrate web @plane/propel Tooltip to @makeplane/propel"
+    },
+    {
+      "number": 9802,
+      "title": "refactor: replace @plane/ui and @plane/propel with @makeplane/propel and @plane/blocks"
+    },
+    {
+      "number": 9673,
+      "title": "chore(ci): build images natively per architecture and merge by digest"
+    },
+    {
+      "number": 9804,
+      "title": "fix(web): show sub-work items on the parent in local"
+    },
+    {
+      "number": 10046,
+      "title": "[INFRA-1128] fix(security): scope workspace analytics to member projects"
+    },
+    {
+      "number": 9950,
+      "title": "chore(api): manage Python dependencies with uv"
+    },
+    {
+      "number": 9701,
+      "title": "chore: remove unused @plane/ui exports"
+    },
+    {
+      "number": 9009,
+      "title": "refactor(i18n): sync non-English locales + add CI enforcement for key parity"
+    },
+    {
+      "number": 9763,
+      "title": "fix(api): avoid re-crawling issue link on update when url is unchanged"
+    },
+    {
+      "number": 9488,
+      "title": "fix: resolve React Doctor errors and restore its PR baseline"
+    },
+    {
+      "number": 9752,
+      "title": "refactor: migrate web Tabs to @makeplane/propel"
+    },
+    {
+      "number": 10016,
+      "title": "[WEB-9425] fix: cap external-API write paths to the holder's role"
+    },
+    {
+      "number": 9702,
+      "title": "refactor: migrate web Checkbox to @makeplane/propel Checkbox"
+    },
+    {
+      "number": 9743,
+      "title": "refactor: migrate web Collapsible to @makeplane/propel Collapsible"
+    },
+    {
+      "number": 9160,
+      "title": "release: v1.4.0"
+    },
+    {
+      "number": 9217,
+      "title": "[GIT-240] refactor: hooks consolidation to core hooks"
+    },
+    {
+      "number": 9374,
+      "title": "[WEB-8074] fix: scope IssueListEndpoint to guest created_by"
+    },
+    {
+      "number": 9094,
+      "title": "fix(web): add requestIdleCallback fallback for Safari/iOS"
+    },
+    {
+      "number": 9244,
+      "title": "chore(deps): bump the npm_and_yarn group across 1 directory with 3 updates"
+    },
+    {
+      "number": 8898,
+      "title": "refactor(i18n): migrate packages/i18n from MobX to react-i18next"
+    },
+    {
+      "number": 9690,
+      "title": "refactor(admin): migrate from @plane/ui to @plane/propel"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:53Z",
+  "results": [
+    {
+      "number": 9804,
+      "title": "fix(web): show sub-work items on the parent in local"
+    },
+    {
+      "number": 9825,
+      "title": "perf: bind outside-click once and cache platform detection"
+    },
+    {
+      "number": 9160,
+      "title": "release: v1.4.0"
+    },
+    {
+      "number": 10059,
+      "title": "[INFRA-1189] fix(security): throttle auth endpoints for every caller"
+    },
+    {
+      "number": 9546,
+      "title": "fix(web): guard unguarded data derefs causing work-item and layout crashes"
+    },
+    {
+      "number": 9696,
+      "title": "refactor: migrate ToggleSwitch to @makeplane/propel"
+    },
+    {
+      "number": 9874,
+      "title": "fix(power-k): shortcut matching, badge rendering, i18n and dead-code cleanup"
+    },
+    {
+      "number": 9387,
+      "title": "[WEB-8110] fix: sanitize page list order_by against an allowlist"
+    },
+    {
+      "number": 8563,
+      "title": "[WIKI-877]fix: order of this dropdown options in pages"
+    },
+    {
+      "number": 8677,
+      "title": "fix: replace eslint with oxlint"
+    },
+    {
+      "number": 8830,
+      "title": "[WEB-6794] fix: align profile cover update with correct unsplash and upload handling"
+    },
+    {
+      "number": 9245,
+      "title": "[GIT-248 | GIT-254] refactor: store and components consolidation to core"
+    },
+    {
+      "number": 8716,
+      "title": "[SECUR-116] fix: ssrf webhook url for ip address"
+    },
+    {
+      "number": 8607,
+      "title": "[SECUR-113] fix: ssrf for work item links"
+    },
+    {
+      "number": 8364,
+      "title": "[WEB-5614] fix: sidebar and label dropdown"
+    },
+    {
+      "number": 8218,
+      "title": "[WEB-5556] chore: tab navigation and sidebar improvements"
+    },
+    {
+      "number": 8529,
+      "title": "[WEB-5878] chore: add validation for project name/identifier for special characters"
+    },
+    {
+      "number": 7938,
+      "title": "[WIKI-725] regression: editor floaters' propagation"
+    },
+    {
+      "number": 8336,
+      "title": "[WEB-5657] feat: add synchronization configuration for multiple providers in authentication adapter "
+    },
+    {
+      "number": 8357,
+      "title": "style: update work item details properties UI"
+    },
+    {
+      "number": 8324,
+      "title": "[WEB-5654]fix: custom select selection and dropdown close"
+    },
+    {
+      "number": 8150,
+      "title": "[WEB-5267] fix: analytics enhancements"
+    },
+    {
+      "number": 8439,
+      "title": "chore: workspace events"
+    },
+    {
+      "number": 8230,
+      "title": "[WEB-5845] chore: changing description field to description json"
+    },
+    {
+      "number": 7772,
+      "title": "[WEB-4873]: Add webhook log cleanup task and update Celery schedule"
+    },
+    {
+      "number": 7933,
+      "title": "[WEB-5104] chore: combobox improvements"
+    },
+    {
+      "number": 8225,
+      "title": "[WEB-5254] chore: add bot user to create workspace seed data"
+    },
+    {
+      "number": 8345,
+      "title": "[WEB-5699] refactor: update styling and classnames of charts according to new design system"
+    },
+    {
+      "number": 7843,
+      "title": "[WIKI-695] fix: tippy width fix"
+    },
+    {
+      "number": 7993,
+      "title": "[WEB-5211] fix: accessing NoneType current_instance for delete_module_issue_activity bgtask"
+    },
+    {
+      "number": 8038,
+      "title": "[WEB-5305] refactor: migrate emoji and logo components to propel and remove duplication"
+    },
+    {
+      "number": 8286,
+      "title": "chore: optimize turborepo"
+    },
+    {
+      "number": 7631,
+      "title": "[WIKI-498] regression: table bugs"
+    },
+    {
+      "number": 7635,
+      "title": "[WEB-4746] fix: position peek view relative to app layout"
+    },
+    {
+      "number": 7716,
+      "title": "[WEB-4816] chore: add label flow"
+    },
+    {
+      "number": 8351,
+      "title": "[WEB-5614] fix: new design system consistency"
+    },
+    {
+      "number": 7982,
+      "title": "regression: downgrade to tiptap v2"
+    },
+    {
+      "number": 8212,
+      "title": "[WEB-5556] chore: tab navigation project header enhancement"
+    },
+    {
+      "number": 7188,
+      "title": "[WEB-4050] feat: breadcrumbs revamp"
+    },
+    {
+      "number": 7392,
+      "title": "[WEB-4480]fix: full screen modals"
+    },
+    {
+      "number": 7633,
+      "title": "refactor: remove few barrel exports"
+    },
+    {
+      "number": 7694,
+      "title": "[WEB-4828] refactor: remove legacy project-level draft work items components and code (replaced by workspace drafts)"
+    },
+    {
+      "number": 8184,
+      "title": "[WEB-5493] feat: implement static cover image handling and selection"
+    },
+    {
+      "number": 7507,
+      "title": "chore: added validation for description "
+    },
+    {
+      "number": 7733,
+      "title": "[WEB-4851] chore: updated activity keys for work item"
+    },
+    {
+      "number": 8420,
+      "title": "[WEB-5782]chore: migrated modals to @plane/ui"
+    },
+    {
+      "number": 6893,
+      "title": "[WEB-3803] fix: duplicate comments issue"
+    },
+    {
+      "number": 7152,
+      "title": "[WIKI-345]  chore: pass disabled and flagged extensions to block menu"
+    },
+    {
+      "number": 8039,
+      "title": "[WEB-4320] refactor: migrate emoji reactions to propel"
+    },
+    {
+      "number": 7596,
+      "title": "[WEB-4430] fix: incorrect WI count while scrolling"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "makeplane/plane",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo makeplane/plane --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:33:57Z",
+  "results": [
+    {
+      "number": 10121,
+      "title": "[WIKI-1268] fix: honor collaboration forced disconnects"
+    },
+    {
+      "number": 10263,
+      "title": "docs: verify and refresh repo documentation against the code"
+    },
+    {
+      "number": 10173,
+      "title": "refactor(admin): share OAuth provider form and fix csrf input warning"
+    },
+    {
+      "number": 10027,
+      "title": "style: align scrollbars and editor checkbox focus"
+    },
+    {
+      "number": 10020,
+      "title": "chore: update Propel and Base UI"
+    },
+    {
+      "number": 10037,
+      "title": "refactor(web): use Propel tabs for layout selection"
+    },
+    {
+      "number": 10034,
+      "title": "[SECUR-247] fix(security): require project membership to publish (v1.4.3)"
+    },
+    {
+      "number": 10024,
+      "title": "refactor(admin): align configuration fields with Propel"
+    },
+    {
+      "number": 10022,
+      "title": "refactor(web): use Propel fields for profile preferences"
+    },
+    {
+      "number": 10021,
+      "title": "refactor(blocks): align property controls with Propel"
+    },
+    {
+      "number": 10025,
+      "title": "refactor(space): align public issue presentation with Propel"
+    },
+    {
+      "number": 10026,
+      "title": "refactor(web): align Your work views with Propel"
+    },
+    {
+      "number": 10029,
+      "title": "refactor: use Propel icons across app and shared UI"
+    },
+    {
+      "number": 9963,
+      "title": "[INFRA-1089] chore(deps): switch MinIO image to pgsty/silo (v1.4.3)"
+    },
+    {
+      "number": 10038,
+      "title": "feat: sync web, Space and Admin UI with the Propel design system"
+    },
+    {
+      "number": 9987,
+      "title": "[INFRA-1096] fix: persist generated AIO secrets and avoid regenerating SECRET_KEY for an existing database"
+    },
+    {
+      "number": 10023,
+      "title": "fix(web): make profile settings usable on mobile"
+    },
+    {
+      "number": 9706,
+      "title": "[INFRA-777] fix(security): scope ProjectArchiveUnarchiveAPIEndpoint to the URL project"
+    },
+    {
+      "number": 9884,
+      "title": "[GIT-352] chore: point web @/* at app root and remove core/"
+    },
+    {
+      "number": 9944,
+      "title": "[WEB-9302] fix: unsnooze expired intake items at project-timezone midnight"
+    },
+    {
+      "number": 9882,
+      "title": "[GIT-349] chore: flatten web hooks and store out of core/"
+    },
+    {
+      "number": 9632,
+      "title": "release: v1.4.2"
+    },
+    {
+      "number": 9720,
+      "title": "feat: add Georgian (ka-ge) language support"
+    },
+    {
+      "number": 8564,
+      "title": "fix: pdf export"
+    },
+    {
+      "number": 9531,
+      "title": "[SECUR-243] fix(security): scope issue comment + relation endpoints to the URL project"
+    },
+    {
+      "number": 9867,
+      "title": "release: v1.4.3"
+    },
+    {
+      "number": 9496,
+      "title": "v1.4.0-fixes"
+    },
+    {
+      "number": 9652,
+      "title": "[INFRA-496] fix(security): refuse routed actions served by unauthorized DRF mixins"
+    },
+    {
+      "number": 9692,
+      "title": "refactor(admin): replace workspace @plane/propel with @makeplane/propel"
+    },
+    {
+      "number": 9707,
+      "title": "[INFRA-778] fix(security): scope ExportIssuesEndpoint.get to the requesting user's own exports"
+    },
+    {
+      "number": 9545,
+      "title": "release: v1.4.1"
+    },
+    {
+      "number": 9546,
+      "title": "fix(web): guard unguarded data derefs causing work-item and layout crashes"
+    },
+    {
+      "number": 9657,
+      "title": "[INFRA-501] fix(security): enforce project membership on every workspace-level asset route"
+    },
+    {
+      "number": 9704,
+      "title": "[INFRA-772] fix(security): stop trusting body-supplied created_by/created_at on external API"
+    },
+    {
+      "number": 9763,
+      "title": "fix(api): avoid re-crawling issue link on update when url is unchanged"
+    },
+    {
+      "number": 9716,
+      "title": "refactor: migrate admin and web from nginx to Caddy"
+    },
+    {
+      "number": 9486,
+      "title": "[SECUR-236] fix: grouped-paginator cursor bound + Project mass-assignment"
+    },
+    {
+      "number": 9732,
+      "title": "refactor: migrate package icons to @makeplane/propel"
+    },
+    {
+      "number": 9160,
+      "title": "release: v1.4.0"
+    },
+    {
+      "number": 9079,
+      "title": "fix: pnpm path for Docker builds"
+    },
+    {
+      "number": 9009,
+      "title": "refactor(i18n): sync non-English locales + add CI enforcement for key parity"
+    },
+    {
+      "number": 9078,
+      "title": "fix: add WEBHOOK_ALLOWED_HOSTS allowlist for internal webhook targets"
+    },
+    {
+      "number": 9217,
+      "title": "[GIT-240] refactor: hooks consolidation to core hooks"
+    },
+    {
+      "number": 9442,
+      "title": "[WEB-8283] fix: bind Spaces board object IDs to the anchor's project"
+    },
+    {
+      "number": 9726,
+      "title": "refactor: migrate web @plane/propel Tooltip to @makeplane/propel"
+    },
+    {
+      "number": 9148,
+      "title": "refactor: logging with retention + API token hardening"
+    },
+    {
+      "number": 9418,
+      "title": "chore: clean up React Doctor warnings in admin app"
+    },
+    {
+      "number": 8917,
+      "title": "release: v1.3.1"
+    },
+    {
+      "number": 9271,
+      "title": "[GIT-254] Refactor: Store consolidation to @core/store"
+    },
+    {
+      "number": 8717,
+      "title": "release: v1.2.3"
+    }
+  ],
+  "error": null
+}
+]

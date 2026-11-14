@@ -1,0 +1,1985 @@
+[
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:38Z",
+  "results": [
+    {
+      "number": 4422,
+      "title": "email: Keep invoice email retries identical for Resend idempotency"
+    },
+    {
+      "number": 4631,
+      "title": "billing: Cancel Stripe subscription when its only user deletes their account"
+    },
+    {
+      "number": 4056,
+      "title": "Fix Loops upgraded event on trial start and scheduled trial conversion"
+    },
+    {
+      "number": 4413,
+      "title": "assistant: Keep unsent text when a chat message fails to send"
+    },
+    {
+      "number": 4344,
+      "title": "messaging: Send a Slack/Telegram draft reply only once"
+    },
+    {
+      "number": 4458,
+      "title": "billing: Drop always-empty cancellation feedback from the initiated event"
+    },
+    {
+      "number": 3425,
+      "title": "Refactor transactional email delivery behind a provider interface"
+    },
+    {
+      "number": 3873,
+      "title": "Add HTTP routes for scheduled send and provider drafts"
+    },
+    {
+      "number": 3967,
+      "title": "Outlook: normalize search IDs for execution-history lookups"
+    },
+    {
+      "number": 3178,
+      "title": "billing: Prevent duplicate checkout during plan changes"
+    },
+    {
+      "number": 3979,
+      "title": "Update tested integration revision"
+    },
+    {
+      "number": 3813,
+      "title": "queue: Spread weekly summary fan-out and cap retries"
+    },
+    {
+      "number": 3404,
+      "title": "feat(mail): make mobile attachment sends durable"
+    },
+    {
+      "number": 3496,
+      "title": "mail: Group attachment filing notifications"
+    },
+    {
+      "number": 3889,
+      "title": "mail: Hold sends on the server for a 30-second undo window"
+    },
+    {
+      "number": 3007,
+      "title": "billing: Add opt-in Stripe invoice emails"
+    },
+    {
+      "number": 3032,
+      "title": "Improve private event handoff"
+    },
+    {
+      "number": 4055,
+      "title": "loops: Copy workflow names onto engagement events"
+    },
+    {
+      "number": 2830,
+      "title": "Add proactive Inbox Health email recommending unsubscribes"
+    },
+    {
+      "number": 2827,
+      "title": "Handle duplicate feedback saves"
+    },
+    {
+      "number": 3277,
+      "title": "feat(mail): Add end-to-end snooze workflow"
+    },
+    {
+      "number": 4627,
+      "title": "assistant: Confirm before chat moves email to trash"
+    },
+    {
+      "number": 1660,
+      "title": "Add digest limits and outbound idempotency safeguards"
+    },
+    {
+      "number": 3071,
+      "title": "Add AI meeting recorder with Recall.ai integration"
+    },
+    {
+      "number": 3709,
+      "title": "test: Cover the signup-to-paid flow with a Stripe emulator"
+    },
+    {
+      "number": 3786,
+      "title": "billing: Allow existing subscribers to switch to annual billing"
+    },
+    {
+      "number": 3641,
+      "title": "mail: Preserve every saved draft in thread composers"
+    },
+    {
+      "number": 2798,
+      "title": "Add conversion analytics integration"
+    },
+    {
+      "number": 2542,
+      "title": "feat(chat): rename / soft-delete chats from hover menu"
+    },
+    {
+      "number": 4581,
+      "title": "assistant: Add a bulk inbox action tool for large cleanups"
+    },
+    {
+      "number": 2568,
+      "title": "calendars: Add booking scheduling workflow"
+    },
+    {
+      "number": 1772,
+      "title": "Add AI generation overage billing and account attribution"
+    },
+    {
+      "number": 3388,
+      "title": "mail: make All Accounts instant and offline resilient"
+    },
+    {
+      "number": 1549,
+      "title": "Improve Slack OAuth callback reliability"
+    },
+    {
+      "number": 1506,
+      "title": "Merge main into feature branch"
+    },
+    {
+      "number": 3206,
+      "title": "cold email: stop pinning senders the user replies to"
+    },
+    {
+      "number": 1377,
+      "title": "Refactor follow-up reminders to query by labels"
+    },
+    {
+      "number": 1013,
+      "title": "Simplify README"
+    },
+    {
+      "number": 1239,
+      "title": "fix(outlook): actually send emails instead of creating drafts"
+    },
+    {
+      "number": 1495,
+      "title": "Add messaging channels with Slack integration"
+    },
+    {
+      "number": 2025,
+      "title": "queue: move bulk archive work off the client"
+    },
+    {
+      "number": 1073,
+      "title": "adjust logging"
+    },
+    {
+      "number": 1035,
+      "title": "Fix disable send"
+    },
+    {
+      "number": 1138,
+      "title": "Brief my meeting onboarding"
+    },
+    {
+      "number": 761,
+      "title": "Fix merging with premium"
+    },
+    {
+      "number": 1216,
+      "title": "outlook: improve sent message detection for reply tracking"
+    },
+    {
+      "number": 849,
+      "title": "Redirect to product if premium and completed onboarding"
+    },
+    {
+      "number": 1169,
+      "title": "feat: handle invalid_grant errors with reconnection emails"
+    },
+    {
+      "number": 902,
+      "title": "Google invalid label handling"
+    },
+    {
+      "number": 425,
+      "title": "Stripe"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:41Z",
+  "results": [
+    {
+      "number": 4599,
+      "title": "errors: Recover provider failures and handle expected request errors"
+    },
+    {
+      "number": 4613,
+      "title": "rules: Credit label removals correctly and clean up legacy exclusions"
+    },
+    {
+      "number": 4567,
+      "title": "rules: Finish failed actions when an email is retried"
+    },
+    {
+      "number": 3631,
+      "title": "fix: add safe Gmail send diagnostics"
+    },
+    {
+      "number": 4113,
+      "title": "mail: Keep one signature and footer when reopening a draft"
+    },
+    {
+      "number": 3827,
+      "title": "Add private team comments for shared email conversations"
+    },
+    {
+      "number": 4029,
+      "title": "loops: Record lifecycle email engagement in PostHog"
+    },
+    {
+      "number": 4056,
+      "title": "Fix Loops upgraded event on trial start and scheduled trial conversion"
+    },
+    {
+      "number": 3522,
+      "title": "assistant: Bind pending email confirmations to their sending mailbox"
+    },
+    {
+      "number": 4543,
+      "title": "mail-sqlite: Find a message's label rows through its own index when it changes"
+    },
+    {
+      "number": 3224,
+      "title": "setup: Recover stalled completion actions"
+    },
+    {
+      "number": 3293,
+      "title": "outlook: Avoid retrying ambiguous Graph writes"
+    },
+    {
+      "number": 3388,
+      "title": "mail: make All Accounts instant and offline resilient"
+    },
+    {
+      "number": 3398,
+      "title": "Add durable email sending for mobile clients"
+    },
+    {
+      "number": 3313,
+      "title": "test: Expand mail client browser coverage"
+    },
+    {
+      "number": 3361,
+      "title": "mail: add label and folder context actions"
+    },
+    {
+      "number": 3101,
+      "title": "database: Handle duplicate constraint metadata"
+    },
+    {
+      "number": 4020,
+      "title": "mail-engine: Check custom Outlook folders less often and keep pushes cheap"
+    },
+    {
+      "number": 3878,
+      "title": "mail: Keep editing a Gmail draft after its autosave syncs back"
+    },
+    {
+      "number": 2998,
+      "title": "ai: Extend model evaluation coverage"
+    },
+    {
+      "number": 3007,
+      "title": "billing: Add opt-in Stripe invoice emails"
+    },
+    {
+      "number": 3369,
+      "title": "mail: Select all rows with modifier shortcut"
+    },
+    {
+      "number": 2309,
+      "title": "billing: store Stripe trial conversion timestamp"
+    },
+    {
+      "number": 3333,
+      "title": "fix(docker): add NEXT_PUBLIC_EXTERNAL_API_ENABLED build placeholder"
+    },
+    {
+      "number": 3641,
+      "title": "mail: Preserve every saved draft in thread composers"
+    },
+    {
+      "number": 3575,
+      "title": "mail: Add keyboard starring and status indicators"
+    },
+    {
+      "number": 3709,
+      "title": "test: Cover the signup-to-paid flow with a Stripe emulator"
+    },
+    {
+      "number": 4503,
+      "title": "assistant: Keep bulk runs going through provider rate limits"
+    },
+    {
+      "number": 4581,
+      "title": "assistant: Add a bulk inbox action tool for large cleanups"
+    },
+    {
+      "number": 3749,
+      "title": "fix(mail): Preserve draft references and clarify failed reply recovery"
+    },
+    {
+      "number": 3875,
+      "title": "gmail: Sync renamed mailbox addresses during watch renewal"
+    },
+    {
+      "number": 3985,
+      "title": "Preserve complete provider drafts and inline attachments"
+    },
+    {
+      "number": 4417,
+      "title": "mail: Keep the reply editor in place while its draft saves"
+    },
+    {
+      "number": 4006,
+      "title": "Sync main → staging (2026-10-05)"
+    },
+    {
+      "number": 2836,
+      "title": "Fix production build validation"
+    },
+    {
+      "number": 4063,
+      "title": "account: Clean up external resources when deleting accounts and mailboxes"
+    },
+    {
+      "number": 3603,
+      "title": "mail: Buffer unfinished pages to avoid repeated provider fetches"
+    },
+    {
+      "number": 4518,
+      "title": "mail: Discard drafts through the mail engine so they disappear at once"
+    },
+    {
+      "number": 4465,
+      "title": "drafts: Stop auto-cleaning AI drafts after an account disconnects"
+    },
+    {
+      "number": 2798,
+      "title": "Add conversion analytics integration"
+    },
+    {
+      "number": 4456,
+      "title": "chore: sync main into staging (2026-11-02)"
+    },
+    {
+      "number": 3316,
+      "title": "test: Add emulator coverage for sidebar flows"
+    },
+    {
+      "number": 3735,
+      "title": "mail: Keep archived threads out of inbox splits"
+    },
+    {
+      "number": 3071,
+      "title": "Add AI meeting recorder with Recall.ai integration"
+    },
+    {
+      "number": 4467,
+      "title": "mail: Remove a replaced draft on the server, even after the tab closes"
+    },
+    {
+      "number": 3496,
+      "title": "mail: Group attachment filing notifications"
+    },
+    {
+      "number": 3487,
+      "title": "mail: improve reader actions"
+    },
+    {
+      "number": 2262,
+      "title": "drive: sanitize Microsoft item names"
+    },
+    {
+      "number": 4462,
+      "title": "mail: Send and open HTML mail without waiting on the network"
+    },
+    {
+      "number": 4449,
+      "title": "billing: Store Stripe cancellation survey answers"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:45Z",
+  "results": [
+    {
+      "number": 4479,
+      "title": "Stop on stale screenshot runs and catch duplicate CLI ports"
+    },
+    {
+      "number": 4310,
+      "title": "fix: avoid duplicate action names in shortcut tooltips"
+    },
+    {
+      "number": 4212,
+      "title": "categories: Update edited categories instead of creating duplicates"
+    },
+    {
+      "number": 3662,
+      "title": "ci: skip duplicate type checking in browser build"
+    },
+    {
+      "number": 3621,
+      "title": "mail: Fix calendar cards for duplicate invitation attachments"
+    },
+    {
+      "number": 4535,
+      "title": "assistant: Return readable tool input errors and stop repeating failed calls"
+    },
+    {
+      "number": 4262,
+      "title": "INB-389: Preserve HTML signatures in AI draft replies"
+    },
+    {
+      "number": 3592,
+      "title": "fix: prevent duplicate email branding and footer scoring penalties"
+    },
+    {
+      "number": 4364,
+      "title": "outlook: Mark the subscription lapsed when renewal can't replace it"
+    },
+    {
+      "number": 4567,
+      "title": "rules: Finish failed actions when an email is retried"
+    },
+    {
+      "number": 4351,
+      "title": "chore: sync main into staging (2026-10-26)"
+    },
+    {
+      "number": 4340,
+      "title": "test: remove redundant test cases"
+    },
+    {
+      "number": 4313,
+      "title": "fix: Handle concurrent draft send logs and slow summary emails"
+    },
+    {
+      "number": 4382,
+      "title": "rules: Keep notifications on other channels when saving a rule"
+    },
+    {
+      "number": 4248,
+      "title": "test: Capture fewer Playwright screenshots per run"
+    },
+    {
+      "number": 4203,
+      "title": "fix: keep onboarding responsive during background mailbox scans"
+    },
+    {
+      "number": 4346,
+      "title": "mail: Let users drag accounts into order in the account switcher"
+    },
+    {
+      "number": 4539,
+      "title": "assistant: Reject mistyped email IDs and recover message IDs used as thread IDs"
+    },
+    {
+      "number": 4419,
+      "title": "loops: Treat 'already in your audience' as an existing contact"
+    },
+    {
+      "number": 3217,
+      "title": "fix: Prevent duplicate integration callback exchanges"
+    },
+    {
+      "number": 2518,
+      "title": "digest: Prevent duplicate pending digests"
+    },
+    {
+      "number": 4520,
+      "title": "mail: Show scheduled-send and label list changes before the server answers"
+    },
+    {
+      "number": 3101,
+      "title": "database: Handle duplicate constraint metadata"
+    },
+    {
+      "number": 4056,
+      "title": "Fix Loops upgraded event on trial start and scheduled trial conversion"
+    },
+    {
+      "number": 3178,
+      "title": "billing: Prevent duplicate checkout during plan changes"
+    },
+    {
+      "number": 4279,
+      "title": "mail: Address replies to the sender's Reply-To address"
+    },
+    {
+      "number": 4113,
+      "title": "mail: Keep one signature and footer when reopening a draft"
+    },
+    {
+      "number": 4331,
+      "title": "fix: Improve Teams onboarding and availability"
+    },
+    {
+      "number": 4556,
+      "title": "assistant: Clean up inline email cards in chat"
+    },
+    {
+      "number": 4220,
+      "title": "mail: Keep an open composer mounted while drafts sync"
+    },
+    {
+      "number": 4628,
+      "title": "bulk-inbox-action: Recover stalled jobs on a cron"
+    },
+    {
+      "number": 4300,
+      "title": "mail: Hide a sent reply until it takes over from its composer"
+    },
+    {
+      "number": 4321,
+      "title": "mail: Stop reply discards failing once the sent message is confirmed"
+    },
+    {
+      "number": 4259,
+      "title": "desktop: Show the update prompt once and reload after the new version takes over"
+    },
+    {
+      "number": 3761,
+      "title": "filing: Create nested folders inside existing filing folders"
+    },
+    {
+      "number": 4239,
+      "title": "mail: Move the compose send pipeline into useComposeSend"
+    },
+    {
+      "number": 4571,
+      "title": "fix: Apply valid review findings from the staging sync"
+    },
+    {
+      "number": 4265,
+      "title": "outlook: Apply thread actions to every message, not the first page"
+    },
+    {
+      "number": 4258,
+      "title": "mail: Stop inline images flashing broken and reloading in the reader"
+    },
+    {
+      "number": 4260,
+      "title": "tests: Remove low-value unit tests"
+    },
+    {
+      "number": 4185,
+      "title": "landing: Smooth-scroll the email app badge on every click"
+    },
+    {
+      "number": 3722,
+      "title": "mail: Offer named snooze times instead of relative presets"
+    },
+    {
+      "number": 4581,
+      "title": "assistant: Add a bulk inbox action tool for large cleanups"
+    },
+    {
+      "number": 4273,
+      "title": "mail: Stop the thread flashing when a reply is sent"
+    },
+    {
+      "number": 4312,
+      "title": "fix: Log expected account states as warnings and skip disconnected accounts"
+    },
+    {
+      "number": 3742,
+      "title": "mail: Persist sync ownership and retry checkpoints"
+    },
+    {
+      "number": 3022,
+      "title": "auth: Prevent duplicate OAuth callback processing"
+    },
+    {
+      "number": 4163,
+      "title": "comments: Count typed @mentions so teammates can see the thread (INB-387)"
+    },
+    {
+      "number": 4467,
+      "title": "mail: Remove a replaced draft on the server, even after the tab closes"
+    },
+    {
+      "number": 4458,
+      "title": "billing: Drop always-empty cancellation feedback from the initiated event"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:48Z",
+  "results": [
+    {
+      "number": 4540,
+      "title": "test: Fix a race in the missing-permissions onboarding spec"
+    },
+    {
+      "number": 4390,
+      "title": "test: Fix package test cache race and Node 26 SQLite failure"
+    },
+    {
+      "number": 4611,
+      "title": "mail: Keep a reply still saving when the page is reloaded or closed"
+    },
+    {
+      "number": 4486,
+      "title": "deps: Bump better-auth to 1.7.16 for security fixes"
+    },
+    {
+      "number": 4564,
+      "title": "meeting-briefs: Migrate Perplexity research to Agent API"
+    },
+    {
+      "number": 4571,
+      "title": "fix: Apply valid review findings from the staging sync"
+    },
+    {
+      "number": 4631,
+      "title": "billing: Cancel Stripe subscription when its only user deletes their account"
+    },
+    {
+      "number": 4324,
+      "title": "fix: Retry rule history insert on version conflict"
+    },
+    {
+      "number": 4055,
+      "title": "loops: Copy workflow names onto engagement events"
+    },
+    {
+      "number": 4344,
+      "title": "messaging: Send a Slack/Telegram draft reply only once"
+    },
+    {
+      "number": 3956,
+      "title": "mail: Support provider-neutral search filters"
+    },
+    {
+      "number": 3533,
+      "title": "assistant: Centralize confirmation reservations"
+    },
+    {
+      "number": 3801,
+      "title": "onboarding: Use PostHog as experiment assignment source"
+    },
+    {
+      "number": 4229,
+      "title": "fix: Reduce production errors in auth, onboarding, and provider handling"
+    },
+    {
+      "number": 4176,
+      "title": "mail: Open settings from the account menu and desktop app menu"
+    },
+    {
+      "number": 4078,
+      "title": "Fix Outlook links in messaging notifications"
+    },
+    {
+      "number": 4032,
+      "title": "outlook: Retry conflicting category writes; handle exhausted AI credits"
+    },
+    {
+      "number": 4341,
+      "title": "mail: Resume sends parked on an expired token once the account reconnects"
+    },
+    {
+      "number": 4373,
+      "title": "fix: avoid learning sender exclusions from isolated label removals"
+    },
+    {
+      "number": 3546,
+      "title": "ci: Run isolated browser specs in parallel and fix mail test failures"
+    },
+    {
+      "number": 3852,
+      "title": "desktop: Run the mail engine in a utility process and report app health"
+    },
+    {
+      "number": 4439,
+      "title": "onboarding: Send users with missing Gmail permissions to reconnect before setup"
+    },
+    {
+      "number": 4549,
+      "title": "test: Fix the flaky missing-permissions onboarding spec"
+    },
+    {
+      "number": 3669,
+      "title": "rules: Reconcile learned patterns while preserving corrections"
+    },
+    {
+      "number": 3405,
+      "title": "test: Stabilize cleanup mailbox reconciliation"
+    },
+    {
+      "number": 4311,
+      "title": "fix: Mark Google calendars disconnected when the grant is revoked"
+    },
+    {
+      "number": 3668,
+      "title": "calendar: Surface Outlook reauthorization failures safely"
+    },
+    {
+      "number": 4465,
+      "title": "drafts: Stop auto-cleaning AI drafts after an account disconnects"
+    },
+    {
+      "number": 4416,
+      "title": "chat: Stop the first message of a new chat from being aborted"
+    },
+    {
+      "number": 4542,
+      "title": "test: Don't fail the onboarding permissions spec on unreadable responses"
+    },
+    {
+      "number": 3095,
+      "title": "meetings: Simplify recorder control flow"
+    },
+    {
+      "number": 3889,
+      "title": "mail: Hold sends on the server for a 30-second undo window"
+    },
+    {
+      "number": 3484,
+      "title": "mail: Stabilize offline reply test"
+    },
+    {
+      "number": 2687,
+      "title": "Fix follow-up notification cleanup race"
+    },
+    {
+      "number": 4417,
+      "title": "mail: Keep the reply editor in place while its draft saves"
+    },
+    {
+      "number": 3359,
+      "title": "mail: add local-first mailbox sync store"
+    },
+    {
+      "number": 3972,
+      "title": "onboarding: Stop draft-reply step from snapping back"
+    },
+    {
+      "number": 3121,
+      "title": "fix(chat): serialize rule updates"
+    },
+    {
+      "number": 4412,
+      "title": "Named signatures: pick a signature when composing, find them in sent mail"
+    },
+    {
+      "number": 3844,
+      "title": "Publish the shared mail packages when main changes"
+    },
+    {
+      "number": 4396,
+      "title": "snooze: Stop retrying snoozes for threads that were deleted"
+    },
+    {
+      "number": 2419,
+      "title": "Fix email action confirmation race"
+    },
+    {
+      "number": 2965,
+      "title": "Add chat-based onboarding A/B test"
+    },
+    {
+      "number": 3028,
+      "title": "database: Enforce canonical sender uniqueness"
+    },
+    {
+      "number": 4492,
+      "title": "desktop: Host each window's page in a tab view"
+    },
+    {
+      "number": 3523,
+      "title": "auth: Restore connected state after Google account linking"
+    },
+    {
+      "number": 4018,
+      "title": "auth: Let a repeated app sign-in callback still reach the app"
+    },
+    {
+      "number": 3170,
+      "title": "onboarding: Rebuild chat onboarding as an LLM-guided flow"
+    },
+    {
+      "number": 3863,
+      "title": "desktop: Treat a window as loaded only once the web app boots"
+    },
+    {
+      "number": 4462,
+      "title": "mail: Send and open HTML mail without waiting on the network"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:52Z",
+  "results": [
+    {
+      "number": 4449,
+      "title": "billing: Store Stripe cancellation survey answers"
+    },
+    {
+      "number": 4009,
+      "title": "stats: Fix empty response-time analytics for Gmail accounts"
+    },
+    {
+      "number": 4475,
+      "title": "Only offer an OTP copy code from the latest message"
+    },
+    {
+      "number": 4313,
+      "title": "fix: Handle concurrent draft send logs and slow summary emails"
+    },
+    {
+      "number": 3276,
+      "title": "fix(mail): improve unified inbox interactions"
+    },
+    {
+      "number": 3577,
+      "title": "mail: group the thread list by date"
+    },
+    {
+      "number": 3590,
+      "title": "mail: Restore offline inbox loading and desktop recovery"
+    },
+    {
+      "number": 4573,
+      "title": "billing: Treat paused Stripe subscriptions as unpaid"
+    },
+    {
+      "number": 3735,
+      "title": "mail: Keep archived threads out of inbox splits"
+    },
+    {
+      "number": 3884,
+      "title": "Add native iOS routes: account deletion, Apple IAP, APNs, snooze, splits"
+    },
+    {
+      "number": 3745,
+      "title": "mail: Persist canonical message records"
+    },
+    {
+      "number": 3571,
+      "title": "mail: Add 'Sent with Inbox Zero' footer to composed emails"
+    },
+    {
+      "number": 3878,
+      "title": "mail: Keep editing a Gmail draft after its autosave syncs back"
+    },
+    {
+      "number": 3170,
+      "title": "onboarding: Rebuild chat onboarding as an LLM-guided flow"
+    },
+    {
+      "number": 2241,
+      "title": "assistant: Fix draft reply grouping in rule editor"
+    },
+    {
+      "number": 3709,
+      "title": "test: Cover the signup-to-paid flow with a Stripe emulator"
+    },
+    {
+      "number": 4554,
+      "title": "chore: sync main into staging (2026-11-09)"
+    },
+    {
+      "number": 3303,
+      "title": "desktop: Add auto-update and a public download page"
+    },
+    {
+      "number": 991,
+      "title": "Add support for Gemini 3 Pro Preview and Sonnet 4.5"
+    },
+    {
+      "number": 1089,
+      "title": "Meeting briefs"
+    },
+    {
+      "number": 682,
+      "title": "New onboarding flow"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:55Z",
+  "results": [
+    {
+      "number": 4424,
+      "title": "webhook: Stop Gmail history processing once the account loses credentials"
+    },
+    {
+      "number": 4544,
+      "title": "errors: Treat Gmail-disabled and disconnected accounts as expected"
+    },
+    {
+      "number": 3925,
+      "title": "utils: Group outbound webhook files under utils/outbound-webhook"
+    },
+    {
+      "number": 4430,
+      "title": "outlook: Treat Graph 5xx outages as known provider errors"
+    },
+    {
+      "number": 4620,
+      "title": "billing: Auto-submit evidence for clear-cut Stripe disputes"
+    },
+    {
+      "number": 4590,
+      "title": "i18n: Translate the rest of Settings into Spanish"
+    },
+    {
+      "number": 4343,
+      "title": "rules: Stop silently dropping actions that have an unsupported delay"
+    },
+    {
+      "number": 2893,
+      "title": "feat(webhooks): add WEBHOOK_ALLOW_PRIVATE_IPS opt-in for self-hosted internal targets"
+    },
+    {
+      "number": 4449,
+      "title": "billing: Store Stripe cancellation survey answers"
+    },
+    {
+      "number": 4029,
+      "title": "loops: Record lifecycle email engagement in PostHog"
+    },
+    {
+      "number": 4458,
+      "title": "billing: Drop always-empty cancellation feedback from the initiated event"
+    },
+    {
+      "number": 4616,
+      "title": "assistant: Shrink rule tool schemas by 75% and add recipients to the split builder"
+    },
+    {
+      "number": 4613,
+      "title": "rules: Credit label removals correctly and clean up legacy exclusions"
+    },
+    {
+      "number": 4440,
+      "title": "billing: Record Stripe cancellation reason and feedback on cancellation events"
+    },
+    {
+      "number": 4268,
+      "title": "webhooks: Release the message lock on failure so rate-limit catch-up can replay it"
+    },
+    {
+      "number": 4055,
+      "title": "loops: Copy workflow names onto engagement events"
+    },
+    {
+      "number": 4456,
+      "title": "chore: sync main into staging (2026-11-02)"
+    },
+    {
+      "number": 3622,
+      "title": "Gmail: Improve watch and webhook tracing"
+    },
+    {
+      "number": 4361,
+      "title": "cold-email: Honour \"Not a cold email\" for senders with capitals in their address"
+    },
+    {
+      "number": 4373,
+      "title": "fix: avoid learning sender exclusions from isolated label removals"
+    },
+    {
+      "number": 4435,
+      "title": "outlook: Treat unwatching an already-removed subscription as done"
+    },
+    {
+      "number": 4116,
+      "title": "self-hosting: Fix .env.example inline comments and missing cron jobs"
+    },
+    {
+      "number": 4255,
+      "title": "Fail rule selection when the AI names a rule that wasn't offered (Fixes #3853)"
+    },
+    {
+      "number": 3526,
+      "title": "cli: Fix Google webhook configuration and provisioning"
+    },
+    {
+      "number": 4087,
+      "title": "web: Serve /sales from the marketing site's sales contact page"
+    },
+    {
+      "number": 3609,
+      "title": "fix: Disconnect invalid Gmail grants during webhook processing"
+    },
+    {
+      "number": 3957,
+      "title": "gmail: Stop follow-up scans exhausting quota and catch up on rate-limited history"
+    },
+    {
+      "number": 3468,
+      "title": "rules: do not learn sender exclusions from bulk label removals"
+    },
+    {
+      "number": 4039,
+      "title": "Fix Outlook rate-limit skips, invitation login loop, date picker; default pricing to annual"
+    },
+    {
+      "number": 4040,
+      "title": "outlook: Catch up on mail skipped while the account was rate limited"
+    },
+    {
+      "number": 3902,
+      "title": "billing: Refresh Apple subscription status from the App Store on sync"
+    },
+    {
+      "number": 4105,
+      "title": "Send mobile push for new To Reply emails"
+    },
+    {
+      "number": 4312,
+      "title": "fix: Log expected account states as warnings and skip disconnected accounts"
+    },
+    {
+      "number": 3882,
+      "title": "docs: Add self-hosting security hardening page"
+    },
+    {
+      "number": 3235,
+      "title": "Feedback: add optional webhook delivery"
+    },
+    {
+      "number": 4567,
+      "title": "rules: Finish failed actions when an email is retried"
+    },
+    {
+      "number": 3169,
+      "title": "webhooks: Improve verification diagnostics"
+    },
+    {
+      "number": 4162,
+      "title": "cold-email: Decide cold email with the LLM, not the rule-selection decision model"
+    },
+    {
+      "number": 3701,
+      "title": "billing: Fix trial conversion and scheduled cancellation tracking"
+    },
+    {
+      "number": 4109,
+      "title": "fix(mcp): correct rule write safety annotations"
+    },
+    {
+      "number": 4426,
+      "title": "llm: Treat retired models and spent AI budgets on user keys as config errors"
+    },
+    {
+      "number": 4517,
+      "title": "billing: Include 2 email accounts per person, extra accounts at half price"
+    },
+    {
+      "number": 4584,
+      "title": "assistant: Keep the chat system prompt identical across turns"
+    },
+    {
+      "number": 3103,
+      "title": "webhooks: Handle known processing errors"
+    },
+    {
+      "number": 2985,
+      "title": "SEO: noindex app routes and paginate blog listing"
+    },
+    {
+      "number": 3709,
+      "title": "test: Cover the signup-to-paid flow with a Stripe emulator"
+    },
+    {
+      "number": 3919,
+      "title": "network: Consolidate outbound URL safety into @inboxzero/network"
+    },
+    {
+      "number": 3915,
+      "title": "mail: Notify native clients when a mailbox changes"
+    },
+    {
+      "number": 3921,
+      "title": "ci: Type check packages and run all package tests"
+    },
+    {
+      "number": 3630,
+      "title": "Gmail: Reuse shared fields for tracing logs"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:52:59Z",
+  "results": [
+    {
+      "number": 4313,
+      "title": "fix: Handle concurrent draft send logs and slow summary emails"
+    },
+    {
+      "number": 4404,
+      "title": "INB-395: Preserve restored Outlook messages during sync"
+    },
+    {
+      "number": 3527,
+      "title": "auth: Preserve concurrent mailbox links during account merges"
+    },
+    {
+      "number": 4448,
+      "title": "db: Index draft actions by executed rule for draft cleanup"
+    },
+    {
+      "number": 4567,
+      "title": "rules: Finish failed actions when an email is retried"
+    },
+    {
+      "number": 4503,
+      "title": "assistant: Keep bulk runs going through provider rate limits"
+    },
+    {
+      "number": 3336,
+      "title": "ci: Stabilize Docker image builds under concurrent main pushes"
+    },
+    {
+      "number": 4021,
+      "title": "mail-engine: Read an account's due folders in one batched request"
+    },
+    {
+      "number": 4018,
+      "title": "auth: Let a repeated app sign-in callback still reach the app"
+    },
+    {
+      "number": 4324,
+      "title": "fix: Retry rule history insert on version conflict"
+    },
+    {
+      "number": 4268,
+      "title": "webhooks: Release the message lock on failure so rate-limit catch-up can replay it"
+    },
+    {
+      "number": 4631,
+      "title": "billing: Cancel Stripe subscription when its only user deletes their account"
+    },
+    {
+      "number": 4229,
+      "title": "fix: Reduce production errors in auth, onboarding, and provider handling"
+    },
+    {
+      "number": 4580,
+      "title": "assistant: Keep exact action totals across long cleanups"
+    },
+    {
+      "number": 4235,
+      "title": "fix: Run AI draft cleanup per account so it finishes for every user"
+    },
+    {
+      "number": 3946,
+      "title": "mail: Open the composer blank after a draft is deleted from the mailbox"
+    },
+    {
+      "number": 3748,
+      "title": "mail: Add budgeted local synchronization protocols"
+    },
+    {
+      "number": 3639,
+      "title": "test: add opt-in email loading simulation"
+    },
+    {
+      "number": 4439,
+      "title": "onboarding: Send users with missing Gmail permissions to reconnect before setup"
+    },
+    {
+      "number": 3956,
+      "title": "mail: Support provider-neutral search filters"
+    },
+    {
+      "number": 3966,
+      "title": "admin: Allow granting premium before a user signs up"
+    },
+    {
+      "number": 4498,
+      "title": "mail: Easier multi-select and add senders to a split"
+    },
+    {
+      "number": 3468,
+      "title": "rules: do not learn sender exclusions from bulk label removals"
+    },
+    {
+      "number": 4445,
+      "title": "mail: Fix undo and trash races behind flaky triage E2E specs"
+    },
+    {
+      "number": 4340,
+      "title": "test: remove redundant test cases"
+    },
+    {
+      "number": 3450,
+      "title": "mail: Add standard default inbox splits"
+    },
+    {
+      "number": 3797,
+      "title": "billing: Stabilize onboarding experiment tracking"
+    },
+    {
+      "number": 4613,
+      "title": "rules: Credit label removals correctly and clean up legacy exclusions"
+    },
+    {
+      "number": 3338,
+      "title": "fix: Attach SSO provider to existing organization instead of failing"
+    },
+    {
+      "number": 3668,
+      "title": "calendar: Surface Outlook reauthorization failures safely"
+    },
+    {
+      "number": 4056,
+      "title": "Fix Loops upgraded event on trial start and scheduled trial conversion"
+    },
+    {
+      "number": 4373,
+      "title": "fix: avoid learning sender exclusions from isolated label removals"
+    },
+    {
+      "number": 4457,
+      "title": "onboarding: Resume setup after reconnecting from the missing-permissions prompt"
+    },
+    {
+      "number": 3911,
+      "title": "api: Cookie bulk-unsubscribe support for the iOS app"
+    },
+    {
+      "number": 3816,
+      "title": "email: Cap cold emails fetched for the weekly summary"
+    },
+    {
+      "number": 4032,
+      "title": "outlook: Retry conflicting category writes; handle exhausted AI credits"
+    },
+    {
+      "number": 3705,
+      "title": "Meeting briefs: prioritize decisions and improve context retrieval"
+    },
+    {
+      "number": 3701,
+      "title": "billing: Fix trial conversion and scheduled cancellation tracking"
+    },
+    {
+      "number": 3877,
+      "title": "llm: Track multi-step cost, compact tool-heavy chats, and tolerate partial Outlook delta items"
+    },
+    {
+      "number": 3372,
+      "title": "mail: Bound multi-account mailbox synchronization"
+    },
+    {
+      "number": 4397,
+      "title": "calendar: Query Google free/busy in batches of 50 calendars"
+    },
+    {
+      "number": 3962,
+      "title": "dev: Add one-command local emulator startup"
+    },
+    {
+      "number": 3750,
+      "title": "mail: Add durable activated mailbox sync runtime"
+    },
+    {
+      "number": 3575,
+      "title": "mail: Add keyboard starring and status indicators"
+    },
+    {
+      "number": 3848,
+      "title": "ci: Cut browser E2E wall time by removing idle waits and rebalancing batches"
+    },
+    {
+      "number": 3597,
+      "title": "mail: Separate thread fetching and share split query construction"
+    },
+    {
+      "number": 3977,
+      "title": "bulk-unsubscribe: Show contact photos or initials for personal senders"
+    },
+    {
+      "number": 3862,
+      "title": "mail: Keep composer typing off the draft serialization path"
+    },
+    {
+      "number": 4449,
+      "title": "billing: Store Stripe cancellation survey answers"
+    },
+    {
+      "number": 3626,
+      "title": "mail: Add split inbox library and condition builder"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:53:02Z",
+  "results": [
+    {
+      "number": 4577,
+      "title": "tests: Fix jsdom localStorage on Node 25+ and stale history extraction test"
+    },
+    {
+      "number": 4479,
+      "title": "Stop on stale screenshot runs and catch duplicate CLI ports"
+    },
+    {
+      "number": 4363,
+      "title": "digest: Send one digest after a stale schedule, not one per cron run"
+    },
+    {
+      "number": 4604,
+      "title": "fix: Prevent repeated desktop web update reloads"
+    },
+    {
+      "number": 3880,
+      "title": "assistant-chat: Trim stale tool results in long tool loops"
+    },
+    {
+      "number": 3604,
+      "title": "fix: invalidate stale conversation caches during mailbox sync"
+    },
+    {
+      "number": 3867,
+      "title": "mail: Remove labels through the engine and reload stale windows after a deploy"
+    },
+    {
+      "number": 4599,
+      "title": "errors: Recover provider failures and handle expected request errors"
+    },
+    {
+      "number": 3520,
+      "title": "auth: Preserve reconnected credentials after stale provider failures"
+    },
+    {
+      "number": 4571,
+      "title": "fix: Apply valid review findings from the staging sync"
+    },
+    {
+      "number": 4275,
+      "title": "web, desktop: Reload quietly after deploys and show Restart to update in the sidebar"
+    },
+    {
+      "number": 4581,
+      "title": "assistant: Add a bulk inbox action tool for large cleanups"
+    },
+    {
+      "number": 4235,
+      "title": "fix: Run AI draft cleanup per account so it finishes for every user"
+    },
+    {
+      "number": 4080,
+      "title": "Clean up tracked follow-up drafts safely"
+    },
+    {
+      "number": 4562,
+      "title": "labels: Handle expected Gmail and reply-tracker provider errors"
+    },
+    {
+      "number": 4485,
+      "title": "db: Re-analyze ExecutedAction and ExecutedRule more often"
+    },
+    {
+      "number": 3173,
+      "title": "docs: Remove stale internal documentation"
+    },
+    {
+      "number": 4449,
+      "title": "billing: Store Stripe cancellation survey answers"
+    },
+    {
+      "number": 4496,
+      "title": "mail: Add sign out to account switcher and align menu rows"
+    },
+    {
+      "number": 4444,
+      "title": "outlook: Skip missing messages instead of failing the whole message batch"
+    },
+    {
+      "number": 4445,
+      "title": "mail: Fix undo and trash races behind flaky triage E2E specs"
+    },
+    {
+      "number": 4438,
+      "title": "meeting-recorder: Batch per-account queries in the schedule cron"
+    },
+    {
+      "number": 4538,
+      "title": "drafts: Give drafts relevant past mail with the sender"
+    },
+    {
+      "number": 4583,
+      "title": "composer: Format pasted Markdown text"
+    },
+    {
+      "number": 4566,
+      "title": "auth: Handle deleted users in email OTP settings"
+    },
+    {
+      "number": 4616,
+      "title": "assistant: Shrink rule tool schemas by 75% and add recipients to the split builder"
+    },
+    {
+      "number": 4448,
+      "title": "db: Index draft actions by executed rule for draft cleanup"
+    },
+    {
+      "number": 4321,
+      "title": "mail: Stop reply discards failing once the sent message is confirmed"
+    },
+    {
+      "number": 4586,
+      "title": "evals: Stop search mocks leaking between assistant eval tests"
+    },
+    {
+      "number": 4131,
+      "title": "organizations: Let admins re-invite after an invitation expires"
+    },
+    {
+      "number": 4212,
+      "title": "categories: Update edited categories instead of creating duplicates"
+    },
+    {
+      "number": 4055,
+      "title": "loops: Copy workflow names onto engagement events"
+    },
+    {
+      "number": 4257,
+      "title": "mail: Quote selected text when Enter opens a reply"
+    },
+    {
+      "number": 3747,
+      "title": "onboarding: Guard persona refresh after navigation"
+    },
+    {
+      "number": 3934,
+      "title": "evals: Grade with DeepSeek V4.1 Flash"
+    },
+    {
+      "number": 4075,
+      "title": "Fix exact Outlook folder and category counts"
+    },
+    {
+      "number": 3643,
+      "title": "mail: Improve opt-in contact autocomplete"
+    },
+    {
+      "number": 4298,
+      "title": "mail: Link bare URLs in sent and received HTML email"
+    },
+    {
+      "number": 4364,
+      "title": "outlook: Mark the subscription lapsed when renewal can't replace it"
+    },
+    {
+      "number": 4462,
+      "title": "mail: Send and open HTML mail without waiting on the network"
+    },
+    {
+      "number": 3744,
+      "title": "mail: Persist resumable search index work"
+    },
+    {
+      "number": 4163,
+      "title": "comments: Count typed @mentions so teammates can see the thread (INB-387)"
+    },
+    {
+      "number": 3005,
+      "title": "UI lifecycle: Cancel stale progress and scroll timers"
+    },
+    {
+      "number": 3742,
+      "title": "mail: Persist sync ownership and retry checkpoints"
+    },
+    {
+      "number": 4227,
+      "title": "premium: Keep Apple grace-period subscribers in scheduled jobs"
+    },
+    {
+      "number": 3527,
+      "title": "auth: Preserve concurrent mailbox links during account merges"
+    },
+    {
+      "number": 2984,
+      "title": "Fix assistant chat stale rule state rejections"
+    },
+    {
+      "number": 4082,
+      "title": "Fix local inbox flags after confirmed archives"
+    },
+    {
+      "number": 4515,
+      "title": "mail-core: Show the newest mail first when catching up after a long gap"
+    },
+    {
+      "number": 4110,
+      "title": "Desktop: notify per new inbox email from the mail engine"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:53:07Z",
+  "results": [
+    {
+      "number": 4534,
+      "title": "mail: Keep scheduled-send changes alive past a reload"
+    },
+    {
+      "number": 4619,
+      "title": "mail: Preserve active editors during background refreshes"
+    },
+    {
+      "number": 4429,
+      "title": "mail-engine: Restart sync lanes the device slept through without reporting them"
+    },
+    {
+      "number": 4438,
+      "title": "meeting-recorder: Batch per-account queries in the schedule cron"
+    },
+    {
+      "number": 4628,
+      "title": "bulk-inbox-action: Recover stalled jobs on a cron"
+    },
+    {
+      "number": 4567,
+      "title": "rules: Finish failed actions when an email is retried"
+    },
+    {
+      "number": 4466,
+      "title": "mail: Show remote-image emails at once and resume body downloads after reload"
+    },
+    {
+      "number": 4294,
+      "title": "outlook: Quote property-scoped search queries so Graph accepts them"
+    },
+    {
+      "number": 4231,
+      "title": "mail: Stop email images flashing in when opening a message"
+    },
+    {
+      "number": 4344,
+      "title": "messaging: Send a Slack/Telegram draft reply only once"
+    },
+    {
+      "number": 4380,
+      "title": "gmail: Archive every message from a sender, not every other page"
+    },
+    {
+      "number": 4018,
+      "title": "auth: Let a repeated app sign-in callback still reach the app"
+    },
+    {
+      "number": 3904,
+      "title": "integrations: Drop row descriptions and surface Composio errors"
+    },
+    {
+      "number": 4144,
+      "title": "mail: Keep a sent reply closed when returning to its thread during undo"
+    },
+    {
+      "number": 4499,
+      "title": "chore: Upgrade pnpm to 12.18.0"
+    },
+    {
+      "number": 3872,
+      "title": "mail: Keep a reply open when a newer message arrives in the thread"
+    },
+    {
+      "number": 3735,
+      "title": "mail: Keep archived threads out of inbox splits"
+    },
+    {
+      "number": 4445,
+      "title": "mail: Fix undo and trash races behind flaky triage E2E specs"
+    },
+    {
+      "number": 3837,
+      "title": "mail: Cut redundant re-renders from engine snapshots, fix desktop close crash"
+    },
+    {
+      "number": 3847,
+      "title": "analytics: Track mail shortcut usage and sampled mail speed"
+    },
+    {
+      "number": 4458,
+      "title": "billing: Drop always-empty cancellation feedback from the initiated event"
+    },
+    {
+      "number": 3609,
+      "title": "fix: Disconnect invalid Gmail grants during webhook processing"
+    },
+    {
+      "number": 3707,
+      "title": "mail: Keep forwards in their thread and explain unreadable threads"
+    },
+    {
+      "number": 3860,
+      "title": "docker: Keep prerendered RSC payloads valid when replacing placeholders"
+    },
+    {
+      "number": 3401,
+      "title": "test(mail): Stabilize cleanup mailbox sync"
+    },
+    {
+      "number": 3773,
+      "title": "perf: Paint the homepage hero immediately and cut boot work"
+    },
+    {
+      "number": 3807,
+      "title": "rules: Ask the classifier about cold email as its own yes/no"
+    },
+    {
+      "number": 4627,
+      "title": "assistant: Confirm before chat moves email to trash"
+    },
+    {
+      "number": 4334,
+      "title": "outlook: Keep Reply-To, sender name and every recipient on outgoing mail"
+    },
+    {
+      "number": 3513,
+      "title": "gmail: Preserve attachments when editing drafts"
+    },
+    {
+      "number": 4520,
+      "title": "mail: Show scheduled-send and label list changes before the server answers"
+    },
+    {
+      "number": 3224,
+      "title": "setup: Recover stalled completion actions"
+    },
+    {
+      "number": 3875,
+      "title": "gmail: Sync renamed mailbox addresses during watch renewal"
+    },
+    {
+      "number": 3594,
+      "title": "settings: Open settings in a dialog from any page"
+    },
+    {
+      "number": 4029,
+      "title": "loops: Record lifecycle email engagement in PostHog"
+    },
+    {
+      "number": 3852,
+      "title": "desktop: Run the mail engine in a utility process and report app health"
+    },
+    {
+      "number": 3179,
+      "title": "onboarding: Inline setup and cleanup cards, shorter copy, resumable chat"
+    },
+    {
+      "number": 3189,
+      "title": "evals: Harden comparison integrity"
+    },
+    {
+      "number": 2993,
+      "title": "Forward trial starts to conversion analytics"
+    },
+    {
+      "number": 4467,
+      "title": "mail: Remove a replaced draft on the server, even after the tab closes"
+    },
+    {
+      "number": 3985,
+      "title": "Preserve complete provider drafts and inline attachments"
+    },
+    {
+      "number": 4604,
+      "title": "fix: Prevent repeated desktop web update reloads"
+    },
+    {
+      "number": 3438,
+      "title": "ui: improve accessible controls"
+    },
+    {
+      "number": 2998,
+      "title": "ai: Extend model evaluation coverage"
+    },
+    {
+      "number": 3514,
+      "title": "drive: Preserve existing files during OneDrive uploads"
+    },
+    {
+      "number": 3214,
+      "title": "mail: Add Outlook navigation parity"
+    },
+    {
+      "number": 4456,
+      "title": "chore: sync main into staging (2026-11-02)"
+    },
+    {
+      "number": 3121,
+      "title": "fix(chat): serialize rule updates"
+    },
+    {
+      "number": 3206,
+      "title": "cold email: stop pinning senders the user replies to"
+    },
+    {
+      "number": 3123,
+      "title": "docs: Refresh product and self-hosting guides"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "elie222/inbox-zero",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo elie222/inbox-zero --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:53:10Z",
+  "results": [
+    {
+      "number": 4567,
+      "title": "rules: Finish failed actions when an email is retried"
+    },
+    {
+      "number": 4559,
+      "title": "mobile-auth: Preserve sign-in rate limits and retry guidance"
+    },
+    {
+      "number": 3922,
+      "title": "retry: Share the provider retry loop and Retry-After parsing"
+    },
+    {
+      "number": 4422,
+      "title": "email: Keep invoice email retries identical for Resend idempotency"
+    },
+    {
+      "number": 4447,
+      "title": "outlook: Retry conflicting flag and read writes; quiet expected errors"
+    },
+    {
+      "number": 4324,
+      "title": "fix: Retry rule history insert on version conflict"
+    },
+    {
+      "number": 4183,
+      "title": "fix(mail): report mail engine startup failures and allow retry"
+    },
+    {
+      "number": 4032,
+      "title": "outlook: Retry conflicting category writes; handle exhausted AI credits"
+    },
+    {
+      "number": 4149,
+      "title": "mail: Explain why sender context failed to load and let users retry"
+    },
+    {
+      "number": 4594,
+      "title": "mail: Show loading feedback until search results are ready"
+    },
+    {
+      "number": 4560,
+      "title": "gmail: Recognize nested Google contact-cache errors"
+    },
+    {
+      "number": 4503,
+      "title": "assistant: Keep bulk runs going through provider rate limits"
+    },
+    {
+      "number": 3742,
+      "title": "mail: Persist sync ownership and retry checkpoints"
+    },
+    {
+      "number": 4599,
+      "title": "errors: Recover provider failures and handle expected request errors"
+    },
+    {
+      "number": 3813,
+      "title": "queue: Spread weekly summary fan-out and cap retries"
+    },
+    {
+      "number": 4520,
+      "title": "mail: Show scheduled-send and label list changes before the server answers"
+    },
+    {
+      "number": 4628,
+      "title": "bulk-inbox-action: Recover stalled jobs on a cron"
+    },
+    {
+      "number": 3516,
+      "title": "mcp: Retry OAuth registration after transient failures"
+    },
+    {
+      "number": 3517,
+      "title": "llms: Preserve original errors when retries stop"
+    },
+    {
+      "number": 4534,
+      "title": "mail: Keep scheduled-send changes alive past a reload"
+    },
+    {
+      "number": 4581,
+      "title": "assistant: Add a bulk inbox action tool for large cleanups"
+    },
+    {
+      "number": 4539,
+      "title": "assistant: Reject mistyped email IDs and recover message IDs used as thread IDs"
+    },
+    {
+      "number": 4396,
+      "title": "snooze: Stop retrying snoozes for threads that were deleted"
+    },
+    {
+      "number": 4604,
+      "title": "fix: Prevent repeated desktop web update reloads"
+    },
+    {
+      "number": 4565,
+      "title": "rules: Constrain AI selections to safe candidate IDs"
+    },
+    {
+      "number": 4611,
+      "title": "mail: Keep a reply still saving when the page is reloaded or closed"
+    },
+    {
+      "number": 4571,
+      "title": "fix: Apply valid review findings from the staging sync"
+    },
+    {
+      "number": 4353,
+      "title": "outlook: Skip unreadable messages instead of failing a whole page"
+    },
+    {
+      "number": 4172,
+      "title": "gmail: Fail fast when Gmail is disabled for the account"
+    },
+    {
+      "number": 4227,
+      "title": "premium: Keep Apple grace-period subscribers in scheduled jobs"
+    },
+    {
+      "number": 4535,
+      "title": "assistant: Return readable tool input errors and stop repeating failed calls"
+    },
+    {
+      "number": 4341,
+      "title": "mail: Resume sends parked on an expired token once the account reconnects"
+    },
+    {
+      "number": 4519,
+      "title": "mail: Run label and move through the shared undoable thread actions"
+    },
+    {
+      "number": 4427,
+      "title": "actions: Show a clear message when Gmail isn't available for an account"
+    },
+    {
+      "number": 4203,
+      "title": "fix: keep onboarding responsive during background mailbox scans"
+    },
+    {
+      "number": 4627,
+      "title": "assistant: Confirm before chat moves email to trash"
+    },
+    {
+      "number": 4467,
+      "title": "mail: Remove a replaced draft on the server, even after the tab closes"
+    },
+    {
+      "number": 3194,
+      "title": "gmail: Adapt batch retries to throttling"
+    },
+    {
+      "number": 4184,
+      "title": "fix(mail): handle multi-tab engine ownership invisibly"
+    },
+    {
+      "number": 4364,
+      "title": "outlook: Mark the subscription lapsed when renewal can't replace it"
+    },
+    {
+      "number": 4620,
+      "title": "billing: Auto-submit evidence for clear-cut Stripe disputes"
+    },
+    {
+      "number": 4344,
+      "title": "messaging: Send a Slack/Telegram draft reply only once"
+    },
+    {
+      "number": 4268,
+      "title": "webhooks: Release the message lock on failure so rate-limit catch-up can replay it"
+    },
+    {
+      "number": 4340,
+      "title": "test: remove redundant test cases"
+    },
+    {
+      "number": 4631,
+      "title": "billing: Cancel Stripe subscription when its only user deletes their account"
+    },
+    {
+      "number": 4413,
+      "title": "assistant: Keep unsent text when a chat message fails to send"
+    },
+    {
+      "number": 4060,
+      "title": "compose: Hide one-off draft autosave failures and use friendly sync copy"
+    },
+    {
+      "number": 4313,
+      "title": "fix: Handle concurrent draft send logs and slow summary emails"
+    },
+    {
+      "number": 4554,
+      "title": "chore: sync main into staging (2026-11-09)"
+    },
+    {
+      "number": 4424,
+      "title": "webhook: Stop Gmail history processing once the account loses credentials"
+    }
+  ],
+  "error": null
+}
+]

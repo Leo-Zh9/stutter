@@ -1,0 +1,1885 @@
+[
+{
+  "repo": "polarsource/polar",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:25Z",
+  "results": [
+    {
+      "number": 15481,
+      "title": "Add reason to meter.credited event metadata"
+    },
+    {
+      "number": 16111,
+      "title": "Recover existing Numeral tax transactions on retry"
+    },
+    {
+      "number": 15423,
+      "title": "Grant meter credits from the runtime SDK"
+    },
+    {
+      "number": 15405,
+      "title": "Add manual credit granting on customer meters endpoint"
+    },
+    {
+      "number": 16218,
+      "title": "Surface AUP flagged product names in Backoffice"
+    },
+    {
+      "number": 15707,
+      "title": "docs: document manual meter credits"
+    },
+    {
+      "number": 15424,
+      "title": "reducer-bucket: Update backfill"
+    },
+    {
+      "number": 13946,
+      "title": "fix: prevent duplicate paid plan checkouts"
+    },
+    {
+      "number": 13655,
+      "title": "Backfill balance consumed by orders voided before #13475"
+    },
+    {
+      "number": 14343,
+      "title": "fix(merchant-migration): allow same org to reuse a Stripe account"
+    },
+    {
+      "number": 15766,
+      "title": "outpost: keep local events pending until Polar confirms them"
+    },
+    {
+      "number": 13344,
+      "title": "Use unambiguous long-date formatting in renewal/trial reminder emails"
+    },
+    {
+      "number": 13720,
+      "title": "polar: Pass usage_id as an uuid for stable IDs"
+    },
+    {
+      "number": 13490,
+      "title": "feat(scripts): emit and find missing subscription meter reset events"
+    },
+    {
+      "number": 12753,
+      "title": "feat: add merchant migration models and tables"
+    },
+    {
+      "number": 13745,
+      "title": "backoffice/subscriptions: Add ability to set a past_due subscription to active"
+    },
+    {
+      "number": 14335,
+      "title": "feat: add a SessionStart hook so cloud sessions can run tests immediately"
+    },
+    {
+      "number": 12796,
+      "title": "Add ability to counter a dispute in the dashboard"
+    },
+    {
+      "number": 13169,
+      "title": "feat: merchant-migration catalog import"
+    },
+    {
+      "number": 13760,
+      "title": "refactor(product_price): make pricing tiers reusable across price types"
+    },
+    {
+      "number": 12335,
+      "title": "Add backfill script for benefit visibility"
+    },
+    {
+      "number": 12344,
+      "title": "fix(external_event): use ON CONFLICT DO NOTHING to prevent duplicate key race"
+    },
+    {
+      "number": 12105,
+      "title": "fix: include created_at in soft-delete email anonymization hash"
+    },
+    {
+      "number": 12442,
+      "title": "Add chargeback prevention refund notifications"
+    },
+    {
+      "number": 12749,
+      "title": "feat: auto-cancel subscriptions for wound-down organizations"
+    },
+    {
+      "number": 11355,
+      "title": "feat(receipts): add backfill script for historical orders"
+    },
+    {
+      "number": 12990,
+      "title": "feat(subscription): pause & resume behavior"
+    },
+    {
+      "number": 10232,
+      "title": "Backfill member_id on license keys and downloadables"
+    },
+    {
+      "number": 12089,
+      "title": "Off-session draft-order charges"
+    },
+    {
+      "number": 9741,
+      "title": "fix: add missing session.commit() to member migration script"
+    },
+    {
+      "number": 9676,
+      "title": "refactor: inline backfill in migration script"
+    },
+    {
+      "number": 7609,
+      "title": "Introduce spans of events"
+    },
+    {
+      "number": 6412,
+      "title": "server/payout: trigger Stripe transfer in the worker with idempotency key"
+    },
+    {
+      "number": 11971,
+      "title": "Polar Startup Program Integration"
+    },
+    {
+      "number": 6510,
+      "title": "server/kit/tax: add taxability override to idempotency key to avoid errors with existing pending calculations"
+    },
+    {
+      "number": 5782,
+      "title": "server/order: use idempotency keys when creating orders"
+    },
+    {
+      "number": 5770,
+      "title": "server/subscription: use idempotency keys when creating subscriptions"
+    },
+    {
+      "number": 5868,
+      "title": "server/integrations/stripe: tweak OOB invoice creation for cases where idempotency requests return outdated data"
+    },
+    {
+      "number": 4846,
+      "title": "server/checkout: remove idempotency keys when handling Stripe success"
+    },
+    {
+      "number": 4398,
+      "title": "server: remove idempotency key of donations migration"
+    },
+    {
+      "number": 4128,
+      "title": "server/checkout: tweak Stripe Tax calculation idempotency key"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:29Z",
+  "results": [
+    {
+      "number": 15125,
+      "title": "fix(ci): make the CLI release workflow idempotent"
+    },
+    {
+      "number": 16595,
+      "title": "scheduler: Implement postgres JobStore"
+    },
+    {
+      "number": 16468,
+      "title": "Dual-write backoffice staff attribution"
+    },
+    {
+      "number": 16059,
+      "title": "feat(catalog): add script to backfill catalog names"
+    },
+    {
+      "number": 16009,
+      "title": "feat: requires for a verified domain before setting up SSO "
+    },
+    {
+      "number": 15429,
+      "title": "reducer_bucket: add synced_at, backfilled for closed buckets"
+    },
+    {
+      "number": 16068,
+      "title": "server: backfill credit reducer buckets"
+    },
+    {
+      "number": 14934,
+      "title": "fix(member): reject a duplicate external ID with a validation error"
+    },
+    {
+      "number": 14413,
+      "title": "Derive `x-tool-*` OpenAPI extensions for MCP and CLI routes"
+    },
+    {
+      "number": 14609,
+      "title": "migrations: back to one transaction per upgrade run"
+    },
+    {
+      "number": 15230,
+      "title": "Calculate reducer buckets at event ingestion"
+    },
+    {
+      "number": 13237,
+      "title": "Make `revoke_seat` idempotent to prevent duplicate seat-revoked webhooks"
+    },
+    {
+      "number": 15246,
+      "title": "docs(migrate): document migration webhooks, Stripe key permissions and unsupported cases"
+    },
+    {
+      "number": 14949,
+      "title": "Anonymize expired checkouts past the retention period"
+    },
+    {
+      "number": 14398,
+      "title": "fix(payout): don't move an organization off a payout account that works"
+    },
+    {
+      "number": 14616,
+      "title": "feat(server): stop writing the old token hash columns"
+    },
+    {
+      "number": 15402,
+      "title": "feat(cli): add a local environment for logging in to a local stack"
+    },
+    {
+      "number": 13952,
+      "title": "sqs: Re-enqueue instead of retry"
+    },
+    {
+      "number": 14044,
+      "title": "ci: Speed up tests"
+    },
+    {
+      "number": 16184,
+      "title": "reducer: Split buckets at billing interval boundaries before sealing"
+    },
+    {
+      "number": 14051,
+      "title": "Make oauth_accounts.access_token_encrypted not null"
+    },
+    {
+      "number": 15405,
+      "title": "Add manual credit granting on customer meters endpoint"
+    },
+    {
+      "number": 14065,
+      "title": "Add timestamp for webhook endpoint secret generation"
+    },
+    {
+      "number": 15818,
+      "title": "feat(merchant-migration): close migrations after 90 days of inactivity"
+    },
+    {
+      "number": 15156,
+      "title": "fix: make the claude session-start hook recover from a broken pnpm and a stuck dockerd"
+    },
+    {
+      "number": 15171,
+      "title": "feat(config): apply meters from the declarative config"
+    },
+    {
+      "number": 16329,
+      "title": "outpost: serve the changes since a cursor"
+    },
+    {
+      "number": 15530,
+      "title": "SDK: ingestion abstraction layer"
+    },
+    {
+      "number": 13962,
+      "title": "Fix customer update events losing tracked field changes when flush=True"
+    },
+    {
+      "number": 14359,
+      "title": "Enforce benefit-revocation grace period with an hourly cron"
+    },
+    {
+      "number": 13714,
+      "title": "fix(polar-self): retry Plain tenant unlink on remove_member"
+    },
+    {
+      "number": 13655,
+      "title": "Backfill balance consumed by orders voided before #13475"
+    },
+    {
+      "number": 16186,
+      "title": "Clean up agent skills"
+    },
+    {
+      "number": 14187,
+      "title": "fix(subscription): return typed 409 for uncancel of a not-scheduled subscription"
+    },
+    {
+      "number": 13493,
+      "title": "feat(dispute): concede disputes below the merchant's threshold"
+    },
+    {
+      "number": 14699,
+      "title": "Create checkout E2E tests that runs hourly against production"
+    },
+    {
+      "number": 13169,
+      "title": "feat: merchant-migration catalog import"
+    },
+    {
+      "number": 13490,
+      "title": "feat(scripts): emit and find missing subscription meter reset events"
+    },
+    {
+      "number": 13424,
+      "title": "feat(payment_method): remind customers before their card expires"
+    },
+    {
+      "number": 13401,
+      "title": "fix(transaction): attribute payout reversals to the payout they reverse"
+    },
+    {
+      "number": 12983,
+      "title": "feat(merchant-migration): persist canonical records to the ledger"
+    },
+    {
+      "number": 14617,
+      "title": "models: drop the old token hash columns"
+    },
+    {
+      "number": 12947,
+      "title": "chore: Re-add free_price_to_fixed backfill script"
+    },
+    {
+      "number": 13337,
+      "title": "server/integrations/polar: try to retrieve customer first before creating"
+    },
+    {
+      "number": 12563,
+      "title": "Upgrade to `team` type on one-time purchases too"
+    },
+    {
+      "number": 12400,
+      "title": "feat(dispute): capture Stripe evidence fields on disputes"
+    },
+    {
+      "number": 12749,
+      "title": "feat: auto-cancel subscriptions for wound-down organizations"
+    },
+    {
+      "number": 12785,
+      "title": "fix(subscription): batch org subscription cancellation to avoid 60s timeout"
+    },
+    {
+      "number": 12442,
+      "title": "Add chargeback prevention refund notifications"
+    },
+    {
+      "number": 12366,
+      "title": "script: Restore user events from Tinybird"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:33Z",
+  "results": [
+    {
+      "number": 15291,
+      "title": "outpost: skip duplicate events per bucket"
+    },
+    {
+      "number": 16705,
+      "title": "Extract property validation into reusable PropertyPath type"
+    },
+    {
+      "number": 14311,
+      "title": "ci: Remove duplicate permissions block"
+    },
+    {
+      "number": 14934,
+      "title": "fix(member): reject a duplicate external ID with a validation error"
+    },
+    {
+      "number": 16155,
+      "title": "Refactor API filters into versioned query models"
+    },
+    {
+      "number": 16717,
+      "title": "Extract customer identity formatting into reusable component"
+    },
+    {
+      "number": 14002,
+      "title": "test(server): remove duplicate tests"
+    },
+    {
+      "number": 15026,
+      "title": "fix(merchant-migration): tell a duplicate Polar subscription apart from a Stripe id conflict"
+    },
+    {
+      "number": 15895,
+      "title": "Consolidate query invalidation into mutation handlers"
+    },
+    {
+      "number": 13946,
+      "title": "fix: prevent duplicate paid plan checkouts"
+    },
+    {
+      "number": 16111,
+      "title": "Recover existing Numeral tax transactions on retry"
+    },
+    {
+      "number": 16467,
+      "title": "Enforce unique backoffice user emails"
+    },
+    {
+      "number": 16656,
+      "title": "Add manual benefit grant API"
+    },
+    {
+      "number": 16473,
+      "title": "Allow backoffice staff as support case participants"
+    },
+    {
+      "number": 16592,
+      "title": "Update Mintlify documentation domain to polar.mintlify.site"
+    },
+    {
+      "number": 16152,
+      "title": "refactor(outpost): share WebSocket authorization dependencies"
+    },
+    {
+      "number": 16626,
+      "title": "Show line number issues for invalid Python config"
+    },
+    {
+      "number": 16187,
+      "title": "fix(tax): allow payment completion for unsupported backfill countries"
+    },
+    {
+      "number": 16237,
+      "title": "Fix concurrent product media updates with row locking"
+    },
+    {
+      "number": 16356,
+      "title": "chore: remove dead code from StripeService"
+    },
+    {
+      "number": 15346,
+      "title": "add external_id to discount API schemas"
+    },
+    {
+      "number": 13473,
+      "title": "Fix meter backfill pagination skips on duplicate ingested_at"
+    },
+    {
+      "number": 15892,
+      "title": "Use stable keys for list items instead of array indices"
+    },
+    {
+      "number": 16349,
+      "title": "Event explorer: filtered type counts, ID search, minute histogram"
+    },
+    {
+      "number": 16537,
+      "title": "aws/inspector: Deduplicate findings across environments"
+    },
+    {
+      "number": 16110,
+      "title": "Refactor client CI workflow to parallelize tests and extract setup"
+    },
+    {
+      "number": 15025,
+      "title": "fix(merchant-migration): import extra same-currency prices as archived prices"
+    },
+    {
+      "number": 16135,
+      "title": "Fix Dependabot vulnerabilities, including transitive dependencies"
+    },
+    {
+      "number": 15166,
+      "title": "Expose external_id on meters in API 2027-01"
+    },
+    {
+      "number": 16685,
+      "title": "clients/web: label older meter versions"
+    },
+    {
+      "number": 15150,
+      "title": "fix(payments): preserve pending SEPA locks and repair missing locks"
+    },
+    {
+      "number": 13429,
+      "title": "fix(checkout): flush new customer before charging card to prevent duplicate-email race"
+    },
+    {
+      "number": 15944,
+      "title": "Fetch metrics per group on the metrics page"
+    },
+    {
+      "number": 16222,
+      "title": "feat(reviews): generalize organization risk signals"
+    },
+    {
+      "number": 16047,
+      "title": "Exclude revoked benefits from errored grant queries"
+    },
+    {
+      "number": 13237,
+      "title": "Make `revoke_seat` idempotent to prevent duplicate seat-revoked webhooks"
+    },
+    {
+      "number": 15725,
+      "title": "build: remove unused Python, client, and documentation dependencies"
+    },
+    {
+      "number": 16252,
+      "title": "sdk: stop re-requesting Outpost snapshots for evicted customers"
+    },
+    {
+      "number": 16294,
+      "title": "stripe: Dont get balance transaction from Stripe twice"
+    },
+    {
+      "number": 14896,
+      "title": "fix(scripts): _backfill_benefit_grants"
+    },
+    {
+      "number": 15429,
+      "title": "reducer_bucket: add synced_at, backfilled for closed buckets"
+    },
+    {
+      "number": 14370,
+      "title": "fix(member): guard against poisoned session in concurrent member creation race"
+    },
+    {
+      "number": 12715,
+      "title": "chore: remove duplicate SubscriptionsOverviewProps interface declaration"
+    },
+    {
+      "number": 15448,
+      "title": "outpost: send meter usage bounded by its last synced bucket"
+    },
+    {
+      "number": 15321,
+      "title": "CLI: Make \"polar config plan\" more readable"
+    },
+    {
+      "number": 12651,
+      "title": "Stop duplicate /emergency deploys from racing"
+    },
+    {
+      "number": 15728,
+      "title": "Ingest events into staged_events behind a feature flag"
+    },
+    {
+      "number": 16453,
+      "title": "Support `polar config init` for existing merchants"
+    },
+    {
+      "number": 15565,
+      "title": "ci: Add deploy notifications to slack"
+    },
+    {
+      "number": 13675,
+      "title": "slack-benefit: Handle transient errors with a retry"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:37Z",
+  "results": [
+    {
+      "number": 16523,
+      "title": "reducer: If meters don't match, read legacy again"
+    },
+    {
+      "number": 16468,
+      "title": "Dual-write backoffice staff attribution"
+    },
+    {
+      "number": 16237,
+      "title": "Fix concurrent product media updates with row locking"
+    },
+    {
+      "number": 16012,
+      "title": "feat: adds verified domains to the organization's embed hosts"
+    },
+    {
+      "number": 14370,
+      "title": "fix(member): guard against poisoned session in concurrent member creation race"
+    },
+    {
+      "number": 16204,
+      "title": "Fix desktop click events in checkout"
+    },
+    {
+      "number": 13605,
+      "title": "fix: fix `useDebounceCallback` race condition"
+    },
+    {
+      "number": 14274,
+      "title": "server/checkout: handle race condition between sync failed payment and success payment"
+    },
+    {
+      "number": 14016,
+      "title": "Fix race condition in CustomerMeter creation (get_or_create)"
+    },
+    {
+      "number": 14199,
+      "title": "fix(server): prevent ownerless orgs in set_role x transfer_ownership race"
+    },
+    {
+      "number": 16203,
+      "title": "server/product: lock product row when replacing custom fields"
+    },
+    {
+      "number": 16596,
+      "title": "server/billing_entry: charge metered usage from the reducers on reducer billing"
+    },
+    {
+      "number": 15948,
+      "title": "api: adds organization domains CRUD endpoints"
+    },
+    {
+      "number": 13315,
+      "title": "Fix/payment pending intent race"
+    },
+    {
+      "number": 15057,
+      "title": "fix: carry the customer's external_id onto an existing owner"
+    },
+    {
+      "number": 15534,
+      "title": "meters: Make reset seal, and billing bill"
+    },
+    {
+      "number": 14999,
+      "title": "fix(merchant-migration): let the merchant continue when every subscription is already prepared"
+    },
+    {
+      "number": 16215,
+      "title": "sdk: simplify metering lifecycle and surface delivery failures"
+    },
+    {
+      "number": 15228,
+      "title": "Deploy Lambda workers after the environment's migrations"
+    },
+    {
+      "number": 13380,
+      "title": "Fix session state after concurrent member creation race"
+    },
+    {
+      "number": 16078,
+      "title": "server: notify Outpost after sealing"
+    },
+    {
+      "number": 15312,
+      "title": "server/email_update: Handle email taken between request and verification"
+    },
+    {
+      "number": 16502,
+      "title": "server/checkout: Decide trial eligibility before confirm"
+    },
+    {
+      "number": 13429,
+      "title": "fix(checkout): flush new customer before charging card to prevent duplicate-email race"
+    },
+    {
+      "number": 13325,
+      "title": "Harden upsert_from_stripe_payment_intent against concurrent webhook race"
+    },
+    {
+      "number": 14889,
+      "title": "slack: Don't archive shared channel while sibling grants still use it"
+    },
+    {
+      "number": 15339,
+      "title": "Invalidate prior email-update tokens on a new request"
+    },
+    {
+      "number": 13133,
+      "title": "fix: prevent identity verification race stranding verified users in pending"
+    },
+    {
+      "number": 14736,
+      "title": "private link: Prevent refresh lambda from overwriting zip"
+    },
+    {
+      "number": 14583,
+      "title": "server/migrations: give CREATE INDEX CONCURRENTLY a 5min lock_timeout"
+    },
+    {
+      "number": 15292,
+      "title": "outpost: apply Polar snapshots to local buckets"
+    },
+    {
+      "number": 14073,
+      "title": "fix(checkout): commit before redirecting from checkout link"
+    },
+    {
+      "number": 15616,
+      "title": "perf(sdk): skip configured event waits in Python Outpost"
+    },
+    {
+      "number": 15076,
+      "title": "feat(merchant-migrations): add an Advanced settings dialog to set tax behaviour"
+    },
+    {
+      "number": 14355,
+      "title": "CLI: Constrain how we write commands/services with custom Oxlint rules"
+    },
+    {
+      "number": 13134,
+      "title": "payout: lock payout row FOR UPDATE in trigger_payout to prevent cancel race"
+    },
+    {
+      "number": 14252,
+      "title": "fix(merchant-migration): cutover lock and reused catalog"
+    },
+    {
+      "number": 14170,
+      "title": "fix(customer_seat): reject seat claim when linked member is soft-deleted"
+    },
+    {
+      "number": 15522,
+      "title": "sdk/outpost: wait for each meter's snapshot on TypeScript reads"
+    },
+    {
+      "number": 15346,
+      "title": "add external_id to discount API schemas"
+    },
+    {
+      "number": 15255,
+      "title": "feat(declarative-config): apply benefits by external_id"
+    },
+    {
+      "number": 13685,
+      "title": "org: Ensure that it's not possible to remove all admins"
+    },
+    {
+      "number": 15169,
+      "title": "fix(oauth2): upsert grants instead of raising unique violations"
+    },
+    {
+      "number": 13569,
+      "title": "fix(customer_seat): lock subscription row during seat assignment to prevent TOCTOU over-provisioning"
+    },
+    {
+      "number": 14192,
+      "title": "fix(backoffice): hide mutating buttons on deleted-customer detail page"
+    },
+    {
+      "number": 13783,
+      "title": "tf/aws: Move lambda to new subnets and setup new privatelink"
+    },
+    {
+      "number": 14934,
+      "title": "fix(member): reject a duplicate external ID with a validation error"
+    },
+    {
+      "number": 13659,
+      "title": "fix(payment_method): skip expiration reminder for deleted payment methods"
+    },
+    {
+      "number": 14027,
+      "title": "fix(checkout-link): stop concurrent archives from emptying links"
+    },
+    {
+      "number": 14091,
+      "title": "Revert \"fix(checkout): commit before redirecting from checkout link\""
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:40Z",
+  "results": [
+    {
+      "number": 15583,
+      "title": "Don't claw back meter credits of a period closed by a reset"
+    },
+    {
+      "number": 13855,
+      "title": "aws/lambda: Increase max retries for webhook lambda"
+    },
+    {
+      "number": 12093,
+      "title": "Add optimistic updates for customer/account notifications"
+    },
+    {
+      "number": 12387,
+      "title": "handbook: add 2026-06-12 postmortem"
+    },
+    {
+      "number": 11159,
+      "title": "docs: add changelog entry for 2026-04-22"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:44Z",
+  "results": [
+    {
+      "number": 16302,
+      "title": "chore(webhooks): drop redundant webhook_deliveries indexes"
+    },
+    {
+      "number": 16301,
+      "title": "feat(webhooks): add webhook_endpoint_id, created_at index on webhook deliveries"
+    },
+    {
+      "number": 16194,
+      "title": "server/webhook: hard-delete webhook deliveries past retention"
+    },
+    {
+      "number": 16202,
+      "title": "server/webhook: add script to delete the webhook delivery backlog"
+    },
+    {
+      "number": 16200,
+      "title": "server/webhook: add script to delete the webhook delivery backlog"
+    },
+    {
+      "number": 16634,
+      "title": "Hide MCP subscriptions in the dashboard webhook settings"
+    },
+    {
+      "number": 16723,
+      "title": "Add a format filter to the webhook endpoints list"
+    },
+    {
+      "number": 16392,
+      "title": "Add MCP event subscriptions backed by webhook endpoints"
+    },
+    {
+      "number": 16536,
+      "title": "Add expires_at to webhook endpoints for MCP subscriptions"
+    },
+    {
+      "number": 16284,
+      "title": "Make webhook_deliveries.organization_id non-nullable"
+    },
+    {
+      "number": 16263,
+      "title": "Set organization_id on new webhook deliveries"
+    },
+    {
+      "number": 16417,
+      "title": "fix(catalog): handle webhooks behaviour in config as code"
+    },
+    {
+      "number": 15976,
+      "title": "Redesign the Webhooks and SSO settings pages"
+    },
+    {
+      "number": 16287,
+      "title": "Add index on webhook_deliveries (organization_id, created_at)"
+    },
+    {
+      "number": 16251,
+      "title": "Add organization_id to webhook_deliveries with backfill script"
+    },
+    {
+      "number": 15483,
+      "title": "Add external_id to webhook endpoints"
+    },
+    {
+      "number": 15830,
+      "title": "cli: redact webhook urls in config plan PR comment"
+    },
+    {
+      "number": 15428,
+      "title": "Mark the webhook secret reset tool destructive"
+    },
+    {
+      "number": 15357,
+      "title": "polar, cli: declare webhook endpoints in defineConfig"
+    },
+    {
+      "number": 15356,
+      "title": "declarative_config: manage webhook endpoints from config"
+    },
+    {
+      "number": 15364,
+      "title": "Check webhook_event.archive last in ExpiredRecordsNotDeletedInvariant"
+    },
+    {
+      "number": 15435,
+      "title": "chore(cli): add webhook secret reset confirmation changeset"
+    },
+    {
+      "number": 16502,
+      "title": "server/checkout: Decide trial eligibility before confirm"
+    },
+    {
+      "number": 15977,
+      "title": "docs: point settings references at the new settings pages"
+    },
+    {
+      "number": 15399,
+      "title": "Rename \"polar listen|trigger\" to \"polar webhook listen|trigger\""
+    },
+    {
+      "number": 16291,
+      "title": "subscription: Reuse product loaded via subscription"
+    },
+    {
+      "number": 15996,
+      "title": "Polish settings: icons, empty states, Migrations and Security"
+    },
+    {
+      "number": 15701,
+      "title": "feat(agent-auth): Let unclaimed agents ingest events and manage meters and config"
+    },
+    {
+      "number": 15982,
+      "title": "fix(organization-reviews): flag checkout success URLs off the website domain"
+    },
+    {
+      "number": 14888,
+      "title": "Add SSRF protection to webhook delivery"
+    },
+    {
+      "number": 14868,
+      "title": "docs: explain Standard Webhooks signing migration"
+    },
+    {
+      "number": 15563,
+      "title": "CLI: Update README"
+    },
+    {
+      "number": 15975,
+      "title": "Split organization settings into a sub-navigation"
+    },
+    {
+      "number": 15246,
+      "title": "docs(migrate): document migration webhooks, Stripe key permissions and unsupported cases"
+    },
+    {
+      "number": 16326,
+      "title": "Keep the existing meter cycle when config omits it"
+    },
+    {
+      "number": 15133,
+      "title": "Exclude skipped events from webhook FIFO guard pending count"
+    },
+    {
+      "number": 16290,
+      "title": "subscription: PATCH subscriptions with same body"
+    },
+    {
+      "number": 16697,
+      "title": "Event ingestion api app"
+    },
+    {
+      "number": 16396,
+      "title": "Expose MCP events on the MCP server"
+    },
+    {
+      "number": 15227,
+      "title": "Version Packages"
+    },
+    {
+      "number": 14702,
+      "title": "Scrub webhook delivery payload after 90 days"
+    },
+    {
+      "number": 14823,
+      "title": "Add webhook event archival to expired records cleanup"
+    },
+    {
+      "number": 14821,
+      "title": "Stop webhook delivery and redelivery to deleted endpoints"
+    },
+    {
+      "number": 14905,
+      "title": "Enhance subscription webhooks with cancellation details and plan changes"
+    },
+    {
+      "number": 16229,
+      "title": "feat(catalog): save config apply to a draft catalog and publish drafts"
+    },
+    {
+      "number": 15366,
+      "title": "Tune autovacuum for cleanup-heavy tables and index the expired-records invariant"
+    },
+    {
+      "number": 16358,
+      "title": "chore: remove dead track_compass_assistant_usage actor and client method"
+    },
+    {
+      "number": 16546,
+      "title": "Expose manual benefit grant timestamps in API responses"
+    },
+    {
+      "number": 15126,
+      "title": "fix(customer): skip member.created when creating a customer without webhooks"
+    },
+    {
+      "number": 15108,
+      "title": "docs(cli): prefix webhook override paths with `data.` in `trigger` example"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:48Z",
+  "results": [
+    {
+      "number": 16253,
+      "title": "outpost: handle a connection's requests concurrently"
+    },
+    {
+      "number": 16237,
+      "title": "Fix concurrent product media updates with row locking"
+    },
+    {
+      "number": 16293,
+      "title": "tf/test: Run the API at production's plan and concurrency"
+    },
+    {
+      "number": 15592,
+      "title": "sdk/e2e: let concurrent-writer reads catch up within the round"
+    },
+    {
+      "number": 16720,
+      "title": "Add an endpoint to rename catalogs"
+    },
+    {
+      "number": 14422,
+      "title": "server: add concurrent pending webhook health index"
+    },
+    {
+      "number": 16402,
+      "title": "license-key: Avoid locking unless increment_usage is set"
+    },
+    {
+      "number": 14583,
+      "title": "server/migrations: give CREATE INDEX CONCURRENTLY a 5min lock_timeout"
+    },
+    {
+      "number": 16302,
+      "title": "chore(webhooks): drop redundant webhook_deliveries indexes"
+    },
+    {
+      "number": 16287,
+      "title": "Add index on webhook_deliveries (organization_id, created_at)"
+    },
+    {
+      "number": 16262,
+      "title": "ci: Add workflows for locking and unlocking migrations"
+    },
+    {
+      "number": 16468,
+      "title": "Dual-write backoffice staff attribution"
+    },
+    {
+      "number": 16298,
+      "title": "checkout-link-products: Add index for product id"
+    },
+    {
+      "number": 16444,
+      "title": "lambda: Deploy image resizer lambda via GHA"
+    },
+    {
+      "number": 14586,
+      "title": "handbook: record the CREATE INDEX CONCURRENTLY lock timeout rule (ADR-0006)"
+    },
+    {
+      "number": 16424,
+      "title": "feat(meter): add catalog_meters, meters.catalog_id and meters.is_current"
+    },
+    {
+      "number": 14370,
+      "title": "fix(member): guard against poisoned session in concurrent member creation race"
+    },
+    {
+      "number": 16012,
+      "title": "feat: adds verified domains to the organization's embed hosts"
+    },
+    {
+      "number": 16387,
+      "title": "Require and enforce organization product and benefit limits"
+    },
+    {
+      "number": 16642,
+      "title": "Support manual benefit fulfillment and grant suppression"
+    },
+    {
+      "number": 16210,
+      "title": "Refactor payment success handling into separate tasks"
+    },
+    {
+      "number": 16694,
+      "title": "chore(terraform): run api-events-test with 4 web workers"
+    },
+    {
+      "number": 16364,
+      "title": "render/db: Resize to a smaller db instance"
+    },
+    {
+      "number": 14027,
+      "title": "fix(checkout-link): stop concurrent archives from emptying links"
+    },
+    {
+      "number": 16660,
+      "title": "Drop unused indexes on `events`: `ix_events_external_customer_id_pattern`"
+    },
+    {
+      "number": 16295,
+      "title": "polar: Speed up the pfp calls"
+    },
+    {
+      "number": 15880,
+      "title": "server/backoffice: issue credit notes from refunds"
+    },
+    {
+      "number": 16536,
+      "title": "Add expires_at to webhook endpoints for MCP subscriptions"
+    },
+    {
+      "number": 16518,
+      "title": "feat(organization): require a verified support email to submit and withdraw"
+    },
+    {
+      "number": 16112,
+      "title": "feat(catalog): add catalog_benefits and benefits.is_current"
+    },
+    {
+      "number": 15737,
+      "title": "feat(catalog): add catalog and subscription bulk update schema and models"
+    },
+    {
+      "number": 16658,
+      "title": "Drop unused indexes on `events`: `ix_events_member_id`"
+    },
+    {
+      "number": 16595,
+      "title": "scheduler: Implement postgres JobStore"
+    },
+    {
+      "number": 16296,
+      "title": "tinybird: Run count and event ids in parallel"
+    },
+    {
+      "number": 16656,
+      "title": "Add manual benefit grant API"
+    },
+    {
+      "number": 16301,
+      "title": "feat(webhooks): add webhook_endpoint_id, created_at index on webhook deliveries"
+    },
+    {
+      "number": 15339,
+      "title": "Invalidate prior email-update tokens on a new request"
+    },
+    {
+      "number": 13829,
+      "title": "aws/lambda: Specify concurrency limits and timeouts for workers"
+    },
+    {
+      "number": 15702,
+      "title": "sdk: keep batching events while flushes are pending"
+    },
+    {
+      "number": 15569,
+      "title": "Backoffice: trigram-backed email address search in email logs"
+    },
+    {
+      "number": 16203,
+      "title": "server/product: lock product row when replacing custom fields"
+    },
+    {
+      "number": 15401,
+      "title": "reducer-buckets: Add unsealed index"
+    },
+    {
+      "number": 13513,
+      "title": "discount: Handle concurrent discount code creation"
+    },
+    {
+      "number": 15527,
+      "title": "sdk/outpost: unify redis reconnects"
+    },
+    {
+      "number": 16369,
+      "title": "subscriptions: Update index to be used again"
+    },
+    {
+      "number": 13686,
+      "title": "seats: Ensure that concurrent customer requests doesn't fail"
+    },
+    {
+      "number": 15948,
+      "title": "api: adds organization domains CRUD endpoints"
+    },
+    {
+      "number": 15986,
+      "title": "tf/sandbox: Decrease local pgbouncer pool size to 35"
+    },
+    {
+      "number": 14703,
+      "title": "Add production covering index for active meter"
+    },
+    {
+      "number": 16381,
+      "title": "Optimize trial redemption email lookups with case-insensitive index"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:52Z",
+  "results": [
+    {
+      "number": 16443,
+      "title": "Clean up stale self-registered OAuth clients"
+    },
+    {
+      "number": 16432,
+      "title": "docs: remove stale dramatiq fork reference in troubleshooting guide"
+    },
+    {
+      "number": 16535,
+      "title": "server/oauth2: drain the full stale OAuth client backlog in each cleanup run"
+    },
+    {
+      "number": 15901,
+      "title": "Use useEffectEvent for event handlers to fix stale closures"
+    },
+    {
+      "number": 15542,
+      "title": "docs(cli): document textOnly() builder and fix stale streaming() name in AGENTS.md"
+    },
+    {
+      "number": 15306,
+      "title": "docs: remove stale member-model-enabled prerequisite from better-auth adapter README"
+    },
+    {
+      "number": 15121,
+      "title": "fix(deps): drop stale @tanstack/react-start@1.168.57 from lockfile"
+    },
+    {
+      "number": 14845,
+      "title": "docs: drop stale `openai` render env group from render-env skill"
+    },
+    {
+      "number": 15994,
+      "title": "Fix state update closures in timer callbacks"
+    },
+    {
+      "number": 16623,
+      "title": "scheduler: Implement postgres JobStore"
+    },
+    {
+      "number": 14623,
+      "title": "docs: drop stale .jwks.json import-blocker note in clients/AGENTS.md"
+    },
+    {
+      "number": 15992,
+      "title": "Fix file state synchronization in useFileUpload hook"
+    },
+    {
+      "number": 14197,
+      "title": "fix(web): drop stale enabled from webhook endpoint form save"
+    },
+    {
+      "number": 16071,
+      "title": "web: reload once when Turbopack reports a missing module factory"
+    },
+    {
+      "number": 16329,
+      "title": "outpost: serve the changes since a cursor"
+    },
+    {
+      "number": 16018,
+      "title": "Refactor: Extract Intl formatters to module scope"
+    },
+    {
+      "number": 16444,
+      "title": "lambda: Deploy image resizer lambda via GHA"
+    },
+    {
+      "number": 16120,
+      "title": "refund: Ensure that transaction id gets stored on refund tx"
+    },
+    {
+      "number": 16435,
+      "title": "docs: correct SQLAlchemy Select typing in repository pattern example"
+    },
+    {
+      "number": 16465,
+      "title": "outpost: share state, configuration, cold reads and telemetry through Redis in both SDKs"
+    },
+    {
+      "number": 15889,
+      "title": "web: snapshot current time in state to avoid hydration mismatch"
+    },
+    {
+      "number": 16720,
+      "title": "Add an endpoint to rename catalogs"
+    },
+    {
+      "number": 16345,
+      "title": "docs(changelog): November 4 product updates"
+    },
+    {
+      "number": 16710,
+      "title": "Add a Publish button for draft catalogs"
+    },
+    {
+      "number": 15851,
+      "title": "app: respect the payout cooldown period when withdrawing"
+    },
+    {
+      "number": 15850,
+      "title": "Fix withdraw modal showing payout cooldown and estimate together"
+    },
+    {
+      "number": 15504,
+      "title": "Send subscription.updated when the meter period advances"
+    },
+    {
+      "number": 13762,
+      "title": "docs: remove stale --skip-tinybird flag and tinybird profile refs"
+    },
+    {
+      "number": 16619,
+      "title": "server/subscription: update subscription meters from the reducers on reducer billing"
+    },
+    {
+      "number": 15824,
+      "title": "docs(cli): add subcommand to telemetry usage-mistake field description"
+    },
+    {
+      "number": 16437,
+      "title": "fix(declarative-config): export products with a meter cycle"
+    },
+    {
+      "number": 16332,
+      "title": "outpost: pull Polar's changes instead of holding a WebSocket"
+    },
+    {
+      "number": 15897,
+      "title": "Optimize chart components with dynamic imports and Suspense"
+    },
+    {
+      "number": 16073,
+      "title": "CLI: Fix cutoff content in plan|apply mode"
+    },
+    {
+      "number": 15748,
+      "title": "Log customer meter vs reducer comparisons of \"busy\" customer meters"
+    },
+    {
+      "number": 15887,
+      "title": "fix(web): release effect subscriptions and timers on unmount"
+    },
+    {
+      "number": 16620,
+      "title": "server/reducer: raise interval recording and credit failures on reducer billing"
+    },
+    {
+      "number": 15089,
+      "title": "docs: update API versioning constants example for 2026-10 cycle"
+    },
+    {
+      "number": 16161,
+      "title": "ci: run every benchmark in one workflow"
+    },
+    {
+      "number": 16195,
+      "title": "Use server change preview for customer portal plan change notice"
+    },
+    {
+      "number": 16436,
+      "title": "docs: correct on-call docs that still described prod Postgres as Render"
+    },
+    {
+      "number": 13658,
+      "title": "Clear stale tax data on all business-customer transitions in checkout"
+    },
+    {
+      "number": 15500,
+      "title": "CLI: Use proper CLI command the demo config YAML"
+    },
+    {
+      "number": 15156,
+      "title": "fix: make the claude session-start hook recover from a broken pnpm and a stuck dockerd"
+    },
+    {
+      "number": 16377,
+      "title": "Overview widgets: horizontal bars, activity feed, aligned cards"
+    },
+    {
+      "number": 16012,
+      "title": "feat: adds verified domains to the organization's embed hosts"
+    },
+    {
+      "number": 15334,
+      "title": "Add a backoffice action to pay out one held payout"
+    },
+    {
+      "number": 15591,
+      "title": "Keep Resend active users segment to members of active organizations"
+    },
+    {
+      "number": 16091,
+      "title": "replace sidebar version copy with link to page"
+    },
+    {
+      "number": 16077,
+      "title": "docs(merchant-migration): remove gradual rollout notice"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:36:56Z",
+  "results": [
+    {
+      "number": 16294,
+      "title": "stripe: Dont get balance transaction from Stripe twice"
+    },
+    {
+      "number": 16685,
+      "title": "clients/web: label older meter versions"
+    },
+    {
+      "number": 15788,
+      "title": " outpost: compact the pending entries and batch their confirmation"
+    },
+    {
+      "number": 16370,
+      "title": "Event explorer layout for small screens"
+    },
+    {
+      "number": 15773,
+      "title": "sdk: date events that carry no timestamp in Metering.track"
+    },
+    {
+      "number": 15384,
+      "title": "Make metadata a reusable builder mixin"
+    },
+    {
+      "number": 15423,
+      "title": "Grant meter credits from the runtime SDK"
+    },
+    {
+      "number": 16417,
+      "title": "fix(catalog): handle webhooks behaviour in config as code"
+    },
+    {
+      "number": 16207,
+      "title": "Event explorer: inline detail panel, new filters, first-class LLM metadata"
+    },
+    {
+      "number": 15402,
+      "title": "feat(cli): add a local environment for logging in to a local stack"
+    },
+    {
+      "number": 15031,
+      "title": "fix(merchant-migration): stage inactive Stripe prices on their product's row"
+    },
+    {
+      "number": 14620,
+      "title": "Landing adjust"
+    },
+    {
+      "number": 16075,
+      "title": "feat(declarative-config): show the catalog change once in the plan"
+    },
+    {
+      "number": 15738,
+      "title": "feat(catalog): subscription bulk update service and worker"
+    },
+    {
+      "number": 15334,
+      "title": "Add a backoffice action to pay out one held payout"
+    },
+    {
+      "number": 15026,
+      "title": "fix(merchant-migration): tell a duplicate Polar subscription apart from a Stripe id conflict"
+    },
+    {
+      "number": 14549,
+      "title": "oauth2: sign the id_token once per grant"
+    },
+    {
+      "number": 14971,
+      "title": "feat(merchant-migrations): send alert for new migrations"
+    },
+    {
+      "number": 15259,
+      "title": "feat: experimental mcp server on cloudflare"
+    },
+    {
+      "number": 14939,
+      "title": "server/observability: label HTTP metrics with the full route path"
+    },
+    {
+      "number": 15257,
+      "title": "feat(declarative-config): apply products by external_id"
+    },
+    {
+      "number": 13836,
+      "title": "aws/lambda: Map up env variables and secrets"
+    },
+    {
+      "number": 15131,
+      "title": "feat(migration): show payment method in the assessment status"
+    },
+    {
+      "number": 14932,
+      "title": "docs(adapters): sync adapter docs with the current implementation"
+    },
+    {
+      "number": 14909,
+      "title": "fix: leave a Stripe subscription on the source while its latest invoice is unpaid"
+    },
+    {
+      "number": 13977,
+      "title": "Send benefit_grant.updated webhook when a license key is rotated or updated"
+    },
+    {
+      "number": 13745,
+      "title": "backoffice/subscriptions: Add ability to set a past_due subscription to active"
+    },
+    {
+      "number": 13401,
+      "title": "fix(transaction): attribute payout reversals to the payout they reverse"
+    },
+    {
+      "number": 14647,
+      "title": "feat(server): carry the secret id in the token hash"
+    },
+    {
+      "number": 14921,
+      "title": "feat(merchant-migrations): keep Stripe cancellation reasons"
+    },
+    {
+      "number": 13237,
+      "title": "Make `revoke_seat` idempotent to prevent duplicate seat-revoked webhooks"
+    },
+    {
+      "number": 15732,
+      "title": "sdk: reject Outpost events without an external_id"
+    },
+    {
+      "number": 16596,
+      "title": "server/billing_entry: charge metered usage from the reducers on reducer billing"
+    },
+    {
+      "number": 13394,
+      "title": "feat(discount): per-customer redemption limits"
+    },
+    {
+      "number": 13268,
+      "title": "fix: send subscription renewal confirmation only after payment succeeds"
+    },
+    {
+      "number": 13087,
+      "title": "refactor(order): extract shared order amount computation"
+    },
+    {
+      "number": 13250,
+      "title": "sdk: generate webhook payload models"
+    },
+    {
+      "number": 15688,
+      "title": "declarative config flag locks post/patch on catalog endpoints"
+    },
+    {
+      "number": 12796,
+      "title": "Add ability to counter a dispute in the dashboard"
+    },
+    {
+      "number": 15604,
+      "title": "build(deps-dev): bump the sdk-generator-development group in /sdk/generator with 3 updates"
+    },
+    {
+      "number": 12571,
+      "title": "chore: remove duplicate FormField import in CustomerMetadataForm"
+    },
+    {
+      "number": 14752,
+      "title": "chore(deps-dev): bump the server-development group across 1 directory with 6 updates"
+    },
+    {
+      "number": 10655,
+      "title": "Fix subscription period cycled twice when pending update changes billing interval"
+    },
+    {
+      "number": 13922,
+      "title": "Add CSV export to the finance income page."
+    },
+    {
+      "number": 16332,
+      "title": "outpost: pull Polar's changes instead of holding a WebSocket"
+    },
+    {
+      "number": 13670,
+      "title": "frontend: Refactor Customer Page to use SubNav and subroutes"
+    },
+    {
+      "number": 13083,
+      "title": "feat: merchant-migration review dashboard"
+    },
+    {
+      "number": 15658,
+      "title": "Field guide and landing chapter for the new usage engine"
+    },
+    {
+      "number": 15015,
+      "title": "chore(deps): bump the server-production group across 1 directory with 7 updates"
+    },
+    {
+      "number": 12122,
+      "title": "Prevent CodeRabbit from posting review status comments even when autoreview disabled"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "polarsource/polar",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo polarsource/polar --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:37:00Z",
+  "results": [
+    {
+      "number": 16372,
+      "title": "polar: Retry network errors and reduce timeout"
+    },
+    {
+      "number": 15899,
+      "title": "Fix retry countdown logic in BenefitGrantOAuth"
+    },
+    {
+      "number": 16111,
+      "title": "Recover existing Numeral tax transactions on retry"
+    },
+    {
+      "number": 15721,
+      "title": "sdk: wait out Retry-After without spending delivery attempts"
+    },
+    {
+      "number": 15550,
+      "title": "Skip meter-cycle dunning retries on non-recoverable declines"
+    },
+    {
+      "number": 15211,
+      "title": "fix(clients): show due amount in payment retry modal"
+    },
+    {
+      "number": 15363,
+      "title": "app: wrap expo/fetch retry response so openapi-fetch accepts it"
+    },
+    {
+      "number": 14560,
+      "title": "worker: Link retry/reenqueue spans"
+    },
+    {
+      "number": 14834,
+      "title": "Handle pending payment next actions on retry"
+    },
+    {
+      "number": 14077,
+      "title": "ci/tinybird: Retry tinybird token"
+    },
+    {
+      "number": 13898,
+      "title": "retry: Ensure that Retry exceptions don't trigger an error in logfire"
+    },
+    {
+      "number": 14031,
+      "title": "Reapply \"sqs: Re-enqueue instead of retry\""
+    },
+    {
+      "number": 13952,
+      "title": "sqs: Re-enqueue instead of retry"
+    },
+    {
+      "number": 16483,
+      "title": "aws/inspector: Ensure that we don't repost for the same CVE"
+    },
+    {
+      "number": 14019,
+      "title": "Revert \"sqs: Re-enqueue instead of retry\""
+    },
+    {
+      "number": 16187,
+      "title": "fix(tax): allow payment completion for unsupported backfill countries"
+    },
+    {
+      "number": 16595,
+      "title": "scheduler: Implement postgres JobStore"
+    },
+    {
+      "number": 16332,
+      "title": "outpost: pull Polar's changes instead of holding a WebSocket"
+    },
+    {
+      "number": 16670,
+      "title": "ci: Make deploys less brittle"
+    },
+    {
+      "number": 15959,
+      "title": "Fix generated seed event UUIDs to use UUID4"
+    },
+    {
+      "number": 16454,
+      "title": "tf/aws: Set up Inspector to scan EC2, Lambda, ECR"
+    },
+    {
+      "number": 14035,
+      "title": "fix(backoffice): hide Stripe Retry Payout button for manual payouts"
+    },
+    {
+      "number": 16535,
+      "title": "server/oauth2: drain the full stale OAuth client backlog in each cleanup run"
+    },
+    {
+      "number": 16223,
+      "title": "normalize discount product list"
+    },
+    {
+      "number": 13855,
+      "title": "aws/lambda: Increase max retries for webhook lambda"
+    },
+    {
+      "number": 15147,
+      "title": "feat(backoffice): show order dunning details and payment triggers"
+    },
+    {
+      "number": 16120,
+      "title": "refund: Ensure that transaction id gets stored on refund tx"
+    },
+    {
+      "number": 15623,
+      "title": "Send deploy timings to PostHog"
+    },
+    {
+      "number": 14205,
+      "title": "fix(sdk): dispatch 429 to per-endpoint error class when Retry-After is absent"
+    },
+    {
+      "number": 16623,
+      "title": "scheduler: Implement postgres JobStore"
+    },
+    {
+      "number": 15923,
+      "title": "feat(merchant-migration): delete the Stripe key when a migration completes"
+    },
+    {
+      "number": 16429,
+      "title": "feat(meter): enforce meters.is_current NOT NULL"
+    },
+    {
+      "number": 16210,
+      "title": "Refactor payment success handling into separate tasks"
+    },
+    {
+      "number": 13675,
+      "title": "slack-benefit: Handle transient errors with a retry"
+    },
+    {
+      "number": 16309,
+      "title": "Fix AttributeError formatting non-approved review verdict"
+    },
+    {
+      "number": 13853,
+      "title": "lambda: Prevent Retry exception from being reported as an error"
+    },
+    {
+      "number": 16121,
+      "title": "reducer: Include deleted customers in buckets to sync"
+    },
+    {
+      "number": 16654,
+      "title": "Fix benefit grants for orders without purchased seats"
+    },
+    {
+      "number": 15767,
+      "title": "metering: confirm events in Outpost on the buffer's ack"
+    },
+    {
+      "number": 16596,
+      "title": "server/billing_entry: charge metered usage from the reducers on reducer billing"
+    },
+    {
+      "number": 15738,
+      "title": "feat(catalog): subscription bulk update service and worker"
+    },
+    {
+      "number": 14876,
+      "title": "fix(order): follow the dunning schedule when no charge was attempted"
+    },
+    {
+      "number": 13714,
+      "title": "fix(polar-self): retry Plain tenant unlink on remove_member"
+    },
+    {
+      "number": 15739,
+      "title": "feat(catalog): add catalog and subscription bulk update endpoints + regenerate client"
+    },
+    {
+      "number": 14878,
+      "title": "refactor(merchant-migrations): import products and customers on the worker"
+    },
+    {
+      "number": 16297,
+      "title": "product-name: Add a timeout to AI gw"
+    },
+    {
+      "number": 15565,
+      "title": "ci: Add deploy notifications to slack"
+    },
+    {
+      "number": 15429,
+      "title": "reducer_bucket: add synced_at, backfilled for closed buckets"
+    },
+    {
+      "number": 15527,
+      "title": "sdk/outpost: unify redis reconnects"
+    },
+    {
+      "number": 15707,
+      "title": "docs: document manual meter credits"
+    }
+  ],
+  "error": null
+}
+]

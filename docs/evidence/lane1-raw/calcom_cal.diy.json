@@ -1,0 +1,1873 @@
+[
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "idempotency",
+  "command": "gh search prs \"idempotency\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:00Z",
+  "results": [
+    {
+      "number": 18370,
+      "title": "perf: Move CRM event creation to tasker"
+    },
+    {
+      "number": 27556,
+      "title": "chore: use trigger.dev task to ensure default calendars"
+    },
+    {
+      "number": 17385,
+      "title": "chore: ensure idempotency cancel booking api v2"
+    },
+    {
+      "number": 16414,
+      "title": "fix: recurring booking idempotency key after cancel"
+    },
+    {
+      "number": 17407,
+      "title": "chore: ensure idempotency cancel booking api v2 (revert)"
+    },
+    {
+      "number": 27058,
+      "title": "chore: ensure default calendars with trigger.dev apiv2"
+    },
+    {
+      "number": 27001,
+      "title": "feat: add seat tracking infrastructure for monthly proration"
+    },
+    {
+      "number": 26823,
+      "title": "fix: address proration implementation flaws"
+    },
+    {
+      "number": 27190,
+      "title": "refactor: platform billing jobs tasks constants"
+    },
+    {
+      "number": 26876,
+      "title": "feat: seed admin API key for local development"
+    },
+    {
+      "number": 24802,
+      "title": "refactor: decouple @calcom/prisma from @calcom/features, @calcom/ee, and @calcom/lib"
+    },
+    {
+      "number": 27247,
+      "title": "feat: add tasker integration for proration email notifications"
+    },
+    {
+      "number": 22065,
+      "title": "fix: Generate new idempotency key when round robin reassigning"
+    },
+    {
+      "number": 24809,
+      "title": "feat: managed event reassignment"
+    },
+    {
+      "number": 21681,
+      "title": "refactor: Do not consider event type id in idempotency key"
+    },
+    {
+      "number": 24368,
+      "title": "fix: cal ai webhook "
+    },
+    {
+      "number": 27445,
+      "title": "feat: add Cal.com APIv2 skills for AI agents"
+    },
+    {
+      "number": 19997,
+      "title": "feat: Custom Fields OR Add-Ons with a fee associated"
+    },
+    {
+      "number": 21092,
+      "title": "fix: Read user id properly when generating idempotency key"
+    },
+    {
+      "number": 21058,
+      "title": "refactor: Replace attendee email with user id in idempotency key"
+    },
+    {
+      "number": 24364,
+      "title": "chore: update api v2 reference docs "
+    },
+    {
+      "number": 23854,
+      "title": "fix: phone number cancel billing"
+    },
+    {
+      "number": 22995,
+      "title": "feat: Cal.ai Self Serve #2 "
+    },
+    {
+      "number": 23788,
+      "title": "feat: support web calls in webhook"
+    },
+    {
+      "number": 23432,
+      "title": "fix: skip Select Account step if only one account is available"
+    },
+    {
+      "number": 22704,
+      "title": "feat: (PBAC) Add db seed "
+    },
+    {
+      "number": 23013,
+      "title": "revert:  \"fix: remove fallback permssions on organization Id. (#22769)\""
+    },
+    {
+      "number": 23851,
+      "title": "fix: phone number billing bug"
+    },
+    {
+      "number": 23595,
+      "title": "feat: add time-based cancellation fees for no-show fee events"
+    },
+    {
+      "number": 24381,
+      "title": "chore: organization onboarding refactor"
+    },
+    {
+      "number": 23908,
+      "title": "feat: Billing page redesign plus credits"
+    },
+    {
+      "number": 23541,
+      "title": "chore: [Booking flow refactor - DI Cleanup - 1] Make ioctopus flow more type-safe and runtime-safe"
+    },
+    {
+      "number": 23876,
+      "title": "feat: Calendar Cache"
+    },
+    {
+      "number": 23156,
+      "title": "chore: [Booking flow refactor - 2] Integrate Booking services"
+    },
+    {
+      "number": 23277,
+      "title": "feat: [Booking flow refactor - 0] Add  RegularBookingService, RecurringBookingService and InstantBookingCreateService[Skeleton-No Integration]"
+    },
+    {
+      "number": 13865,
+      "title": "fix: Prevent duplicate bookings with idempotency key"
+    },
+    {
+      "number": 14461,
+      "title": "feat: booking with phone number"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "idempotent",
+  "command": "gh search prs \"idempotent\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:04Z",
+  "results": [
+    {
+      "number": 28573,
+      "title": "fix: remove shared pbac feature flag deletion from e2e test cleanup"
+    },
+    {
+      "number": 22434,
+      "title": "fix: prevent CalDAV duplicate invitations with RFC-compliant SCHEDULE-AGENT"
+    },
+    {
+      "number": 27832,
+      "title": "feat: add per-host locations seed data in Acme Org for QA"
+    },
+    {
+      "number": 27058,
+      "title": "chore: ensure default calendars with trigger.dev apiv2"
+    },
+    {
+      "number": 27699,
+      "title": "feat: add comprehensive booking audit logs seed script"
+    },
+    {
+      "number": 25832,
+      "title": "fix: one integration test flake"
+    },
+    {
+      "number": 26876,
+      "title": "feat: seed admin API key for local development"
+    },
+    {
+      "number": 26893,
+      "title": "fix: Add IF NOT EXISTS to field mapping and attribute migration"
+    },
+    {
+      "number": 18990,
+      "title": "feat: Organization onboarding improvement - Payment before creation of org but onboarding doesn't require payment"
+    },
+    {
+      "number": 24487,
+      "title": "fix: add Admin permissions for blocklist"
+    },
+    {
+      "number": 24402,
+      "title": "feat: api v2 pbac support"
+    },
+    {
+      "number": 23686,
+      "title": "feat: add `customReplyToEmail` for EventTypeSettings atom"
+    },
+    {
+      "number": 22985,
+      "title": "feat: add conditional todesktop class to html element"
+    },
+    {
+      "number": 24038,
+      "title": "chore: [Booking Cancellation Refactor - 0] - Add skeleton for BookingCancelService"
+    },
+    {
+      "number": 23186,
+      "title": "fix: get organization bookings bookingUid parameter"
+    },
+    {
+      "number": 22102,
+      "title": "feat: Self hosted onboarding"
+    },
+    {
+      "number": 24428,
+      "title": "feat: admin feature flags v3 + assign/unassign"
+    },
+    {
+      "number": 24475,
+      "title": "fix: Ensure 500 error pages are visible in embed"
+    },
+    {
+      "number": 24191,
+      "title": "fix: 405 method not allowed error for queuedFormResponseCleanup"
+    },
+    {
+      "number": 23063,
+      "title": "fix: managed orgs get bookings"
+    },
+    {
+      "number": 23432,
+      "title": "fix: skip Select Account step if only one account is available"
+    },
+    {
+      "number": 22395,
+      "title": "perf: Tasker performance improvements"
+    },
+    {
+      "number": 24081,
+      "title": "feat: add availability and ooo permissions to PBAC registry"
+    },
+    {
+      "number": 23851,
+      "title": "fix: phone number billing bug"
+    },
+    {
+      "number": 23330,
+      "title": "fix: auto-open filter dropdown after adding a new filter"
+    },
+    {
+      "number": 24304,
+      "title": "fix: create missing migration for dropping obsolete indexes"
+    },
+    {
+      "number": 23709,
+      "title": "feat: pbac org billing "
+    },
+    {
+      "number": 23521,
+      "title": "fix: Handle personal billing portal on backend"
+    },
+    {
+      "number": 22518,
+      "title": "fix: routing form response denormalized triggers"
+    },
+    {
+      "number": 21420,
+      "title": "fix: add migration to backfill BookingDenormalized"
+    },
+    {
+      "number": 23166,
+      "title": "fix: add new backfill script for RoutingFormResponseDenormalized"
+    },
+    {
+      "number": 26613,
+      "title": "feat: companion alert system for browser extension"
+    },
+    {
+      "number": 23740,
+      "title": "chore: [Booking Refactor - Preparation - 0]Move modules required by RegularBookingService to moduleLoader format"
+    },
+    {
+      "number": 23840,
+      "title": "feat: calendar view atom `v1`"
+    },
+    {
+      "number": 23156,
+      "title": "chore: [Booking flow refactor - 2] Integrate Booking services"
+    },
+    {
+      "number": 23048,
+      "title": "feat: org/team event type private links endpoints"
+    },
+    {
+      "number": 25077,
+      "title": "feat: system admin blocklist backend"
+    },
+    {
+      "number": 23096,
+      "title": "fix: redirect to existing payment session on paid booking retry"
+    },
+    {
+      "number": 23285,
+      "title": "feat: implement tiered Intercom chat system replacing Plain"
+    },
+    {
+      "number": 22704,
+      "title": "feat: (PBAC) Add db seed "
+    },
+    {
+      "number": 23004,
+      "title": "feat: PBAC on team members page + org members page to use specific permissi…"
+    },
+    {
+      "number": 22995,
+      "title": "feat: Cal.ai Self Serve #2 "
+    },
+    {
+      "number": 23541,
+      "title": "chore: [Booking flow refactor - DI Cleanup - 1] Make ioctopus flow more type-safe and runtime-safe"
+    },
+    {
+      "number": 23595,
+      "title": "feat: add time-based cancellation fees for no-show fee events"
+    },
+    {
+      "number": 23536,
+      "title": "refactor: Migrate trpc routers in App store package to Trpc package"
+    },
+    {
+      "number": 23614,
+      "title": "feat: add Webhook resource to PBAC system with permission enforcement"
+    },
+    {
+      "number": 23876,
+      "title": "feat: Calendar Cache"
+    },
+    {
+      "number": 23890,
+      "title": "feat: inbound calls in cal ai"
+    },
+    {
+      "number": 24381,
+      "title": "chore: organization onboarding refactor"
+    },
+    {
+      "number": 15103,
+      "title": "fix: visiting organization without access shows empty page"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "duplicate",
+  "command": "gh search prs \"duplicate\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:08Z",
+  "results": [
+    {
+      "number": 30409,
+      "title": "fix: remove duplicated words in error messages and docs"
+    },
+    {
+      "number": 30190,
+      "title": "fix: remove duplicated words in three user-visible strings"
+    },
+    {
+      "number": 24233,
+      "title": "fix: Description field duplicating content when editing Event Types"
+    },
+    {
+      "number": 18370,
+      "title": "perf: Move CRM event creation to tasker"
+    },
+    {
+      "number": 29529,
+      "title": "fix: remove console.log data leaks and improve type safety in tRPC routers"
+    },
+    {
+      "number": 18284,
+      "title": "feat: Plain chat"
+    },
+    {
+      "number": 29571,
+      "title": "fix: pad username suggestion suffixes to a consistent width"
+    },
+    {
+      "number": 28409,
+      "title": "chore: remove duplicate translation key"
+    },
+    {
+      "number": 29558,
+      "title": "refactor: app category metadata to use Record<AppCategories, AppCategoryEntry> for exhaustive type safety"
+    },
+    {
+      "number": 29648,
+      "title": "fix(ui): render markdown headings properly in event descriptions"
+    },
+    {
+      "number": 29017,
+      "title": "cleanup(test): remove team bookings handler integration coverage"
+    },
+    {
+      "number": 29708,
+      "title": "fix(emails): send METHOD:CANCEL in ICS for cancelled bookings"
+    },
+    {
+      "number": 26792,
+      "title": "feat: add duplicate functionality for managed event types"
+    },
+    {
+      "number": 27769,
+      "title": "fix: remove duplicate translation keys in common.json"
+    },
+    {
+      "number": 27803,
+      "title": "fix: remove duplicate \"Name\" label on team creation page"
+    },
+    {
+      "number": 23118,
+      "title": "fix: hide duplicate phone field when attendee phone location selected"
+    },
+    {
+      "number": 22434,
+      "title": "fix: prevent CalDAV duplicate invitations with RFC-compliant SCHEDULE-AGENT"
+    },
+    {
+      "number": 27973,
+      "title": "refactor: replace PrismaMock unit test with Prisma integration test for duplicate handler"
+    },
+    {
+      "number": 21197,
+      "title": "feat: BTCPay Server App"
+    },
+    {
+      "number": 26858,
+      "title": "fix: Duplicate calls syncing Calendar integrations"
+    },
+    {
+      "number": 22532,
+      "title": "feat: add calendar cache status and actions"
+    },
+    {
+      "number": 27487,
+      "title": "fix: skip duplicate CRM lookup when router already performed it"
+    },
+    {
+      "number": 27177,
+      "title": "docs: fix duplicated 'or' in Cal OAuth Provider documentation"
+    },
+    {
+      "number": 27400,
+      "title": "chore: remove unused env vars and duplicates from turbo.json globalEnv"
+    },
+    {
+      "number": 25779,
+      "title": "refactor: remove duplicate code for buildBaseWhereCondition"
+    },
+    {
+      "number": 21165,
+      "title": "test: add test for duplicate bookings"
+    },
+    {
+      "number": 14520,
+      "title": "chore: Delete duplicate apps/platform directory"
+    },
+    {
+      "number": 24869,
+      "title": "refactor: Unify OrganizationRepository and remove duplicate PrismaOrganizationRepository"
+    },
+    {
+      "number": 25472,
+      "title": "refactor: hide duplicate translations warning"
+    },
+    {
+      "number": 26349,
+      "title": "fix: use stable test dates in duplicate API calls E2E tests"
+    },
+    {
+      "number": 14740,
+      "title": "feat: ability to add guests via app.cal.com/bookings"
+    },
+    {
+      "number": 26068,
+      "title": "chore: dedupe yarn.lock to remove duplicate package versions"
+    },
+    {
+      "number": 21975,
+      "title": "chore: fix key duplication in common.json"
+    },
+    {
+      "number": 28239,
+      "title": "fix: strip avatar and profile from children payload in managed event type updates"
+    },
+    {
+      "number": 28047,
+      "title": "refactor: move skills/calcom-api/ to agents/skills/ and declare credentials"
+    },
+    {
+      "number": 19693,
+      "title": "fix: duplicate value found in common.json error"
+    },
+    {
+      "number": 27427,
+      "title": "refactor: consolidate agent config into agents directory"
+    },
+    {
+      "number": 27629,
+      "title": "feat: show routing trace dialog on assignment reason badge click"
+    },
+    {
+      "number": 17214,
+      "title": "refactor: v2 response in case of duplicate managed user"
+    },
+    {
+      "number": 28875,
+      "title": "refactor: narrow user fields returned by dynamic event endpoint"
+    },
+    {
+      "number": 28575,
+      "title": "fix: resolve flaky team-management E2E test"
+    },
+    {
+      "number": 27405,
+      "title": "feat: Write wrong assignment reports to the database"
+    },
+    {
+      "number": 27132,
+      "title": "feat: add platform URL support for reschedule and cancel links in workflow emails"
+    },
+    {
+      "number": 26363,
+      "title": "feat: add integration options for API v2 update booking location endpoint"
+    },
+    {
+      "number": 25811,
+      "title": "docs: link embed events to help center to avoid duplicate maintenance"
+    },
+    {
+      "number": 27931,
+      "title": "fix: inline package.json descriptions in app-store _metadata.ts to fix Vitest RPC errors"
+    },
+    {
+      "number": 27903,
+      "title": "fix: Trimmed License Section in README"
+    },
+    {
+      "number": 22021,
+      "title": "fix: handle existing oAuth client ID in user email to prevent duplication"
+    },
+    {
+      "number": 27704,
+      "title": "feat: move platform active billing logic to services "
+    },
+    {
+      "number": 28323,
+      "title": "fix: remove TeamsCTA from teams loading skeleton"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "race",
+  "command": "gh search prs \"race\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:12Z",
+  "results": [
+    {
+      "number": 8087,
+      "title": "Async import of the appStore packages"
+    },
+    {
+      "number": 10600,
+      "title": "feat: 2fa backup codes"
+    },
+    {
+      "number": 28341,
+      "title": "fix: wait for networkidle in locale e2e tests to avoid hydration race condition"
+    },
+    {
+      "number": 28682,
+      "title": "fix: resolve flaky 'Book on column layout' E2E test"
+    },
+    {
+      "number": 26698,
+      "title": "fix: remove proactive cache deletion to prevent race condition"
+    },
+    {
+      "number": 28630,
+      "title": "fix: mock @calcom/lib/i18n in EventManager.test.ts to prevent vitest worker shutdown flake"
+    },
+    {
+      "number": 28589,
+      "title": "fix: resolve flaky API v2 slots-2024-04-15 E2E tests"
+    },
+    {
+      "number": 28587,
+      "title": "fix: scope cleanup query in managedEventReassignment test to prevent cross-file interference"
+    },
+    {
+      "number": 25704,
+      "title": "fix: troubleshooter team events + improve race condition "
+    },
+    {
+      "number": 28575,
+      "title": "fix: resolve flaky team-management E2E test"
+    },
+    {
+      "number": 26171,
+      "title": "refactor: Add dedicated setup-db job to eliminate cache race condition"
+    },
+    {
+      "number": 28329,
+      "title": "fix: replace fragile CSS selector with data-testid in locale E2E tests"
+    },
+    {
+      "number": 27923,
+      "title": "fix: resolve signup watchlist review issues and auto-unlock on SIGNUP entry removal"
+    },
+    {
+      "number": 26866,
+      "title": "fix: properly await async operations in addMembersToTeams"
+    },
+    {
+      "number": 27161,
+      "title": "chore: pin tar to 7.5.4"
+    },
+    {
+      "number": 26934,
+      "title": "fix: flaky E2E tests"
+    },
+    {
+      "number": 11059,
+      "title": "feat: Sync app credentials between Cal.com & self-hosted platforms"
+    },
+    {
+      "number": 26795,
+      "title": "fix: oauth flow for safari extension (companion)"
+    },
+    {
+      "number": 26386,
+      "title": "test: flaky e2e tests"
+    },
+    {
+      "number": 26258,
+      "title": "fix: resolve flaky E2E tests in embed, team-invitation, and filter-segment"
+    },
+    {
+      "number": 26247,
+      "title": "chore: migrate GitHub workflows from Buildjet to Blacksmith"
+    },
+    {
+      "number": 26374,
+      "title": "fix: address flaky E2E tests"
+    },
+    {
+      "number": 27258,
+      "title": "feat: add forcedSlowMode rate limit to Team and Organization DELETE endpoints"
+    },
+    {
+      "number": 27389,
+      "title": "feat: TOUTOC in handleSeats"
+    },
+    {
+      "number": 27912,
+      "title": "feat: add signup watchlist review mode"
+    },
+    {
+      "number": 26823,
+      "title": "fix: address proration implementation flaws"
+    },
+    {
+      "number": 27405,
+      "title": "feat: Write wrong assignment reports to the database"
+    },
+    {
+      "number": 27208,
+      "title": "feat: add filter segment validation with useActiveFiltersValidator hook and refactor DataTableProvider"
+    },
+    {
+      "number": 26707,
+      "title": "fix: improve BookingReferenceRepository integration test isolation"
+    },
+    {
+      "number": 24124,
+      "title": "feat: Calendar Sync"
+    },
+    {
+      "number": 25030,
+      "title": "fix: resolve flaky integration tests"
+    },
+    {
+      "number": 26473,
+      "title": "test: improve flaky E2E tests "
+    },
+    {
+      "number": 27107,
+      "title": "feat: Add download CSV button on bookings page"
+    },
+    {
+      "number": 26353,
+      "title": "fix: add timeout: 0 to E2E assertions that check for absence of elements"
+    },
+    {
+      "number": 26293,
+      "title": "fix: add security gate for external contributor PRs"
+    },
+    {
+      "number": 26307,
+      "title": "feat(companion): booking actions ios ui update "
+    },
+    {
+      "number": 26308,
+      "title": "test: flaky e2e tests"
+    },
+    {
+      "number": 26636,
+      "title": "feat: implement git checkout caching to speed up CI workflows"
+    },
+    {
+      "number": 25653,
+      "title": "perf: handleChildrenEventType link old event-type with workflows using create/findMany"
+    },
+    {
+      "number": 24326,
+      "title": "feat: Add async spam check and decoy booking response"
+    },
+    {
+      "number": 27191,
+      "title": "feat: removes account dropdown from oauth consent screen"
+    },
+    {
+      "number": 26662,
+      "title": "fix(ui): prevent page scroll when link button clicked in toolbar"
+    },
+    {
+      "number": 24794,
+      "title": "feat: booking report table  backend"
+    },
+    {
+      "number": 24490,
+      "title": "test: fixed flaky e2e tests"
+    },
+    {
+      "number": 25077,
+      "title": "feat: system admin blocklist backend"
+    },
+    {
+      "number": 20607,
+      "title": "feat: routing v3 design"
+    },
+    {
+      "number": 23766,
+      "title": "feat: redirect authenticated users from signup page"
+    },
+    {
+      "number": 22533,
+      "title": "feat: add race condition test with dynamic date selection"
+    },
+    {
+      "number": 26624,
+      "title": "feat: add Devin PR conflict resolver workflow"
+    },
+    {
+      "number": 25196,
+      "title": "docs: Add Cal.com API V1 to V2 Migration Guide"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "out of order",
+  "command": "gh search prs \"out of order\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:15Z",
+  "results": [
+    {
+      "number": 27237,
+      "title": "feat: rename Automation category to AI & Automation"
+    },
+    {
+      "number": 24332,
+      "title": "perf: (googlecalendar): batch freebusy calls by delegation credential"
+    },
+    {
+      "number": 26387,
+      "title": "feat: add Cloudflare URL Scanner for malicious URL detection"
+    },
+    {
+      "number": 17864,
+      "title": "feat: ooo calibration"
+    },
+    {
+      "number": 12122,
+      "title": "feat: Add consistent iCalUID"
+    },
+    {
+      "number": 3542,
+      "title": "Fixes unique constraint error of batchId when scheduling emails"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "webhook",
+  "command": "gh search prs \"webhook\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:19Z",
+  "results": [
+    {
+      "number": 10654,
+      "title": "feat: send new booking uid on reschedule webhook"
+    },
+    {
+      "number": 21197,
+      "title": "feat: BTCPay Server App"
+    },
+    {
+      "number": 28756,
+      "title": "fix(docs): correct self-hosting troubleshooting guide based on codebase verification"
+    },
+    {
+      "number": 15706,
+      "title": "feat: Multiple Options Paste and Routing Form improvements related to Select fields"
+    },
+    {
+      "number": 13912,
+      "title": "fix: Redirect URL with query params"
+    },
+    {
+      "number": 15762,
+      "title": "fix: added translations for et"
+    },
+    {
+      "number": 11465,
+      "title": "feat: OAuth provider for Zapier"
+    },
+    {
+      "number": 13196,
+      "title": "chore: [app-router-migration 31] migrate the \"/auth/setup\" page"
+    },
+    {
+      "number": 11059,
+      "title": "feat: Sync app credentials between Cal.com & self-hosted platforms"
+    },
+    {
+      "number": 29541,
+      "title": "fix(daily-webhook): use BookingRepository instead of direct prisma call"
+    },
+    {
+      "number": 22532,
+      "title": "feat: add calendar cache status and actions"
+    },
+    {
+      "number": 10967,
+      "title": "fix: handle collective multiple host on destinationCalendar"
+    },
+    {
+      "number": 8087,
+      "title": "Async import of the appStore packages"
+    },
+    {
+      "number": 29022,
+      "title": "cleanup(webhooks): remove instant meeting trigger support"
+    },
+    {
+      "number": 29529,
+      "title": "fix: remove console.log data leaks and improve type safety in tRPC routers"
+    },
+    {
+      "number": 28958,
+      "title": "fix: use strict equality in webhook delete handler role check"
+    },
+    {
+      "number": 28769,
+      "title": "fix: align webhook edit page with PBAC middleware"
+    },
+    {
+      "number": 28951,
+      "title": "fix: i18n for hardcoded \"Please reschedule.\" prefix in webhook cancellation payload"
+    },
+    {
+      "number": 28701,
+      "title": "fix: unify webhook ID resolution across handlers"
+    },
+    {
+      "number": 29970,
+      "title": "fix(i18n): add missing Japanese translations"
+    },
+    {
+      "number": 7232,
+      "title": "Fixes that workflow reminders of cancelled and rescheduled bookings are still sent"
+    },
+    {
+      "number": 28622,
+      "title": "fix: block localhost and loopback addresses in SSRF protection"
+    },
+    {
+      "number": 27714,
+      "title": "refactor: migrate webhooks page to coss/ui components"
+    },
+    {
+      "number": 27546,
+      "title": "chore: migrate booking requested webhook trigger"
+    },
+    {
+      "number": 28288,
+      "title": "fix: correct webhook triggers OpenAPI type from string to array"
+    },
+    {
+      "number": 14740,
+      "title": "feat: ability to add guests via app.cal.com/bookings"
+    },
+    {
+      "number": 28888,
+      "title": "docs: improve self-hosting contents"
+    },
+    {
+      "number": 27891,
+      "title": "fix: revert assignmentReason breaking change in webhook payloads"
+    },
+    {
+      "number": 27159,
+      "title": "chore: Webhook Scaffolding cleanup"
+    },
+    {
+      "number": 27588,
+      "title": "feat: add webhook trigger when routing form fallback route is hit"
+    },
+    {
+      "number": 26233,
+      "title": "fix: gap at webhook form actions"
+    },
+    {
+      "number": 26593,
+      "title": "fix: add URL validation to webhook endpoints"
+    },
+    {
+      "number": 27203,
+      "title": "refactor: evt calendar event builder"
+    },
+    {
+      "number": 27378,
+      "title": "feat: implement webhook tasker with async/sync fallback"
+    },
+    {
+      "number": 27291,
+      "title": "feat: apply Frame component to webhooks settings page"
+    },
+    {
+      "number": 26305,
+      "title": "feat: add delete confirmation dialog to webhook list items"
+    },
+    {
+      "number": 27612,
+      "title": "fix: API v2 `@GetWebhook()` decorator doesn't generate OpenAPI path"
+    },
+    {
+      "number": 27384,
+      "title": "fix: parse raw body Buffer in Vercel webhook controller"
+    },
+    {
+      "number": 28047,
+      "title": "refactor: move skills/calcom-api/ to agents/skills/ and declare credentials"
+    },
+    {
+      "number": 26495,
+      "title": "perf: improve cal video webhook"
+    },
+    {
+      "number": 27162,
+      "title": "fix: Improve wrong assignment report"
+    },
+    {
+      "number": 27300,
+      "title": "fix: ensure metadata key is always present in BOOKING_CREATED webhook payload"
+    },
+    {
+      "number": 28176,
+      "title": "feat(bookings): add booking audit logging to instant bookings"
+    },
+    {
+      "number": 27340,
+      "title": "feat: add webhook endpoint for Vercel deployment promoted event to promote trigger.dev"
+    },
+    {
+      "number": 26623,
+      "title": "chore: Add logging `eventId` from Stripe webhook"
+    },
+    {
+      "number": 26546,
+      "title": "feat: make impersonatedByUserUuid required across booking audit flows"
+    },
+    {
+      "number": 28143,
+      "title": "refactor: improve invoice.upcoming logging and add strategyName to billing strategies"
+    },
+    {
+      "number": 27116,
+      "title": "fix: Matched styling of Webhooks just like api keys page."
+    },
+    {
+      "number": 27170,
+      "title": "chore: Add initial webhook wiring (TRPC handlers) to the new architecture"
+    },
+    {
+      "number": 27908,
+      "title": "fix: localize remaining hardcoded strings in PayPal setup"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "concurrent",
+  "command": "gh search prs \"concurrent\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:23Z",
+  "results": [
+    {
+      "number": 30445,
+      "title": "chore(atoms): stop publishing @calcom/atoms from cal.diy"
+    },
+    {
+      "number": 30096,
+      "title": "fix(trpc): execute tempOrgRedirect rewrite on tx inside updateUser transaction"
+    },
+    {
+      "number": 10600,
+      "title": "feat: 2fa backup codes"
+    },
+    {
+      "number": 27529,
+      "title": "feat: enable @lingodotdev concurrency"
+    },
+    {
+      "number": 8087,
+      "title": "Async import of the appStore packages"
+    },
+    {
+      "number": 14943,
+      "title": "fix: add retryCount to workflowReminder"
+    },
+    {
+      "number": 22345,
+      "title": "feat: convert InsightsBookingService to use Prisma.sql raw queries"
+    },
+    {
+      "number": 28573,
+      "title": "fix: remove shared pbac feature flag deletion from e2e test cleanup"
+    },
+    {
+      "number": 27389,
+      "title": "feat: TOUTOC in handleSeats"
+    },
+    {
+      "number": 28587,
+      "title": "fix: scope cleanup query in managedEventReassignment test to prevent cross-file interference"
+    },
+    {
+      "number": 19812,
+      "title": "feat: Implements Greetmate.ai app into Cal.com"
+    },
+    {
+      "number": 27712,
+      "title": "docs: add Trigger.dev task implementation rule"
+    },
+    {
+      "number": 27357,
+      "title": "fix: add composite index on SecondaryEmail for email verification queries"
+    },
+    {
+      "number": 27315,
+      "title": "perf: add composite indexes for booking queries at scale"
+    },
+    {
+      "number": 27099,
+      "title": "perf: add composite index on EventType(parentId, teamId)"
+    },
+    {
+      "number": 26698,
+      "title": "fix: remove proactive cache deletion to prevent race condition"
+    },
+    {
+      "number": 26781,
+      "title": "fix: optimize routing form mutation to avoid costly name update triggers"
+    },
+    {
+      "number": 27264,
+      "title": "fix: Salesforce tokens add `token_lifetime`"
+    },
+    {
+      "number": 11059,
+      "title": "feat: Sync app credentials between Cal.com & self-hosted platforms"
+    },
+    {
+      "number": 26374,
+      "title": "fix: address flaky E2E tests"
+    },
+    {
+      "number": 27405,
+      "title": "feat: Write wrong assignment reports to the database"
+    },
+    {
+      "number": 26396,
+      "title": "fix: show empty screen from event type availability tab"
+    },
+    {
+      "number": 21479,
+      "title": "perf: Implement worker threads for getAvailableSlots to prevent CPU blocking"
+    },
+    {
+      "number": 26293,
+      "title": "fix: add security gate for external contributor PRs"
+    },
+    {
+      "number": 26310,
+      "title": "test: flaky unit test"
+    },
+    {
+      "number": 26866,
+      "title": "fix: properly await async operations in addMembersToTeams"
+    },
+    {
+      "number": 27912,
+      "title": "feat: add signup watchlist review mode"
+    },
+    {
+      "number": 26870,
+      "title": "feat: monthly-proration-tasker"
+    },
+    {
+      "number": 28753,
+      "title": "chore(member-invite): early return for pending mutations while copying invite link"
+    },
+    {
+      "number": 25653,
+      "title": "perf: handleChildrenEventType link old event-type with workflows using create/findMany"
+    },
+    {
+      "number": 27378,
+      "title": "feat: implement webhook tasker with async/sync fallback"
+    },
+    {
+      "number": 25067,
+      "title": "feat: add Move Team to Organization admin migration page"
+    },
+    {
+      "number": 25944,
+      "title": "fix: update transaction timeout for large managed event-types"
+    },
+    {
+      "number": 26490,
+      "title": "fix(companion): optimize iOS bookings and migrate booking actions to React Query"
+    },
+    {
+      "number": 24084,
+      "title": "chore: when performing read operations we should use Promise.all"
+    },
+    {
+      "number": 26095,
+      "title": "fix: lock package versions and organize devDependencies"
+    },
+    {
+      "number": 23429,
+      "title": "fix: Allow install on teams for concurrent meeting apps"
+    },
+    {
+      "number": 21452,
+      "title": "feat: Schedule restriction and booker timezone"
+    },
+    {
+      "number": 21299,
+      "title": "feat: automated changelogs and releases by changesets"
+    },
+    {
+      "number": 20032,
+      "title": "chore: remove campsite from app store"
+    },
+    {
+      "number": 23281,
+      "title": "refactor: run atoms e2e when e2e label added"
+    },
+    {
+      "number": 24304,
+      "title": "fix: create missing migration for dropping obsolete indexes"
+    },
+    {
+      "number": 26424,
+      "title": "feat(companion): new availability detail and actions pages for ios"
+    },
+    {
+      "number": 23222,
+      "title": "fix: api v2 logic for slots reservation endpoint"
+    },
+    {
+      "number": 24794,
+      "title": "feat: booking report table  backend"
+    },
+    {
+      "number": 22926,
+      "title": "feat: atoms e2e tests"
+    },
+    {
+      "number": 26217,
+      "title": "fix: handle existing users on invite token flow"
+    },
+    {
+      "number": 28156,
+      "title": "perf: add paginated host endpoints and repository methods for large teams"
+    },
+    {
+      "number": 27208,
+      "title": "feat: add filter segment validation with useActiveFiltersValidator hook and refactor DataTableProvider"
+    },
+    {
+      "number": 23578,
+      "title": "refactor: handle emails and sms side effects"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "stale",
+  "command": "gh search prs \"stale\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:27Z",
+  "results": [
+    {
+      "number": 30140,
+      "title": "chore: remove stale @ts-expect-error from CacheProvider usage"
+    },
+    {
+      "number": 30328,
+      "title": "fix(availability): don't offer round-robin slots when a fixed host has no free time"
+    },
+    {
+      "number": 30354,
+      "title": "feat: overlay calendar v2 and troubleshooter v2"
+    },
+    {
+      "number": 30478,
+      "title": "chore: remove unused support chat env vars from .env.example"
+    },
+    {
+      "number": 30171,
+      "title": "fix: restore @ts-expect-error for CacheProvider type mismatch"
+    },
+    {
+      "number": 10654,
+      "title": "feat: send new booking uid on reschedule webhook"
+    },
+    {
+      "number": 21506,
+      "title": "fix(signup): add missing key prop to feature list (#21437)"
+    },
+    {
+      "number": 19051,
+      "title": "test: Add tests for Booker component"
+    },
+    {
+      "number": 30359,
+      "title": "fix(security): bind redis and prisma studio ports to loopback in docker compose"
+    },
+    {
+      "number": 29984,
+      "title": "fix(paypal): don't scale zero-decimal currency amounts on order creation"
+    },
+    {
+      "number": 13912,
+      "title": "fix: Redirect URL with query params"
+    },
+    {
+      "number": 30135,
+      "title": "fix(embed-core): guard iframe ready handler"
+    },
+    {
+      "number": 30198,
+      "title": "fix(ci): restore release parsing and resolve critical audit failures"
+    },
+    {
+      "number": 30039,
+      "title": "fix(hitpay): respect zero-decimal currencies when charging and storing"
+    },
+    {
+      "number": 21197,
+      "title": "feat: BTCPay Server App"
+    },
+    {
+      "number": 22532,
+      "title": "feat: add calendar cache status and actions"
+    },
+    {
+      "number": 30416,
+      "title": "chore: upgrade Node.js from 20 to 22"
+    },
+    {
+      "number": 29282,
+      "title": "fix: persist requiresCancellationReason selection"
+    },
+    {
+      "number": 29773,
+      "title": "fix(i18n): add missing space before Hebrew duration abbreviation"
+    },
+    {
+      "number": 10600,
+      "title": "feat: 2fa backup codes"
+    },
+    {
+      "number": 29593,
+      "title": "fix: user table to load on scroll"
+    },
+    {
+      "number": 8087,
+      "title": "Async import of the appStore packages"
+    },
+    {
+      "number": 29580,
+      "title": "fix(calendar): sync Cal.diy iCalUID events"
+    },
+    {
+      "number": 29740,
+      "title": "fix(bookings): provide stable country fallback for phone input"
+    },
+    {
+      "number": 27667,
+      "title": "chore: remove stale Vitest workspace TODO"
+    },
+    {
+      "number": 29819,
+      "title": "feat: add Clara app (link-as-an-app, AI & Automation)"
+    },
+    {
+      "number": 10967,
+      "title": "fix: handle collective multiple host on destinationCalendar"
+    },
+    {
+      "number": 29970,
+      "title": "fix(i18n): add missing Japanese translations"
+    },
+    {
+      "number": 29478,
+      "title": "fix: correct typo 'occured' -> 'occurred' in k_bar_ai_error i18n value"
+    },
+    {
+      "number": 29673,
+      "title": "fix(notifications): use instance URL in push test notification"
+    },
+    {
+      "number": 28490,
+      "title": "fix(auth): implement proper debounce ref for forgot password requests"
+    },
+    {
+      "number": 28284,
+      "title": "fix: include seed files in cache-db key to prevent stale DB cache"
+    },
+    {
+      "number": 11059,
+      "title": "feat: Sync app credentials between Cal.com & self-hosted platforms"
+    },
+    {
+      "number": 26909,
+      "title": "fix: remove Stale label when Devin starts completing a stale PR"
+    },
+    {
+      "number": 28892,
+      "title": "fix: use updateTag for teams list cache invalidation"
+    },
+    {
+      "number": 28096,
+      "title": "refactor: remove unused imports and stale TODO comment from caleventparser.ts"
+    },
+    {
+      "number": 24233,
+      "title": "fix: Description field duplicating content when editing Event Types"
+    },
+    {
+      "number": 28567,
+      "title": "refactor: rename getEventLocationType to getLocationByType for better clarity"
+    },
+    {
+      "number": 29466,
+      "title": "fix: check team existence before parsing metadata"
+    },
+    {
+      "number": 28703,
+      "title": "refactor: remove Devin GitHub Action integrations and DEVIN_API_KEY references"
+    },
+    {
+      "number": 26638,
+      "title": "chore: Remove stale label when work is completed"
+    },
+    {
+      "number": 26627,
+      "title": "feat: add automated stale PR completion workflow with Devin API"
+    },
+    {
+      "number": 29260,
+      "title": "chore: tidy up typos across docs, comments, and setup copy"
+    },
+    {
+      "number": 26691,
+      "title": "fix: parsing error in stale PR workflow for workflow_dispatch"
+    },
+    {
+      "number": 28682,
+      "title": "fix: resolve flaky 'Book on column layout' E2E test"
+    },
+    {
+      "number": 26633,
+      "title": "feat: make stale PR workflow fork-aware with workflow_dispatch support"
+    },
+    {
+      "number": 26590,
+      "title": "fix: skip stale run-ci label check on workflow re-runs"
+    },
+    {
+      "number": 29558,
+      "title": "refactor: app category metadata to use Record<AppCategories, AppCategoryEntry> for exhaustive type safety"
+    },
+    {
+      "number": 26842,
+      "title": "feat: enable Stale Community PR workflow for fork PRs via pull_request_target"
+    },
+    {
+      "number": 14740,
+      "title": "feat: ability to add guests via app.cal.com/bookings"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "twice",
+  "command": "gh search prs \"twice\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:31Z",
+  "results": [
+    {
+      "number": 14943,
+      "title": "fix: add retryCount to workflowReminder"
+    },
+    {
+      "number": 24619,
+      "title": "fix: Allow all team members to view hidden fields and UTM tracking data"
+    },
+    {
+      "number": 24233,
+      "title": "fix: Description field duplicating content when editing Event Types"
+    },
+    {
+      "number": 29478,
+      "title": "fix: correct typo 'occured' -> 'occurred' in k_bar_ai_error i18n value"
+    },
+    {
+      "number": 29519,
+      "title": "fix(api-v2): rethrow unexpected errors in deleteSelectedCalendar catch block"
+    },
+    {
+      "number": 27769,
+      "title": "fix: remove duplicate translation keys in common.json"
+    },
+    {
+      "number": 27487,
+      "title": "fix: skip duplicate CRM lookup when router already performed it"
+    },
+    {
+      "number": 27400,
+      "title": "chore: remove unused env vars and duplicates from turbo.json globalEnv"
+    },
+    {
+      "number": 27629,
+      "title": "feat: show routing trace dialog on assignment reason badge click"
+    },
+    {
+      "number": 28527,
+      "title": "fix: harden seed script org settings upsert and P2002 error handling"
+    },
+    {
+      "number": 28021,
+      "title": "refactor: optimize team booking limits query with in-app filtering"
+    },
+    {
+      "number": 10600,
+      "title": "feat: 2fa backup codes"
+    },
+    {
+      "number": 27378,
+      "title": "feat: implement webhook tasker with async/sync fallback"
+    },
+    {
+      "number": 26622,
+      "title": "chore: USE_POOL env var for api v2 prisma pooling"
+    },
+    {
+      "number": 28244,
+      "title": "fix: admin wizard crash and prisma enum generator path resolution"
+    },
+    {
+      "number": 27351,
+      "title": "fix: disable prefetch in /bookings"
+    },
+    {
+      "number": 27203,
+      "title": "refactor: evt calendar event builder"
+    },
+    {
+      "number": 27222,
+      "title": "refactor: move feature-flags, calendars, and schedules components from packages/features to apps/web/modules"
+    },
+    {
+      "number": 27623,
+      "title": "perf: optimize myStats tRPC call to only trigger when Intercom session is created"
+    },
+    {
+      "number": 27578,
+      "title": "feat: custom feedback dialog for feature opt-in"
+    },
+    {
+      "number": 22532,
+      "title": "feat: add calendar cache status and actions"
+    },
+    {
+      "number": 24497,
+      "title": "refactor: team and org billing portal service"
+    },
+    {
+      "number": 23904,
+      "title": "fix: event type not found 400 and other"
+    },
+    {
+      "number": 26584,
+      "title": "feat: add skip trial feature for teams/orgs billing page"
+    },
+    {
+      "number": 25945,
+      "title": "fix: respect `hideCalendarNotes` setting during booking reschedule"
+    },
+    {
+      "number": 25735,
+      "title": "docs: add managed organizations documentation"
+    },
+    {
+      "number": 27192,
+      "title": "feat: display assignment reason in organizer emails and booking single view"
+    },
+    {
+      "number": 26382,
+      "title": "refactor: detach yarn prisma generate from yarn-install action"
+    },
+    {
+      "number": 25572,
+      "title": "fix: companion oidc url"
+    },
+    {
+      "number": 19076,
+      "title": "fix: skip confirm step followup"
+    },
+    {
+      "number": 25868,
+      "title": "fix: preserve newlines and links in calendar event descriptions"
+    },
+    {
+      "number": 26366,
+      "title": "feat(companion): convert booking action pages to native iOS bottom sheets"
+    },
+    {
+      "number": 16735,
+      "title": "feat: ics-feed calendar api-v2"
+    },
+    {
+      "number": 17988,
+      "title": "feat: conferencing atoms"
+    },
+    {
+      "number": 23581,
+      "title": "fix: platform onboarding"
+    },
+    {
+      "number": 20447,
+      "title": "fix: booking filtering queryParams"
+    },
+    {
+      "number": 26068,
+      "title": "chore: dedupe yarn.lock to remove duplicate package versions"
+    },
+    {
+      "number": 25091,
+      "title": "refactor: optimize credit-service imports with lazy loading"
+    },
+    {
+      "number": 25296,
+      "title": "feat: gated features modal"
+    },
+    {
+      "number": 24332,
+      "title": "perf: (googlecalendar): batch freebusy calls by delegation credential"
+    },
+    {
+      "number": 18619,
+      "title": "fix: Handle calendar-cache with Delegation Credentials"
+    },
+    {
+      "number": 22102,
+      "title": "feat: Self hosted onboarding"
+    },
+    {
+      "number": 25585,
+      "title": "chore: Remove all links legacyBehavior"
+    },
+    {
+      "number": 16456,
+      "title": "feat: Manage Team ooo or crud"
+    },
+    {
+      "number": 26635,
+      "title": "feat: add retry mechanism for UNKNOWN mergeable status PRs"
+    },
+    {
+      "number": 26434,
+      "title": "feat(companion): UI Enhancements for Android and Extension"
+    },
+    {
+      "number": 23504,
+      "title": "feat: add organization-level autofill disable setting"
+    },
+    {
+      "number": 24660,
+      "title": "fix: update seed-insights.ts Prisma connection handling for v6.16"
+    },
+    {
+      "number": 25092,
+      "title": "feat: distributed tracing - 3"
+    },
+    {
+      "number": 24206,
+      "title": "refactor: dont allow scheduling team event type without hosts"
+    }
+  ],
+  "error": null
+}
+,
+{
+  "repo": "calcom/cal.diy",
+  "keyword": "retry",
+  "command": "gh search prs \"retry\" --repo calcom/cal.diy --merged --limit 50 --json number,title",
+  "run_at": "2026-11-14T23:17:35Z",
+  "results": [
+    {
+      "number": 14331,
+      "title": "fix: refresh access token expiry 60m"
+    },
+    {
+      "number": 13176,
+      "title": "refactor: Booker Component"
+    },
+    {
+      "number": 29584,
+      "title": "fix(ci): retry workflow cancellation on 409 conflicts"
+    },
+    {
+      "number": 30359,
+      "title": "fix(security): bind redis and prisma studio ports to loopback in docker compose"
+    },
+    {
+      "number": 11465,
+      "title": "feat: OAuth provider for Zapier"
+    },
+    {
+      "number": 14943,
+      "title": "fix: add retryCount to workflowReminder"
+    },
+    {
+      "number": 14860,
+      "title": "feat: Add Organization Admin scope to API V1"
+    },
+    {
+      "number": 7232,
+      "title": "Fixes that workflow reminders of cancelled and rescheduled bookings are still sent"
+    },
+    {
+      "number": 10700,
+      "title": "feat: User Avatar and Org Logo"
+    },
+    {
+      "number": 30111,
+      "title": "fix(ui): resolve React 19 ref deprecation warning in Tooltip (#30110)"
+    },
+    {
+      "number": 27450,
+      "title": "chore: update atoms retry mechanism"
+    },
+    {
+      "number": 30448,
+      "title": "fix(lib): add America/Coyhaique to the supported timezone list"
+    },
+    {
+      "number": 15077,
+      "title": "feat: outlook 365 calendar endpoints"
+    },
+    {
+      "number": 30416,
+      "title": "chore: upgrade Node.js from 20 to 22"
+    },
+    {
+      "number": 10967,
+      "title": "fix: handle collective multiple host on destinationCalendar"
+    },
+    {
+      "number": 27430,
+      "title": "fix: skip retry when Trigger.dev deployment is already current"
+    },
+    {
+      "number": 8330,
+      "title": "Date override fixes"
+    },
+    {
+      "number": 26635,
+      "title": "feat: add retry mechanism for UNKNOWN mergeable status PRs"
+    },
+    {
+      "number": 21197,
+      "title": "feat: BTCPay Server App"
+    },
+    {
+      "number": 11059,
+      "title": "feat: Sync app credentials between Cal.com & self-hosted platforms"
+    },
+    {
+      "number": 28527,
+      "title": "fix: harden seed script org settings upsert and P2002 error handling"
+    },
+    {
+      "number": 27847,
+      "title": "fix: use randomString() for booking UIDs in slots E2E tests"
+    },
+    {
+      "number": 21087,
+      "title": "test: retry times for api v2 e2e test in CI"
+    },
+    {
+      "number": 27603,
+      "title": "fix: ensure default calendars api v2"
+    },
+    {
+      "number": 25944,
+      "title": "fix: update transaction timeout for large managed event-types"
+    },
+    {
+      "number": 28313,
+      "title": "fix: create user with team in teams page E2E test"
+    },
+    {
+      "number": 27340,
+      "title": "feat: add webhook endpoint for Vercel deployment promoted event to promote trigger.dev"
+    },
+    {
+      "number": 28576,
+      "title": "fix: stabilize flaky Team filter E2E tests in bookings-list"
+    },
+    {
+      "number": 26803,
+      "title": "feat: add PlatformOrganizationBillingTasker with sync and trigger.dev versions"
+    },
+    {
+      "number": 28486,
+      "title": "fix(e2e): replace false-passing assertions and hard-coded waits in test suite"
+    },
+    {
+      "number": 10600,
+      "title": "feat: 2fa backup codes"
+    },
+    {
+      "number": 24302,
+      "title": "feat: Salesforce - add `urql/retry-exchange`"
+    },
+    {
+      "number": 26824,
+      "title": "fix: re-throw error in voidInvoice to prevent silent failures"
+    },
+    {
+      "number": 27001,
+      "title": "feat: add seat tracking infrastructure for monthly proration"
+    },
+    {
+      "number": 27019,
+      "title": "chore: Add calendar subscription error better management (backoff)"
+    },
+    {
+      "number": 26823,
+      "title": "fix: address proration implementation flaws"
+    },
+    {
+      "number": 26870,
+      "title": "feat: monthly-proration-tasker"
+    },
+    {
+      "number": 26991,
+      "title": "feat: add scheduled trigger.dev task for monthly proration"
+    },
+    {
+      "number": 18990,
+      "title": "feat: Organization onboarding improvement - Payment before creation of org but onboarding doesn't require payment"
+    },
+    {
+      "number": 26766,
+      "title": "test: resolve API v2 test flakes with cleanup and simplified slug"
+    },
+    {
+      "number": 27535,
+      "title": "fix: suppress alerts for expected billing errors in increment-usage task"
+    },
+    {
+      "number": 25556,
+      "title": "feat: add OAuth client developer settings page with approval workflow"
+    },
+    {
+      "number": 26353,
+      "title": "fix: add timeout: 0 to E2E assertions that check for absence of elements"
+    },
+    {
+      "number": 22532,
+      "title": "feat: add calendar cache status and actions"
+    },
+    {
+      "number": 27712,
+      "title": "docs: add Trigger.dev task implementation rule"
+    },
+    {
+      "number": 14653,
+      "title": "feat: updated the useage of listCurrent in the app and use org role from session"
+    },
+    {
+      "number": 14263,
+      "title": "refactor: prisma platform tables use pascal case"
+    },
+    {
+      "number": 15089,
+      "title": "fix: disable emails for platform"
+    },
+    {
+      "number": 15002,
+      "title": "chore: hide oauthClientId from session email in booker"
+    },
+    {
+      "number": 14264,
+      "title": "refactor: OAuth creation form hide apps permissions"
+    }
+  ],
+  "error": null
+}
+]
