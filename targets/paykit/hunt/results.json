@@ -1,0 +1,1573 @@
+{
+  "target": "getpaykit/paykit @ c7572ff",
+  "when": "2026-11-14T23:42:00Z",
+  "trace_requests": 16,
+  "preflight": "every recorded webhook delivery got 2xx",
+  "single_fault_schedules": 87,
+  "by_fault_type": {
+    "concurrent": {
+      "run": 16,
+      "n_fired": 16,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "crash": {
+      "run": 32,
+      "n_fired": 32,
+      "n_not_fired": 0,
+      "failed": 16
+    },
+    "lost": {
+      "run": 16,
+      "n_fired": 16,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "reorder": {
+      "run": 23,
+      "n_fired": 23,
+      "n_not_fired": 0,
+      "failed": 13
+    }
+  },
+  "no_op_reorder_pairs": null,
+  "crash": {
+    "crash_points": 32,
+    "crash_nondeterministic_requests": null,
+    "background_commits": 0
+  },
+  "findings": [
+    {
+      "id": 1,
+      "minimal": {
+        "seqs": [
+          0
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 0,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#0 webhook customer.subscription.created evt_0000 customer=cus_team1 id=sub_one_a status=trialing",
+        "fault crash(#0@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #0"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"trialing\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0000\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"trialing\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0000\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0000\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"trialing\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0000\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#0@commit1)"
+      ],
+      "dir": "finding-1"
+    },
+    {
+      "id": 2,
+      "minimal": {
+        "seqs": [
+          1
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 1,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#1 webhook customer.subscription.updated evt_0001 customer=cus_team1 id=sub_one_a status=active",
+        "fault crash(#1@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #1"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0001\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0001\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0001\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0001\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#1@commit1)"
+      ],
+      "dir": "finding-2"
+    },
+    {
+      "id": 3,
+      "minimal": {
+        "seqs": [
+          2
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 2,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#2 webhook customer.subscription.updated evt_0002 customer=cus_team1 id=sub_one_a status=past_due",
+        "fault crash(#2@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #2"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"past_due\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0002\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"past_due\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0002\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0002\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"past_due\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0002\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#2@commit1)"
+      ],
+      "dir": "finding-3"
+    },
+    {
+      "id": 4,
+      "minimal": {
+        "seqs": [
+          3
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 3,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#3 webhook customer.subscription.updated evt_0003 customer=cus_team1 id=sub_one_a status=active",
+        "fault crash(#3@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #3"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0003\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0003\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0003\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_one_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0003\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#3@commit1)"
+      ],
+      "dir": "finding-4"
+    },
+    {
+      "id": 5,
+      "minimal": {
+        "seqs": [
+          4
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 4,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault crash(#4@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #4"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":true,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0004\",\"providerSubscriptionId\":\"sub_one_a\"},\"status\":\"processing\",\"stripe_event_id\":\"evt_0004\",\"type\":\"subscription.deleted\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team1\",\"providerEventId\":\"evt_0004\",\"providerSubscriptionId\":\"sub_one_a\"},\"status\":\"processed\",\"stripe_event_id\":\"evt_0004\",\"type\":\"subscription.deleted\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#4@commit1)"
+      ],
+      "dir": "finding-5"
+    },
+    {
+      "id": 6,
+      "minimal": {
+        "seqs": [
+          5
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 5,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "fault crash(#5@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #5"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0005\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_two_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0005\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0005\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_two_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0005\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#5@commit1)"
+      ],
+      "dir": "finding-6"
+    },
+    {
+      "id": 7,
+      "minimal": {
+        "seqs": [
+          6
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 6,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "fault crash(#6@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #6"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":true,\"canceled\":true,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0006\",\"subscription\":{\"cancelAtPeriodEnd\":true,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_two_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0006\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0006\",\"subscription\":{\"cancelAtPeriodEnd\":true,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_two_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0006\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#6@commit1)"
+      ],
+      "dir": "finding-7"
+    },
+    {
+      "id": 8,
+      "minimal": {
+        "seqs": [
+          7
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 7,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "fault crash(#7@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #7"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":true,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0007\",\"providerSubscriptionId\":\"sub_two_a\"},\"status\":\"processing\",\"stripe_event_id\":\"evt_0007\",\"type\":\"subscription.deleted\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0007\",\"providerSubscriptionId\":\"sub_two_a\"},\"status\":\"processed\",\"stripe_event_id\":\"evt_0007\",\"type\":\"subscription.deleted\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#7@commit1)"
+      ],
+      "dir": "finding-8"
+    },
+    {
+      "id": 9,
+      "minimal": {
+        "seqs": [
+          8
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 8,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#8 webhook customer.subscription.created evt_0008 customer=cus_team2 id=sub_two_b status=active",
+        "fault crash(#8@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #8"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0008\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_two_b\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0008\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0008\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_two_b\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0008\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#8@commit1)"
+      ],
+      "dir": "finding-9"
+    },
+    {
+      "id": 10,
+      "minimal": {
+        "seqs": [
+          9
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 9,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#9 webhook customer.subscription.updated evt_0009 customer=cus_team2 id=sub_two_b status=active",
+        "fault crash(#9@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #9"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0009\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_two_b\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0009\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team2\",\"providerEventId\":\"evt_0009\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_two_b\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0009\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#9@commit1)"
+      ],
+      "dir": "finding-10"
+    },
+    {
+      "id": 11,
+      "minimal": {
+        "seqs": [
+          10
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 10,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#10 webhook customer.subscription.created evt_0010 customer=cus_team3 id=sub_three_a status=active",
+        "fault crash(#10@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #10"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team3\",\"id\":\"psub_three_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_three_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team3\",\"id\":\"psub_three_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_three_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team3\",\"providerEventId\":\"evt_0010\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_three_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0010\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team3\",\"providerEventId\":\"evt_0010\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_three_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0010\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#10@commit1)"
+      ],
+      "dir": "finding-11"
+    },
+    {
+      "id": 12,
+      "minimal": {
+        "seqs": [
+          11
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 11,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#11 webhook customer.subscription.updated evt_0011 customer=cus_team3 id=sub_three_a status=active",
+        "fault crash(#11@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #11"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team3\",\"id\":\"psub_three_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_three_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team3\",\"id\":\"psub_three_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_three_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team3\",\"providerEventId\":\"evt_0011\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_three_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0011\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team3\",\"providerEventId\":\"evt_0011\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_three_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0011\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#11@commit1)"
+      ],
+      "dir": "finding-12"
+    },
+    {
+      "id": 13,
+      "minimal": {
+        "seqs": [
+          12
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 12,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#12 webhook customer.subscription.created evt_0012 customer=cus_team4 id=sub_four_a status=trialing",
+        "fault crash(#12@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #12"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team4\",\"id\":\"psub_four_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_four_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team4\",\"id\":\"psub_four_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"trialing\",\"stripe_subscription_id\":\"sub_four_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team4\",\"providerEventId\":\"evt_0012\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_four_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"trialing\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0012\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team4\",\"providerEventId\":\"evt_0012\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_four_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"trialing\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0012\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#12@commit1)"
+      ],
+      "dir": "finding-13"
+    },
+    {
+      "id": 14,
+      "minimal": {
+        "seqs": [
+          13
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 13,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#13 webhook customer.subscription.updated evt_0013 customer=cus_team4 id=sub_four_a status=unpaid",
+        "fault crash(#13@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #13"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team4\",\"id\":\"psub_four_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_four_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team4\",\"id\":\"psub_four_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"unpaid\",\"stripe_subscription_id\":\"sub_four_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team4\",\"providerEventId\":\"evt_0013\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_four_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"unpaid\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0013\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team4\",\"providerEventId\":\"evt_0013\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_basic\",\"productId\":\"prod_basic\"},\"providerSubscriptionId\":\"sub_four_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"unpaid\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0013\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#13@commit1)"
+      ],
+      "dir": "finding-14"
+    },
+    {
+      "id": 15,
+      "minimal": {
+        "seqs": [
+          14
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 14,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#14 webhook customer.subscription.created evt_0014 customer=cus_team5 id=sub_five_a status=trialing",
+        "fault crash(#14@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #14"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team5\",\"id\":\"psub_five_a\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_five_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team5\",\"id\":\"psub_five_a\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"trialing\",\"stripe_subscription_id\":\"sub_five_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team5\",\"providerEventId\":\"evt_0014\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_five_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"trialing\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0014\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team5\",\"providerEventId\":\"evt_0014\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_five_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"trialing\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0014\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#14@commit1)"
+      ],
+      "dir": "finding-15"
+    },
+    {
+      "id": 16,
+      "minimal": {
+        "seqs": [
+          15
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 15,
+            "k": 1
+          }
+        ]
+      },
+      "steps": [
+        "#15 webhook customer.subscription.updated evt_0015 customer=cus_team5 id=sub_five_a status=active",
+        "fault crash(#15@commit1)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 1, restart, resend #15"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team5\",\"id\":\"psub_five_a\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"incomplete\",\"stripe_subscription_id\":\"sub_five_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team5\",\"id\":\"psub_five_a\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_five_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team5\",\"providerEventId\":\"evt_0015\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_five_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processing\",\"stripe_event_id\":\"evt_0015\",\"type\":\"subscription.updated\"}"
+        },
+        {
+          "table": "paykit_webhook_event",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"error\":null,\"payload\":{\"providerCustomerId\":\"cus_team5\",\"providerEventId\":\"evt_0015\",\"subscription\":{\"cancelAtPeriodEnd\":false,\"canceledAt\":null,\"currentPeriodEndAt\":\"\u003cts\u003e\",\"currentPeriodStartAt\":\"\u003cts\u003e\",\"endedAt\":null,\"providerProduct\":{\"priceId\":\"price_prod_plus\",\"productId\":\"prod_plus\"},\"providerSubscriptionId\":\"sub_five_a\",\"providerSubscriptionScheduleId\":null,\"status\":\"active\"}},\"status\":\"processed\",\"stripe_event_id\":\"evt_0015\",\"type\":\"subscription.updated\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#15@commit1)"
+      ],
+      "dir": "finding-16"
+    },
+    {
+      "id": 17,
+      "minimal": {
+        "seqs": [
+          0,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 0,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#0 webhook customer.subscription.created evt_0000 customer=cus_team1 id=sub_one_a status=trialing",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#0,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #0"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"trialing\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":true,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#0,#4)"
+      ],
+      "dir": "finding-17"
+    },
+    {
+      "id": 18,
+      "minimal": {
+        "seqs": [
+          1,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 1,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#1 webhook customer.subscription.updated evt_0001 customer=cus_team1 id=sub_one_a status=active",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#1,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #1"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":true,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#1,#4)"
+      ],
+      "dir": "finding-18"
+    },
+    {
+      "id": 19,
+      "minimal": {
+        "seqs": [
+          2,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 2,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#2 webhook customer.subscription.updated evt_0002 customer=cus_team1 id=sub_one_a status=past_due",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#2,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #2"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"past_due\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":true,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#2,#4)"
+      ],
+      "dir": "finding-19"
+    },
+    {
+      "id": 20,
+      "minimal": {
+        "seqs": [
+          3,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 3,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#3 webhook customer.subscription.updated evt_0003 customer=cus_team1 id=sub_one_a status=active",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#3,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #3"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":true,\"customer_id\":\"user_team1\",\"id\":\"psub_one_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_one_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#3,#4)"
+      ],
+      "dir": "finding-20"
+    },
+    {
+      "id": 21,
+      "minimal": {
+        "seqs": [
+          5,
+          6
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 5,
+            "seq2": 6
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "fault reorder(#5,#6)"
+      ],
+      "delivery_order": [
+        "send #6",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":true,\"canceled\":true,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#5,#6)"
+      ],
+      "dir": "finding-21"
+    },
+    {
+      "id": 22,
+      "minimal": {
+        "seqs": [
+          5,
+          7
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 5,
+            "seq2": 7
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "fault reorder(#5,#7)"
+      ],
+      "delivery_order": [
+        "send #7",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":true,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#5,#7)"
+      ],
+      "dir": "finding-22"
+    },
+    {
+      "id": 23,
+      "minimal": {
+        "seqs": [
+          5,
+          8
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 5,
+            "seq2": 8
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "#8 webhook customer.subscription.created evt_0008 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#5,#8)"
+      ],
+      "delivery_order": [
+        "send #8",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"ended\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"ended\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#5,#8)"
+      ],
+      "dir": "finding-23"
+    },
+    {
+      "id": 24,
+      "minimal": {
+        "seqs": [
+          5,
+          9
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 5,
+            "seq2": 9
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "#9 webhook customer.subscription.updated evt_0009 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#5,#9)"
+      ],
+      "delivery_order": [
+        "send #9",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"ended\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"ended\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#5,#9)"
+      ],
+      "dir": "finding-24"
+    },
+    {
+      "id": 25,
+      "minimal": {
+        "seqs": [
+          6,
+          7
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 6,
+            "seq2": 7
+          }
+        ]
+      },
+      "steps": [
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "fault reorder(#6,#7)"
+      ],
+      "delivery_order": [
+        "send #7",
+        "send #6"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":true,\"canceled\":true,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":true,\"canceled\":true,\"customer_id\":\"user_team2\",\"id\":\"psub_two_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"canceled\",\"stripe_subscription_id\":\"sub_two_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#6,#7)"
+      ],
+      "dir": "finding-25"
+    },
+    {
+      "id": 26,
+      "minimal": {
+        "seqs": [
+          6,
+          8
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 6,
+            "seq2": 8
+          }
+        ]
+      },
+      "steps": [
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "#8 webhook customer.subscription.created evt_0008 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#6,#8)"
+      ],
+      "delivery_order": [
+        "send #8",
+        "send #6"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"ended\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#6,#8)"
+      ],
+      "dir": "finding-26"
+    },
+    {
+      "id": 27,
+      "minimal": {
+        "seqs": [
+          6,
+          9
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 6,
+            "seq2": 9
+          }
+        ]
+      },
+      "steps": [
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "#9 webhook customer.subscription.updated evt_0009 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#6,#9)"
+      ],
+      "delivery_order": [
+        "send #9",
+        "send #6"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"ended\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team2\",\"id\":\"psub_two_b\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_two_b\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#6,#9)"
+      ],
+      "dir": "finding-27"
+    },
+    {
+      "id": 28,
+      "minimal": {
+        "seqs": [
+          12,
+          13
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 12,
+            "seq2": 13
+          }
+        ]
+      },
+      "steps": [
+        "#12 webhook customer.subscription.created evt_0012 customer=cus_team4 id=sub_four_a status=trialing",
+        "#13 webhook customer.subscription.updated evt_0013 customer=cus_team4 id=sub_four_a status=unpaid",
+        "fault reorder(#12,#13)"
+      ],
+      "delivery_order": [
+        "send #13",
+        "send #12"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team4\",\"id\":\"psub_four_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"trialing\",\"stripe_subscription_id\":\"sub_four_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team4\",\"id\":\"psub_four_a\",\"product_internal_id\":\"prod_internal_basic\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"unpaid\",\"stripe_subscription_id\":\"sub_four_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#12,#13)"
+      ],
+      "dir": "finding-28"
+    },
+    {
+      "id": 29,
+      "minimal": {
+        "seqs": [
+          14,
+          15
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 14,
+            "seq2": 15
+          }
+        ]
+      },
+      "steps": [
+        "#14 webhook customer.subscription.created evt_0014 customer=cus_team5 id=sub_five_a status=trialing",
+        "#15 webhook customer.subscription.updated evt_0015 customer=cus_team5 id=sub_five_a status=active",
+        "fault reorder(#14,#15)"
+      ],
+      "delivery_order": [
+        "send #15",
+        "send #14"
+      ],
+      "diff": [
+        {
+          "table": "paykit_subscription",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team5\",\"id\":\"psub_five_a\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"trialing\",\"stripe_subscription_id\":\"sub_five_a\",\"stripe_subscription_schedule_id\":null}"
+        },
+        {
+          "table": "paykit_subscription",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"cancel_at_period_end\":false,\"canceled\":false,\"customer_id\":\"user_team5\",\"id\":\"psub_five_a\",\"product_internal_id\":\"prod_internal_plus\",\"quantity\":1,\"scheduled_product_id\":null,\"status\":\"active\",\"stripe_subscription_id\":\"sub_five_a\",\"stripe_subscription_schedule_id\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#14,#15)"
+      ],
+      "dir": "finding-29"
+    }
+  ],
+  "seconds": 547.113120708
+}

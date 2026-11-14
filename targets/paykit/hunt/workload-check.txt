@@ -1,0 +1,9 @@
+$ shasum -a 256 -c docs/evidence/workload.sha256  (before hunt)
+targets/stripe/lifecycles.mjs: OK
+
+# Run 1 of stutter hunt -config targets/paykit/stutter.json -lanes 2 stopped at the stability check:
+#   fault-free replays disagree; unstable columns: paykit_webhook_event.id, paykit_webhook_event.trace_id
+# Those two columns were added to stutter.json ignore. Run 2 (same command) produced this directory.
+# The hash above was taken before run 1 and not repeated before run 2. Re-checked after run 2:
+$ shasum -a 256 -c docs/evidence/workload.sha256  (after run 2)
+targets/stripe/lifecycles.mjs: OK

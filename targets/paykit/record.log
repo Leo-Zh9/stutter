@@ -1,0 +1,13 @@
+$ shasum -a 256 -c docs/evidence/workload.sha256
+targets/stripe/lifecycles.mjs: OK
+
+# Offline network check (preload logged every outbound connect/DNS during one
+# direct delivery of the 16 events to apps/demo). Only destination seen:
+#   tcp 127.0.0.1:54329  (project-local Postgres)
+#   dns 127.0.0.1
+# No Stripe or other outside service was contacted.
+
+$ ./bin/stutter record -config targets/paykit/stutter.json -- node targets/stripe/lifecycles.mjs \
+    --sdk /Users/leozhang/stutter/.targets/paykit/packages/paykit/node_modules/stripe --url {proxy}/paykit/webhook --secret whsec_stutter_local --api basil
+delivered 16 events (2025-04-30.basil)
+recorded 16 requests to /Users/leozhang/stutter/targets/paykit/trace.jsonl

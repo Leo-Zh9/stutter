@@ -1,0 +1,35 @@
+{
+  "name": "getpaykit/paykit @ c7572ff",
+  "dir": "../../.targets/paykit/apps/demo",
+  "start": ["../../.targets/paykit/apps/demo/node_modules/.bin/next", "start", "-p", "{PORT}", "-H", "127.0.0.1"],
+  "env": [
+    "PAYKIT_DATABASE_URL={DATABASE_URL}",
+    "AUTH_DATABASE_URL={DATABASE_URL}",
+    "STRIPE_SECRET_KEY=sk_test_offline_never_used",
+    "STRIPE_WEBHOOK_SECRET=whsec_stutter_local",
+    "APP_URL=http://{ADDR}",
+    "BETTER_AUTH_SECRET=stutter_local_auth_secret_0123456789",
+    "AUTUMN_SECRET_KEY=",
+    "SKIP_ENV_VALIDATION=1",
+    "NEXT_TELEMETRY_DISABLED=1",
+    "NODE_ENV=production"
+  ],
+  "health": "/paykit/webhook",
+  "start_timeout": "25s",
+  "prepare": {
+    "migrate_cmd": ["../../.targets/paykit/apps/demo/node_modules/.bin/drizzle-kit", "migrate", "--config", "drizzle.config.ts"],
+    "migrate_env": ["PAYKIT_DATABASE_URL={DATABASE_URL}"],
+    "seed_file": "fixtures.sql"
+  },
+  "schemas": ["public"],
+  "ignore": ["paykit_webhook_event.id", "paykit_webhook_event.trace_id"],
+  "webhooks": {
+    "prefix": "/paykit/webhook",
+    "signing": "stripe",
+    "secret": "whsec_stutter_local",
+    "retry": "non-2xx",
+    "max_attempts": 5,
+    "object_path": "data.object.customer"
+  },
+  "trace": "trace.jsonl"
+}

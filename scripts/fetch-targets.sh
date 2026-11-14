@@ -42,6 +42,18 @@ clone sync-engine-pre https://github.com/stripe/sync-engine 96e6b398d45d0c57ff21
 clone sync-engine-fix https://github.com/stripe/sync-engine d486b41dc1b18626ef798890b5bbc7f11f476517
 (cd sync-engine-fix && pnpm install --frozen-lockfile && pnpm build)
 
+# getpaykit/paykit (embedded Stripe billing framework). paykitjs is the library;
+# apps/demo is the Next.js app that mounts the paykit handler at /paykit/webhook.
+# The library installs its own stripe@19 under packages/paykit. The compile-only
+# demo build skips prerender, which would otherwise touch Stripe; env validation
+# is skipped the same way. Neither step calls Stripe.
+clone paykit https://github.com/getpaykit/paykit c7572ff7e0116428a43a2f98ad25dc2c26c8927e
+(cd paykit && npx -y pnpm@12.4.2 install --frozen-lockfile &&
+  cd apps/demo && SKIP_ENV_VALIDATION=1 STRIPE_SECRET_KEY=sk_test_offline_never_used \
+  STRIPE_WEBHOOK_SECRET=whsec_stutter_local PAYKIT_DATABASE_URL=postgres://unused \
+  AUTH_DATABASE_URL=postgres://unused APP_URL=http://unused BETTER_AUTH_SECRET=unused \
+  node_modules/.bin/next build --experimental-build-mode=compile)
+
 mkdir -p formance
 (cd formance &&
   if [ ! -x ledger ]; then
