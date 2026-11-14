@@ -1,0 +1,348 @@
+{
+  "when": "2026-11-14T10:09:55Z",
+  "machine": "darwin/arm64, 10 CPUs",
+  "postgres": "16.2",
+  "lanes": 8,
+  "trace_entries": 66,
+  "retryable_entries": 66,
+  "webhook_entries": 20,
+  "single_fault_schedules": 137,
+  "random_multi_fault_schedules": 200,
+  "determinism": {
+    "fault_free_replays": 20,
+    "distinct_digests": 1
+  },
+  "false_alarms_correct_variant": {
+    "schedules_run": 337,
+    "n_fired": 337,
+    "n_not_fired": 0,
+    "flagged": 0
+  },
+  "replays_per_second": 35.65672991019027,
+  "median_replay_ms": 54.707,
+  "variants": [
+    {
+      "bug": "",
+      "class": "correct",
+      "pattern": "key row inserted first in the same transaction as the work; event ids behind a unique index",
+      "expected_fault": "none (false-alarm measurement)",
+      "schedules_available": 337,
+      "schedules_run": 337,
+      "detected": false,
+      "n_fired": 337,
+      "n_not_fired": 0
+    },
+    {
+      "bug": "key-ignored",
+      "class": "in-model",
+      "pattern": "idempotency key accepted but never checked",
+      "expected_fault": "lost",
+      "schedules_available": 337,
+      "schedules_run": 8,
+      "detected": true,
+      "detected_at_run": 6,
+      "n_fired": 8,
+      "n_not_fired": 0,
+      "first_failing_faults": [
+        "lost(#5)"
+      ],
+      "diff": [
+        {
+          "table": "charges",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":581,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_0\",\"refunded_cents\":0,\"status\":\"pending\"}"
+        },
+        {
+          "table": "customers",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"balance_cents\":1162,\"email\":\"buyer2@example.test\"} (+3 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"balance_cents\":581,\"email\":\"buyer2@example.test\"} (+2 referencing rows)"
+        }
+      ],
+      "shrunk": [
+        "#2 POST /customers key=key_cus_2",
+        "#5 POST /charges key=key_ch_0",
+        "fault lost(#5)"
+      ],
+      "shrink": {
+        "elements_before": 67,
+        "elements_after": 3,
+        "candidates_tested": 140,
+        "candidates_not_fired": 0
+      },
+      "one_minimal_verified": true,
+      "shrink_seconds": 1.87863225
+    },
+    {
+      "bug": "key-after-commit",
+      "class": "in-model",
+      "pattern": "key recorded in a second transaction after the charge commits",
+      "expected_fault": "concurrent",
+      "schedules_available": 337,
+      "schedules_run": 72,
+      "detected": true,
+      "detected_at_run": 72,
+      "n_fired": 72,
+      "n_not_fired": 0,
+      "first_failing_faults": [
+        "concurrent(#5)"
+      ],
+      "diff": [
+        {
+          "table": "charges",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":581,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_0\",\"refunded_cents\":0,\"status\":\"pending\"}"
+        },
+        {
+          "table": "customers",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"balance_cents\":1162,\"email\":\"buyer2@example.test\"} (+4 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"balance_cents\":581,\"email\":\"buyer2@example.test\"} (+3 referencing rows)"
+        }
+      ],
+      "shrunk": [
+        "#2 POST /customers key=key_cus_2",
+        "#5 POST /charges key=key_ch_0",
+        "fault concurrent(#5)"
+      ],
+      "shrink": {
+        "elements_before": 67,
+        "elements_after": 3,
+        "candidates_tested": 140,
+        "candidates_not_fired": 0
+      },
+      "one_minimal_verified": true,
+      "shrink_seconds": 3.893653834
+    },
+    {
+      "bug": "webhook-no-dedupe",
+      "class": "in-model",
+      "pattern": "webhook handler keeps no event log",
+      "expected_fault": "lost (redelivery)",
+      "schedules_available": 337,
+      "schedules_run": 56,
+      "detected": true,
+      "detected_at_run": 50,
+      "n_fired": 56,
+      "n_not_fired": 0,
+      "first_failing_faults": [
+        "lost(#49)"
+      ],
+      "diff": [
+        {
+          "table": "charges",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":7237,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_9\",\"refunded_cents\":3618,\"status\":\"pending\"} (+1 referencing rows)"
+        },
+        {
+          "table": "charges",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"amount_cents\":7237,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_9\",\"refunded_cents\":1809,\"status\":\"pending\"} (+1 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"balance_cents\":3619,\"email\":\"buyer1@example.test\"} (+3 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"balance_cents\":5428,\"email\":\"buyer1@example.test\"} (+3 referencing rows)"
+        }
+      ],
+      "shrunk": [
+        "#1 POST /customers key=key_cus_1",
+        "#14 POST /charges key=key_ch_9",
+        "#49 webhook charge.refunded evt_0003",
+        "fault lost(#49)"
+      ],
+      "shrink": {
+        "elements_before": 67,
+        "elements_after": 4,
+        "candidates_tested": 246,
+        "candidates_not_fired": 0
+      },
+      "one_minimal_verified": true,
+      "shrink_seconds": 3.87856475
+    },
+    {
+      "bug": "webhook-stale-overwrite",
+      "class": "in-model",
+      "pattern": "status webhook applied without comparing event time",
+      "expected_fault": "reorder",
+      "schedules_available": 337,
+      "schedules_run": 136,
+      "detected": true,
+      "detected_at_run": 133,
+      "n_fired": 136,
+      "n_not_fired": 0,
+      "first_failing_faults": [
+        "reorder(#46,#47)"
+      ],
+      "diff": [
+        {
+          "table": "charges",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":5957,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_25\",\"refunded_cents\":0,\"status\":\"succeeded\"} (+5 referencing rows)"
+        },
+        {
+          "table": "charges",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"amount_cents\":5957,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_25\",\"refunded_cents\":0,\"status\":\"disputed\"} (+5 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"balance_cents\":5957,\"email\":\"buyer1@example.test\"} (+3 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"balance_cents\":5957,\"email\":\"buyer1@example.test\"} (+3 referencing rows)"
+        }
+      ],
+      "shrunk": [
+        "#1 POST /customers key=key_cus_1",
+        "#30 POST /charges key=key_ch_25",
+        "#46 webhook charge.succeeded evt_0000",
+        "#47 webhook charge.disputed evt_0001",
+        "fault reorder(#46,#47)"
+      ],
+      "shrink": {
+        "elements_before": 67,
+        "elements_after": 5,
+        "candidates_tested": 266,
+        "candidates_not_fired": 0
+      },
+      "one_minimal_verified": true,
+      "shrink_seconds": 4.84669725
+    },
+    {
+      "bug": "webhook-check-then-insert",
+      "class": "in-model",
+      "pattern": "event dedupe is SELECT then INSERT with no unique index",
+      "expected_fault": "concurrent (redelivery)",
+      "schedules_available": 337,
+      "schedules_run": 120,
+      "detected": true,
+      "detected_at_run": 113,
+      "n_fired": 120,
+      "n_not_fired": 0,
+      "first_failing_faults": [
+        "concurrent(#46)"
+      ],
+      "diff": [
+        {
+          "table": "charges",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":5957,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_25\",\"refunded_cents\":0,\"status\":\"succeeded\"} (+5 referencing rows)"
+        },
+        {
+          "table": "charges",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"amount_cents\":5957,\"currency\":\"usd\",\"customer_id\":\"\u003cref:customers\u003e\",\"idempotency_key\":\"key_ch_25\",\"refunded_cents\":0,\"status\":\"succeeded\"} (+3 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"balance_cents\":5957,\"email\":\"buyer1@example.test\"} (+3 referencing rows)"
+        },
+        {
+          "table": "customers",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"balance_cents\":5957,\"email\":\"buyer1@example.test\"} (+3 referencing rows)"
+        },
+        {
+          "table": "webhook_events",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"charge_id\":\"\u003cref:charges\u003e\",\"event_id\":\"evt_0000\",\"payload\":{\"created\":\"\u003cts\u003e\",\"data\":{\"amount\":0,\"charge\":\"\u003cref:charges\u003e\"},\"id\":\"evt_0000\",\"type\":\"charge.succeeded\"},\"type\":\"charge.succeeded\"}"
+        }
+      ],
+      "shrunk": [
+        "#1 POST /customers key=key_cus_1",
+        "#30 POST /charges key=key_ch_25",
+        "#46 webhook charge.succeeded evt_0000",
+        "fault concurrent(#46)"
+      ],
+      "shrink": {
+        "elements_before": 67,
+        "elements_after": 4,
+        "candidates_tested": 270,
+        "candidates_not_fired": 48
+      },
+      "one_minimal_verified": true,
+      "shrink_seconds": 17.486502125
+    },
+    {
+      "bug": "key-unscoped",
+      "class": "control",
+      "pattern": "key not bound to the request body; wrong with or without faults",
+      "expected_fault": "none: outside a differential oracle",
+      "schedules_available": 337,
+      "schedules_run": 337,
+      "detected": false,
+      "n_fired": 337,
+      "n_not_fired": 0
+    }
+  ],
+  "barrier_trigger_rate": [
+    {
+      "bug": "key-after-commit",
+      "fault": "concurrent(#5)",
+      "barrier_on": {
+        "detected": 100,
+        "n_fired": 100,
+        "n_not_fired": 0
+      },
+      "barrier_off": {
+        "detected": 1,
+        "n_fired": 100,
+        "n_not_fired": 0
+      },
+      "trials_per_arm": 100
+    },
+    {
+      "bug": "webhook-check-then-insert",
+      "fault": "concurrent(#46)",
+      "barrier_on": {
+        "detected": 100,
+        "n_fired": 100,
+        "n_not_fired": 0
+      },
+      "barrier_off": {
+        "detected": 1,
+        "n_fired": 100,
+        "n_not_fired": 0
+      },
+      "trials_per_arm": 100
+    }
+  ],
+  "total_seconds": 84.922528458
+}
