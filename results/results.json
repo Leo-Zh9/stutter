@@ -1,5 +1,5 @@
 {
-  "when": "2026-11-14T12:58:55Z",
+  "when": "2026-11-14T13:08:34Z",
   "machine": "darwin/arm64, 10 CPUs",
   "postgres": "16.2",
   "lanes": 8,
@@ -23,8 +23,8 @@
     "n_not_fired": 0,
     "flagged": 0
   },
-  "replays_per_second": 28.329725680784495,
-  "median_replay_ms": 76.385,
+  "replays_per_second": 30.96594138265149,
+  "median_replay_ms": 62.887,
   "variants": [
     {
       "bug": "",
@@ -138,7 +138,7 @@
         "candidates_not_fired": 0
       },
       "one_minimal_verified": true,
-      "shrink_seconds": 2.097291667
+      "shrink_seconds": 1.889773125
     },
     {
       "bug": "key-after-commit",
@@ -214,7 +214,7 @@
         "candidates_not_fired": 0
       },
       "one_minimal_verified": true,
-      "shrink_seconds": 6.030074417
+      "shrink_seconds": 4.065699167
     },
     {
       "bug": "webhook-no-dedupe",
@@ -291,7 +291,7 @@
         "candidates_not_fired": 0
       },
       "one_minimal_verified": true,
-      "shrink_seconds": 3.872096084
+      "shrink_seconds": 2.950344084
     },
     {
       "bug": "webhook-stale-overwrite",
@@ -369,7 +369,7 @@
         "candidates_not_fired": 0
       },
       "one_minimal_verified": true,
-      "shrink_seconds": 6.193298708
+      "shrink_seconds": 5.535539292
     },
     {
       "bug": "webhook-check-then-insert",
@@ -452,7 +452,7 @@
         "candidates_not_fired": 44
       },
       "one_minimal_verified": true,
-      "shrink_seconds": 17.119023416
+      "shrink_seconds": 17.034400958
     },
     {
       "bug": "key-unscoped",
@@ -567,7 +567,7 @@
         "candidates_not_fired": 12
       },
       "one_minimal_verified": true,
-      "shrink_seconds": 2.6381437500000002
+      "shrink_seconds": 2.223469
     },
     {
       "bug": "phases-no-recovery",
@@ -578,7 +578,7 @@
         "concurrent": {
           "n_fired": 74,
           "n_not_fired": 0,
-          "failed": 1
+          "failed": 2
         },
         "crash": {
           "n_fired": 89,
@@ -637,7 +637,7 @@
         "candidates_not_fired": 22
       },
       "one_minimal_verified": true,
-      "shrink_seconds": 4.115123583
+      "shrink_seconds": 3.4650668749999998
     }
   ],
   "barrier_trigger_rate": [
@@ -650,7 +650,7 @@
         "n_not_fired": 0
       },
       "barrier_off": {
-        "detected": 21,
+        "detected": 24,
         "n_fired": 100,
         "n_not_fired": 0
       },
@@ -665,12 +665,12 @@
         "n_not_fired": 0
       },
       "barrier_off": {
-        "detected": 1,
+        "detected": 3,
         "n_fired": 100,
         "n_not_fired": 0
       },
       "trials_per_arm": 100
     }
   ],
-  "total_seconds": 152.139632083
+  "total_seconds": 143.280265292
 }

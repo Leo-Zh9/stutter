@@ -72,16 +72,16 @@ minipay ([targets/minipay](targets/minipay)) is a **simulated** payments API wit
 | webhook-stale-overwrite | status event ignores event time | 0 / 74 | 0 / 74 | 5 / 5 | 0 / 89 |
 | webhook-check-then-insert | dedupe is SELECT then INSERT | 0 / 74 | 20 / 74 | 0 / 5 | 0 / 89 |
 | outbox-after-commit | receipt queued after the charge commits | 0 / 74 | 0 / 74 | 0 / 5 | 40 / 89 |
-| phases-no-recovery | multi-phase payout retried from the top | 0 / 74 | 1 / 74 | 0 / 5 | 8 / 89 |
+| phases-no-recovery | multi-phase payout retried from the top | 0 / 74 | 2 / 74 | 0 / 5 | 8 / 89 |
 | key-unscoped (control) | key not bound to the body | 0 / 74 | 0 / 74 | 0 / 5 | 0 / 89 |
 
 Each cell shows schedules that changed the final state out of schedules that fired.
 
 - **Detection.** All 7 in-model bugs are found, with 0 false alarms in 442 fired runs on the correct variant. Each shrinks to 3 to 5 elements, verified 1-minimal by brute force.
 - **Crash points find what retries can't.** `outbox-after-commit` survives every lost and concurrent fault, because the retry replays a stored response. Only a crash between its two commits shows the lost receipt.
-- **The lock barrier matters.** With the barrier, the two race bugs triggered 100 of 100 times. Without it, both attempts sent back to back from two goroutines triggered them 1 to 21 times in 100 across runs ([results/runs](results/runs)).
+- **The lock barrier matters.** With the barrier, the two race bugs triggered 100 of 100 times. Without it, both attempts sent back to back from two goroutines triggered them 1 to 24 times in 100 across runs ([results/runs](results/runs)).
 - **The control marks the method's limit.** A key reused with a different body is wrong with or without faults, so a differential oracle cannot see it.
-- **Speed.** 28.3 replays per second on 8 lanes, median replay 76 ms, on a 10-core Apple Silicon Mac. The full benchmark takes about 150 s.
+- **Speed.** 31.0 replays per second on 8 lanes, median replay 63 ms, on a 10-core Apple Silicon Mac. The full benchmark takes about 150 s.
 
 ## Limits
 
