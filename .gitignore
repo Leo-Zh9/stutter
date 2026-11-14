@@ -1,0 +1,6 @@
+bin/
+.pgdata/
+.pgsock/
+.pgbin
+.venv/
+.schema.sql
