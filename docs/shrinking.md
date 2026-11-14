@@ -18,6 +18,6 @@ The bench re-checks this by brute force for every bug, removing each element in 
 
 ## Measured
 
-Each failing 67-element schedule shrank to 3 to 5 elements in 2 to 18 s on 8 lanes ([results/results.json](../results/results.json)).
+On minipay, each variant's failing 75-element schedule (74 requests and 1 fault) shrank to 3 to 5 elements in 2 to 17 s on 8 lanes ([results/results.json](../results/results.json)). On the real targets every finding also shrank to a 1-minimal schedule, with one exception noted in [formance.md](targets/formance.md).
 
-The slowest case is `webhook-check-then-insert`. Its candidates carry a `concurrent` fault, so each one runs 3 times, and 48 of its candidates could not fire because a request they depend on had been dropped.
+Two kinds of case are slow. One is `webhook-check-then-insert`: its candidates carry a `concurrent` fault, so each runs 3 times, and 44 candidates could not fire because a request they depend on had been dropped. The other is the crash variants: every crash candidate restarts the service.

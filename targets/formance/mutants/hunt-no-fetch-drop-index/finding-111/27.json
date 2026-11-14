@@ -1,0 +1,1 @@
+{"script":{"plain":"vars {\n    account $order\n    account $seller\n}\nsend [USD/2 100] (\n    source = @world\n    destination = $order\n)\nsend [USD/2 1] (\n    source = $order\n    destination = @fees\n)\nsend [USD/2 99] (\n    source = $order\n    destination = $seller\n)","vars":{"order":"orders:0027","seller":"sellers:2"}}}

@@ -1,0 +1,127 @@
+{
+  "target": "Formance Ledger v2.4.18 mutant: none (unmodified v2.4.18 source, built locally; control)",
+  "when": "2026-11-14T12:22:27Z",
+  "trace_requests": 43,
+  "preflight": "every recorded webhook delivery got 2xx",
+  "single_fault_schedules": 129,
+  "by_fault_type": {
+    "concurrent": {
+      "run": 43,
+      "n_fired": 43,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "crash": {
+      "run": 43,
+      "n_fired": 43,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "lost": {
+      "run": 43,
+      "n_fired": 43,
+      "n_not_fired": 0,
+      "failed": 0
+    }
+  },
+  "no_op_reorder_pairs": null,
+  "crash": {
+    "crash_points": 43,
+    "crash_nondeterministic_requests": null,
+    "background_commits": 4
+  },
+  "id_inference": {
+    "derived": {
+      "_default.accounts_metadata.seq": 0,
+      "_default.logs.data.revertedTransaction.id": 5,
+      "_default.logs.data.transaction.id": 5,
+      "_default.logs.data.transaction.metadata.com.formance.spec/state/reverts": 5,
+      "_default.logs.id": 2,
+      "_default.moves.seq": 4,
+      "_default.moves.transactions_id": 5,
+      "_default.transactions.id": 5,
+      "_default.transactions.metadata.com.formance.spec/state/reverts": 5,
+      "_default.transactions_metadata.metadata.com.formance.spec/state/reverts": 5,
+      "_default.transactions_metadata.seq": 6,
+      "_default.transactions_metadata.transactions_id": 5
+    },
+    "owners": {
+      "0": "_default.accounts_metadata.seq",
+      "2": "_default.logs.id",
+      "4": "_default.moves.seq",
+      "5": "_default.transactions.id",
+      "6": "_default.transactions_metadata.seq"
+    },
+    "volatile": [
+      "_default.logs.data.revertedTransaction.insertedAt",
+      "_default.logs.data.revertedTransaction.revertedAt",
+      "_default.logs.data.revertedTransaction.timestamp",
+      "_default.logs.data.revertedTransaction.updatedAt",
+      "_default.logs.data.targetId",
+      "_default.logs.data.transaction.insertedAt",
+      "_default.logs.data.transaction.timestamp",
+      "_default.logs.data.transaction.updatedAt",
+      "_default.logs.hash",
+      "_default.logs.idempotency_hash",
+      "_default.logs.memento"
+    ],
+    "bands": [
+      {
+        "sequence": "_default.accounts_metadata_seq_seq",
+        "start": 1000000000000,
+        "width": 1000000000000,
+        "offset": 1000000
+      },
+      {
+        "sequence": "_default.goose_db_version_id_seq",
+        "start": 10000000,
+        "width": 10000000,
+        "offset": 100000
+      },
+      {
+        "sequence": "_default.log_id_1",
+        "start": 2000000000000,
+        "width": 1000000000000,
+        "offset": 2000000
+      },
+      {
+        "sequence": "_default.logs_blocks_id_seq",
+        "start": 20000000,
+        "width": 10000000,
+        "offset": 200000
+      },
+      {
+        "sequence": "_default.moves_seq_seq",
+        "start": 3000000000000,
+        "width": 1000000000000,
+        "offset": 3000000
+      },
+      {
+        "sequence": "_default.transaction_id_1",
+        "start": 4000000000000,
+        "width": 1000000000000,
+        "offset": 4000000
+      },
+      {
+        "sequence": "_default.transactions_metadata_seq_seq",
+        "start": 5000000000000,
+        "width": 1000000000000,
+        "offset": 5000000
+      },
+      {
+        "sequence": "_system.goose_db_version_id_seq",
+        "start": 30000000,
+        "width": 10000000,
+        "offset": 300000
+      },
+      {
+        "sequence": "_system.ledger_sequence",
+        "start": 6000000000000,
+        "width": 1000000000000,
+        "offset": 6000000
+      }
+    ]
+  },
+  "findings": null,
+  "seconds": 27.154120791
+}

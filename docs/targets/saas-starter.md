@@ -37,8 +37,9 @@ The cross-subscription effect (2 and 3 below) was not in the plan. It came from 
 | lost (redelivery) | 16 | 16 | 0 |
 | concurrent redelivery | 16 | 9 (7 not fired: events the handler ignores never write) | 0 |
 | reorder | 23 | 23 | 7 (12 more are no-op pairs: the handler ignores both events) |
+| crash after commit | 9 (one per delivery that writes) | 9 | 0 |
 
-Duplicates are harmless here, because every update is idempotent. **Ordering is not.** The 7 failing reorders shrink to 3 distinct end-state changes. Every one reproduced in 10 of 10 fresh replays, and by the curl script `repro.sh` in 10 of 10 trials on fresh databases.
+Duplicates and crashes are harmless here, because every update is a single idempotent write. **Ordering is not.** The 7 failing reorders shrink to 3 distinct end-state changes. Every one reproduced in 10 of 10 fresh replays, and by the curl script `repro.sh` in 10 of 10 trials on fresh databases.
 
 1. **A canceled subscription comes back as active** (findings 1, 2, 5, 6). If `customer.subscription.deleted` arrives before an earlier `updated` with status `active`, the team ends `active` with the old subscription id. The customer keeps paid access without paying. Minimal case: `updated(active)` and `deleted` for the same subscription, delivered swapped.
 2. **A paying customer is marked canceled** (findings 4, 7). A team cancels subscription A and later subscribes to B. If A's `deleted` arrives after B's `updated(active)`, the team ends `canceled` with no subscription, while B is live and billing. Minimal case: two deliveries, `#9 updated(sub_two_b, active)` then `#7 deleted(sub_two_a)`.
