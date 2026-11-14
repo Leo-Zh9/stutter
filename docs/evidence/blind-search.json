@@ -1,0 +1,312 @@
+[
+  {
+    "defaultBranch": "main",
+    "fullName": "better-auth/better-auth",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-14T22:18:25Z",
+    "stargazersCount": 30748,
+    "url": "https://github.com/better-auth/better-auth"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kriasoft/react-starter-kit",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-09T04:14:46Z",
+    "stargazersCount": 23717,
+    "url": "https://github.com/kriasoft/react-starter-kit"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "nextjs/saas-starter",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-12-11T22:35:37Z",
+    "stargazersCount": 16252,
+    "url": "https://github.com/nextjs/saas-starter"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "vercel/next-forge",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-05-28T14:33:12Z",
+    "stargazersCount": 7780,
+    "url": "https://github.com/vercel/next-forge"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "yournextstore/yournextstore",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-14T19:31:59Z",
+    "stargazersCount": 5538,
+    "url": "https://github.com/yournextstore/yournextstore"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "sadmann7/skateshop",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-04-01T06:39:07Z",
+    "stargazersCount": 5429,
+    "url": "https://github.com/sadmann7/skateshop"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "stripe/stripe-node",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-13T22:51:55Z",
+    "stargazersCount": 4570,
+    "url": "https://github.com/stripe/stripe-node"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "async-labs/builderbook",
+    "isArchived": false,
+    "isFork": false,
+    "language": "JavaScript",
+    "pushedAt": "2025-03-24T18:58:53Z",
+    "stargazersCount": 3790,
+    "url": "https://github.com/async-labs/builderbook"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "mickasmt/next-saas-stripe-starter",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-09-28T13:36:31Z",
+    "stargazersCount": 3018,
+    "url": "https://github.com/mickasmt/next-saas-stripe-starter"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "nextify-limited/saasfly",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-08-04T15:02:01Z",
+    "stargazersCount": 2946,
+    "url": "https://github.com/nextify-limited/saasfly"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "juicycleff/ultimate-backend",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-02-16T14:19:11Z",
+    "stargazersCount": 2907,
+    "url": "https://github.com/juicycleff/ultimate-backend"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "adrianhajdin/ecommerce_sanity_stripe",
+    "isArchived": false,
+    "isFork": false,
+    "language": "JavaScript",
+    "pushedAt": "2024-03-05T20:11:14Z",
+    "stargazersCount": 2313,
+    "url": "https://github.com/adrianhajdin/ecommerce_sanity_stripe"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "talivia-group/talivia",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-10-25T11:11:11Z",
+    "stargazersCount": 2290,
+    "url": "https://github.com/talivia-group/talivia"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "mrvautin/expressCart",
+    "isArchived": false,
+    "isFork": false,
+    "language": "JavaScript",
+    "pushedAt": "2023-11-23T15:35:59Z",
+    "stargazersCount": 2250,
+    "url": "https://github.com/mrvautin/expressCart"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "stripe/ai",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-14T02:28:18Z",
+    "stargazersCount": 2063,
+    "url": "https://github.com/stripe/ai"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "stripe/react-stripe-js",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-13T18:45:54Z",
+    "stargazersCount": 2046,
+    "url": "https://github.com/stripe/react-stripe-js"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "ParabolInc/parabol",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-14T20:16:41Z",
+    "stargazersCount": 2018,
+    "url": "https://github.com/ParabolInc/parabol"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "agentic-commerce-protocol/agentic-commerce-protocol",
+    "isArchived": false,
+    "isFork": false,
+    "language": "JavaScript",
+    "pushedAt": "2026-07-18T04:51:51Z",
+    "stargazersCount": 1602,
+    "url": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "reliverse/relivator",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-10-04T13:33:55Z",
+    "stargazersCount": 1567,
+    "url": "https://github.com/reliverse/relivator"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "dev-xo/remix-saas",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-03T01:16:44Z",
+    "stargazersCount": 1452,
+    "url": "https://github.com/dev-xo/remix-saas"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "adrianhajdin/ecommerce",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2024-10-29T08:39:43Z",
+    "stargazersCount": 1443,
+    "url": "https://github.com/adrianhajdin/ecommerce"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "stripe/stripe-react-native",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-14T17:23:06Z",
+    "stargazersCount": 1432,
+    "url": "https://github.com/stripe/stripe-react-native"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "nextacular/nextacular",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-05-30T12:31:52Z",
+    "stargazersCount": 1398,
+    "url": "https://github.com/nextacular/nextacular"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "adrianhajdin/ai_saas_app",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2024-07-23T10:43:22Z",
+    "stargazersCount": 1367,
+    "url": "https://github.com/adrianhajdin/ai_saas_app"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "moinulmoin/chadnext",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-09-12T20:48:49Z",
+    "stargazersCount": 1319,
+    "url": "https://github.com/moinulmoin/chadnext"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "RevenueCat/react-native-purchases",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-13T17:02:44Z",
+    "stargazersCount": 1223,
+    "url": "https://github.com/RevenueCat/react-native-purchases"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "vue-stripe/vue-stripe",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-13T03:14:50Z",
+    "stargazersCount": 1126,
+    "url": "https://github.com/vue-stripe/vue-stripe"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ShenSeanChen/launch-mvp-stripe-nextjs-supabase",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-07-20T18:47:35Z",
+    "stargazersCount": 1108,
+    "url": "https://github.com/ShenSeanChen/launch-mvp-stripe-nextjs-supabase"
+  },
+  {
+    "defaultBranch": "dev",
+    "fullName": "stripe/sync-engine",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-09-14T18:25:32Z",
+    "stargazersCount": 1088,
+    "url": "https://github.com/stripe/sync-engine"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "getpaykit/paykit",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-09-27T17:33:37Z",
+    "stargazersCount": 1077,
+    "url": "https://github.com/getpaykit/paykit"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Skolaczk/next-starter",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-14T10:40:12Z",
+    "stargazersCount": 1003,
+    "url": "https://github.com/Skolaczk/next-starter"
+  }
+]
