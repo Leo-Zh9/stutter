@@ -3,6 +3,7 @@
 # without changing their code:
 #   nextjs/saas-starter      commit 6e33e58 (pnpm, compile-only next build)
 #   boxyhq/saas-starter-kit  commit abc9b68 (npm, prisma generate, compile-only next build)
+#   stripe/sync-engine       commits 96e6b39 (pre-fix) and d486b41 (fix, PR #177) (pnpm build)
 #   Formance Ledger          v2.4.18 release binary, checksum-verified, plus the
 #                            v2.4.18 source and the mutant builds in targets/formance/mutants
 # Needs git, node (with pnpm), Go, and network access. About 2 GB on disk.
@@ -32,6 +33,14 @@ clone saas-starter-kit https://github.com/boxyhq/saas-starter-kit abc9b686823cbf
   DATABASE_URL=postgres://unused node_modules/.bin/prisma generate &&
   DATABASE_URL=postgres://unused NEXTAUTH_URL=http://unused NEXTAUTH_SECRET=unused APP_URL=http://unused FEATURE_TEAM_PAYMENTS=true \
   node_modules/.bin/next build --experimental-build-mode=compile)
+
+# stripe/sync-engine before and after PR #177 (an older webhook could overwrite a
+# newer row): 96e6b39 is the first parent of the merge d486b41. `pnpm build` runs
+# tsup for the engine and tsc for the fastify app; neither calls Stripe.
+clone sync-engine-pre https://github.com/stripe/sync-engine 96e6b398d45d0c57ff2193fa4123fa988b1c4e45
+(cd sync-engine-pre && pnpm install --frozen-lockfile && pnpm build)
+clone sync-engine-fix https://github.com/stripe/sync-engine d486b41dc1b18626ef798890b5bbc7f11f476517
+(cd sync-engine-fix && pnpm install --frozen-lockfile && pnpm build)
 
 mkdir -p formance
 (cd formance &&

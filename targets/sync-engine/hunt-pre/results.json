@@ -1,0 +1,686 @@
+{
+  "target": "stripe/sync-engine @ 96e6b39",
+  "when": "2026-11-14T23:16:14Z",
+  "trace_requests": 16,
+  "preflight": "every recorded webhook delivery got 2xx",
+  "single_fault_schedules": 87,
+  "by_fault_type": {
+    "concurrent": {
+      "run": 16,
+      "n_fired": 16,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "crash": {
+      "run": 32,
+      "n_fired": 32,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "lost": {
+      "run": 16,
+      "n_fired": 16,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "reorder": {
+      "run": 23,
+      "n_fired": 23,
+      "n_not_fired": 0,
+      "failed": 13,
+      "no_op_passes": 7
+    }
+  },
+  "no_op_reorder_pairs": [
+    "reorder(#0,#1)",
+    "reorder(#0,#2)",
+    "reorder(#0,#3)",
+    "reorder(#1,#2)",
+    "reorder(#1,#3)",
+    "reorder(#2,#3)",
+    "reorder(#5,#6)"
+  ],
+  "crash": {
+    "crash_points": 32,
+    "crash_nondeterministic_requests": null,
+    "background_commits": 0
+  },
+  "findings": [
+    {
+      "id": 1,
+      "minimal": {
+        "seqs": [
+          0,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 0,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#0 webhook customer.subscription.created evt_0000 customer=cus_team1 id=sub_one_a status=trialing",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#0,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #0"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"trialing\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790821800,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790821800,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#0,#4)"
+      ],
+      "dir": "finding-1"
+    },
+    {
+      "id": 2,
+      "minimal": {
+        "seqs": [
+          1,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 1,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#1 webhook customer.subscription.updated evt_0001 customer=cus_team1 id=sub_one_a status=active",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#1,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #1"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790821800,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790821800,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#1,#4)"
+      ],
+      "dir": "finding-2"
+    },
+    {
+      "id": 3,
+      "minimal": {
+        "seqs": [
+          2,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 2,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#2 webhook customer.subscription.updated evt_0002 customer=cus_team1 id=sub_one_a status=past_due",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#2,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #2"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"past_due\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790821800,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790821800,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#2,#4)"
+      ],
+      "dir": "finding-3"
+    },
+    {
+      "id": 4,
+      "minimal": {
+        "seqs": [
+          3,
+          4
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 3,
+            "seq2": 4
+          }
+        ]
+      },
+      "steps": [
+        "#3 webhook customer.subscription.updated evt_0003 customer=cus_team1 id=sub_one_a status=active",
+        "#4 webhook customer.subscription.deleted evt_0004 customer=cus_team1 id=sub_one_a status=canceled",
+        "fault reorder(#3,#4)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send #3"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790821800,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team1\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790821800,\"id\":\"sub_one_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_one_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_one_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_one_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#3,#4)"
+      ],
+      "dir": "finding-4"
+    },
+    {
+      "id": 5,
+      "minimal": {
+        "seqs": [
+          5,
+          7
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 5,
+            "seq2": 7
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "fault reorder(#5,#7)"
+      ],
+      "delivery_order": [
+        "send #7",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790822400,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790822400,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#5,#7)"
+      ],
+      "dir": "finding-5"
+    },
+    {
+      "id": 6,
+      "minimal": {
+        "seqs": [
+          6,
+          7
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 6,
+            "seq2": 7
+          }
+        ]
+      },
+      "steps": [
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "fault reorder(#6,#7)"
+      ],
+      "delivery_order": [
+        "send #7",
+        "send #6"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":true,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790822400,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790822400,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#6,#7)"
+      ],
+      "dir": "finding-6"
+    },
+    {
+      "id": 7,
+      "minimal": {
+        "seqs": [
+          10,
+          11
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 10,
+            "seq2": 11
+          }
+        ]
+      },
+      "steps": [
+        "#10 webhook customer.subscription.created evt_0010 customer=cus_team3 id=sub_three_a status=active",
+        "#11 webhook customer.subscription.updated evt_0011 customer=cus_team3 id=sub_three_a status=active",
+        "fault reorder(#10,#11)"
+      ],
+      "delivery_order": [
+        "send #11",
+        "send #10"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscription_items",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"billing_thresholds\":null,\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"deleted\":false,\"id\":\"si_three_a\",\"metadata\":{},\"object\":\"subscription_item\",\"price\":\"price_prod_basic\",\"quantity\":1,\"subscription\":\"sub_three_a\",\"tax_rates\":null}"
+        },
+        {
+          "table": "stripe.subscription_items",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"billing_thresholds\":null,\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"deleted\":false,\"id\":\"si_three_a\",\"metadata\":{},\"object\":\"subscription_item\",\"price\":\"price_prod_plus\",\"quantity\":1,\"subscription\":\"sub_three_a\",\"tax_rates\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team3\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_three_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_three_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_three_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_three_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team3\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_three_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_three_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":2400,\"currency\":\"usd\",\"id\":\"price_prod_plus\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_plus\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_plus\",\"object\":\"price\",\"product\":\"prod_plus\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":2400},\"quantity\":1,\"subscription\":\"sub_three_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_three_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#10,#11)"
+      ],
+      "dir": "finding-7"
+    },
+    {
+      "id": 8,
+      "minimal": {
+        "seqs": [
+          12,
+          13
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 12,
+            "seq2": 13
+          }
+        ]
+      },
+      "steps": [
+        "#12 webhook customer.subscription.created evt_0012 customer=cus_team4 id=sub_four_a status=trialing",
+        "#13 webhook customer.subscription.updated evt_0013 customer=cus_team4 id=sub_four_a status=unpaid",
+        "fault reorder(#12,#13)"
+      ],
+      "delivery_order": [
+        "send #13",
+        "send #12"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team4\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_four_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_four_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_four_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_four_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"trialing\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team4\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_four_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_four_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_four_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_four_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"unpaid\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#12,#13)"
+      ],
+      "dir": "finding-8"
+    },
+    {
+      "id": 9,
+      "minimal": {
+        "seqs": [
+          14,
+          15
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 14,
+            "seq2": 15
+          }
+        ]
+      },
+      "steps": [
+        "#14 webhook customer.subscription.created evt_0014 customer=cus_team5 id=sub_five_a status=trialing",
+        "#15 webhook customer.subscription.updated evt_0015 customer=cus_team5 id=sub_five_a status=active",
+        "fault reorder(#14,#15)"
+      ],
+      "delivery_order": [
+        "send #15",
+        "send #14"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team5\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_five_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_five_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":2400,\"currency\":\"usd\",\"id\":\"price_prod_plus\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_plus\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_plus\",\"object\":\"price\",\"product\":\"prod_plus\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":2400},\"quantity\":1,\"subscription\":\"sub_five_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_five_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"trialing\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team5\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_five_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_five_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":2400,\"currency\":\"usd\",\"id\":\"price_prod_plus\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_plus\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_plus\",\"object\":\"price\",\"product\":\"prod_plus\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":2400},\"quantity\":1,\"subscription\":\"sub_five_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_five_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#14,#15)"
+      ],
+      "dir": "finding-9"
+    },
+    {
+      "id": 10,
+      "minimal": {
+        "seqs": [
+          5,
+          7,
+          8
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 5,
+            "seq2": 8
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "#8 webhook customer.subscription.created evt_0008 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#5,#8)"
+      ],
+      "delivery_order": [
+        "send #8",
+        "send #7",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790822400,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790822400,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#5,#8)"
+      ],
+      "dir": "finding-10"
+    },
+    {
+      "id": 11,
+      "minimal": {
+        "seqs": [
+          5,
+          7,
+          9
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 5,
+            "seq2": 9
+          }
+        ]
+      },
+      "steps": [
+        "#5 webhook customer.subscription.created evt_0005 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "#9 webhook customer.subscription.updated evt_0009 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#5,#9)"
+      ],
+      "delivery_order": [
+        "send #9",
+        "send #7",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790822400,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790822400,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#5,#9)"
+      ],
+      "dir": "finding-11"
+    },
+    {
+      "id": 12,
+      "minimal": {
+        "seqs": [
+          6,
+          7,
+          8
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 6,
+            "seq2": 8
+          }
+        ]
+      },
+      "steps": [
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "#8 webhook customer.subscription.created evt_0008 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#6,#8)"
+      ],
+      "delivery_order": [
+        "send #8",
+        "send #7",
+        "send #6"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":true,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790822400,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790822400,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#6,#8)"
+      ],
+      "dir": "finding-12"
+    },
+    {
+      "id": 13,
+      "minimal": {
+        "seqs": [
+          6,
+          7,
+          9
+        ],
+        "faults": [
+          {
+            "type": "reorder",
+            "seq": 6,
+            "seq2": 9
+          }
+        ]
+      },
+      "steps": [
+        "#6 webhook customer.subscription.updated evt_0006 customer=cus_team2 id=sub_two_a status=active",
+        "#7 webhook customer.subscription.deleted evt_0007 customer=cus_team2 id=sub_two_a status=canceled",
+        "#9 webhook customer.subscription.updated evt_0009 customer=cus_team2 id=sub_two_b status=active",
+        "fault reorder(#6,#9)"
+      ],
+      "delivery_order": [
+        "send #9",
+        "send #7",
+        "send #6"
+      ],
+      "diff": [
+        {
+          "table": "stripe.subscriptions",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":true,\"canceled_at\":null,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":null,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"active\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        },
+        {
+          "table": "stripe.subscriptions",
+          "sign": "-",
+          "count": 1,
+          "row": "{\"application_fee_percent\":null,\"billing_cycle_anchor\":null,\"billing_thresholds\":null,\"cancel_at\":null,\"cancel_at_period_end\":false,\"canceled_at\":1790822400,\"collection_method\":\"charge_automatically\",\"created\":1790812800,\"current_period_end\":null,\"current_period_start\":null,\"customer\":\"cus_team2\",\"days_until_due\":null,\"default_payment_method\":null,\"default_source\":null,\"default_tax_rates\":null,\"discount\":null,\"ended_at\":1790822400,\"id\":\"sub_two_a\",\"items\":{\"data\":[{\"created\":1790812800,\"current_period_end\":1793404800,\"current_period_start\":1790812800,\"id\":\"si_two_a\",\"metadata\":{},\"object\":\"subscription_item\",\"plan\":{\"active\":true,\"amount\":800,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"interval\":\"month\",\"interval_count\":1,\"object\":\"plan\",\"product\":\"prod_basic\",\"usage_type\":\"licensed\"},\"price\":{\"active\":true,\"currency\":\"usd\",\"id\":\"price_prod_basic\",\"object\":\"price\",\"product\":\"prod_basic\",\"recurring\":{\"interval\":\"month\",\"interval_count\":1,\"usage_type\":\"licensed\"},\"type\":\"recurring\",\"unit_amount\":800},\"quantity\":1,\"subscription\":\"sub_two_a\"}],\"has_more\":false,\"object\":\"list\",\"total_count\":1,\"url\":\"/v1/subscription_items?subscription=sub_two_a\"},\"latest_invoice\":null,\"livemode\":false,\"metadata\":{},\"next_pending_invoice_item_invoice\":null,\"object\":\"subscription\",\"pause_collection\":null,\"pending_invoice_item_interval\":null,\"pending_setup_intent\":null,\"pending_update\":null,\"plan\":null,\"schedule\":null,\"start_date\":1790812800,\"status\":\"canceled\",\"transfer_data\":null,\"trial_end\":null,\"trial_start\":null}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "reorder(#6,#9)"
+      ],
+      "dir": "finding-13"
+    }
+  ],
+  "seconds": 87.458675125
+}

@@ -17,6 +17,8 @@ mkdir -p results/logs
 FAILED=0
 run saas-starter 1 hunt -config targets/saas-starter/stutter.json
 run boxyhq 1 hunt -config targets/boxyhq/stutter.json
+run sync-engine-pre 1 hunt -config targets/sync-engine/stutter.json -out targets/sync-engine/hunt-pre -lanes 4
+run sync-engine-fix 0 hunt -config targets/sync-engine/stutter-fix.json -out targets/sync-engine/hunt-fix -lanes 4
 run formance 0 hunt -config targets/formance/stutter.json
 run formance-random 0 explore -config targets/formance/stutter.json -random 200 -lanes 6
 for m in source-build drop-index no-fetch no-fetch-drop-index split; do

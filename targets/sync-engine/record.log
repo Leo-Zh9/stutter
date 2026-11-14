@@ -1,0 +1,8 @@
+$ shasum -a 256 targets/stripe/lifecycles.mjs
+bc121c1f1bee7f2f8a4bb624c4a5767e2c775e068d8dde42c09474cfb345cdb6  targets/stripe/lifecycles.mjs
+expected bc121c1f1bee7f2f8a4bb624c4a5767e2c775e068d8dde42c09474cfb345cdb6
+match
+$ ./bin/stutter record -config targets/sync-engine/stutter.json -- node targets/stripe/lifecycles.mjs --sdk .targets/sync-engine-pre/packages/sync-engine/node_modules/stripe --url {proxy}/webhooks --secret whsec_stutter_local --api basil
+delivered 16 events (2025-04-30.basil)
+recorded 16 requests to /Users/leozhang/stutter/targets/sync-engine/trace.jsonl
+# --sdk resolves to stripe@18.2.0, the copy packages/sync-engine imports

@@ -1,0 +1,33 @@
+{
+  "name": "stripe/sync-engine @ 96e6b39",
+  "dir": "../../.targets/sync-engine-pre",
+  "start": ["node", "packages/fastify-app/dist/src/server.js"],
+  "env": [
+    "NODE_ENV=production",
+    "DATABASE_URL={DATABASE_URL}",
+    "PORT={PORT}",
+    "SCHEMA=stripe",
+    "STRIPE_SECRET_KEY=sk_test_offline_never_used",
+    "STRIPE_WEBHOOK_SECRET=whsec_stutter_local",
+    "REVALIDATE_ENTITY_VIA_STRIPE_API=false",
+    "BACKFILL_RELATED_ENTITIES=false",
+    "AUTO_EXPAND_LISTS=false"
+  ],
+  "health": "/health",
+  "start_timeout": "20s",
+  "prepare": {
+    "migrate_cmd": ["node", "-e", "require('./packages/sync-engine/dist/index.cjs').runMigrations({databaseUrl: process.env.DATABASE_URL, schema: 'stripe'})"],
+    "migrate_env": ["DATABASE_URL={DATABASE_URL}"],
+    "seed_file": "fixtures.sql"
+  },
+  "schemas": ["stripe"],
+  "webhooks": {
+    "prefix": "/webhooks",
+    "signing": "stripe",
+    "secret": "whsec_stutter_local",
+    "retry": "non-2xx",
+    "max_attempts": 5,
+    "object_path": "data.object.customer"
+  },
+  "trace": "trace.jsonl"
+}
