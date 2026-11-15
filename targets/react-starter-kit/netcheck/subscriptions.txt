@@ -1,0 +1,10 @@
+  plan   | reference_id | stripe_customer_id | stripe_subscription_id |  status  | cancel_at_period_end 
+---------+--------------+--------------------+------------------------+----------+----------------------
+ pro     | usr_team5    | cus_team5          | sub_five_a             | active   | f
+ starter | usr_team4    | cus_team4          | sub_four_a             | unpaid   | f
+ starter | usr_team1    | cus_team1          | sub_one_a              | canceled | f
+ pro     | usr_team3    | cus_team3          | sub_three_a            | active   | f
+ starter | usr_team2    | cus_team2          | sub_two_a              | canceled | f
+ pro     | usr_team2    | cus_team2          | sub_two_b              | active   | f
+(6 rows)
+

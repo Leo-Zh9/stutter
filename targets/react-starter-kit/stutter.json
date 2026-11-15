@@ -1,0 +1,38 @@
+{
+  "name": "kriasoft/react-starter-kit @ dbdb0d4",
+  "dir": "../../.targets/react-starter-kit/apps/api",
+  "start": ["sh", "-c", "U=\"postgres://postgres:postgres@${STUTTER_DB#postgres://postgres@}\"; export CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE_CACHED=\"$U\" CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE_UNCACHED=\"$U\" DATABASE_URL=\"$U\"; exec npx --offline -y bun@1.4.2 run ./dev.ts"],
+  "env": [
+    "STUTTER_DB={DATABASE_URL}",
+    "PORT={PORT}",
+    "APP_NAME=Example",
+    "APP_ORIGIN=http://{ADDR}",
+    "ENVIRONMENT=development",
+    "BETTER_AUTH_SECRET=stutter_local_auth_secret_0123456789",
+    "RESEND_API_KEY=re_offline_never_used",
+    "RESEND_EMAIL_FROM=onboarding@example.test",
+    "STRIPE_SECRET_KEY=sk_test_offline_never_used",
+    "STRIPE_WEBHOOK_SECRET=whsec_stutter_local",
+    "STRIPE_STARTER_PRICE_ID=price_prod_basic",
+    "STRIPE_PRO_PRICE_ID=price_prod_plus",
+    "WRANGLER_SEND_METRICS=false"
+  ],
+  "health": "/health",
+  "start_timeout": "30s",
+  "prepare": {
+    "migrate_cmd": ["sh", "-c", "cd ../../db && exec npx --offline -y bun@1.4.2 --bun node_modules/.bin/drizzle-kit migrate"],
+    "migrate_env": ["DATABASE_URL={DATABASE_URL}"],
+    "seed_file": "fixtures.sql"
+  },
+  "schemas": ["public"],
+  "ignore": ["subscription.id"],
+  "webhooks": {
+    "prefix": "/api/auth/stripe/webhook",
+    "signing": "stripe",
+    "secret": "whsec_stutter_local",
+    "retry": "non-2xx",
+    "max_attempts": 5,
+    "object_path": "data.object.customer"
+  },
+  "trace": "trace.jsonl"
+}

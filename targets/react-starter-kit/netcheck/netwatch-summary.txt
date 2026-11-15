@@ -1,0 +1,4 @@
+   1 net.connect obj {"fd":13}
+  16 socket.connect number:54329 string:127.0.0.1
+   1 socket.connect obj {"fd":13}
+   1 start

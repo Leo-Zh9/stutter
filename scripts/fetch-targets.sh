@@ -4,6 +4,7 @@
 #   nextjs/saas-starter      commit 6e33e58 (pnpm, compile-only next build)
 #   boxyhq/saas-starter-kit  commit abc9b68 (npm, prisma generate, compile-only next build)
 #   stripe/sync-engine       commits 96e6b39 (pre-fix) and d486b41 (fix, PR #177) (pnpm build)
+#   kriasoft/react-starter-kit commit dbdb0d4 (npx bun@1.4.2 install, @repo/email build)
 #   Formance Ledger          v2.4.18 release binary, checksum-verified, plus the
 #                            v2.4.18 source and the mutant builds in targets/formance/mutants
 # Needs git, node (with pnpm), Go, and network access. About 2 GB on disk.
@@ -53,6 +54,13 @@ clone paykit https://github.com/getpaykit/paykit c7572ff7e0116428a43a2f98ad25dc2
   STRIPE_WEBHOOK_SECRET=whsec_stutter_local PAYKIT_DATABASE_URL=postgres://unused \
   AUTH_DATABASE_URL=postgres://unused APP_URL=http://unused BETTER_AUTH_SECRET=unused \
   node_modules/.bin/next build --experimental-build-mode=compile)
+
+# kriasoft/react-starter-kit (blind target): Bun only, taken from the npm
+# registry at the version its packageManager field pins. The API's dev server
+# imports the built @repo/email package, so that is built too (tsc only).
+clone react-starter-kit https://github.com/kriasoft/react-starter-kit dbdb0d4991bbaae1671ff62180089f2733dd406a
+(cd react-starter-kit && npx -y bun@1.4.2 install --frozen-lockfile &&
+  npx -y bun@1.4.2 --filter @repo/email build)
 
 mkdir -p formance
 (cd formance &&

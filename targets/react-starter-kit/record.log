@@ -1,0 +1,64 @@
+$ shasum -a 256 -c docs/evidence/workload.sha256
+targets/stripe/lifecycles.mjs: OK
+$ ./bin/stutter record -config targets/react-starter-kit/stutter.json -- node targets/stripe/lifecycles.mjs --sdk .targets/react-starter-kit/apps/api/node_modules/stripe --url {proxy}/api/auth/stripe/webhook --secret whsec_stutter_local --api basil --customers cus_team1,cus_team2,cus_team3,cus_team4,cus_team5
+node:internal/modules/cjs/loader:1564
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module '.targets/react-starter-kit/apps/api/node_modules/stripe'
+Require stack:
+- /Users/leozhang/stutter/targets/stripe/lifecycles.mjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)
+    at Module._load (node:internal/modules/cjs/loader:1341:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1674:12)
+    at require (node:internal/modules/helpers:157:16)
+    at file:///Users/leozhang/stutter/targets/stripe/lifecycles.mjs:19:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/Users/leozhang/stutter/targets/stripe/lifecycles.mjs' ]
+}
+
+Node.js v24.21.0
+stutter: exit status 1
+exit 2
+# --sdk resolves to stripe@22.6.2, the copy apps/api installs
+# first attempt failed before any delivery: require() does not resolve a bare relative --sdk path; retried with ./
+$ shasum -a 256 -c docs/evidence/workload.sha256
+targets/stripe/lifecycles.mjs: OK
+$ ./bin/stutter record -config targets/react-starter-kit/stutter.json -- node targets/stripe/lifecycles.mjs --sdk ./.targets/react-starter-kit/apps/api/node_modules/stripe --url {proxy}/api/auth/stripe/webhook --secret whsec_stutter_local --api basil --customers cus_team1,cus_team2,cus_team3,cus_team4,cus_team5
+node:internal/modules/cjs/loader:1564
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module './.targets/react-starter-kit/apps/api/node_modules/stripe'
+Require stack:
+- /Users/leozhang/stutter/targets/stripe/lifecycles.mjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)
+    at Module._load (node:internal/modules/cjs/loader:1341:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1674:12)
+    at require (node:internal/modules/helpers:157:16)
+    at file:///Users/leozhang/stutter/targets/stripe/lifecycles.mjs:19:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/Users/leozhang/stutter/targets/stripe/lifecycles.mjs' ]
+}
+
+Node.js v24.21.0
+stutter: exit status 1
+exit 2
+# second attempt also failed before any delivery: require() resolves ./ against lifecycles.mjs, not the cwd; retried with the absolute path
+$ shasum -a 256 -c docs/evidence/workload.sha256
+targets/stripe/lifecycles.mjs: OK
+$ ./bin/stutter record -config targets/react-starter-kit/stutter.json -- node targets/stripe/lifecycles.mjs --sdk /Users/leozhang/stutter/.targets/react-starter-kit/apps/api/node_modules/stripe --url {proxy}/api/auth/stripe/webhook --secret whsec_stutter_local --api basil --customers cus_team1,cus_team2,cus_team3,cus_team4,cus_team5
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+delivered 16 events (2025-04-30.basil)
+recorded 16 requests to /Users/leozhang/stutter/targets/react-starter-kit/trace.jsonl
+exit 0
