@@ -8,14 +8,31 @@ The rule it checks: **a request that was retried, redelivered or reordered must 
 
 ## What it found in real code
 
+### Blind hunts
+
+The targets were picked by a fixed GitHub search and pass/fail criteria, both frozen in commit [`c7ee40d`](https://github.com/Leo-Zh9/stutter/blob/c7ee40d/docs/evidence/blind-protocol.md) before any target was chosen. A screener judged the [search results](docs/evidence/blind-screen.md) in star order and published pass or fail only. The hunter got a repository name and a pinned commit, configured it from its docs and schema, ran the frozen Stripe workload, and pushed the results before reading any handler code. 29 repositories were judged and 3 passed. Full results, deviations and the claim: [docs/evidence/blind-results.md](docs/evidence/blind-results.md).
+
 | Target | Result |
 |---|---|
-| [nextjs/saas-starter](docs/targets/saas-starter.md) (16k stars), unmodified | Out-of-order Stripe webhooks reactivate canceled teams, cancel teams that are paying, or point a team at its old plan. 7 failing reorders, 3 effects, every one reproduced 10/10 by curl. |
-| [boxyhq/saas-starter-kit](docs/targets/boxyhq.md) (5k stars), unmodified | Out-of-order webhooks recreate canceled subscriptions as active, and turn a trial that ended unpaid into an active subscription. 11 failing reorders, 3 effects, every one reproduced 10/10 by curl. |
+| [talivia-group/talivia](docs/targets/talivia.md) | Clean. 0 of 109 single faults changed the final state, including all 23 reorder pairs. |
+| [getpaykit/paykit](docs/targets/paykit.md) | 3 root causes. Late events overwrite newer state, an event about an old subscription ends the new one, and a crash between two commits drops the event while redeliveries get 200. 29 failing schedules. |
+| [kriasoft/react-starter-kit](docs/targets/react-starter-kit.md) | 4 root causes, all in its dependency `@better-auth/stripe` 1.7.4. Canceled subscriptions come back, early events are dropped with 200, and one subscription's row is rewritten by another's event. 15 failing reorders. A later, non-blind run on 1.7.25, the latest release, gives the same 15. |
+
+Against a fixed Stripe webhook workload (sha256 bc121c1f), used unmodified, stutter ran on 3 open-source apps screened this way. It found 7 distinct root causes. 1 app was clean, 0 were not reached and 0 were not run.
+
+### Before the freeze
+
+These were not blind.
+
+| Target | Result |
+|---|---|
+| [stripe/sync-engine](docs/targets/sync-engine.md), before and after PR #177 | Case study, found by searching merged fixes. The commit before the fix fails 13 of 23 reorders. The fix is clean on all 87 single faults. |
+| [nextjs/saas-starter](docs/targets/saas-starter.md) (16k stars), unmodified | Found from reading the code first. Out-of-order Stripe webhooks reactivate canceled teams, cancel teams that are paying, or point a team at its old plan. 7 failing reorders, 3 effects, every one reproduced 10/10 by curl. |
+| [boxyhq/saas-starter-kit](docs/targets/boxyhq.md) (5k stars), unmodified | Found from reading the code first. Out-of-order webhooks recreate canceled subscriptions as active, and turn a trial that ended unpaid into an active subscription. 11 failing reorders, 3 effects, every one reproduced 10/10 by curl. |
 | [Formance Ledger v2.4.18](docs/targets/formance.md), unmodified release binary | Clean: 0 of 129 single faults (lost, concurrent, crash) and 0 of 286 more schedules changed the final state. |
 | Formance with one defence removed (4 builds) | Every removed defence is caught by the fault its design predicts. Dropping only the in-code lookup is masked by the unique index, as designed. |
 
-Both starters' root cause is a webhook handler that applies every subscription event unconditionally, while Stripe documents that delivery order is not guaranteed. The hypotheses came from reading the code. stutter confirmed them, enumerated every pair, minimized them and produced the reproductions. Issue drafts are in each target's doc; none has been filed.
+Both starters' root cause is a webhook handler that applies every subscription event unconditionally, while Stripe documents that delivery order is not guaranteed. stutter confirmed the hypotheses, enumerated every pair, minimized them and produced the reproductions. Issue drafts for the two starters are in their docs. No issue has been filed upstream for any target.
 
 ```
 $ ./bin/stutter hunt -config targets/saas-starter/stutter.json
@@ -37,7 +54,7 @@ Requires Go 1.25+ and [uv](https://docs.astral.sh/uv/). No Docker: PostgreSQL 16
 ```bash
 make demo        # Postgres, build, the minipay benchmark (about 3 min)
 make test        # unit and integration tests
-./scripts/fetch-targets.sh && make hunt   # the real targets above (about 50 min; needs node, pnpm)
+./scripts/fetch-targets.sh && make hunt   # every real target above (about 70 min; needs node, pnpm)
 ```
 
 To point stutter at your own service, describe it in a `stutter.json` ([docs/usage.md](docs/usage.md)) and run `stutter record`, then `stutter hunt`.
@@ -103,5 +120,5 @@ internal/explore   schedules, lanes, baselines, crash enumeration, shrink driver
 internal/hunt      every single fault, findings, curl repro scripts
 internal/shrink    ddmin
 internal/bench     minipay measurement suite, writes results/
-targets/           minipay, the two SaaS starters, Formance and its mutants
+targets/           minipay, the real targets above, Formance's mutants, the Stripe workload
 ```

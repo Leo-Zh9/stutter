@@ -27,7 +27,7 @@ bench: pg build trace
 explore: pg build trace
 	./bin/stutter explore -config targets/minipay/stutter.json -env BUG=$(BUG)
 
-# Real targets (needs scripts/fetch-targets.sh first): about 30 minutes.
+# Real targets (needs scripts/fetch-targets.sh first): about 70 minutes.
 hunt: pg build
 	./scripts/hunt-all.sh
 
