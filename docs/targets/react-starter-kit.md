@@ -112,3 +112,7 @@ The causes were checked against the running app after reading. Re-running findin
 - **Network check limits.** It was one delivery of the workload, outside stutter. workerd was covered only by `lsof` polling every 0.2 s, which can miss a very short connection.
 - **Leftover servers.** Two servers started at 18:35, during the recording and the hunt that stopped at the stability check, were still running after the hunt (stutter exited without stopping them). Each had its own database (`r37297_1`, `r37454_1`) and port. They were killed after the hunt.
 - **`-lanes 2`**, because other hunters shared the cluster.
+
+## Upstream
+
+Checked 2026-11-15 against better-auth `main` at `8382ce6`. Cause 1 was already reported as better-auth/better-auth#12255 (fix in #12267). Cause 3's `TypeError` was replaced by a logged warning in #12473 (shipped in 1.7.25); the event is still acknowledged and dropped, which #10534 and #11943 cover. Causes 4 and 2 had no report and are filed as [better-auth/better-auth#12642](https://github.com/better-auth/better-auth/issues/12642), with a standalone reproduction on the in-memory adapter in [targets/better-auth-repro](../../targets/better-auth-repro).

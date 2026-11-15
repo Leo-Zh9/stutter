@@ -32,7 +32,7 @@ These were not blind.
 | [Formance Ledger v2.4.18](docs/targets/formance.md), unmodified release binary | Clean: 0 of 129 single faults (lost, concurrent, crash) and 0 of 286 more schedules changed the final state. |
 | Formance with one defence removed (4 builds) | Every removed defence is caught by the fault its design predicts. Dropping only the in-code lookup is masked by the unique index, as designed. |
 
-Both starters' root cause is a webhook handler that applies every subscription event unconditionally, while Stripe documents that delivery order is not guaranteed. stutter confirmed the hypotheses, enumerated every pair, minimized them and produced the reproductions. Issue drafts for the two starters are in their docs. No issue has been filed upstream for any target.
+Both starters' root cause is a webhook handler that applies every subscription event unconditionally, while Stripe documents that delivery order is not guaranteed. stutter confirmed the hypotheses, enumerated every pair, minimized them and produced the reproductions. Issue drafts for the two starters are in their docs and have not been filed. Two of the better-auth causes, which no one had reported, are filed as [better-auth/better-auth#12642](https://github.com/better-auth/better-auth/issues/12642), with a standalone repro in [targets/better-auth-repro](targets/better-auth-repro); the other two were already reported upstream (#12255, #10534).
 
 ```
 $ ./bin/stutter hunt -config targets/saas-starter/stutter.json
