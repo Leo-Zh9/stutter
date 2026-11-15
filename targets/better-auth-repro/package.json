@@ -1,0 +1,15 @@
+{
+  "name": "better-auth-stripe-reorder-repro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "repro": "node repro.mjs"
+  },
+  "dependencies": {
+    "@better-auth/core": "1.7.25",
+    "@better-auth/stripe": "1.7.25",
+    "better-auth": "1.7.25",
+    "better-call": "1.4.5",
+    "stripe": "23.1.0"
+  }
+}
