@@ -4,6 +4,8 @@
 #   nextjs/saas-starter      commit 6e33e58 (pnpm, compile-only next build)
 #   boxyhq/saas-starter-kit  commit abc9b68 (npm, prisma generate, compile-only next build)
 #   stripe/sync-engine       commits 96e6b39 (pre-fix) and d486b41 (fix, PR #177) (pnpm build)
+#   talivia-group/talivia    commit 9b7ad2a (pnpm@10.10.0, prisma generate, compile-only next build)
+#   getpaykit/paykit         commit c7572ff (pnpm@12.4.2, compile-only next build of apps/demo)
 #   kriasoft/react-starter-kit commit dbdb0d4 (npx bun@1.4.2 install, @repo/email build)
 #   Formance Ledger          v2.4.18 release binary, checksum-verified, plus the
 #                            v2.4.18 source and the mutant builds in targets/formance/mutants
@@ -42,6 +44,16 @@ clone sync-engine-pre https://github.com/stripe/sync-engine 96e6b398d45d0c57ff21
 (cd sync-engine-pre && pnpm install --frozen-lockfile && pnpm build)
 clone sync-engine-fix https://github.com/stripe/sync-engine d486b41dc1b18626ef798890b5bbc7f11f476517
 (cd sync-engine-fix && pnpm install --frozen-lockfile && pnpm build)
+
+# talivia-group/talivia (blind target): pnpm at the version its packageManager
+# field pins. prisma generate needs DATABASE_URL set but does not connect;
+# build-prisma-client.js is the repo's own esbuild bundle of the generated
+# client. The compile-only next build skips prerender. None of this calls Stripe.
+clone talivia https://github.com/talivia-group/talivia 9b7ad2a6039bce79e20364dbcea44c66a765f398
+(cd talivia && npx -y pnpm@10.10.0 install --frozen-lockfile &&
+  DATABASE_URL=postgres://unused CHECKPOINT_DISABLE=1 PRISMA_HIDE_UPDATE_MESSAGE=1 node_modules/.bin/prisma generate &&
+  node scripts/build-prisma-client.js &&
+  DATABASE_URL=postgres://unused APP_SECRET=unused node_modules/.bin/next build --webpack --experimental-build-mode=compile)
 
 # getpaykit/paykit (embedded Stripe billing framework). paykitjs is the library;
 # apps/demo is the Next.js app that mounts the paykit handler at /paykit/webhook.
