@@ -33,6 +33,7 @@ const usage = `stutter: find retry bugs by replaying traffic under faults
   stutter hunt    -config stutter.json [-out DIR] [-env K=V,...]   every single fault, shrink, report, curl repros
   stutter check   -config stutter.json -fault 'crash(#3@commit2)' [-env K=V,...] [-n N]
                   one schedule against the fault-free run: fired, diverged, diff
+  stutter model   -config stutter.json   serve the scripted model until killed; prints its base URL
   stutter bench   [-config targets/minipay/stutter.json] [-out results]
 
 In WORKLOAD, {proxy} is replaced with the recording proxy's base URL.
@@ -58,6 +59,8 @@ func main() {
 		huntCmd(ctx, root, os.Args[2:])
 	case "check":
 		checkCmd(ctx, root, os.Args[2:])
+	case "model":
+		modelCmd(os.Args[2:])
 	default:
 		fmt.Fprint(os.Stderr, usage)
 		os.Exit(2)
@@ -305,6 +308,23 @@ func checkCmd(ctx context.Context, root string, args []string) {
 	if failed > 0 {
 		os.Exit(1)
 	}
+}
+
+// modelCmd serves a config's scripted model, so a finding's repro.sh can be
+// run by hand against a service started with OPENAI_BASE_URL set to it.
+func modelCmd(args []string) {
+	fs := flag.NewFlagSet("model", flag.ExitOnError)
+	cfgPath := fs.String("config", "stutter.json", "target config with a model script")
+	fs.Parse(args)
+	cfg, err := config.Load(*cfgPath)
+	must(err)
+	if cfg.Script() == nil {
+		fail("the config has no model script")
+	}
+	stub, err := agentstub.Start(cfg.Script())
+	must(err)
+	fmt.Println(stub.URL)
+	select {}
 }
 
 func hasCrash(s replay.Schedule) bool {

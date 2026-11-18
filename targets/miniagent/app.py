@@ -42,7 +42,7 @@ VARIANTS = {
     "chat-no-dedupe",  # /chat ignores message_id: a retried message starts the run again
     "claim-before-refund",  # approval claimed in one commit, refund in the next: a crash loses it
     "note-keyed-on-tool-call",  # note deduped on tool_call_id, which a re-run model call changes
-    "write-before-interrupt",  # control: a row written before interrupt() is written again on resume
+    "write-before-interrupt",  # a row written before interrupt() is written again on every resume
 }
 if BUG not in VARIANTS:
     raise SystemExit(f"unknown BUG={BUG!r}")

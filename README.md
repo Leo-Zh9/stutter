@@ -1,6 +1,6 @@
 # stutter
 
-stutter finds retry bugs in HTTP services backed by PostgreSQL: double charges, webhooks applied twice or out of order, and work lost when a process dies between two commits.
+stutter finds retry bugs in HTTP services backed by PostgreSQL: double charges, webhooks applied twice or out of order, and work lost when a process dies between two commits. Its [agent mode](docs/agents.md) does the same for LLM agent apps: a refund an agent issues twice when an approval is double-clicked, or never when the process dies after the approval.
 
 It records a service's traffic, replays it on fresh copies of the database while injecting the faults real networks and deploys produce, and flags any fault that changes the final data. Every failure is shrunk to a minimal reproduction and written out as a curl script.
 
@@ -47,6 +47,18 @@ fault reorder(#7,#9)
 
 In this finding, Team 2 canceled one subscription and started another. When the old subscription's `deleted` event arrives late, the paying team is marked canceled.
 
+## Agent mode: LLM agents with tools
+
+An agent app is a service like any other, except that its side effects are made by tools the model chooses to call, and its runs are resumed from checkpoints. LangGraph re-runs a node from its start when a run resumes after an approval or a crash, and by default writes each step's checkpoint in the background while the next step runs. Whether a tool then acts twice, or never, is up to the app's own code. [docs/agents.md](docs/agents.md) explains the mode.
+
+- **A scripted model, no API key.** An OpenAI-compatible stub answers every model call from a per-target script, as a pure function of the conversation. A node LangGraph re-runs gets the same tool call, with fresh tool-call ids as a real model would mint.
+- **Approvals as retries.** A double-clicked or retried approval of a pending `interrupt()` is faulted like a duplicated payment, but only when the retry would answer the same approval, never the next one.
+- **Crashes at checkpoint commits.** The same wire-proxy crash points now land between a tool's commit and the checkpoint that records it. Each crash fault runs twice; disagreement is reported as nondetermined, never as a finding.
+
+On [miniagent](targets/miniagent/README.md), a FastAPI + LangGraph 1.2 + PostgresSaver app with one seeded defect per variant, the correct variant fails 0 of 73 single faults, and every defect is found by the fault its design predicts: the double-clicked approval only by `concurrent` (shrunk to two requests, curl repro 10 of 10), the refund that is never issued only by a crash between two commits. One defect that depends on LangGraph's async checkpoint race reproduces only 4 of 10 times, and stutter reports it that way. Results: [results/agents.md](results/agents.md).
+
+**Blind hunt, in progress.** A protocol for real open-source agent apps ([agent-protocol.md](docs/evidence/agent-protocol.md)) was frozen and pushed in `2bb512e` before any search. The frozen search returned 235 LangGraph repositories; a mechanical pre-filter kept the 41 that depend on a PostgreSQL checkpointer ([agent-prefilter.md](docs/evidence/agent-prefilter.md)); a screener reading code through the GitHub API passed 3 ([agent-screen.md](docs/evidence/agent-screen.md)), with its reasons held back under a published sha256. The hunts themselves have not run yet.
+
 ## Quick start
 
 Requires Go 1.25+ and [uv](https://docs.astral.sh/uv/). No Docker: PostgreSQL 16 runs as a project-local cluster.
@@ -54,6 +66,7 @@ Requires Go 1.25+ and [uv](https://docs.astral.sh/uv/). No Docker: PostgreSQL 16
 ```bash
 make demo        # Postgres, build, the minipay benchmark (about 3 min)
 make test        # unit and integration tests
+make agent-bench # agent mode: every miniagent variant (about 30 min; needs uv)
 ./scripts/fetch-targets.sh && make hunt   # every real target above (about 70 min; needs node, pnpm)
 ```
 
@@ -110,7 +123,8 @@ Each cell shows schedules that changed the final state out of schedules that fir
 ## Layout
 
 ```
-cmd/stutter        CLI: record, explore, hunt, bench
+cmd/stutter        CLI: record, explore, hunt, check, bench
+internal/agentstub scripted OpenAI-compatible model for agent mode
 internal/config    stutter.json, template preparation, sequence bands
 internal/trace     trace format, recording proxy
 internal/replay    client rules, faults, lock barrier, crash restarts, id mapping
@@ -120,5 +134,5 @@ internal/explore   schedules, lanes, baselines, crash enumeration, shrink driver
 internal/hunt      every single fault, findings, curl repro scripts
 internal/shrink    ddmin
 internal/bench     minipay measurement suite, writes results/
-targets/           minipay, the real targets above, Formance's mutants, the Stripe workload
+targets/           minipay, miniagent, the real targets above, Formance's mutants, the Stripe workload
 ```

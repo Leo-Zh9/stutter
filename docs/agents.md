@@ -78,3 +78,19 @@ The interrupt is named by the thread's latest checkpoint id, if that checkpoint 
 ## Results on miniagent
 
 See [targets/miniagent](../targets/miniagent/README.md).
+
+## Reproducing a finding by hand
+
+Each finding's `repro.sh` sends the faulted order with curl. An agent app needs its model while it runs, so start the scripted model first and point the app at it:
+
+```bash
+./bin/stutter model -config targets/miniagent/stutter.json    # prints http://127.0.0.1:PORT/v1
+```
+
+Then start the app with `OPENAI_BASE_URL` set to that URL on a fresh database, and run `BASE_URL=http://127.0.0.1:APP_PORT ./repro.sh`. `stutter hunt` does exactly this for every scriptable finding (crash findings are not scriptable: curl cannot stop a process at a commit). Races are hit only some of the time without stutter's lock barrier.
+
+## Limits
+
+- **LangGraph's Postgres checkpointer, OpenAI-compatible models.** The interrupt query and `ignore_tables` assume the Python or JS `PostgresSaver` schema; `interrupt_sql` overrides the former. Static breakpoints (`interrupt_before`) leave no `__interrupt__` write and are not faulted as resumes.
+- **The async-durability race is reported, not controlled.** Whether a tool's commit lands before the agent's checkpoint write is decided inside the app. stutter's crash points are numbered by arrival, so a defect that needs one particular order is hit only sometimes; it shows as fewer than 10 of 10 reproductions, and crash-twice can miss it.
+- **Scripts are written by hand,** from the tool schemas the app sends to the model. A conversation the script does not cover is a miss, never a guess.
