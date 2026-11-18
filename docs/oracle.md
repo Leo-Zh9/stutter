@@ -6,6 +6,8 @@ Two runs of the same correct program never produce byte-identical databases. Uui
 
 A column is **generated** if its default calls a non-immutable function (`gen_random_uuid`, `nextval`, `now`, and so on), uses `CURRENT_TIMESTAMP` or a similar keyword, or is an identity column. Its values are never compared directly.
 
+Ids the application mints itself (a `uuid4()` in Python, with no column default) cannot be seen in the catalog. The config's `generated` list declares them, and they are then treated exactly as above.
+
 ## Edges
 
 Something that points at a generated value becomes an **edge** to the row that owns it:

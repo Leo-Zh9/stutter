@@ -201,8 +201,14 @@ func (t *Table) col(name string) *Column {
 
 // Options lets a user mark extra columns as nondeterministic ("table.column").
 type Options struct {
-	Ignore  map[string]bool
-	Schemas []string // schemas to snapshot; default public
+	// Ignore drops a column ("table.column") or a path inside a JSON
+	// column ("table.column.key.key", "[]" for array elements).
+	Ignore map[string]bool
+	// Generated marks columns whose ids the application mints itself (a
+	// uuid4 in app code, no column default): they are treated exactly like
+	// columns the catalog shows as generated.
+	Generated map[string]bool
+	Schemas   []string // schemas to snapshot; default public
 	// IgnoreTables are left out of the snapshot entirely (framework
 	// bookkeeping such as a checkpointer's tables), and out of the lock
 	// barrier's table list.
@@ -241,7 +247,7 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 	for _, t := range st.Tables {
 		for i, row := range st.Rows[t.Name] {
 			for _, c := range t.Columns {
-				if !c.Generated || row[c.Name] == nil {
+				if !(c.Generated || opt.Generated[t.Name+"."+c.Name]) || row[c.Name] == nil {
 					continue
 				}
 				k := t.Name + "." + c.Name
@@ -282,6 +288,16 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 			}
 		}
 	}
+	if len(opt.Ignore) > 0 {
+		v := map[string]bool{}
+		for k := range volatile {
+			v[k] = true
+		}
+		for k := range opt.Ignore {
+			v[k] = true
+		}
+		volatile = v
+	}
 	numRef := func(path string, v any, me rowRef, label string, children map[rowRef][]edge) (string, bool) {
 		if opt.Inf == nil {
 			return "", false
@@ -317,7 +333,7 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 			fields := map[string]any{}
 			for _, c := range t.Columns {
 				label := t.Name + "." + c.Name
-				if c.Generated || c.Temporal || opt.Ignore[label] || volatile[label] {
+				if c.Generated || opt.Generated[label] || c.Temporal || opt.Ignore[label] || volatile[label] {
 					continue
 				}
 				if _, isOwner := ownerOf[label]; isOwner {

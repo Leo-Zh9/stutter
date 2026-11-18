@@ -205,3 +205,46 @@ func TestOpaqueModelIDs(t *testing.T) {
 		t.Fatal("a duplicated row is still a diff")
 	}
 }
+
+// Ids the app mints itself, once declared, are compared like generated ids:
+// a jsonb copy of one becomes an edge, a declared random JSON field is
+// dropped, and a second approval of the same proposal is still a diff.
+func TestAppMintedIDsAndJSONPaths(t *testing.T) {
+	mk := func(pid, nonce string, approvals int) *State {
+		st := &State{Tables: []Table{
+			{Name: "proposals", Columns: []Column{{Name: "id", Type: "uuid"}, {Name: "state", Type: "text"}}},
+			{Name: "approvals", Columns: []Column{{Name: "proposal_id", Type: "uuid"}, {Name: "claim", Type: "jsonb"}}},
+		}, Rows: map[string][]Row{}}
+		st.Rows["proposals"] = []Row{{"id": pid, "state": "verified"}}
+		for i := 0; i < approvals; i++ {
+			st.Rows["approvals"] = append(st.Rows["approvals"], Row{"proposal_id": pid,
+				"claim": map[string]any{"proposal_id": pid, "nonce": nonce, "approver": "op"}})
+		}
+		return st
+	}
+	opt := Options{Generated: map[string]bool{"proposals.id": true}, Ignore: map[string]bool{"approvals.claim.nonce": true}}
+	a, err := Canonicalize(mk("11111111-aaaa", "n1", 1), opt)
+	if err != nil {
+		t.Fatal(err)
+	}
+	b, _ := Canonicalize(mk("22222222-bbbb", "n2", 1), opt)
+	if d := Diff(a, b); len(d) != 0 {
+		t.Fatalf("runs differing only in minted ids and nonces must compare equal: %v", d)
+	}
+	c, _ := Canonicalize(mk("22222222-bbbb", "n2", 2), opt)
+	if len(Diff(a, c)) == 0 {
+		t.Fatal("a second approval is a diff")
+	}
+	if d := Diff(mustCanon(t, mk("11111111-aaaa", "n1", 1), Options{}), mustCanon(t, mk("22222222-bbbb", "n1", 1), Options{})); len(d) == 0 {
+		t.Fatal("undeclared, the minted id is compared as data")
+	}
+}
+
+func mustCanon(t *testing.T, st *State, opt Options) *Canon {
+	t.Helper()
+	c, err := Canonicalize(st, opt)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return c
+}

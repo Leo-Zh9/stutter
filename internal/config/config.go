@@ -94,7 +94,10 @@ type Config struct {
 	KeyHeader    string   `json:"idempotency_header,omitempty"`
 	Webhooks     Webhooks `json:"webhooks"`
 	Ignore       []string `json:"ignore,omitempty"`
-	Trace        string   `json:"trace,omitempty"`
+	// Generated lists columns holding ids the app mints itself
+	// ("table.column"), compared like database-generated ids.
+	Generated []string `json:"generated,omitempty"`
+	Trace     string   `json:"trace,omitempty"`
 	// IgnoreTables are left out of the oracle and the lock barrier: a
 	// framework's own bookkeeping, such as a checkpointer's tables.
 	IgnoreTables []string `json:"ignore_tables,omitempty"`
@@ -246,13 +249,17 @@ func (c *Config) Replay(env *pgenv.Env, template string, extraEnv []string) repl
 	for _, col := range c.Ignore {
 		ign[col] = true
 	}
+	gen := map[string]bool{}
+	for _, col := range c.Generated {
+		gen[col] = true
+	}
 	it := map[string]bool{}
 	for _, t := range c.IgnoreTables {
 		it[t] = true
 	}
 	rc := replay.Config{
 		Env: env, Template: template, Barrier: true, Target: c.Spec(extraEnv), Bands: c.bands[template],
-		Oracle:    oracle.Options{Ignore: ign, Schemas: c.Schemas, IgnoreTables: it},
+		Oracle:    oracle.Options{Ignore: ign, Generated: gen, Schemas: c.Schemas, IgnoreTables: it},
 		KeyHeader: c.KeyHeader,
 		Rules:     c.RetryRules,
 		Headers:   c.ResolvedHeaders(),
@@ -309,7 +316,7 @@ func (c *Config) PrepareTemplate(ctx context.Context, env *pgenv.Env, name strin
 		return err
 	}
 	if len(p.MigrateCmd) > 0 {
-		r := strings.NewReplacer("{DATABASE_URL_SOCKET}", env.SocketURL(name), "{DSN}", env.DSN(name), "{DATABASE_URL}", env.URL(name))
+		r := strings.NewReplacer("{DATABASE_URL_SOCKET}", env.SocketURL(name), "{DATABASE_SOCKET_NOSCHEME}", strings.TrimPrefix(env.SocketURL(name), "postgres://"), "{DSN}", env.DSN(name), "{DATABASE_URL}", env.URL(name))
 		args := c.resolveCmd(p.MigrateCmd)
 		for i := range args {
 			args[i] = r.Replace(args[i])

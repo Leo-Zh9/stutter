@@ -36,7 +36,8 @@ Describe the service in a `stutter.json`.
 | `webhooks.prefix` | Requests under this path are provider deliveries, which may always be redelivered. |
 | `webhooks.signing` | `stripe` signs each delivery at send time (`t=...,v1=HMAC-SHA256`), since recorded signatures expire after 300 s. |
 | `webhooks.retry` | `5xx` (default) or `non-2xx`. Stripe retries any non-2xx. A diff only counts after the provider's retries are used up. |
-| `ignore` | `table.column` values the oracle should skip. stutter names any that are needed: see the false-alarm guard in [oracle.md](oracle.md). |
+| `ignore` | `table.column` values the oracle should skip, or a path inside a JSON column (`table.column.key.key`, `[]` for array elements) such as a nonce or a signature. stutter names any columns that are needed: see the false-alarm guard in [oracle.md](oracle.md). |
+| `generated` | `table.column` ids the application mints itself (a `uuid4()` in app code, so no column default shows it). They are compared like database-generated ids: a copy of one elsewhere becomes a reference, and two runs that differ only in those ids compare equal. |
 
 Placeholders, usable in `start`, `env` and `prepare.migrate_*`:
 
@@ -45,6 +46,7 @@ Placeholders, usable in `start`, `env` and `prepare.migrate_*`:
 | `{DSN}` | libpq keyword string over the project-local unix socket |
 | `{DATABASE_URL}` | `postgres://postgres@127.0.0.1:54329/<db>?sslmode=disable` |
 | `{DATABASE_URL_SOCKET}` | the same over the unix socket; prefer it for services with large pools, since TCP connections closed by killed processes pile up in TIME_WAIT and can exhaust ephemeral ports |
+| `{DATABASE_SOCKET_NOSCHEME}` | `{DATABASE_URL_SOCKET}` without `postgres://`, for drivers that need their own scheme, such as SQLAlchemy's `postgresql+psycopg://{DATABASE_SOCKET_NOSCHEME}` |
 | `{ADDR}` | `127.0.0.1:<port>` the service must listen on |
 | `{HOST}`, `{PORT}` | the two halves of `{ADDR}` |
 

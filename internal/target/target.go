@@ -19,6 +19,8 @@ import (
 //	{DSN}           libpq keyword string (unix socket)
 //	{DATABASE_URL}  postgres:// URL over TCP
 //	{DATABASE_URL_SOCKET}  postgres:// URL over the unix socket
+//	{DATABASE_SOCKET_NOSCHEME}  the same URL without "postgres://", for
+//	                drivers that want their own scheme (postgresql+psycopg://)
 //	{ADDR}          127.0.0.1:<port> the service must listen on
 //	{HOST} {PORT}   the two halves of {ADDR}
 //
@@ -70,7 +72,7 @@ func Start(ctx context.Context, s Spec, db DB) (*Process, error) {
 			return nil, err
 		}
 		addr := "127.0.0.1:" + port
-		pairs := []string{"{DATABASE_URL_SOCKET}", db.SocketURL, "{DSN}", db.DSN, "{DATABASE_URL}", db.URL, "{ADDR}", addr, "{HOST}", "127.0.0.1", "{PORT}", port}
+		pairs := []string{"{DATABASE_URL_SOCKET}", db.SocketURL, "{DATABASE_SOCKET_NOSCHEME}", strings.TrimPrefix(db.SocketURL, "postgres://"), "{DSN}", db.DSN, "{DATABASE_URL}", db.URL, "{ADDR}", addr, "{HOST}", "127.0.0.1", "{PORT}", port}
 		for k, v := range db.Vars {
 			pairs = append(pairs, k, v)
 		}

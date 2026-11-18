@@ -316,8 +316,12 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	}
 
 	c := &client{
-		cfg: cfg, base: proc.BaseURL, http: &http.Client{Timeout: 10 * time.Second},
-		rng: rand.New(rand.NewSource(seed)), subst: map[string]string{}, nums: map[int64]int64{}, dbName: db,
+		cfg: cfg, base: proc.BaseURL,
+		// A fresh connection per request: a service may close a kept-alive
+		// connection after an error, and reusing it would turn the next
+		// request into a transport error the service never caused.
+		http: &http.Client{Timeout: 10 * time.Second, Transport: &http.Transport{DisableKeepAlives: true}},
+		rng:  rand.New(rand.NewSource(seed)), subst: map[string]string{}, nums: map[int64]int64{}, dbName: db,
 	}
 	if len(conc) > 0 && cfg.Barrier {
 		conn, err := pgx.Connect(ctx, cfg.Env.DSN(db))
