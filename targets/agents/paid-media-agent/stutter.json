@@ -1,0 +1,82 @@
+{
+  "name": "langchain-ai/paid-media-agent @ d4ee460",
+  "dir": "../../../.targets/paid-media-agent",
+  "start": [
+    "../../../.targets/paid-media-agent/.venv/bin/paid-media-agent",
+    "serve",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "{PORT}"
+  ],
+  "env": [
+    "DATABASE_URL={DATABASE_URL_SOCKET}",
+    "PAID_MEDIA_RUNTIME=self_hosted",
+    "PAID_MEDIA_DATA_MODE=sample",
+    "PAID_MEDIA_FIXTURE_ANCHOR=2026-11-16",
+    "PAID_MEDIA_MODEL=openai:gpt-4o-mini",
+    "PAID_MEDIA_MODEL_BASE_URL={MODEL_URL}",
+    "PAID_MEDIA_TOOL_SELECTOR_MODEL=",
+    "OPENAI_API_KEY=sk-stutter-scripted",
+    "ANTHROPIC_API_KEY=",
+    "PAID_MEDIA_API_TOKENS=stutter-token:operator",
+    "PAID_MEDIA_APPROVAL_SIGNING_KEY=stutter-local-signing-key-0123456789abcdef",
+    "PAID_MEDIA_ALLOW_SELF_APPROVAL=true",
+    "PAID_MEDIA_APPROVER_IDS=operator",
+    "PAID_MEDIA_TEMPLATE_TELEMETRY=false",
+    "LANGSMITH_TRACING=false",
+    "LANGCHAIN_TRACING_V2=false"
+  ],
+  "headers": {
+    "Authorization": "Bearer stutter-token"
+  },
+  "health": "/health",
+  "start_timeout": "60s",
+  "prepare": {
+    "setup_requests": [
+      {
+        "method": "GET",
+        "path": "/health"
+      }
+    ]
+  },
+  "ignore_tables": [
+    "checkpoints",
+    "checkpoint_blobs",
+    "checkpoint_writes",
+    "checkpoint_migrations"
+  ],
+  "generated": [
+    "pma_proposals.proposal_id",
+    "pma_proposals.routing_id",
+    "pma_approvals.claim_id"
+  ],
+  "ignore": [
+    "pma_proposals.record.history",
+    "pma_approvals.claim.nonce",
+    "pma_approvals.claim.signature",
+    "pma_proposals.record.changeset.payload_digest",
+    "pma_approvals.claim.payload_digest"
+  ],
+  "retry_rules": [
+    {
+      "method": "POST",
+      "path": "/proposals/*/approve",
+      "resume": {
+        "thread": "path:2"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/proposals/*/reject",
+      "resume": {
+        "thread": "path:2"
+      }
+    }
+  ],
+  "model": {
+    "script": "model.json",
+    "interrupt_sql": "SELECT max(c.checkpoint_id) FROM checkpoints c, (SELECT thread_id AS t FROM pma_proposals WHERE proposal_id::text = $1) p WHERE c.thread_id = p.t AND c.checkpoint_ns = '' AND c.checkpoint_id = (SELECT max(c2.checkpoint_id) FROM checkpoints c2 WHERE c2.thread_id = p.t AND c2.checkpoint_ns = '') AND EXISTS (SELECT 1 FROM checkpoint_writes w WHERE w.thread_id = p.t AND w.checkpoint_ns = '' AND w.checkpoint_id = c.checkpoint_id AND w.channel = '__interrupt__')"
+  },
+  "trace": "trace.jsonl"
+}

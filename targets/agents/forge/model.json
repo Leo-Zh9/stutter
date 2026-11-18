@@ -1,0 +1,9 @@
+{
+  "turns": [
+    {"user": "[human decision] approve",
+     "steps": [
+       {"tool_calls": [{"name": "remember", "args": {"text": "Customer ACME prefers to be contacted by email."}}]},
+       {"content": "Saved: ACME prefers email."}
+     ]}
+  ]
+}

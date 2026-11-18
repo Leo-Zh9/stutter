@@ -1,0 +1,61 @@
+{
+  "name": "nihalashetty/Forge @ 25074df",
+  "dir": "../../../.targets/forge/apps/api",
+  "start": [
+    "../../../.targets/forge/apps/api/.venv/bin/uvicorn",
+    "forge.main:app",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "{PORT}"
+  ],
+  "env": [
+    "FORGE_ENVIRONMENT=development",
+    "FORGE_DATABASE_URL=postgresql+psycopg://{DATABASE_SOCKET_NOSCHEME}",
+    "FORGE_CHECKPOINT_BACKEND=postgres",
+    "FORGE_JWT_SECRET=stutter-local-jwt-secret-0123456789abcdef",
+    "FORGE_SERVICE_API_TOKEN=stutter-service-token",
+    "FORGE_BOOTSTRAP_ADMIN_EMAIL=you@forge.local",
+    "FORGE_BOOTSTRAP_ADMIN_PASSWORD=forge-admin",
+    "FORGE_DEFAULT_MODEL=gpt-4o-mini",
+    "OPENAI_API_KEY=sk-stutter-scripted",
+    "OPENAI_BASE_URL={MODEL_URL}",
+    "OPENAI_API_BASE={MODEL_URL}"
+  ],
+  "headers": {
+    "Authorization": "Bearer stutter-service-token"
+  },
+  "health": "/openapi.json",
+  "start_timeout": "60s",
+  "prepare": {
+    "migrate_cmd": [
+      "../../../.targets/forge/apps/api/.venv/bin/alembic",
+      "upgrade",
+      "head"
+    ],
+    "migrate_env": [
+      "FORGE_DATABASE_URL=postgresql+psycopg://{DATABASE_SOCKET_NOSCHEME}"
+    ],
+    "seed_file": "fixtures.sql"
+  },
+  "ignore_tables": [
+    "checkpoints",
+    "checkpoint_blobs",
+    "checkpoint_writes",
+    "checkpoint_migrations",
+    "alembic_version",
+    "traces",
+    "spans",
+    "audit_logs"
+  ],
+  "generated": [
+    "memories.id",
+    "runs.id",
+    "threads.id",
+    "threads.lg_thread_id"
+  ],
+  "model": {
+    "script": "model.json"
+  },
+  "trace": "trace.jsonl"
+}

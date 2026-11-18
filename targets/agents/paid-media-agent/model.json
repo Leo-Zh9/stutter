@@ -1,0 +1,168 @@
+{
+ "side": [
+  {
+   "when": {
+    "response_format": true
+   },
+   "content": "{\"tools\": [\"google_ads__list_campaigns\", \"meta_ads__list_campaigns\", \"reddit_ads__list_campaigns\"]}"
+  }
+ ],
+ "turns": [
+  {
+   "user": "Lower the daily budget of the Brand Search - US campaign in demo-google to 150.",
+   "steps": [
+    {
+     "tool_calls": [
+      {
+       "name": "google_ads__list_campaigns",
+       "args": {
+        "account_alias": "demo-google"
+       }
+      }
+     ]
+    },
+    {
+     "tool_calls": [
+      {
+       "name": "propose_change",
+       "args": {
+        "account_alias": "demo-google",
+        "tool_name": "google_ads__update_campaign_budget",
+        "target_ref": "g-101",
+        "changes": {
+         "daily_budget": 150
+        },
+        "reason": "Brand search is over-pacing; the user asked for 150 a day.",
+        "measurement_plan": "Compare spend and conversions over the next 7 days.",
+        "reversal_plan": "Set the daily budget back to 180."
+       }
+      }
+     ]
+    },
+    {
+     "content": "Proposal for demo-google g-101: {\"daily_budget\": 150}. Approve or reject below.",
+     "tool_calls": [
+      {
+       "name": "execute_change",
+       "args": {
+        "proposal_id": {
+         "$ref": "tool:1:proposal.proposal_id"
+        },
+        "revision": {
+         "$ref": "tool:1:proposal.revision"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "content": "The change to g-101 has been handled."
+    }
+   ]
+  },
+  {
+   "user": "Pause the Prospecting - Lookalike 1% campaign in demo-meta.",
+   "steps": [
+    {
+     "tool_calls": [
+      {
+       "name": "meta_ads__list_campaigns",
+       "args": {
+        "account_alias": "demo-meta"
+       }
+      }
+     ]
+    },
+    {
+     "tool_calls": [
+      {
+       "name": "propose_change",
+       "args": {
+        "account_alias": "demo-meta",
+        "tool_name": "meta_ads__update_campaign_status",
+        "target_ref": "m-201",
+        "changes": {
+         "status": "PAUSED"
+        },
+        "reason": "The user asked to pause prospecting.",
+        "measurement_plan": "Compare spend and conversions over the next 7 days.",
+        "reversal_plan": "Set the status back to ACTIVE."
+       }
+      }
+     ]
+    },
+    {
+     "content": "Proposal for demo-meta m-201: {\"status\": \"PAUSED\"}. Approve or reject below.",
+     "tool_calls": [
+      {
+       "name": "execute_change",
+       "args": {
+        "proposal_id": {
+         "$ref": "tool:1:proposal.proposal_id"
+        },
+        "revision": {
+         "$ref": "tool:1:proposal.revision"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "content": "The change to m-201 has been handled."
+    }
+   ]
+  },
+  {
+   "user": "Raise the daily budget of the Community Targeting - Dev Tools campaign in demo-reddit to 90.",
+   "steps": [
+    {
+     "tool_calls": [
+      {
+       "name": "reddit_ads__list_campaigns",
+       "args": {
+        "account_alias": "demo-reddit"
+       }
+      }
+     ]
+    },
+    {
+     "tool_calls": [
+      {
+       "name": "propose_change",
+       "args": {
+        "account_alias": "demo-reddit",
+        "tool_name": "reddit_ads__update_campaign_budget",
+        "target_ref": "r-301",
+        "changes": {
+         "daily_budget": 90
+        },
+        "reason": "Dev tools community targeting converts well; the user asked for 90 a day.",
+        "measurement_plan": "Compare spend and conversions over the next 7 days.",
+        "reversal_plan": "Set the daily budget back to 75."
+       }
+      }
+     ]
+    },
+    {
+     "content": "Proposal for demo-reddit r-301: {\"daily_budget\": 90}. Approve or reject below.",
+     "tool_calls": [
+      {
+       "name": "execute_change",
+       "args": {
+        "proposal_id": {
+         "$ref": "tool:1:proposal.proposal_id"
+        },
+        "revision": {
+         "$ref": "tool:1:proposal.revision"
+        }
+       }
+      }
+     ]
+    },
+    {
+     "content": "The change to r-301 has been handled."
+    }
+   ]
+  }
+ ]
+}
