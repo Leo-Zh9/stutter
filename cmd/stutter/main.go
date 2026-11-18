@@ -152,7 +152,16 @@ func exploreCmd(ctx context.Context, root string, args []string) {
 	rc.Barrier = !*noBarrier
 	r := &explore.Runner{Cfg: rc, Trace: tr, Lanes: *lanes, Seed: *seed}
 	must(r.CheckStable(ctx))
-	scheds := explore.Schedules(tr, cfg.Space(), *seed, *random)
+	sp := cfg.Space()
+	for _, rule := range cfg.RetryRules {
+		if rule.Resume != nil { // approvals are faulted only where an interrupt was observed pending
+			cs, err := r.CrashFaults(ctx, cfg.KeyHeader)
+			must(err)
+			sp.Pending = cs.Pending
+			break
+		}
+	}
+	scheds := explore.Schedules(tr, sp, *seed, *random)
 	fmt.Printf("%d requests, %d schedules\n", len(tr), len(scheds))
 	idx, outs := r.FirstFailure(ctx, scheds)
 	for _, o := range outs {
@@ -160,14 +169,17 @@ func exploreCmd(ctx context.Context, root string, args []string) {
 			fail(o.Err)
 		}
 	}
-	fired := 0
+	fired, diverged := 0, 0
 	for _, o := range outs {
 		if o.Fired {
 			fired++
 		}
+		if o.Diverged {
+			diverged++
+		}
 	}
 	if idx < 0 {
-		fmt.Printf("no fault changed the final state in %d runs (%d fired, %d did not fire)\n", len(outs), fired, len(outs)-fired)
+		fmt.Printf("no fault changed the final state in %d runs (%d fired, %d did not fire, %d diverged)\n", len(outs), fired, len(outs)-fired-diverged, diverged)
 		return
 	}
 	fmt.Printf("run %d of %d changed the final state; shrinking\n", idx+1, len(scheds))

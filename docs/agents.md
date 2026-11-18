@@ -22,7 +22,7 @@ A real model makes runs nondeterministic and costs money. Recording its answers 
 ```
 
 - **It is a pure function of the conversation.** It finds the last user message, picks the turn whose `user` text that message contains, and answers with step *k*, where *k* is the number of assistant messages since. A node LangGraph re-runs sends the same conversation and gets the same tool call.
-- **Ids behave like a real model's.** A tool-call id is fresh every time the model is called, even with the same prompt, so an app that dedupes on `tool_call_id` is tested against what a real model would do when its node re-runs. Only the n-th answer to a given prompt is stable across replays, which keeps fault-free runs identical.
+- **Ids behave like a real model's.** A tool-call id is fresh every time the model is called, even with the same prompt, so an app that dedupes on `tool_call_id` is tested against what a real model would do when its node re-runs. Only the n-th answer to a given prompt is stable across replays, which keeps fault-free runs identical. Because they differ between equivalent runs, the oracle treats every id the stub minted like a database-generated value: an app that stores one in its tables compares as `<model-tool-call-id>` or `<model-message-id>`, not as the raw string.
 - **It never manufactures a duplicate.** If the conversation already holds a completed run of the same request, the model answers the final reply with no tool calls, as a model that can see the action already happened would.
 - **`$ref`** reads an earlier tool result in the same turn (`tool:0:total_cents`, or `tool:last:...`).
 - **`side` rules** answer calls that are not steps of the conversation: a router's structured output, a title generator (`{"when": {"no_tools": true, "system_contains": "title"}, "content": "..."}`).
@@ -56,7 +56,7 @@ The model's choices are fixed by the script, not sampled. That is the point: the
 | `retry_rules[].body_key` | A per-action id in the body (a client message id). Its presence makes the request retryable. A thread id is not one: two messages to a thread are two messages. |
 | `retry_rules[].resume` | A request that answers a pending `interrupt()`, keyed only by thread (`path:N` or `body:dotted.path`). |
 | `headers` | Static headers sent on every replayed request, `${ENV}` expanded, never recorded. |
-| `model.pending_sql` | Overrides how a pending interrupt is detected (default: LangGraph's Postgres checkpointer). |
+| `model.interrupt_sql` | Overrides how the pending interrupt on a thread is named (default: LangGraph's Postgres checkpointer: its latest checkpoint id, if that checkpoint has an `__interrupt__` write). |
 
 ## Faults
 
@@ -66,7 +66,12 @@ The model's choices are fixed by the script, not sampled. That is the point: the
 | `concurrent(#n)` | A double-clicked approval, or a chat message sent twice at once. The lock barrier holds both attempts at their first write to an app table; the checkpointer's tables stay unlocked so its writes cannot release them early. |
 | `crash(#n@commitK)` | The service is killed right after the K-th commit of a request, a checkpoint write or an app write, then restarted, and the client retries. |
 
-**Resumes are retried only when it is safe to.** An approval carries no per-action id, but an interrupt can be answered only once, so a second copy is a duplicate by definition. stutter observes two fault-free runs and records whether an interrupt was pending before and after each resume. A resume admits `concurrent` only if one was pending before it, and `lost` or `crash` only if, in addition, none is pending after it. Otherwise the retry would answer the *next* approval, which is the client's mistake. The check reads LangGraph's `__interrupt__` writes on the thread's latest checkpoint and fails safe: when unsure, it says pending, and the fault is not placed.
+**Resumes are retried only when it is safe to.** An approval carries no per-action id, but an interrupt can be answered only once, so a second copy is a duplicate by definition. Two rules keep stutter from blaming the app for a client's mistake:
+
+- **When faults are listed,** two fault-free observation runs record whether an interrupt was pending before and after each resume. A resume admits `concurrent` only if one was pending before it, and `lost` or `crash` only if, in addition, no new one is pending after it.
+- **While a run is in flight,** stutter names the interrupt pending before the first attempt, and checks again before every retry. A retry is sent only if no interrupt is pending (the first attempt finished the run) or the same one still is (it did not take effect). If a different one is pending, the retry would approve something the user never saw, so it is refused and the fault counts as not fired. This also holds for reduced schedules during shrinking, where the observation runs no longer apply.
+
+The interrupt is named by the thread's latest checkpoint id, if that checkpoint holds an `__interrupt__` write. The check fails safe: an unreadable answer refuses the retry.
 
 **Crash-twice.** Under async durability, other connections keep committing while stutter holds the crashed request's commit acknowledgement, so the next node can race the kill. Every crash fault is therefore run twice. If the two runs disagree, the fault is reported as **nondetermined** and is never a finding.
 

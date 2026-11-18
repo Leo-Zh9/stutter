@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/Leo-Zh9/stutter/internal/trace"
 )
 
 func write(t *testing.T, body string) string {
@@ -53,5 +55,22 @@ func TestTemplateNamesAreDistinct(t *testing.T) {
 	b, _ := Load(write(t, `{"name":"b","start":["x"],"prepare":{"schema_file":"s.sql"}}`))
 	if a.TemplateName("hunt") == b.TemplateName("hunt") || a.TemplateName("hunt") == a.TemplateName("explore") {
 		t.Fatalf("template names collide: %s %s %s", a.TemplateName("hunt"), b.TemplateName("hunt"), a.TemplateName("explore"))
+	}
+}
+
+func TestResumeThreadMustNameAWildcard(t *testing.T) {
+	rule := func(path, thread string) trace.Rule {
+		return trace.Rule{Path: path, Resume: &trace.ResumeRule{Thread: thread}}
+	}
+	for _, bad := range []trace.Rule{rule("/threads/*/approve", "path:3"), rule("/threads/*/approve", "path:9"),
+		rule("/threads/*/approve", "path:x"), rule("/approve", "thread"), rule("/approve", "body:")} {
+		if checkThread(bad) == nil {
+			t.Errorf("accepted %+v", bad.Resume)
+		}
+	}
+	for _, good := range []trace.Rule{rule("/threads/*/approve", "path:2"), rule("/approve", "body:thread_id")} {
+		if err := checkThread(good); err != nil {
+			t.Errorf("rejected %+v: %v", good.Resume, err)
+		}
 	}
 }

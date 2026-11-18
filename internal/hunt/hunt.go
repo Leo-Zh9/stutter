@@ -6,6 +6,7 @@ package hunt
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -33,11 +34,15 @@ type Finding struct {
 	Delivery   []string          `json:"delivery_order"`
 	Diff       []oracle.DiffLine `json:"diff"`
 	OneMinimal bool              `json:"one_minimal_verified"`
-	Replayed   int               `json:"reproduced_in_replays"`
-	CurlRepro  int               `json:"reproduced_by_repro_sh"`
-	ReplayOf   int               `json:"replays"`
-	FoundBy    []string          `json:"found_by_single_faults"`
-	Dir        string            `json:"dir"`
+	// Unjudged counts single removals that could not fail (their fault did
+	// not fire or their run left the model script): 1-minimal holds over
+	// the others.
+	Unjudged  int      `json:"one_minimal_unjudged_removals"`
+	Replayed  int      `json:"reproduced_in_replays"`
+	CurlRepro int      `json:"reproduced_by_repro_sh"`
+	ReplayOf  int      `json:"replays"`
+	FoundBy   []string `json:"found_by_single_faults"`
+	Dir       string   `json:"dir"`
 }
 
 type Result struct {
@@ -97,13 +102,16 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 	// One observation pass serves both crash points and resume rules: it
 	// counts commit points per request and records whether an interrupt
 	// was pending around each resume.
-	say("observing commit points and pending interrupts")
-	cs, err := r.CrashFaults(ctx, cfg.KeyHeader)
-	if err != nil {
-		return nil, err
-	}
 	sp := cfg.Space()
-	sp.Pending = cs.Pending
+	var cs explore.CrashSpace
+	if crash || hasResume(cfg.RetryRules) {
+		say("observing commit points and pending interrupts")
+		var err error
+		if cs, err = r.CrashFaults(ctx, cfg.KeyHeader); err != nil {
+			return nil, err
+		}
+		sp.Pending = cs.Pending
+	}
 	singles := replay.Faults(tr, sp)
 	if crash {
 		res.Crash = &cs
@@ -121,7 +129,7 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 		// race the kill, so a crash outcome counts only if a second run
 		// agrees with the first.
 		o2 := r.Check(ctx, replay.Full(tr, singles[i]), r.Seed+int64(i)+7919)
-		if o2.Err != "" {
+		if o2.Err != "" || o2.Diverged {
 			return o2
 		}
 		if o2.Diverged || !o2.Fired || o2.Failed != o.Failed || fmt.Sprint(o2.Diff) != fmt.Sprint(o.Diff) {
@@ -178,6 +186,9 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 			}
 		}
 		b, err := r.Baseline(ctx, seqs)
+		if errors.Is(err, explore.ErrDiverged) {
+			continue // cannot tell whether the pair is a no-op
+		}
 		if err != nil {
 			return nil, err
 		}
@@ -214,7 +225,7 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 		f := Finding{ID: i + 1, Minimal: g.min, FoundBy: g.foundBy, ReplayOf: replays}
 		f.Steps = describe(tr, g.min, cfg.KeyHeader)
 		f.Delivery = deliveryOrder(tr, g.min)
-		f.OneMinimal = r.OneMinimal(ctx, g.min, 3)
+		f.OneMinimal, f.Unjudged = r.MinimalCheck(ctx, g.min, 3)
 		f.Diff = r.Check(ctx, g.min, r.Seed).Diff
 		for n := 0; n < replays; n++ {
 			if o := r.Check(ctx, g.min, r.Seed+100+int64(n)); o.Failed {
@@ -229,6 +240,15 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 	}
 	res.Seconds = time.Since(t0).Seconds()
 	return res, nil
+}
+
+func hasResume(rules []trace.Rule) bool {
+	for _, r := range rules {
+		if r.Resume != nil {
+			return true
+		}
+	}
+	return false
 }
 
 func describe(tr []trace.Entry, s replay.Schedule, keyHeader string) []string {
@@ -267,7 +287,13 @@ func Describe(e trace.Entry, keyHeader string) string {
 		}
 		return fmt.Sprintf("#%d webhook %s %s%s", e.Seq, ev.Type, ev.ID, extra)
 	}
-	return fmt.Sprintf("#%d %s %s key=%s", e.Seq, e.Method, e.Path, e.Key(keyHeader))
+	if k := e.Key(keyHeader); k != "" {
+		return fmt.Sprintf("#%d %s %s key=%s", e.Seq, e.Method, e.Path, k)
+	}
+	if len(e.Body) > 0 && len(e.Body) <= 160 {
+		return fmt.Sprintf("#%d %s %s %s", e.Seq, e.Method, e.Path, e.Body)
+	}
+	return fmt.Sprintf("#%d %s %s", e.Seq, e.Method, e.Path)
 }
 
 // deliveryOrder is the faulted send order, as repro.sh performs it.
@@ -421,8 +447,8 @@ func Markdown(r *Result) string {
 	}
 	fmt.Fprintf(&b, "## Findings: %d distinct minimal reproductions\n\n", len(r.Findings))
 	for _, f := range r.Findings {
-		fmt.Fprintf(&b, "### Finding %d\n\nReproduced in %d of %d fresh replays and by repro.sh (curl, fresh databases; -1 = crash finding, not scriptable) %d of %d times; 1-minimal: %v. Reached from %d single-fault schedules: %s.\n\n```\n%s\n```\n\nDelivery order: %s\n\nState diff (+ only in the faulted run, - only in the in-order run):\n\n```\n",
-			f.ID, f.Replayed, f.ReplayOf, f.CurlRepro, f.ReplayOf, f.OneMinimal, len(f.FoundBy), strings.Join(f.FoundBy, ", "), strings.Join(f.Steps, "\n"), strings.Join(f.Delivery, ", "))
+		fmt.Fprintf(&b, "### Finding %d\n\nReproduced in %d of %d fresh replays and by repro.sh (curl, fresh databases; -1 = crash finding, not scriptable) %d of %d times; 1-minimal: %v (%d single removals could not fire and count as passing). Reached from %d single-fault schedules: %s.\n\n```\n%s\n```\n\nDelivery order: %s\n\nState diff (+ only in the faulted run, - only in the in-order run):\n\n```\n",
+			f.ID, f.Replayed, f.ReplayOf, f.CurlRepro, f.ReplayOf, f.OneMinimal, f.Unjudged, len(f.FoundBy), strings.Join(f.FoundBy, ", "), strings.Join(f.Steps, "\n"), strings.Join(f.Delivery, ", "))
 		for _, d := range f.Diff {
 			fmt.Fprintf(&b, "%s %s x%d %s\n", d.Sign, d.Table, d.Count, d.Row)
 		}

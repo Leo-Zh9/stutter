@@ -311,10 +311,19 @@ func (r *Runner) Shrink(ctx context.Context, s replay.Schedule, k int) (replay.S
 }
 
 // OneMinimal re-checks a schedule by brute force: it must fail, and removing
-// any single request or fault must make it pass.
+// any single request or fault must make it pass. A removal whose fault did
+// not fire, or whose run left the model script, cannot fail, so it counts as
+// passing here; MinimalCheck reports how many removals were like that.
 func (r *Runner) OneMinimal(ctx context.Context, s replay.Schedule, k int) bool {
+	ok, _ := r.MinimalCheck(ctx, s, k)
+	return ok
+}
+
+// MinimalCheck is OneMinimal plus the number of single removals that could
+// not be judged (not fired, or diverged): "1-minimal over fired candidates".
+func (r *Runner) MinimalCheck(ctx context.Context, s replay.Schedule, k int) (bool, int) {
 	if f, _ := r.Fails(ctx, s, k); !f {
-		return false
+		return false, 0
 	}
 	all := encodeAll(s)
 	cands := make([][]int, len(all))
@@ -325,17 +334,21 @@ func (r *Runner) OneMinimal(ctx context.Context, s replay.Schedule, k int) bool 
 			}
 		}
 	}
-	ok := true
+	ok, unjudged := true, 0
 	var mu sync.Mutex
 	r.Parallel(len(cands), func(i int) Outcome {
-		if f, _ := r.Fails(ctx, decode(s, cands[i]), k); f {
-			mu.Lock()
+		f, nf := r.Fails(ctx, decode(s, cands[i]), k)
+		mu.Lock()
+		if f {
 			ok = false
-			mu.Unlock()
 		}
+		if nf {
+			unjudged++
+		}
+		mu.Unlock()
 		return Outcome{}
 	})
-	return ok
+	return ok, unjudged
 }
 
 // inferIDs runs the fault-free trace three times: twice normally (A, A2) and

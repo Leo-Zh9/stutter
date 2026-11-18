@@ -50,6 +50,11 @@ type Row map[string]any
 type State struct {
 	Tables []Table
 	Rows   map[string][]Row
+	// Opaque values were minted outside the database for this run (a
+	// scripted model's message and tool-call ids). Like generated ids, they
+	// differ between equivalent runs, so any string equal to one compares
+	// as its label instead of its value.
+	Opaque map[string]string
 }
 
 var temporalTypes = map[string]bool{
@@ -337,6 +342,9 @@ func Canonicalize(st *State, opt Options) (*Canon, error) {
 				}, func(s string) (string, bool) {
 					p, ok := genStr[s]
 					if !ok {
+						if l, ok := st.Opaque[s]; ok {
+							return l, true
+						}
 						return "", false
 					}
 					if p == me {
@@ -606,7 +614,7 @@ func (s *State) Without(tables map[string]bool) *State {
 	if len(tables) == 0 {
 		return s
 	}
-	out := &State{Rows: map[string][]Row{}}
+	out := &State{Rows: map[string][]Row{}, Opaque: s.Opaque}
 	for _, t := range s.Tables {
 		if tables[t.Name] {
 			continue

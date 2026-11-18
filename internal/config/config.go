@@ -27,6 +27,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 
@@ -75,9 +76,10 @@ type Webhooks struct {
 
 type Model struct {
 	Script string `json:"script"` // path to the script JSON
-	// PendingSQL overrides the query that decides whether an interrupt is
-	// pending on a thread ($1); default: LangGraph's Postgres checkpointer.
-	PendingSQL string `json:"pending_sql,omitempty"`
+	// InterruptSQL overrides the query that names the interrupt pending on
+	// thread $1 (NULL or '' if none); default: LangGraph's Postgres
+	// checkpointer (see replay.DefaultInterruptSQL).
+	InterruptSQL string `json:"interrupt_sql,omitempty"`
 }
 
 type Config struct {
@@ -148,9 +150,14 @@ func Load(path string) (*Config, error) {
 		}
 		c.script = sc
 	}
-	for _, r := range c.RetryRules {
+	for i, r := range c.RetryRules {
 		if r.Path == "" || (r.BodyKey == "") == (r.Resume == nil) {
-			return nil, fmt.Errorf("%s: each retry rule needs a path and exactly one of body_key or resume", path)
+			return nil, fmt.Errorf("%s: retry rule %d needs a path and exactly one of body_key or resume", path, i)
+		}
+		if r.Resume != nil {
+			if err := checkThread(r); err != nil {
+				return nil, fmt.Errorf("%s: retry rule %d: %w", path, i, err)
+			}
 		}
 	}
 	n := 0
@@ -163,6 +170,26 @@ func Load(path string) (*Config, error) {
 		return nil, fmt.Errorf("%s: prepare needs exactly one of schema_file, schema_cmd, migrate_cmd, setup_requests", path)
 	}
 	return &c, nil
+}
+
+// checkThread requires a resume rule's thread to name a wildcard path
+// segment ("path:N" where segment N of the rule's path is "*") or a body
+// field ("body:dotted.path"): anything else would quietly make every resume
+// look like the same thread, or none.
+func checkThread(r trace.Rule) error {
+	t := r.Resume.Thread
+	switch {
+	case strings.HasPrefix(t, "body:") && len(t) > len("body:"):
+		return nil
+	case strings.HasPrefix(t, "path:"):
+		n, err := strconv.Atoi(strings.TrimPrefix(t, "path:"))
+		segs := strings.Split(strings.Trim(r.Path, "/"), "/")
+		if err != nil || n < 1 || n > len(segs) || segs[n-1] != "*" {
+			return fmt.Errorf("resume thread %q must name a * segment of %q", t, r.Path)
+		}
+		return nil
+	}
+	return fmt.Errorf("resume thread %q must be path:N or body:dotted.path", t)
 }
 
 // TemplateName names this config's template database for one purpose
@@ -236,7 +263,7 @@ func (c *Config) Replay(env *pgenv.Env, template string, extraEnv []string) repl
 		},
 	}
 	if c.Model != nil {
-		rc.PendingSQL = c.Model.PendingSQL
+		rc.InterruptSQL = c.Model.InterruptSQL
 	}
 	return rc
 }

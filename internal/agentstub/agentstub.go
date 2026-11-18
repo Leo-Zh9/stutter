@@ -140,6 +140,8 @@ type Server struct {
 	// the same prompt must get new tool-call ids; only the n-th answer to a
 	// given prompt is stable across replays.
 	seen map[string]int
+	// minted holds every id the stub handed out, for the oracle.
+	minted map[string]string
 }
 
 // Start listens on 127.0.0.1 and serves the script.
@@ -148,7 +150,7 @@ func Start(s *Script) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	st := &Server{URL: "http://" + l.Addr().String() + "/v1", script: s, l: l, seen: map[string]int{}}
+	st := &Server{URL: "http://" + l.Addr().String() + "/v1", script: s, l: l, seen: map[string]int{}, minted: map[string]string{}}
 	mux := http.NewServeMux()
 	mux.HandleFunc("/v1/chat/completions", st.chat)
 	mux.HandleFunc("/chat/completions", st.chat)
@@ -171,6 +173,18 @@ func (s *Server) Calls() []Call {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	return append([]Call(nil), s.calls...)
+}
+
+// Minted returns every id the stub has handed out, with the label the
+// oracle compares it as.
+func (s *Server) Minted() map[string]string {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	out := make(map[string]string, len(s.minted))
+	for k, v := range s.minted {
+		out[k] = v
+	}
+	return out
 }
 
 // Misses counts script misses so far.
@@ -464,7 +478,10 @@ func (s *Server) chat(w http.ResponseWriter, r *http.Request) {
 	for _, t := range req.Tools {
 		offered[t.Function.Name] = true
 	}
-	rf := len(req.ResponseFormat) > 0 && string(req.ResponseFormat) != "null" && !strings.Contains(string(req.ResponseFormat), `"text"`)
+	var rft struct {
+		Type string `json:"type"`
+	}
+	rf := json.Unmarshal(req.ResponseFormat, &rft) == nil && rft.Type != "" && rft.Type != "text"
 	a, miss := s.script.Decide(Request{Messages: req.Messages, Offered: offered, ResponseFormat: rf})
 	if miss != "" {
 		s.record(Call{Turn: -1, Miss: miss})
@@ -476,15 +493,17 @@ func (s *Server) chat(w http.ResponseWriter, r *http.Request) {
 	s.mu.Lock()
 	n := s.seen[a.Key]
 	s.seen[a.Key]++
-	s.mu.Unlock()
 	h := sha256.Sum256([]byte(fmt.Sprintf("%s|%d", a.Key, n)))
 	answerID := hex.EncodeToString(h[:12])
+	s.minted["chatcmpl-"+answerID] = "<model-message-id>"
 	c := Call{Turn: a.Turn, Step: a.Step}
 	for i := range a.ToolCalls {
 		th := sha256.Sum256([]byte(fmt.Sprintf("%s|%d", answerID, i)))
 		a.ToolCalls[i].ID = "call_" + hex.EncodeToString(th[:12])
+		s.minted[a.ToolCalls[i].ID] = "<model-tool-call-id>"
 		c.Tools = append(c.Tools, a.ToolCalls[i].Name)
 	}
+	s.mu.Unlock()
 	s.record(c)
 	model := req.Model
 	if model == "" {

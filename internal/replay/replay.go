@@ -140,21 +140,24 @@ type Config struct {
 	// Model, when set, is served by a scripted model stub for each run;
 	// the service finds it through the {MODEL_URL} placeholder.
 	Model *agentstub.Script
-	// PendingSQL answers "is an interrupt pending on thread $1?" for
-	// resume rules. Default: LangGraph's checkpoint tables.
-	PendingSQL string
+	// InterruptSQL names the interrupt pending on thread $1 (any text that
+	// identifies it), or returns NULL or '' when none is pending. Default:
+	// LangGraph's Postgres checkpointer.
+	InterruptSQL string
 }
 
-// DefaultPendingSQL reads LangGraph's Postgres checkpointer: a dynamic
+// DefaultInterruptSQL reads LangGraph's Postgres checkpointer: a dynamic
 // interrupt() leaves an __interrupt__ write on the thread's latest root
-// checkpoint. It fails safe: a node that interrupts twice keeps its old
-// __interrupt__ row after the first resume, so that resume reads as still
-// pending, and lost and crash faults are not placed on it.
-const DefaultPendingSQL = `SELECT EXISTS (
-	SELECT 1 FROM checkpoint_writes w
-	WHERE w.thread_id = $1 AND w.checkpoint_ns = '' AND w.channel = '__interrupt__'
-	  AND w.checkpoint_id = (SELECT max(c.checkpoint_id) FROM checkpoints c
-	                         WHERE c.thread_id = $1 AND c.checkpoint_ns = ''))`
+// checkpoint, and that checkpoint's id names the interrupt. It fails safe: a
+// node that interrupts twice keeps its old __interrupt__ row after the first
+// resume, so that resume still reads as pending, and its retry is refused.
+const DefaultInterruptSQL = `SELECT max(c.checkpoint_id) FROM checkpoints c
+	WHERE c.thread_id = $1 AND c.checkpoint_ns = ''
+	  AND c.checkpoint_id = (SELECT max(c2.checkpoint_id) FROM checkpoints c2
+	                         WHERE c2.thread_id = $1 AND c2.checkpoint_ns = '')
+	  AND EXISTS (SELECT 1 FROM checkpoint_writes w
+	              WHERE w.thread_id = $1 AND w.checkpoint_ns = '' AND w.checkpoint_id = c.checkpoint_id
+	                AND w.channel = '__interrupt__')`
 
 // Policy is the client's retry rights under this config.
 func (c Config) Policy() trace.Policy {
@@ -343,21 +346,9 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		rows.Close()
 	}
 
-	pendingSQL := cfg.PendingSQL
-	if pendingSQL == "" {
-		pendingSQL = DefaultPendingSQL
-	}
-	pending := func(thread string) bool {
-		var p bool
-		conn, err := pgx.Connect(ctx, cfg.Env.DSN(db))
-		if err != nil {
-			return true // fail safe: pending means no lost or crash fault
-		}
-		defer conn.Close(context.Background())
-		if err := conn.QueryRow(ctx, pendingSQL, c.subst1(thread)).Scan(&p); err != nil {
-			return true
-		}
-		return p
+	c.interruptSQL = cfg.InterruptSQL
+	if c.interruptSQL == "" {
+		c.interruptSQL = DefaultInterruptSQL
 	}
 	if cfg.ObserveCommits {
 		res.Pending = map[int]PendingObs{}
@@ -366,16 +357,28 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		e := bySeq[q]
 		var r response
 		thread, isResume := policy.Resume(e)
-		var obs PendingObs
-		if cfg.ObserveCommits && isResume {
-			obs.Before = pending(thread)
+		faulted := lost[q] || conc[q] || (crash != nil && crash.Seq == q)
+		if isResume && (faulted || cfg.ObserveCommits) {
+			c.resume = &resumeState{thread: thread, before: c.interrupt(thread)}
+			if faulted && c.resume.before == "" {
+				// Nothing to answer: a duplicate would not be a duplicate
+				// of an approval. The fault does not fire.
+				res.NotFired++
+				lost[q], conc[q] = false, false
+				if crash != nil && crash.Seq == q {
+					crash = nil
+				}
+				faulted = false
+			}
+		} else {
+			c.resume = nil
 		}
 		if px != nil {
 			px.Begin(q)
 		}
+		fired := false
 		switch {
 		case crash != nil && crash.Seq == q:
-			var fired bool
 			r, fired, err = c.crashed(ctx, e, px, crash.K, func() error {
 				proc.Stop()
 				px.DropConns()
@@ -387,22 +390,11 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 				proc, c.base = np, np.BaseURL
 				return nil
 			})
-			if fired {
-				res.Fired++
-			} else {
-				res.NotFired++
-			}
 		case conc[q]:
-			var fired bool
 			r, fired, err = c.concurrent(ctx, e)
-			if fired {
-				res.Fired++
-			} else {
-				res.NotFired++
-			}
 		case lost[q]:
 			c.once(ctx, e) // completes on the server; the sender never sees it
-			res.Fired++
+			fired = true
 			r, err = c.send(ctx, e, 2)
 		default:
 			r, err = c.send(ctx, e, 1)
@@ -413,10 +405,21 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		if err != nil {
 			return Result{Err: fmt.Errorf("seq %d: %w", q, err)}
 		}
-		if cfg.ObserveCommits && isResume {
-			obs.After = pending(thread)
-			res.Pending[q] = obs
+		if c.resume != nil && c.resume.refused {
+			fired = false // the retry would have answered a different interrupt
 		}
+		if faulted {
+			if fired {
+				res.Fired++
+			} else {
+				res.NotFired++
+			}
+		}
+		if cfg.ObserveCommits && isResume {
+			after := c.interrupt(thread)
+			res.Pending[q] = PendingObs{Before: c.resume.before != "", After: after != "" && after != c.resume.before}
+		}
+		c.resume = nil
 		c.learn(e, r)
 	}
 	proc.Stop()
@@ -446,6 +449,9 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		return Result{Err: err}
 	}
 	st = st.Without(cfg.Oracle.IgnoreTables)
+	if stub != nil {
+		st.Opaque = stub.Minted()
+	}
 	res.State = st
 	res.Canon, res.Err = oracle.Canonicalize(st, cfg.Oracle)
 	return res
@@ -474,6 +480,52 @@ type client struct {
 	barrier *pgx.Conn
 	tables  []string
 	dbName  string
+	// resume is set while a resume request is in flight.
+	resume       *resumeState
+	interruptSQL string
+}
+
+// resumeState guards the retries of a request that answers an interrupt.
+// A retry is sent only while no interrupt is pending (the first attempt
+// finished the run) or the same one still is (it did not take effect).
+// If a different interrupt is pending, the retry would approve something
+// the user never saw: the client's mistake, so it is refused and the fault
+// counts as not fired.
+type resumeState struct {
+	thread  string
+	before  string
+	refused bool
+}
+
+// interrupt names the interrupt pending on a thread, "" if none. Any error
+// reads as an unknown interrupt, which refuses retries: fail safe.
+func (c *client) interrupt(thread string) string {
+	ctx := context.Background()
+	conn, err := pgx.Connect(ctx, c.cfg.Env.DSN(c.dbName))
+	if err != nil {
+		return "?unreadable"
+	}
+	defer conn.Close(ctx)
+	var id *string
+	if err := conn.QueryRow(ctx, c.interruptSQL, c.subst1(thread)).Scan(&id); err != nil {
+		return "?unreadable"
+	}
+	if id == nil {
+		return ""
+	}
+	return *id
+}
+
+// mayRetry applies the resume guard before a retry.
+func (c *client) mayRetry() bool {
+	if c.resume == nil {
+		return true
+	}
+	if now := c.interrupt(c.resume.thread); now != "" && now != c.resume.before {
+		c.resume.refused = true
+		return false
+	}
+	return true
 }
 
 // once sends a single attempt and reads the full response.
@@ -513,8 +565,16 @@ func (c *client) send(ctx context.Context, e trace.Entry, attempt int) (response
 	if e.Kind == trace.Webhook {
 		max = c.cfg.Webhooks.MaxAttempts
 	}
+	// A refused retry ends the request as the client last saw it (nothing,
+	// after a lost response); the run goes on and the fault does not count.
+	var last response
+	var lastErr error
 	for ; ; attempt++ {
+		if attempt >= 2 && !c.mayRetry() {
+			return last, lastErr
+		}
 		r, err := c.once(ctx, e)
+		last, lastErr = r, err
 		if c.done(e, r, err) || !c.cfg.Policy().Retryable(e) || attempt >= max {
 			return r, err
 		}
