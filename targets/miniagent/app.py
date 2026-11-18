@@ -86,7 +86,7 @@ def add_order_note(order_id: int, note: str, config: RunnableConfig, tool_call_i
 
 
 @tool
-def issue_refund(order_id: int, amount_cents: int, config: RunnableConfig, tool_call_id: Annotated[str, InjectedToolCallId]) -> str:
+def issue_refund(order_id: int, amount_cents: int, config: RunnableConfig) -> str:
     """Refund part or all of an order. A human must approve it first."""
     thread = config["configurable"]["thread_id"]
     with pool.connection() as c:
@@ -94,30 +94,32 @@ def issue_refund(order_id: int, amount_cents: int, config: RunnableConfig, tool_
             # LangGraph re-runs a node from its start on resume, so this
             # insert runs once before the interrupt and again after it.
             c.execute(
-                "INSERT INTO approvals (thread_id, tool_call_id, order_number, amount_cents) VALUES (%s, %s, %s, %s)",
-                (thread, tool_call_id, order_id, amount_cents),
+                "INSERT INTO approvals (thread_id, order_number, amount_cents) VALUES (%s, %s, %s)",
+                (thread, order_id, amount_cents),
             )
         else:
-            # Created once per tool call; on resume the row already exists,
-            # so this is a read and the node does not write before the
+            # Keyed by the business action (this order in this thread), not
+            # by the model's tool_call_id: if the agent node is re-run, a
+            # real model mints a new id. On resume the row already exists,
+            # so this is a read and the node writes nothing before the
             # approval decision.
-            if not one(c, "SELECT 1 FROM approvals WHERE thread_id = %s AND tool_call_id = %s", thread, tool_call_id):
+            if not one(c, "SELECT 1 FROM approvals WHERE thread_id = %s AND order_number = %s", thread, order_id):
                 c.execute(
-                    "INSERT INTO approvals (thread_id, tool_call_id, order_number, amount_cents) VALUES (%s, %s, %s, %s)",
-                    (thread, tool_call_id, order_id, amount_cents),
+                    "INSERT INTO approvals (thread_id, order_number, amount_cents) VALUES (%s, %s, %s)",
+                    (thread, order_id, amount_cents),
                 )
     decision = interrupt({"action": "issue_refund", "order_id": order_id, "amount_cents": amount_cents})
     with pool.connection() as c:
         if decision != "approve":
             c.execute(
-                "UPDATE approvals SET status = 'rejected' WHERE thread_id = %s AND tool_call_id = %s AND status = 'pending'",
-                (thread, tool_call_id),
+                "UPDATE approvals SET status = 'rejected' WHERE thread_id = %s AND order_number = %s AND status = 'pending'",
+                (thread, order_id),
             )
             return json.dumps({"refunded": False, "reason": "rejected"})
         if BUG == "approval-no-claim":
             # Check, then act: two approvals that read 'pending' at the same
             # time both refund.
-            row = one(c, "SELECT id, status FROM approvals WHERE thread_id = %s AND tool_call_id = %s", thread, tool_call_id)
+            row = one(c, "SELECT id, status FROM approvals WHERE thread_id = %s AND order_number = %s", thread, order_id)
             if row["status"] != "pending":
                 return json.dumps({"refunded": False, "reason": "already " + row["status"]})
             with c.transaction():
@@ -131,8 +133,8 @@ def issue_refund(order_id: int, amount_cents: int, config: RunnableConfig, tool_
             # and the retry finds nothing left to claim.
             claimed = one(
                 c,
-                "UPDATE approvals SET status = 'approved' WHERE thread_id = %s AND tool_call_id = %s AND status = 'pending' RETURNING id",
-                thread, tool_call_id,
+                "UPDATE approvals SET status = 'approved' WHERE thread_id = %s AND order_number = %s AND status = 'pending' RETURNING id",
+                thread, order_id,
             )
             if not claimed:
                 return json.dumps({"refunded": False, "reason": "already handled"})
@@ -146,8 +148,8 @@ def issue_refund(order_id: int, amount_cents: int, config: RunnableConfig, tool_
         with c.transaction():
             claimed = one(
                 c,
-                "UPDATE approvals SET status = 'approved' WHERE thread_id = %s AND tool_call_id = %s AND status = 'pending' RETURNING id",
-                thread, tool_call_id,
+                "UPDATE approvals SET status = 'approved' WHERE thread_id = %s AND order_number = %s AND status = 'pending' RETURNING id",
+                thread, order_id,
             )
             if not claimed:
                 return json.dumps({"refunded": False, "reason": "already handled"})
@@ -251,10 +253,17 @@ def chat(req: Chat):
                     return row["response"]
             st = graph.get_state(config)
             ids = [m.id for m in (st.values or {}).get("messages", [])]
+            if os.environ.get("MINIAGENT_DEBUG"):
+                with open(os.environ["MINIAGENT_DEBUG"], "a") as f:
+                    f.write(json.dumps({"claimed": bool(claimed), "next": list(st.next), "ids": ids, "interrupts": len(st.interrupts),
+                                        "meta": st.metadata, "tasks": [(t.name, t.error is not None, bool(t.interrupts)) for t in st.tasks]}, default=str) + "\n")
             if req.message_id not in ids:
                 graph.invoke({"messages": [HumanMessage(req.text, id=req.message_id)]}, config)
-            elif st.next and not st.interrupts:
-                graph.invoke(None, config)  # finish a run a crash cut short
+            elif st.tasks and not st.interrupts:
+                # Finish a run a crash cut short. Check tasks, not next: a
+                # checkpoint whose pending tasks all saved their writes
+                # reports next == () although the run never moved past it.
+                graph.invoke(None, config)
             out = view(req.thread_id)
             c.execute("UPDATE chat_requests SET status = 'done', response = %s WHERE message_id = %s", (json.dumps(out), req.message_id))
             return out
@@ -267,8 +276,8 @@ def approve(thread_id: str, req: Decision):
     config = {"configurable": {"thread_id": thread_id}}
     st = graph.get_state(config)
     if not st.interrupts:
-        if st.next:
-            graph.invoke(None, config)  # a crash cut the resumed run short
+        if st.tasks:
+            graph.invoke(None, config)  # a crash cut the resumed run short (see /chat)
         return view(thread_id)
     graph.invoke(Command(resume=req.decision), config)
     return view(thread_id)

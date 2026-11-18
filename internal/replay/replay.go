@@ -5,10 +5,10 @@ package replay
 
 import (
 	"bytes"
+	"context"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
-	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -62,6 +62,28 @@ func (f Fault) String() string {
 		return fmt.Sprintf("crash(#%d@commit%d)", f.Seq, f.K)
 	}
 	return fmt.Sprintf("%s(#%d)", f.Type, f.Seq)
+}
+
+// ParseFault reads the notation String writes: lost(#2), concurrent(#2),
+// reorder(#3,#5), crash(#2@commit1).
+func ParseFault(s string) (Fault, error) {
+	var f Fault
+	var a, b int
+	switch {
+	case strings.HasPrefix(s, "lost(#"):
+		_, err := fmt.Sscanf(s, "lost(#%d)", &a)
+		return Fault{Type: Lost, Seq: a}, err
+	case strings.HasPrefix(s, "concurrent(#"):
+		_, err := fmt.Sscanf(s, "concurrent(#%d)", &a)
+		return Fault{Type: Concurrent, Seq: a}, err
+	case strings.HasPrefix(s, "reorder(#"):
+		_, err := fmt.Sscanf(s, "reorder(#%d,#%d)", &a, &b)
+		return Fault{Type: Reorder, Seq: a, Seq2: b}, err
+	case strings.HasPrefix(s, "crash(#"):
+		_, err := fmt.Sscanf(s, "crash(#%d@commit%d)", &a, &b)
+		return Fault{Type: Crash, Seq: a, K: b}, err
+	}
+	return f, fmt.Errorf("unknown fault %q", s)
 }
 
 // Schedule is a subset of the trace (by seq, in trace order) plus faults.
@@ -155,20 +177,20 @@ type WebhookPolicy struct {
 }
 
 type Result struct {
-	Canon    *oracle.Canon
-	State    *oracle.State
-	Commits  map[int]int // commit points per request (proxy runs only)
-	BgCommits int        // commits seen while no request was in flight
-	Pending  map[int]PendingObs // resume requests (observation runs only)
-	Fired    int
-	NotFired int
+	Canon     *oracle.Canon
+	State     *oracle.State
+	Commits   map[int]int        // commit points per request (proxy runs only)
+	BgCommits int                // commits seen while no request was in flight
+	Pending   map[int]PendingObs // resume requests (observation runs only)
+	Fired     int
+	NotFired  int
 	// ModelCalls and ModelMisses count scripted model requests; a miss
 	// means the conversation left the script. MissReason is the first.
 	ModelCalls  int
 	ModelMisses int
 	MissReason  string
-	Err      error
-	Took     time.Duration
+	Err         error
+	Took        time.Duration
 }
 
 // Run replays one schedule on a fresh database clone and returns the
@@ -654,7 +676,7 @@ func (c *client) inBand(v int64) bool {
 func (c *client) pair(rec, live any) {
 	switch x := rec.(type) {
 	case string:
-		if y, ok := live.(string); ok && x != y && !looksLikeTime(x) {
+		if y, ok := live.(string); ok && x != y && looksLikeID(x) && looksLikeID(y) {
 			c.subst[x] = y
 		}
 	case json.Number:
@@ -682,6 +704,13 @@ func (c *client) pair(rec, live any) {
 			}
 		}
 	}
+}
+
+// looksLikeID keeps prose out of the id map: an agent's reply text differs
+// between runs too, and mapping it would rewrite unrelated requests. Ids are
+// non-empty and contain no whitespace; timestamps are not ids.
+func looksLikeID(s string) bool {
+	return s != "" && !strings.ContainsAny(s, " \t\n\r") && !looksLikeTime(s)
 }
 
 func looksLikeTime(s string) bool {

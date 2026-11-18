@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS chat_requests (
 CREATE TABLE IF NOT EXISTS approvals (
   id           uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   thread_id    text NOT NULL,
-  tool_call_id text NOT NULL,
   order_number integer NOT NULL REFERENCES orders(number),
   amount_cents integer NOT NULL,
   status       text NOT NULL DEFAULT 'pending',

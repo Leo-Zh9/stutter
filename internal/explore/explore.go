@@ -31,8 +31,8 @@ type Runner struct {
 
 // Outcome of one faulted run.
 type Outcome struct {
-	Schedule replay.Schedule   `json:"schedule"`
-	Fired    bool              `json:"fired"` // every fault in the schedule fired
+	Schedule replay.Schedule `json:"schedule"`
+	Fired    bool            `json:"fired"` // every fault in the schedule fired
 	// Diverged: a scripted model was asked something its script does not
 	// cover, in this run or in its baseline. Like a fault that did not
 	// fire, it is never a pass and never a failure.

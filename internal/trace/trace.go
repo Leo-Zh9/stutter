@@ -27,14 +27,14 @@ const (
 
 // Entry is one recorded request and the response the service gave.
 type Entry struct {
-	Seq        int               `json:"seq"`
-	Kind       Kind              `json:"kind"`
-	Method     string            `json:"method"`
-	Path       string            `json:"path"`
-	Headers    map[string]string `json:"headers,omitempty"`
-	Body       json.RawMessage   `json:"body,omitempty"`
-	Status     int               `json:"status"`
-	RespBody   json.RawMessage   `json:"resp_body,omitempty"`
+	Seq      int               `json:"seq"`
+	Kind     Kind              `json:"kind"`
+	Method   string            `json:"method"`
+	Path     string            `json:"path"`
+	Headers  map[string]string `json:"headers,omitempty"`
+	Body     json.RawMessage   `json:"body,omitempty"`
+	Status   int               `json:"status"`
+	RespBody json.RawMessage   `json:"resp_body,omitempty"`
 }
 
 // DefaultKeyHeader is the idempotency header most APIs use.

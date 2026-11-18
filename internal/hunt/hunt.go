@@ -41,17 +41,17 @@ type Finding struct {
 }
 
 type Result struct {
-	Target      string    `json:"target"`
-	When        string    `json:"when"`
-	Requests    int       `json:"trace_requests"`
-	Preflight   string    `json:"preflight"`
-	Schedules   int       `json:"single_fault_schedules"`
-	ByType      map[string]*Tally `json:"by_fault_type"`
-	NoOpPairs   []string  `json:"no_op_reorder_pairs"`
-	Crash       *explore.CrashSpace `json:"crash,omitempty"`
-	Inference   *oracle.Inference   `json:"id_inference,omitempty"`
-	Findings    []Finding `json:"findings"`
-	Seconds     float64   `json:"seconds"`
+	Target    string              `json:"target"`
+	When      string              `json:"when"`
+	Requests  int                 `json:"trace_requests"`
+	Preflight string              `json:"preflight"`
+	Schedules int                 `json:"single_fault_schedules"`
+	ByType    map[string]*Tally   `json:"by_fault_type"`
+	NoOpPairs []string            `json:"no_op_reorder_pairs"`
+	Crash     *explore.CrashSpace `json:"crash,omitempty"`
+	Inference *oracle.Inference   `json:"id_inference,omitempty"`
+	Findings  []Finding           `json:"findings"`
+	Seconds   float64             `json:"seconds"`
 }
 
 type Tally struct {

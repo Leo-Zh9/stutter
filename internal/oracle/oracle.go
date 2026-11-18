@@ -215,7 +215,7 @@ type rowRef struct {
 // Canon is a canonical state: per table, a multiset of row signatures.
 type Canon struct {
 	Tables map[string]map[string]int
-	Show   map[string]string // signature hash -> readable own content
+	Show   map[string]string         // signature hash -> readable own content
 	Cols   map[string]map[string]int // "table.col" -> normalized value -> count
 }
 

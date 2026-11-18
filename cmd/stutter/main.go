@@ -31,6 +31,8 @@ const usage = `stutter: find retry bugs by replaying traffic under faults
   stutter record  -config stutter.json [-out TRACE] -- WORKLOAD...
   stutter explore -config stutter.json [-trace TRACE] [-env K=V,...] [-random N] [-lanes N] [-no-barrier]
   stutter hunt    -config stutter.json [-out DIR] [-env K=V,...]   every single fault, shrink, report, curl repros
+  stutter check   -config stutter.json -fault 'crash(#3@commit2)' [-env K=V,...] [-n N]
+                  one schedule against the fault-free run: fired, diverged, diff
   stutter bench   [-config targets/minipay/stutter.json] [-out results]
 
 In WORKLOAD, {proxy} is replaced with the recording proxy's base URL.
@@ -54,6 +56,8 @@ func main() {
 		benchCmd(ctx, root, os.Args[2:])
 	case "hunt":
 		huntCmd(ctx, root, os.Args[2:])
+	case "check":
+		checkCmd(ctx, root, os.Args[2:])
 	default:
 		fmt.Fprint(os.Stderr, usage)
 		os.Exit(2)
@@ -240,6 +244,53 @@ func huntCmd(ctx context.Context, root string, args []string) {
 	must(hunt.Write(*out, res))
 	fmt.Print(hunt.Markdown(res))
 	if len(res.Findings) > 0 {
+		os.Exit(1)
+	}
+}
+
+func checkCmd(ctx context.Context, root string, args []string) {
+	fs := flag.NewFlagSet("check", flag.ExitOnError)
+	cfgPath := fs.String("config", "stutter.json", "target config")
+	faultArg := fs.String("fault", "", "faults, e.g. 'lost(#2)' or 'crash(#0@commit3),concurrent(#4)'")
+	envs := fs.String("env", "", "extra env for the service, comma separated")
+	n := fs.Int("n", 1, "runs")
+	seed := fs.Int64("seed", 1, "seed")
+	fs.Parse(args)
+	cfg, err := config.Load(*cfgPath)
+	must(err)
+	env, err := pgenv.FromRepo(root)
+	must(err)
+	extra := splitEnv(*envs)
+	tpl := cfg.TemplateName("check")
+	must(cfg.PrepareTemplate(ctx, env, tpl, extra))
+	tr, err := trace.Read(cfg.Path(cfg.Trace))
+	must(err)
+	var faults []replay.Fault
+	for _, f := range strings.Split(*faultArg, ",") {
+		if f = strings.TrimSpace(f); f == "" {
+			continue
+		}
+		pf, err := replay.ParseFault(f)
+		must(err)
+		faults = append(faults, pf)
+	}
+	r := &explore.Runner{Cfg: cfg.Replay(env, tpl, extra), Trace: tr, Lanes: 1, Seed: *seed}
+	must(r.CheckStable(ctx))
+	failed := 0
+	for i := 0; i < *n; i++ {
+		o := r.Check(ctx, replay.Full(tr, faults...), *seed+int64(i))
+		if o.Err != "" {
+			fail(o.Err)
+		}
+		fmt.Printf("run %d: fired=%v diverged=%v failed=%v\n", i+1, o.Fired, o.Diverged, o.Failed)
+		if o.Failed {
+			failed++
+		}
+		for _, d := range o.Diff {
+			fmt.Printf("  %s %s x%d %s\n", d.Sign, d.Table, d.Count, d.Row)
+		}
+	}
+	if failed > 0 {
 		os.Exit(1)
 	}
 }

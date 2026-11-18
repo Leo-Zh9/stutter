@@ -35,7 +35,7 @@ The screener runs these from the repo root, verbatim, on the screening day:
 
 The search order is the order of `agent-search.json`: most stars first.
 
-**Pre-filter (mechanical).** Before judging, the screener keeps only repositories whose default branch, at the pinned commit, declares a PostgreSQL checkpointer as a dependency: `langgraph-checkpoint-postgres` in any `pyproject.toml`, `requirements*.txt`, `setup.py`, `setup.cfg` or `uv.lock`/`poetry.lock`; or `@langchain/langgraph-checkpoint-postgres` in any `package.json`. It publishes the kept list, in search order, as `agent-prefilter.md`, with the file and line that matched.
+**Pre-filter (mechanical).** Before judging, the screener runs `scripts/agent-prefilter.sh`, unmodified. It keeps only repositories whose default branch, at its HEAD that day, declares a PostgreSQL checkpointer in a dependency file (`langgraph-checkpoint-postgres` in a `pyproject.toml`, `requirements*.txt`, `setup.py`, `setup.cfg`, `uv.lock`, `poetry.lock` or `Pipfile`; or `@langchain/langgraph-checkpoint-postgres` in a `package.json`), and writes the kept list, in search order, with the pinned SHA and the file that matched, to `agent-prefilter.md`. It reads through the GitHub API only; nothing is cloned or run.
 
 ## Exclusions
 

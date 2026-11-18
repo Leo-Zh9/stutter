@@ -121,10 +121,10 @@ func (s *Script) Validate() error {
 
 // Call is one model request the stub answered (or missed).
 type Call struct {
-	Turn  int    `json:"turn"` // -1 on a miss
-	Step  int    `json:"step"`
+	Turn  int      `json:"turn"` // -1 on a miss
+	Step  int      `json:"step"`
 	Tools []string `json:"tools,omitempty"` // tool calls issued
-	Miss  string `json:"miss,omitempty"`
+	Miss  string   `json:"miss,omitempty"`
 }
 
 // Server serves one script on a local port.
@@ -198,16 +198,16 @@ type message struct {
 }
 
 type chatRequest struct {
-	Model         string    `json:"model"`
-	Messages      []message `json:"messages"`
-	Tools         []struct {
+	Model    string    `json:"model"`
+	Messages []message `json:"messages"`
+	Tools    []struct {
 		Function struct {
 			Name string `json:"name"`
 		} `json:"function"`
 	} `json:"tools"`
 	Stream         bool            `json:"stream"`
 	ResponseFormat json.RawMessage `json:"response_format"`
-	StreamOptions *struct {
+	StreamOptions  *struct {
 		IncludeUsage bool `json:"include_usage"`
 	} `json:"stream_options"`
 }

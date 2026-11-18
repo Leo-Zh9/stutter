@@ -66,7 +66,7 @@ type SetupRequest struct {
 type Webhooks struct {
 	Prefix      string `json:"prefix"`
 	Object      string `json:"object_path,omitempty"` // JSON path grouping reorderable webhooks
-	Signing     string `json:"signing,omitempty"` // "" or "stripe"
+	Signing     string `json:"signing,omitempty"`     // "" or "stripe"
 	Secret      string `json:"secret,omitempty"`
 	Header      string `json:"header,omitempty"` // default Stripe-Signature
 	Retry       string `json:"retry,omitempty"`  // "5xx" (default) or "non-2xx"
