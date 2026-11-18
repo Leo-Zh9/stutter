@@ -253,10 +253,6 @@ def chat(req: Chat):
                     return row["response"]
             st = graph.get_state(config)
             ids = [m.id for m in (st.values or {}).get("messages", [])]
-            if os.environ.get("MINIAGENT_DEBUG"):
-                with open(os.environ["MINIAGENT_DEBUG"], "a") as f:
-                    f.write(json.dumps({"claimed": bool(claimed), "next": list(st.next), "ids": ids, "interrupts": len(st.interrupts),
-                                        "meta": st.metadata, "tasks": [(t.name, t.error is not None, bool(t.interrupts)) for t in st.tasks]}, default=str) + "\n")
             if req.message_id not in ids:
                 graph.invoke({"messages": [HumanMessage(req.text, id=req.message_id)]}, config)
             elif st.tasks and not st.interrupts:
