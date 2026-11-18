@@ -36,6 +36,8 @@ type DB struct {
 	DSN       string
 	URL       string
 	SocketURL string
+	// Vars are extra placeholders for this run, e.g. {MODEL_URL}.
+	Vars map[string]string
 }
 
 type Process struct {
@@ -68,7 +70,11 @@ func Start(ctx context.Context, s Spec, db DB) (*Process, error) {
 			return nil, err
 		}
 		addr := "127.0.0.1:" + port
-		r := strings.NewReplacer("{DATABASE_URL_SOCKET}", db.SocketURL, "{DSN}", db.DSN, "{DATABASE_URL}", db.URL, "{ADDR}", addr, "{HOST}", "127.0.0.1", "{PORT}", port)
+		pairs := []string{"{DATABASE_URL_SOCKET}", db.SocketURL, "{DSN}", db.DSN, "{DATABASE_URL}", db.URL, "{ADDR}", addr, "{HOST}", "127.0.0.1", "{PORT}", port}
+		for k, v := range db.Vars {
+			pairs = append(pairs, k, v)
+		}
+		r := strings.NewReplacer(pairs...)
 		args := make([]string, len(s.Command))
 		for i, a := range s.Command {
 			args[i] = fill(a, r)

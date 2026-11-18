@@ -15,6 +15,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Leo-Zh9/stutter/internal/agentstub"
 	"github.com/Leo-Zh9/stutter/internal/bench"
 	"github.com/Leo-Zh9/stutter/internal/config"
 	"github.com/Leo-Zh9/stutter/internal/explore"
@@ -29,7 +30,7 @@ const usage = `stutter: find retry bugs by replaying traffic under faults
 
   stutter record  -config stutter.json [-out TRACE] -- WORKLOAD...
   stutter explore -config stutter.json [-trace TRACE] [-env K=V,...] [-random N] [-lanes N] [-no-barrier]
-  stutter hunt    -config stutter.json [-out DIR]   every single fault, shrink, report, curl repros
+  stutter hunt    -config stutter.json [-out DIR] [-env K=V,...]   every single fault, shrink, report, curl repros
   stutter bench   [-config targets/minipay/stutter.json] [-out results]
 
 In WORKLOAD, {proxy} is replaced with the recording proxy's base URL.
@@ -89,7 +90,19 @@ func record(ctx context.Context, root string, args []string) {
 	db, err := env.Clone(ctx, tpl)
 	must(err)
 	defer env.Drop(ctx, db)
-	proc, err := target.Start(ctx, cfg.Spec(extra), target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)})
+	dbFor := target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)}
+	if cfg.Script() != nil {
+		stub, err := agentstub.Start(cfg.Script())
+		must(err)
+		defer stub.Close()
+		dbFor.Vars = map[string]string{"{MODEL_URL}": stub.URL}
+		defer func() {
+			if n := stub.Misses(); n > 0 {
+				fmt.Fprintf(os.Stderr, "warning: %d model calls left the script; the trace will not replay\n", n)
+			}
+		}()
+	}
+	proc, err := target.Start(ctx, cfg.Spec(extra), dbFor)
 	must(err)
 	defer proc.Stop()
 	up, _ := url.Parse(proc.BaseURL)
@@ -194,7 +207,9 @@ func huntCmd(ctx context.Context, root string, args []string) {
 	lanes := fs.Int("lanes", 6, "parallel replays")
 	seed := fs.Int64("seed", 1, "seed")
 	noCrash := fs.Bool("no-crash", false, "skip crash-point faults")
+	envs := fs.String("env", "", "extra env for the service, comma separated (e.g. BUG=approval-no-claim)")
 	fs.Parse(args)
+	extra := splitEnv(*envs)
 	cfg, err := config.Load(*cfgPath)
 	must(err)
 	if *out == "" {
@@ -203,10 +218,10 @@ func huntCmd(ctx context.Context, root string, args []string) {
 	env, err := pgenv.FromRepo(root)
 	must(err)
 	tpl := cfg.TemplateName("hunt")
-	must(cfg.PrepareTemplate(ctx, env, tpl, nil))
+	must(cfg.PrepareTemplate(ctx, env, tpl, extra))
 	tr, err := trace.Read(cfg.Path(cfg.Trace))
 	must(err)
-	r := &explore.Runner{Cfg: cfg.Replay(env, tpl, nil), Trace: tr, Lanes: *lanes, Seed: *seed}
+	r := &explore.Runner{Cfg: cfg.Replay(env, tpl, extra), Trace: tr, Lanes: *lanes, Seed: *seed}
 	say := func(s string) { fmt.Fprintln(os.Stderr, "hunt:", s) }
 	res, err := hunt.Run(ctx, cfg, r, *out, !*noCrash, say)
 	must(err)
@@ -217,7 +232,7 @@ func huntCmd(ctx context.Context, root string, args []string) {
 			continue
 		}
 		say(fmt.Sprintf("finding %d: running repro.sh 10 times", i+1))
-		n, err := hunt.VerifyRepro(ctx, cfg, env, tpl, res.Findings[i].Dir, 10)
+		n, err := hunt.VerifyRepro(ctx, cfg, env, tpl, res.Findings[i].Dir, 10, extra)
 		must(err)
 		res.Findings[i].CurlRepro = n
 		res.Findings[i].Dir, _ = filepath.Rel(*out, res.Findings[i].Dir)

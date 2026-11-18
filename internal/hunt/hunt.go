@@ -16,6 +16,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
+	"github.com/Leo-Zh9/stutter/internal/agentstub"
 	"github.com/Leo-Zh9/stutter/internal/config"
 	"github.com/Leo-Zh9/stutter/internal/explore"
 	"github.com/Leo-Zh9/stutter/internal/oracle"
@@ -59,6 +60,12 @@ type Tally struct {
 	NotFired int `json:"n_not_fired"`
 	Failed   int `json:"failed"`
 	NoOp     int `json:"no_op_passes,omitempty"`
+	// Diverged runs left the model script; they are neither passes nor
+	// failures. Nondetermined crash faults gave different outcomes in their
+	// two runs (async checkpoint writes can race the kill); they are not
+	// findings.
+	Diverged      int `json:"diverged,omitempty"`
+	Nondetermined int `json:"nondetermined,omitempty"`
 }
 
 const replays = 10
@@ -87,20 +94,40 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 	}
 
 	res.Inference = r.Inference()
-	singles := replay.Faults(tr, cfg.Space())
+	// One observation pass serves both crash points and resume rules: it
+	// counts commit points per request and records whether an interrupt
+	// was pending around each resume.
+	say("observing commit points and pending interrupts")
+	cs, err := r.CrashFaults(ctx, cfg.KeyHeader)
+	if err != nil {
+		return nil, err
+	}
+	sp := cfg.Space()
+	sp.Pending = cs.Pending
+	singles := replay.Faults(tr, sp)
 	if crash {
-		say("counting commit points per request")
-		cs, err := r.CrashFaults(ctx, cfg.KeyHeader)
-		if err != nil {
-			return nil, err
-		}
 		res.Crash = &cs
 		singles = append(singles, cs.Faults...)
 	}
 	res.Schedules = len(singles)
 	say(fmt.Sprintf("%d single-fault schedules", len(singles)))
+	nondet := make([]bool, len(singles))
 	outs := r.Parallel(len(singles), func(i int) explore.Outcome {
-		return r.Check(ctx, replay.Full(tr, singles[i]), r.Seed+int64(i))
+		o := r.Check(ctx, replay.Full(tr, singles[i]), r.Seed+int64(i))
+		if singles[i].Type != replay.Crash || o.Err != "" || o.Diverged || !o.Fired {
+			return o
+		}
+		// Crash-twice: with async checkpoint writes the next node can
+		// race the kill, so a crash outcome counts only if a second run
+		// agrees with the first.
+		o2 := r.Check(ctx, replay.Full(tr, singles[i]), r.Seed+int64(i)+7919)
+		if o2.Err != "" {
+			return o2
+		}
+		if o2.Diverged || !o2.Fired || o2.Failed != o.Failed || fmt.Sprint(o2.Diff) != fmt.Sprint(o.Diff) {
+			nondet[i] = true
+		}
+		return o
 	})
 	var failing []explore.Outcome
 	for i, o := range outs {
@@ -114,8 +141,16 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 			res.ByType[ft] = tl
 		}
 		tl.Run++
+		if o.Diverged {
+			tl.Diverged++
+			continue
+		}
 		if !o.Fired {
 			tl.NotFired++
+			continue
+		}
+		if nondet[i] {
+			tl.Nondetermined++
 			continue
 		}
 		tl.Fired++
@@ -311,13 +346,23 @@ send() {
   local f=$1 path=$2 method=${3:-POST} t sig
   local hdr=()
 `, cfg.Name, cfg.Webhooks.Secret)
+	var hk []string
+	for k := range cfg.Headers {
+		hk = append(hk, k)
+	}
+	sort.Strings(hk)
+	b.WriteString("  local STATIC=(")
+	for _, k := range hk {
+		fmt.Fprintf(&b, " -H %q", k+": "+cfg.Headers[k])
+	}
+	b.WriteString(" )\n")
 	if cfg.Webhooks.Signing == "stripe" {
 		b.WriteString(`  t=$(date +%s)
   sig=$(printf '%s.%s' "$t" "$(cat "$f")" | openssl dgst -sha256 -hmac "$SECRET" | awk '{print $NF}')
   hdr=(-H "Stripe-Signature: t=$t,v1=$sig")
 `)
 	}
-	b.WriteString(`  curl -sS -o /dev/null -w "$f %{http_code}\n" -X "$method" "$BASE_URL$path" -H 'Content-Type: application/json' ${hdr[@]+"${hdr[@]}"} --data-binary @"$f"
+	b.WriteString(`  curl -sS -o /dev/null -w "$f %{http_code}\n" -X "$method" "$BASE_URL$path" -H 'Content-Type: application/json' ${hdr[@]+"${hdr[@]}"} ${STATIC[@]+"${STATIC[@]}"} --data-binary @"$f"
 }
 if [ "${1:-faulted}" = clean ]; then
 `)
@@ -345,7 +390,7 @@ if [ "${1:-faulted}" = clean ]; then
 func Markdown(r *Result) string {
 	var b strings.Builder
 	fmt.Fprintf(&b, "# stutter hunt: %s\n\nGenerated %s. Trace: %d requests. Pre-flight: %s.\n\n", r.Target, r.When, r.Requests, r.Preflight)
-	b.WriteString("| Fault type | Schedules | Fired | Not fired | Changed the final state | No-op passes |\n|---|---|---|---|---|---|\n")
+	b.WriteString("| Fault type | Schedules | Fired | Not fired | Diverged | Nondetermined | Changed the final state | No-op passes |\n|---|---|---|---|---|---|---|---|\n")
 	var types []string
 	for t := range r.ByType {
 		types = append(types, t)
@@ -353,7 +398,7 @@ func Markdown(r *Result) string {
 	sort.Strings(types)
 	for _, t := range types {
 		x := r.ByType[t]
-		fmt.Fprintf(&b, "| %s | %d | %d | %d | %d | %d |\n", t, x.Run, x.Fired, x.NotFired, x.Failed, x.NoOp)
+		fmt.Fprintf(&b, "| %s | %d | %d | %d | %d | %d | %d | %d |\n", t, x.Run, x.Fired, x.NotFired, x.Diverged, x.Nondetermined, x.Failed, x.NoOp)
 	}
 	fmt.Fprintf(&b, "\nNo-op reorder pairs (dropping both events leaves the state unchanged, so their pass says nothing about ordering): %d.\n\n", len(r.NoOpPairs))
 	// Group findings by the state change they cause.
@@ -402,15 +447,24 @@ func Write(dir string, r *Result) error {
 // than stutter's replayer, n times. Each trial gets two fresh clones of the
 // template: one receives the clean order, one the faulted order. A trial
 // reproduces when the two end states differ.
-func VerifyRepro(ctx context.Context, cfg *config.Config, env *pgenv.Env, template, dir string, n int) (int, error) {
-	opts := cfg.Replay(env, template, nil).Oracle
+func VerifyRepro(ctx context.Context, cfg *config.Config, env *pgenv.Env, template, dir string, n int, extraEnv []string) (int, error) {
+	opts := cfg.Replay(env, template, extraEnv).Oracle
 	run := func(mode string) (*oracle.Canon, error) {
 		db, err := env.Clone(ctx, template)
 		if err != nil {
 			return nil, err
 		}
 		defer env.Drop(context.Background(), db)
-		proc, err := target.Start(ctx, cfg.Spec(nil), target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)})
+		dbFor := target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)}
+		if cfg.Script() != nil {
+			stub, err := agentstub.Start(cfg.Script())
+			if err != nil {
+				return nil, err
+			}
+			defer stub.Close()
+			dbFor.Vars = map[string]string{"{MODEL_URL}": stub.URL}
+		}
+		proc, err := target.Start(ctx, cfg.Spec(extraEnv), dbFor)
 		if err != nil {
 			return nil, err
 		}
@@ -430,7 +484,7 @@ func VerifyRepro(ctx context.Context, cfg *config.Config, env *pgenv.Env, templa
 		if err != nil {
 			return nil, err
 		}
-		return oracle.Canonicalize(st, opts)
+		return oracle.Canonicalize(st.Without(opts.IgnoreTables), opts)
 	}
 	hit := 0
 	for i := 0; i < n; i++ {

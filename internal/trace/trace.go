@@ -5,11 +5,13 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
 	"os"
+	"strconv"
 	"strings"
 	"sync"
 )
@@ -160,4 +162,138 @@ func (c *capture) WriteHeader(code int) { c.status = code; c.ResponseWriter.Writ
 func (c *capture) Write(b []byte) (int, error) {
 	c.buf.Write(b)
 	return c.ResponseWriter.Write(b)
+}
+
+// Rule widens which API calls a well-behaved client may retry, for services
+// that key a request by a field in its body rather than by a header.
+//
+//	{"method": "POST", "path": "/chat", "body_key": "message_id"}
+//	{"method": "POST", "path": "/threads/*/resume", "resume": {"thread": "path:2"}}
+//
+// A body_key rule makes a request retryable when that dotted JSON path holds
+// a non-empty value: a per-action id the server can dedupe on. A resume rule
+// marks a request that answers a pending interrupt (an approval): it carries
+// no per-action id, but an interrupt can be answered only once, so a second
+// copy is a duplicate by definition. Which faults a resume admits depends on
+// whether an interrupt is pending before and after it (see replay.Faults).
+type Rule struct {
+	Method  string      `json:"method,omitempty"`
+	Path    string      `json:"path"`
+	BodyKey string      `json:"body_key,omitempty"`
+	Resume  *ResumeRule `json:"resume,omitempty"`
+}
+
+// ResumeRule says where the thread id is: "path:N" (the Nth path segment,
+// counting from 1 after the leading slash) or "body:dotted.path".
+type ResumeRule struct {
+	Thread string `json:"thread"`
+}
+
+// Match reports whether the rule applies to an entry.
+func (r Rule) Match(e Entry) bool {
+	if e.Kind != API || (r.Method != "" && !strings.EqualFold(r.Method, e.Method)) {
+		return false
+	}
+	path := e.Path
+	if i := strings.IndexByte(path, '?'); i >= 0 {
+		path = path[:i]
+	}
+	want := strings.Split(strings.Trim(r.Path, "/"), "/")
+	got := strings.Split(strings.Trim(path, "/"), "/")
+	if len(want) != len(got) {
+		return false
+	}
+	for i := range want {
+		if want[i] != "*" && want[i] != got[i] {
+			return false
+		}
+	}
+	return true
+}
+
+// Policy is the client's retry rights: the idempotency header plus rules.
+type Policy struct {
+	KeyHeader string
+	Rules     []Rule
+}
+
+// RuleFor returns the first rule that matches e, if any.
+func (p Policy) RuleFor(e Entry) *Rule {
+	for i := range p.Rules {
+		if p.Rules[i].Match(e) {
+			return &p.Rules[i]
+		}
+	}
+	return nil
+}
+
+// Retryable reports whether a well-behaved sender may resend e: a webhook,
+// a call carrying the idempotency header, a call whose body_key holds a
+// value, or a resume of a pending interrupt.
+func (p Policy) Retryable(e Entry) bool {
+	h := p.KeyHeader
+	if h == "" {
+		h = DefaultKeyHeader
+	}
+	if e.Retryable(h) {
+		return true
+	}
+	r := p.RuleFor(e)
+	if r == nil {
+		return false
+	}
+	if r.Resume != nil {
+		return true
+	}
+	if r.BodyKey != "" {
+		var v any
+		if json.Unmarshal(e.Body, &v) != nil {
+			return false
+		}
+		s := fmt.Sprint(Dotted(v, r.BodyKey))
+		return Dotted(v, r.BodyKey) != nil && s != ""
+	}
+	return false
+}
+
+// Resume returns the rule's thread id for e, or "" when e is not a resume.
+func (p Policy) Resume(e Entry) (string, bool) {
+	r := p.RuleFor(e)
+	if r == nil || r.Resume == nil {
+		return "", false
+	}
+	where := r.Resume.Thread
+	switch {
+	case strings.HasPrefix(where, "path:"):
+		n, err := strconv.Atoi(strings.TrimPrefix(where, "path:"))
+		path := e.Path
+		if i := strings.IndexByte(path, '?'); i >= 0 {
+			path = path[:i]
+		}
+		segs := strings.Split(strings.Trim(path, "/"), "/")
+		if err != nil || n < 1 || n > len(segs) {
+			return "", false
+		}
+		return segs[n-1], true
+	case strings.HasPrefix(where, "body:"):
+		var v any
+		if json.Unmarshal(e.Body, &v) != nil {
+			return "", false
+		}
+		s, ok := Dotted(v, strings.TrimPrefix(where, "body:")).(string)
+		return s, ok
+	}
+	return "", false
+}
+
+// Dotted follows a dotted path through decoded JSON objects.
+func Dotted(v any, path string) any {
+	for _, k := range strings.Split(path, ".") {
+		m, ok := v.(map[string]any)
+		if !ok {
+			return nil
+		}
+		v = m[k]
+	}
+	return v
 }

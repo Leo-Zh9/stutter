@@ -198,6 +198,10 @@ func (t *Table) col(name string) *Column {
 type Options struct {
 	Ignore  map[string]bool
 	Schemas []string // schemas to snapshot; default public
+	// IgnoreTables are left out of the snapshot entirely (framework
+	// bookkeeping such as a checkpointer's tables), and out of the lock
+	// barrier's table list.
+	IgnoreTables map[string]bool
 	// Inf, when set, adds inferred integer ids (see Infer): owners act as
 	// generated columns, derived paths become edges, volatile paths drop.
 	Inf *Inference
@@ -593,4 +597,29 @@ func marshal(v any) string {
 	enc.SetEscapeHTML(false)
 	enc.Encode(v)
 	return strings.TrimSuffix(b.String(), "\n")
+}
+
+// Without returns the state minus the named tables, for tables that hold
+// framework bookkeeping rather than application data (a checkpointer's
+// tables, for example). Edges into a dropped table are dropped with it.
+func (s *State) Without(tables map[string]bool) *State {
+	if len(tables) == 0 {
+		return s
+	}
+	out := &State{Rows: map[string][]Row{}}
+	for _, t := range s.Tables {
+		if tables[t.Name] {
+			continue
+		}
+		cols := make([]Column, len(t.Columns))
+		copy(cols, t.Columns)
+		for i := range cols {
+			if tables[cols[i].FKTable] {
+				cols[i].FKTable, cols[i].FKColumn = "", ""
+			}
+		}
+		out.Tables = append(out.Tables, Table{Name: t.Name, Columns: cols})
+		out.Rows[t.Name] = s.Rows[t.Name]
+	}
+	return out
 }

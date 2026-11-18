@@ -1,0 +1,26 @@
+{
+  "turns": [
+    {"user": "refund order 1001",
+     "steps": [
+       {"tool_calls": [{"name": "lookup_order", "args": {"order_id": 1001}}]},
+       {"tool_calls": [{"name": "issue_refund", "args": {"order_id": 1001, "amount_cents": {"$ref": "tool:0:total_cents"}}}]},
+       {"content": "I have handled the refund for order 1001."}
+     ]},
+    {"user": "refund order 1003",
+     "steps": [
+       {"tool_calls": [{"name": "lookup_order", "args": {"order_id": 1003}}]},
+       {"tool_calls": [{"name": "issue_refund", "args": {"order_id": 1003, "amount_cents": 2000}}]},
+       {"content": "I have handled the refund request for order 1003."}
+     ]},
+    {"user": "note that order 1002 was delayed",
+     "steps": [
+       {"tool_calls": [{"name": "add_order_note", "args": {"order_id": 1002, "note": "delayed in transit"}}]},
+       {"content": "Noted on order 1002."}
+     ]},
+    {"user": "status of order 1003",
+     "steps": [
+       {"tool_calls": [{"name": "lookup_order", "args": {"order_id": 1003}}]},
+       {"content": "Order 1003 was delivered."}
+     ]}
+  ]
+}

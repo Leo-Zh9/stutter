@@ -22,6 +22,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
+	"github.com/Leo-Zh9/stutter/internal/agentstub"
 	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
 	"github.com/Leo-Zh9/stutter/internal/pgproxy"
@@ -106,8 +107,42 @@ type Config struct {
 	// Arrival, if set, is called each time a request reaches the transport.
 	Arrival func(seq int)
 	// ObserveCommits routes the service through the wire proxy and reports
-	// commit points per request in Result.Commits, without crashing.
+	// commit points per request in Result.Commits, without crashing. It
+	// also reports, for each resume request, whether an interrupt was
+	// pending before and after it (Result.Pending).
 	ObserveCommits bool
+	// Rules widen which API calls the client may retry (see trace.Rule).
+	Rules []trace.Rule
+	// Headers are sent on every request: static values, never recorded.
+	Headers map[string]string
+	// Model, when set, is served by a scripted model stub for each run;
+	// the service finds it through the {MODEL_URL} placeholder.
+	Model *agentstub.Script
+	// PendingSQL answers "is an interrupt pending on thread $1?" for
+	// resume rules. Default: LangGraph's checkpoint tables.
+	PendingSQL string
+}
+
+// DefaultPendingSQL reads LangGraph's Postgres checkpointer: a dynamic
+// interrupt() leaves an __interrupt__ write on the thread's latest root
+// checkpoint. It fails safe: a node that interrupts twice keeps its old
+// __interrupt__ row after the first resume, so that resume reads as still
+// pending, and lost and crash faults are not placed on it.
+const DefaultPendingSQL = `SELECT EXISTS (
+	SELECT 1 FROM checkpoint_writes w
+	WHERE w.thread_id = $1 AND w.checkpoint_ns = '' AND w.channel = '__interrupt__'
+	  AND w.checkpoint_id = (SELECT max(c.checkpoint_id) FROM checkpoints c
+	                         WHERE c.thread_id = $1 AND c.checkpoint_ns = ''))`
+
+// Policy is the client's retry rights under this config.
+func (c Config) Policy() trace.Policy {
+	return trace.Policy{KeyHeader: c.KeyHeader, Rules: c.Rules}
+}
+
+// PendingObs is what an observation run saw around one resume request.
+type PendingObs struct {
+	Before bool `json:"before"`
+	After  bool `json:"after"`
 }
 
 // WebhookPolicy describes the provider that sends webhook entries.
@@ -124,8 +159,14 @@ type Result struct {
 	State    *oracle.State
 	Commits  map[int]int // commit points per request (proxy runs only)
 	BgCommits int        // commits seen while no request was in flight
+	Pending  map[int]PendingObs // resume requests (observation runs only)
 	Fired    int
 	NotFired int
+	// ModelCalls and ModelMisses count scripted model requests; a miss
+	// means the conversation left the script. MissReason is the first.
+	ModelCalls  int
+	ModelMisses int
+	MissReason  string
 	Err      error
 	Took     time.Duration
 }
@@ -185,11 +226,21 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 			SocketURL: fmt.Sprintf("postgres://%s@/%s?host=%s&port=%s&sslmode=disable", cfg.Env.User, db, px.Dir, px.Port),
 		}
 	}
+	var stub *agentstub.Server
+	if cfg.Model != nil {
+		stub, err = agentstub.Start(cfg.Model)
+		if err != nil {
+			return Result{Err: err}
+		}
+		defer stub.Close()
+		dbFor.Vars = map[string]string{"{MODEL_URL}": stub.URL}
+	}
 	proc, err := target.Start(ctx, cfg.Target, dbFor)
 	if err != nil {
 		return Result{Err: err}
 	}
 	defer func() { proc.Stop() }()
+	policy := cfg.Policy()
 
 	bySeq := map[int]trace.Entry{}
 	for _, e := range tr {
@@ -210,19 +261,19 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	for _, f := range s.Faults {
 		switch f.Type {
 		case Lost:
-			if include[f.Seq] && bySeq[f.Seq].Retryable(cfg.KeyHeader) {
+			if include[f.Seq] && policy.Retryable(bySeq[f.Seq]) {
 				lost[f.Seq] = true
 			} else {
 				res.NotFired++
 			}
 		case Concurrent:
-			if include[f.Seq] && bySeq[f.Seq].Retryable(cfg.KeyHeader) {
+			if include[f.Seq] && policy.Retryable(bySeq[f.Seq]) {
 				conc[f.Seq] = true
 			} else {
 				res.NotFired++
 			}
 		case Crash:
-			if !include[f.Seq] || !bySeq[f.Seq].Retryable(cfg.KeyHeader) {
+			if !include[f.Seq] || !policy.Retryable(bySeq[f.Seq]) {
 				res.NotFired++
 				crash = nil
 			}
@@ -250,22 +301,53 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		}
 		defer conn.Close(context.Background())
 		c.barrier = conn
-		rows, err := conn.Query(ctx, `SELECT quote_ident(schemaname) || '.' || quote_ident(tablename)
+		// Tables the oracle ignores are left unlocked: a framework's own
+		// bookkeeping (a checkpointer's writes) commits before the handler
+		// reaches its check-then-act, so holding it would release both
+		// attempts before the race.
+		rows, err := conn.Query(ctx, `SELECT quote_ident(schemaname) || '.' || quote_ident(tablename),
+			CASE WHEN schemaname = 'public' THEN tablename ELSE schemaname || '.' || tablename END
 			FROM pg_tables WHERE schemaname = ANY($1) ORDER BY 1`, schemas(cfg))
 		if err != nil {
 			return Result{Err: err}
 		}
 		for rows.Next() {
-			var t string
-			rows.Scan(&t)
-			c.tables = append(c.tables, t)
+			var t, label string
+			rows.Scan(&t, &label)
+			if !cfg.Oracle.IgnoreTables[label] {
+				c.tables = append(c.tables, t)
+			}
 		}
 		rows.Close()
 	}
 
+	pendingSQL := cfg.PendingSQL
+	if pendingSQL == "" {
+		pendingSQL = DefaultPendingSQL
+	}
+	pending := func(thread string) bool {
+		var p bool
+		conn, err := pgx.Connect(ctx, cfg.Env.DSN(db))
+		if err != nil {
+			return true // fail safe: pending means no lost or crash fault
+		}
+		defer conn.Close(context.Background())
+		if err := conn.QueryRow(ctx, pendingSQL, c.subst1(thread)).Scan(&p); err != nil {
+			return true
+		}
+		return p
+	}
+	if cfg.ObserveCommits {
+		res.Pending = map[int]PendingObs{}
+	}
 	for _, q := range order {
 		e := bySeq[q]
 		var r response
+		thread, isResume := policy.Resume(e)
+		var obs PendingObs
+		if cfg.ObserveCommits && isResume {
+			obs.Before = pending(thread)
+		}
 		if px != nil {
 			px.Begin(q)
 		}
@@ -309,9 +391,25 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		if err != nil {
 			return Result{Err: fmt.Errorf("seq %d: %w", q, err)}
 		}
+		if cfg.ObserveCommits && isResume {
+			obs.After = pending(thread)
+			res.Pending[q] = obs
+		}
 		c.learn(e, r)
 	}
 	proc.Stop()
+	if stub != nil {
+		calls := stub.Calls()
+		res.ModelCalls = len(calls)
+		for _, cl := range calls {
+			if cl.Miss != "" {
+				if res.ModelMisses == 0 {
+					res.MissReason = cl.Miss
+				}
+				res.ModelMisses++
+			}
+		}
+	}
 	if px != nil {
 		res.Commits, res.BgCommits = px.Commits()
 	}
@@ -325,6 +423,7 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	if err != nil {
 		return Result{Err: err}
 	}
+	st = st.Without(cfg.Oracle.IgnoreTables)
 	res.State = st
 	res.Canon, res.Err = oracle.Canonicalize(st, cfg.Oracle)
 	return res
@@ -365,6 +464,9 @@ func (c *client) once(ctx context.Context, e trace.Entry) (response, error) {
 	for k, v := range e.Headers {
 		req.Header.Set(k, v)
 	}
+	for k, v := range c.cfg.Headers {
+		req.Header.Set(k, v)
+	}
 	if e.Kind == trace.Webhook && c.cfg.Webhooks.Signing == "stripe" {
 		req.Header.Set(c.cfg.Webhooks.Header, StripeSignature(c.cfg.Webhooks.Secret, time.Now(), body))
 	}
@@ -391,7 +493,7 @@ func (c *client) send(ctx context.Context, e trace.Entry, attempt int) (response
 	}
 	for ; ; attempt++ {
 		r, err := c.once(ctx, e)
-		if c.done(e, r, err) || !e.Retryable(c.cfg.KeyHeader) || attempt >= max {
+		if c.done(e, r, err) || !c.cfg.Policy().Retryable(e) || attempt >= max {
 			return r, err
 		}
 		c.rngMu.Lock()
@@ -630,6 +732,14 @@ func (c *client) substAll(v any) any {
 	return v
 }
 
+// subst1 maps one recorded id to its live value.
+func (c *client) subst1(s string) string {
+	if y, ok := c.subst[s]; ok {
+		return y
+	}
+	return s
+}
+
 func (c *client) rewritePath(p string) string {
 	parts := strings.Split(p, "/")
 	for i, s := range parts {
@@ -647,6 +757,14 @@ func (c *client) rewritePath(p string) string {
 // Space says which faults a trace admits.
 type Space struct {
 	KeyHeader string // API calls without it are never faulted
+	Rules     []trace.Rule
+	// Pending is what an observation run saw around each resume request.
+	// A resume admits concurrent only if an interrupt was pending before
+	// it, and lost or crash only if, in addition, none was pending after
+	// it: otherwise the retry would answer the next interrupt, which is
+	// the client's mistake, not the service's. Unobserved resumes admit
+	// nothing.
+	Pending map[int]PendingObs
 	// WebhookObject is a dotted JSON path naming what a webhook is about
 	// (e.g. "data.object.customer"). Two webhooks with the same value may be
 	// reordered. Empty: group by the first id minted earlier in the trace.
@@ -657,18 +775,14 @@ type Space struct {
 // each retryable request, Reorder on each pair of webhooks about the same
 // object.
 func Faults(tr []trace.Entry, sp Space) []Fault {
-	keyHeader := sp.KeyHeader
-	if keyHeader == "" {
-		keyHeader = trace.DefaultKeyHeader
-	}
 	var out []Fault
 	for _, e := range tr {
-		if e.Retryable(keyHeader) {
+		if sp.Admits(e, Lost) {
 			out = append(out, Fault{Type: Lost, Seq: e.Seq})
 		}
 	}
 	for _, e := range tr {
-		if e.Retryable(keyHeader) {
+		if sp.Admits(e, Concurrent) {
 			out = append(out, Fault{Type: Concurrent, Seq: e.Seq})
 		}
 	}
@@ -719,6 +833,29 @@ func Faults(tr []trace.Entry, sp Space) []Fault {
 		}
 	}
 	return out
+}
+
+// Admits reports whether fault type t may be placed on request e.
+func (sp Space) Admits(e trace.Entry, t FaultType) bool {
+	p := trace.Policy{KeyHeader: sp.KeyHeader, Rules: sp.Rules}
+	if !p.Retryable(e) {
+		return false
+	}
+	h := sp.KeyHeader
+	if h == "" {
+		h = trace.DefaultKeyHeader
+	}
+	if e.Retryable(h) {
+		return true // keyed by header, or a webhook
+	}
+	if r := p.RuleFor(e); r != nil && r.Resume != nil {
+		obs, ok := sp.Pending[e.Seq]
+		if !ok || !obs.Before {
+			return false
+		}
+		return t == Concurrent || !obs.After
+	}
+	return true
 }
 
 // jsonPath follows a dotted path through decoded JSON objects.

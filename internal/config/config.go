@@ -30,6 +30,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Leo-Zh9/stutter/internal/agentstub"
 	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
 	"github.com/Leo-Zh9/stutter/internal/replay"
@@ -72,6 +73,13 @@ type Webhooks struct {
 	MaxAttempts int    `json:"max_attempts,omitempty"`
 }
 
+type Model struct {
+	Script string `json:"script"` // path to the script JSON
+	// PendingSQL overrides the query that decides whether an interrupt is
+	// pending on a thread ($1); default: LangGraph's Postgres checkpointer.
+	PendingSQL string `json:"pending_sql,omitempty"`
+}
+
 type Config struct {
 	Name         string   `json:"name"`
 	Start        []string `json:"start"`
@@ -85,6 +93,19 @@ type Config struct {
 	Webhooks     Webhooks `json:"webhooks"`
 	Ignore       []string `json:"ignore,omitempty"`
 	Trace        string   `json:"trace,omitempty"`
+	// IgnoreTables are left out of the oracle and the lock barrier: a
+	// framework's own bookkeeping, such as a checkpointer's tables.
+	IgnoreTables []string `json:"ignore_tables,omitempty"`
+	// Headers are sent on every replayed request (a static test token, for
+	// example). Values may use ${ENV} references; they are never recorded.
+	Headers map[string]string `json:"headers,omitempty"`
+	// RetryRules widen which API calls the client may retry (trace.Rule).
+	RetryRules []trace.Rule `json:"retry_rules,omitempty"`
+	// Model is a scripted model (agentstub) served to the service at
+	// {MODEL_URL} on every run: no recording, no paid calls.
+	Model *Model `json:"model,omitempty"`
+
+	script *agentstub.Script
 
 	base  string
 	bands map[string][]pgenv.Band
@@ -119,6 +140,18 @@ func Load(path string) (*Config, error) {
 	}
 	if c.Webhooks.Signing != "" && c.Webhooks.Signing != "stripe" {
 		return nil, fmt.Errorf("%s: unknown webhooks.signing %q", path, c.Webhooks.Signing)
+	}
+	if c.Model != nil {
+		sc, err := agentstub.Load(c.Path(c.Model.Script))
+		if err != nil {
+			return nil, err
+		}
+		c.script = sc
+	}
+	for _, r := range c.RetryRules {
+		if r.Path == "" || (r.BodyKey == "") == (r.Resume == nil) {
+			return nil, fmt.Errorf("%s: each retry rule needs a path and exactly one of body_key or resume", path)
+		}
 	}
 	n := 0
 	for _, set := range []bool{c.Prepare.SchemaFile != "", len(c.Prepare.SchemaCmd) > 0, len(c.Prepare.MigrateCmd) > 0, len(c.Prepare.SetupRequests) > 0} {
@@ -177,7 +210,7 @@ func (c *Config) Spec(extraEnv []string) target.Spec {
 
 // Space is the fault space the config admits.
 func (c *Config) Space() replay.Space {
-	return replay.Space{KeyHeader: c.KeyHeader, WebhookObject: c.Webhooks.Object}
+	return replay.Space{KeyHeader: c.KeyHeader, WebhookObject: c.Webhooks.Object, Rules: c.RetryRules}
 }
 
 // Replay builds a replay config for a template database.
@@ -186,16 +219,42 @@ func (c *Config) Replay(env *pgenv.Env, template string, extraEnv []string) repl
 	for _, col := range c.Ignore {
 		ign[col] = true
 	}
-	return replay.Config{
+	it := map[string]bool{}
+	for _, t := range c.IgnoreTables {
+		it[t] = true
+	}
+	rc := replay.Config{
 		Env: env, Template: template, Barrier: true, Target: c.Spec(extraEnv), Bands: c.bands[template],
-		Oracle:    oracle.Options{Ignore: ign, Schemas: c.Schemas},
+		Oracle:    oracle.Options{Ignore: ign, Schemas: c.Schemas, IgnoreTables: it},
 		KeyHeader: c.KeyHeader,
+		Rules:     c.RetryRules,
+		Headers:   c.ResolvedHeaders(),
+		Model:     c.script,
 		Webhooks: replay.WebhookPolicy{
 			Signing: c.Webhooks.Signing, Secret: c.Webhooks.Secret, Header: c.Webhooks.Header,
 			RetryAny: c.Webhooks.Retry == "non-2xx", MaxAttempts: c.Webhooks.MaxAttempts,
 		},
 	}
+	if c.Model != nil {
+		rc.PendingSQL = c.Model.PendingSQL
+	}
+	return rc
 }
+
+// ResolvedHeaders fills ${ENV} references in the static headers.
+func (c *Config) ResolvedHeaders() map[string]string {
+	if len(c.Headers) == 0 {
+		return nil
+	}
+	out := map[string]string{}
+	for k, v := range c.Headers {
+		out[k] = os.ExpandEnv(v)
+	}
+	return out
+}
+
+// Script is the loaded model script, if any.
+func (c *Config) Script() *agentstub.Script { return c.script }
 
 // PrepareTemplate builds the template database: schema, then seed.
 func (c *Config) PrepareTemplate(ctx context.Context, env *pgenv.Env, name string, extraEnv []string) error {
@@ -266,7 +325,16 @@ func (c *Config) PrepareTemplate(ctx context.Context, env *pgenv.Env, name strin
 }
 
 func (c *Config) runSetup(ctx context.Context, env *pgenv.Env, db string, extraEnv []string) error {
-	proc, err := target.Start(ctx, c.Spec(extraEnv), target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)})
+	dbFor := target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)}
+	if c.script != nil {
+		stub, err := agentstub.Start(c.script)
+		if err != nil {
+			return err
+		}
+		defer stub.Close()
+		dbFor.Vars = map[string]string{"{MODEL_URL}": stub.URL}
+	}
+	proc, err := target.Start(ctx, c.Spec(extraEnv), dbFor)
 	if err != nil {
 		return err
 	}

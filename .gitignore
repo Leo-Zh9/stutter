@@ -7,3 +7,4 @@ bin/
 .pgport
 .targets/
 results/logs/
+targets/*/.venv/
