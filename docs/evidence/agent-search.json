@@ -1,0 +1,2352 @@
+[
+  {
+    "defaultBranch": "master",
+    "fullName": "langchain-ai/langchain",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T09:15:40Z",
+    "stargazersCount": 149836,
+    "url": "https://github.com/langchain-ai/langchain"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "bytedance/deer-flow",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T06:30:45Z",
+    "stargazersCount": 85480,
+    "url": "https://github.com/bytedance/deer-flow"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langgraph",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T08:34:22Z",
+    "stargazersCount": 45102,
+    "url": "https://github.com/langchain-ai/langgraph"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/deepagents",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T09:15:41Z",
+    "stargazersCount": 31388,
+    "url": "https://github.com/langchain-ai/deepagents"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "beenuar/AiSOC",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T08:04:55Z",
+    "stargazersCount": 8105,
+    "url": "https://github.com/beenuar/AiSOC"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "xerrors/Yuxi",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T09:30:43Z",
+    "stargazersCount": 7696,
+    "url": "https://github.com/xerrors/Yuxi"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "BitterSecurity/Decepticon",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T02:16:27Z",
+    "stargazersCount": 6640,
+    "url": "https://github.com/BitterSecurity/Decepticon"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "didilili/ai-agents-from-zero",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-06T09:59:44Z",
+    "stargazersCount": 6056,
+    "url": "https://github.com/didilili/ai-agents-from-zero"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "JoshuaC215/agent-service-toolkit",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T02:47:49Z",
+    "stargazersCount": 4577,
+    "url": "https://github.com/JoshuaC215/agent-service-toolkit"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "simonlin1212/TradingAgents-astock",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-30T23:03:45Z",
+    "stargazersCount": 3994,
+    "url": "https://github.com/simonlin1212/TradingAgents-astock"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "GanymedeNil/document.ai",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T05:08:06Z",
+    "stargazersCount": 3660,
+    "url": "https://github.com/GanymedeNil/document.ai"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langgraphjs",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-18T04:44:01Z",
+    "stargazersCount": 3419,
+    "url": "https://github.com/langchain-ai/langgraphjs"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "minitap-ai/mobile-use",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-15T14:39:38Z",
+    "stargazersCount": 3403,
+    "url": "https://github.com/minitap-ai/mobile-use"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "OpenDCAI/Paper2Any",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-31T03:48:50Z",
+    "stargazersCount": 2829,
+    "url": "https://github.com/OpenDCAI/Paper2Any"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "wassim249/fastapi-langgraph-agent-production-ready-template",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-17T06:53:31Z",
+    "stargazersCount": 2743,
+    "url": "https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "TNT-Likely/PanWatch",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T14:18:12Z",
+    "stargazersCount": 2531,
+    "url": "https://github.com/TNT-Likely/PanWatch"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "guy-hartstein/company-research-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-03T10:20:20Z",
+    "stargazersCount": 2322,
+    "url": "https://github.com/guy-hartstein/company-research-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "doobidoo/mcp-memory-service",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T07:18:02Z",
+    "stargazersCount": 2136,
+    "url": "https://github.com/doobidoo/mcp-memory-service"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "vstorm-co/full-stack-ai-agent-template",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T16:53:43Z",
+    "stargazersCount": 2001,
+    "url": "https://github.com/vstorm-co/full-stack-ai-agent-template"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "zi-yue-1129/DATAGEN",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T20:37:13Z",
+    "stargazersCount": 1815,
+    "url": "https://github.com/zi-yue-1129/DATAGEN"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/deepagentsjs",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-18T04:41:22Z",
+    "stargazersCount": 1647,
+    "url": "https://github.com/langchain-ai/deepagentsjs"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langgraph-swarm-py",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-28T17:30:18Z",
+    "stargazersCount": 1596,
+    "url": "https://github.com/langchain-ai/langgraph-swarm-py"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "neural-maze/philoagents-course",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-10-20T19:13:27Z",
+    "stargazersCount": 1554,
+    "url": "https://github.com/neural-maze/philoagents-course"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "aegra/aegra",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-12T10:52:05Z",
+    "stargazersCount": 1326,
+    "url": "https://github.com/aegra/aegra"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "CopilotKit/OpenTag",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-14T03:28:12Z",
+    "stargazersCount": 1306,
+    "url": "https://github.com/CopilotKit/OpenTag"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "FunnyWolf/agentic-soc-platform",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-29T07:07:16Z",
+    "stargazersCount": 1233,
+    "url": "https://github.com/FunnyWolf/agentic-soc-platform"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "cuga-project/cuga-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T18:50:34Z",
+    "stargazersCount": 1189,
+    "url": "https://github.com/cuga-project/cuga-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "hinthornw/trustcall",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-07-17T20:57:10Z",
+    "stargazersCount": 1094,
+    "url": "https://github.com/hinthornw/trustcall"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "StreetLamb/tribe",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-10-27T07:30:01Z",
+    "stargazersCount": 1084,
+    "url": "https://github.com/StreetLamb/tribe"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Pan-Chera/Multi-Agent-CAD",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-04T10:11:30Z",
+    "stargazersCount": 1082,
+    "url": "https://github.com/Pan-Chera/Multi-Agent-CAD"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "JudgmentLabs/judgeval",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T16:57:53Z",
+    "stargazersCount": 1074,
+    "url": "https://github.com/JudgmentLabs/judgeval"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "FareedKhan-dev/production-grade-agentic-system",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T12:55:34Z",
+    "stargazersCount": 1023,
+    "url": "https://github.com/FareedKhan-dev/production-grade-agentic-system"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "souvikmajumder26/Multi-Agent-Medical-Assistant",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-05-03T04:43:30Z",
+    "stargazersCount": 1012,
+    "url": "https://github.com/souvikmajumder26/Multi-Agent-Medical-Assistant"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "zamalali/DeepGit",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-30T09:46:12Z",
+    "stargazersCount": 928,
+    "url": "https://github.com/zamalali/DeepGit"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "icey1287/SuperMew",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-07T06:35:44Z",
+    "stargazersCount": 915,
+    "url": "https://github.com/icey1287/SuperMew"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "lc2panda/alphastream",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-07T09:26:46Z",
+    "stargazersCount": 899,
+    "url": "https://github.com/lc2panda/alphastream"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "agentscope-ai/agentscope-runtime",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-06-04T03:57:19Z",
+    "stargazersCount": 883,
+    "url": "https://github.com/agentscope-ai/agentscope-runtime"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/react-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T09:02:09Z",
+    "stargazersCount": 862,
+    "url": "https://github.com/langchain-ai/react-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "xark-argo/argo",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-01-06T03:43:08Z",
+    "stargazersCount": 838,
+    "url": "https://github.com/xark-argo/argo"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "chirpz-ai/pandaprobe",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T22:43:15Z",
+    "stargazersCount": 822,
+    "url": "https://github.com/chirpz-ai/pandaprobe"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Cygnux-Labs/Tracekit",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T09:59:08Z",
+    "stargazersCount": 771,
+    "url": "https://github.com/Cygnux-Labs/Tracekit"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Haohao-end/openagent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T08:27:43Z",
+    "stargazersCount": 755,
+    "url": "https://github.com/Haohao-end/openagent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "vinay-gatech/stocks-insights-ai-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2024-12-08T09:32:13Z",
+    "stargazersCount": 749,
+    "url": "https://github.com/vinay-gatech/stocks-insights-ai-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ScrapeGraphAI/scrapecraft",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-12-26T08:54:12Z",
+    "stargazersCount": 731,
+    "url": "https://github.com/ScrapeGraphAI/scrapecraft"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "braincrew-lab/langgraph-mcp-agents",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-04-14T11:00:22Z",
+    "stargazersCount": 720,
+    "url": "https://github.com/braincrew-lab/langgraph-mcp-agents"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "BrandPeng/Langchain1.0-Langgraph1.0-Learning",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-07T13:16:41Z",
+    "stargazersCount": 701,
+    "url": "https://github.com/BrandPeng/Langchain1.0-Langgraph1.0-Learning"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "AgentTeam-TaichuAI/ScienceClaw",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-05-09T01:56:17Z",
+    "stargazersCount": 681,
+    "url": "https://github.com/AgentTeam-TaichuAI/ScienceClaw"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "judahpaul16/gpt-home",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-13T23:14:52Z",
+    "stargazersCount": 655,
+    "url": "https://github.com/judahpaul16/gpt-home"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "nuglifeleoji/Options-Analytics-Agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-12-15T14:38:00Z",
+    "stargazersCount": 647,
+    "url": "https://github.com/nuglifeleoji/Options-Analytics-Agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langtalks/swe-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-03-28T10:32:35Z",
+    "stargazersCount": 645,
+    "url": "https://github.com/langtalks/swe-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "evolution-foundation/evo-ai",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-06-02T21:59:04Z",
+    "stargazersCount": 616,
+    "url": "https://github.com/evolution-foundation/evo-ai"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "wassim249/YT-Navigator",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-03-27T11:18:54Z",
+    "stargazersCount": 610,
+    "url": "https://github.com/wassim249/YT-Navigator"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "jaikydota/BullFlow",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-10-14T10:36:41Z",
+    "stargazersCount": 601,
+    "url": "https://github.com/jaikydota/BullFlow"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "secureagentics/Adrian",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-21T11:53:56Z",
+    "stargazersCount": 596,
+    "url": "https://github.com/secureagentics/Adrian"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "harish-gaggar/mcp-server-gateway",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-03T22:57:08Z",
+    "stargazersCount": 588,
+    "url": "https://github.com/harish-gaggar/mcp-server-gateway"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "esxr/langgraph-mcp",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-02-25T10:10:11Z",
+    "stargazersCount": 587,
+    "url": "https://github.com/esxr/langgraph-mcp"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "pizza-bot-app/pizza-bot",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-13T15:50:19Z",
+    "stargazersCount": 564,
+    "url": "https://github.com/pizza-bot-app/pizza-bot"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langgraph-bigtool",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T06:55:01Z",
+    "stargazersCount": 561,
+    "url": "https://github.com/langchain-ai/langgraph-bigtool"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "NicholasGoh/fastapi-mcp-langgraph-template",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-03-03T23:35:58Z",
+    "stargazersCount": 560,
+    "url": "https://github.com/NicholasGoh/fastapi-mcp-langgraph-template"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kaarthik108/snowChat",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-02-16T19:23:23Z",
+    "stargazersCount": 550,
+    "url": "https://github.com/kaarthik108/snowChat"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "didilili/shopkeeper-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-06T16:08:10Z",
+    "stargazersCount": 543,
+    "url": "https://github.com/didilili/shopkeeper-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "girijesh-ai/ai-interview-codex",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-01-16T08:35:54Z",
+    "stargazersCount": 541,
+    "url": "https://github.com/girijesh-ai/ai-interview-codex"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kennethreitz/simplemind",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-30T15:41:21Z",
+    "stargazersCount": 541,
+    "url": "https://github.com/kennethreitz/simplemind"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Annyfee/agent-craft",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-27T01:50:17Z",
+    "stargazersCount": 537,
+    "url": "https://github.com/Annyfee/agent-craft"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Tswoen/Paper-Agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-18T13:27:54Z",
+    "stargazersCount": 535,
+    "url": "https://github.com/Tswoen/Paper-Agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "datawhalechina/easy-langent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-09T01:06:10Z",
+    "stargazersCount": 528,
+    "url": "https://github.com/datawhalechina/easy-langent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ziguishian/MxPage",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-10-31T10:11:11Z",
+    "stargazersCount": 521,
+    "url": "https://github.com/ziguishian/MxPage"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "BrowserOperator/browser-operator-core",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-17T11:39:55Z",
+    "stargazersCount": 514,
+    "url": "https://github.com/BrowserOperator/browser-operator-core"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "alirezadir/Agentic-AI-Systems",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T05:19:53Z",
+    "stargazersCount": 505,
+    "url": "https://github.com/alirezadir/Agentic-AI-Systems"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "firecrawl/firesearch",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-06-02T14:21:33Z",
+    "stargazersCount": 503,
+    "url": "https://github.com/firecrawl/firesearch"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kturung/langgraph_streamlit_codeassistant",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2024-08-23T10:57:44Z",
+    "stargazersCount": 496,
+    "url": "https://github.com/kturung/langgraph_streamlit_codeassistant"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "RMA-MUN/RAGNotebook",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-31T11:47:00Z",
+    "stargazersCount": 489,
+    "url": "https://github.com/RMA-MUN/RAGNotebook"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "NanGePlus/LangGraphChatBot",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-04-14T03:46:16Z",
+    "stargazersCount": 485,
+    "url": "https://github.com/NanGePlus/LangGraphChatBot"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Arvo-AI/aurora",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T19:53:11Z",
+    "stargazersCount": 463,
+    "url": "https://github.com/Arvo-AI/aurora"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "liangdabiao/claude-data-analysis",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-12-21T13:59:23Z",
+    "stargazersCount": 443,
+    "url": "https://github.com/liangdabiao/claude-data-analysis"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "CopilotKit/open-research-ANA",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-15T21:18:26Z",
+    "stargazersCount": 435,
+    "url": "https://github.com/CopilotKit/open-research-ANA"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kaymen99/sales-outreach-automation-langgraph",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-01-15T14:04:52Z",
+    "stargazersCount": 414,
+    "url": "https://github.com/kaymen99/sales-outreach-automation-langgraph"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "martian56/redcell",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-12T10:11:46Z",
+    "stargazersCount": 414,
+    "url": "https://github.com/martian56/redcell"
+  },
+  {
+    "defaultBranch": "develop",
+    "fullName": "skygazer42/pokemon-chat",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-02-01T15:43:15Z",
+    "stargazersCount": 408,
+    "url": "https://github.com/skygazer42/pokemon-chat"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "leonyangdev/lc-studylab",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-12-09T14:11:37Z",
+    "stargazersCount": 407,
+    "url": "https://github.com/leonyangdev/lc-studylab"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "swytchcodehq/swytchcode-examples",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-10-27T12:28:05Z",
+    "stargazersCount": 405,
+    "url": "https://github.com/swytchcodehq/swytchcode-examples"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "john-adeojo/graph_websearch_agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2024-06-13T18:41:11Z",
+    "stargazersCount": 402,
+    "url": "https://github.com/john-adeojo/graph_websearch_agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "lhh737/LangChain-ReAct-Agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-14T15:57:29Z",
+    "stargazersCount": 402,
+    "url": "https://github.com/lhh737/LangChain-ReAct-Agent"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "Repello-AI/Agent-Wiz",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-11-02T05:55:24Z",
+    "stargazersCount": 397,
+    "url": "https://github.com/Repello-AI/Agent-Wiz"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "goruck/home-generative-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T04:02:15Z",
+    "stargazersCount": 382,
+    "url": "https://github.com/goruck/home-generative-agent"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "harishdeivanayagam/rowfill",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-09-25T11:09:52Z",
+    "stargazersCount": 365,
+    "url": "https://github.com/harishdeivanayagam/rowfill"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "liangdabiao/langgraph_multi-agent-rag-customer-support",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-07-10T04:45:09Z",
+    "stargazersCount": 355,
+    "url": "https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "GoogleCloudPlatform/cymbal-air-toolbox-demo",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-14T17:41:26Z",
+    "stargazersCount": 352,
+    "url": "https://github.com/GoogleCloudPlatform/cymbal-air-toolbox-demo"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ttguy0707/CyberClaw",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-10T14:40:50Z",
+    "stargazersCount": 346,
+    "url": "https://github.com/ttguy0707/CyberClaw"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "DhruvAtreja/datavisualization_langgraph",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2024-10-18T11:15:44Z",
+    "stargazersCount": 340,
+    "url": "https://github.com/DhruvAtreja/datavisualization_langgraph"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "cqzyys/lang-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-07-20T07:45:39Z",
+    "stargazersCount": 332,
+    "url": "https://github.com/cqzyys/lang-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "didilili/deepsearch-agents",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-06T16:11:44Z",
+    "stargazersCount": 324,
+    "url": "https://github.com/didilili/deepsearch-agents"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "duyongan/dots-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-08T08:16:32Z",
+    "stargazersCount": 323,
+    "url": "https://github.com/duyongan/dots-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "jia-gao/leanctx",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-22T20:29:11Z",
+    "stargazersCount": 323,
+    "url": "https://github.com/jia-gao/leanctx"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "fancyboi999/Loomic",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-09-30T15:51:46Z",
+    "stargazersCount": 322,
+    "url": "https://github.com/fancyboi999/Loomic"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "rokbenko/ai-playground",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-04-23T13:48:54Z",
+    "stargazersCount": 322,
+    "url": "https://github.com/rokbenko/ai-playground"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Oqura-ai/deepdoc",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-26T06:49:20Z",
+    "stargazersCount": 318,
+    "url": "https://github.com/Oqura-ai/deepdoc"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "yuyuanweb/ai-picture-editor",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-16T08:39:55Z",
+    "stargazersCount": 314,
+    "url": "https://github.com/yuyuanweb/ai-picture-editor"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "emma-sue/AegisOps",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-10T13:25:10Z",
+    "stargazersCount": 309,
+    "url": "https://github.com/emma-sue/AegisOps"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "yonatangross/orchestkit",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-18T09:24:36Z",
+    "stargazersCount": 305,
+    "url": "https://github.com/yonatangross/orchestkit"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "AgentSwarms-fyi/agentswarms",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-18T07:06:53Z",
+    "stargazersCount": 302,
+    "url": "https://github.com/AgentSwarms-fyi/agentswarms"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/new-langgraph-project",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-11T04:23:57Z",
+    "stargazersCount": 301,
+    "url": "https://github.com/langchain-ai/new-langgraph-project"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "SankaiAI/TwitCanva-Video-Workflow",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-15T00:15:33Z",
+    "stargazersCount": 294,
+    "url": "https://github.com/SankaiAI/TwitCanva-Video-Workflow"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "foreveryh/mentis",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-05-16T21:50:40Z",
+    "stargazersCount": 293,
+    "url": "https://github.com/foreveryh/mentis"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "huygiatrng/AlpacaTradingAgent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-27T05:33:04Z",
+    "stargazersCount": 286,
+    "url": "https://github.com/huygiatrng/AlpacaTradingAgent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kaymen99/langgraph-email-automation",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-02-13T15:31:40Z",
+    "stargazersCount": 281,
+    "url": "https://github.com/kaymen99/langgraph-email-automation"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "GenseeAI/cognify",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-05-16T04:17:18Z",
+    "stargazersCount": 278,
+    "url": "https://github.com/GenseeAI/cognify"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "dapr/python-sdk",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T13:26:21Z",
+    "stargazersCount": 273,
+    "url": "https://github.com/dapr/python-sdk"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "LangGraph-GUI/LangGraph-GUI",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-01-24T06:32:54Z",
+    "stargazersCount": 272,
+    "url": "https://github.com/LangGraph-GUI/LangGraph-GUI"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "santosomar/AI-agents-for-cybersecurity",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-30T20:48:04Z",
+    "stargazersCount": 271,
+    "url": "https://github.com/santosomar/AI-agents-for-cybersecurity"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "JEen-wang/Adaptive-rag",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-22T07:23:04Z",
+    "stargazersCount": 268,
+    "url": "https://github.com/JEen-wang/Adaptive-rag"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "cacheplane/b4run",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-17T19:41:15Z",
+    "stargazersCount": 266,
+    "url": "https://github.com/cacheplane/b4run"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "bernatsampera/event-deep-research",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-10-19T06:07:48Z",
+    "stargazersCount": 257,
+    "url": "https://github.com/bernatsampera/event-deep-research"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "mfmezger/conversational-agent-langchain",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-11T11:50:41Z",
+    "stargazersCount": 256,
+    "url": "https://github.com/mfmezger/conversational-agent-langchain"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "MODSetter/gpt-instagram",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2024-12-19T18:50:16Z",
+    "stargazersCount": 247,
+    "url": "https://github.com/MODSetter/gpt-instagram"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "redis-developer/langgraph-redis",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T21:33:27Z",
+    "stargazersCount": 244,
+    "url": "https://github.com/redis-developer/langgraph-redis"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "lgesuellip/langgraph-whatsapp-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-06-10T19:14:06Z",
+    "stargazersCount": 243,
+    "url": "https://github.com/lgesuellip/langgraph-whatsapp-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "neopen/story-shot-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T16:11:04Z",
+    "stargazersCount": 241,
+    "url": "https://github.com/neopen/story-shot-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "nicoladisabato/MultiAgenticRAG",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-01-10T21:28:03Z",
+    "stargazersCount": 241,
+    "url": "https://github.com/nicoladisabato/MultiAgenticRAG"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "YassWorks/Ally",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T09:38:05Z",
+    "stargazersCount": 239,
+    "url": "https://github.com/YassWorks/Ally"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "eosho/langchain_data_agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-01-14T23:16:37Z",
+    "stargazersCount": 239,
+    "url": "https://github.com/eosho/langchain_data_agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "KodyKendall/LlamaBot",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T16:41:19Z",
+    "stargazersCount": 238,
+    "url": "https://github.com/KodyKendall/LlamaBot"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kyaukyuai/gpt-all-star",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T02:00:39Z",
+    "stargazersCount": 238,
+    "url": "https://github.com/kyaukyuai/gpt-all-star"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "wshobson/financial-chat",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-08-10T15:00:18Z",
+    "stargazersCount": 235,
+    "url": "https://github.com/wshobson/financial-chat"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "fzn0x/watchtower",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-15T09:24:37Z",
+    "stargazersCount": 223,
+    "url": "https://github.com/fzn0x/watchtower"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "OnePunchMonk/AgentQuant",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T09:18:40Z",
+    "stargazersCount": 222,
+    "url": "https://github.com/OnePunchMonk/AgentQuant"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "datawhalechina/easy-data-x-ai",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-06T10:02:14Z",
+    "stargazersCount": 222,
+    "url": "https://github.com/datawhalechina/easy-data-x-ai"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "jkmaina/LangGraphProjects",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-01-10T10:05:34Z",
+    "stargazersCount": 222,
+    "url": "https://github.com/jkmaina/LangGraphProjects"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langgraph-cua-py",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-25T14:46:35Z",
+    "stargazersCount": 219,
+    "url": "https://github.com/langchain-ai/langgraph-cua-py"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Nachoeigu/agentic-customer-service-medical-clinic",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2024-10-05T08:35:45Z",
+    "stargazersCount": 218,
+    "url": "https://github.com/Nachoeigu/agentic-customer-service-medical-clinic"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Yonom/assistant-ui-langgraph-fastapi",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2024-12-21T00:51:46Z",
+    "stargazersCount": 212,
+    "url": "https://github.com/Yonom/assistant-ui-langgraph-fastapi"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "rajudandigam/agent-inspect",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-18T01:56:15Z",
+    "stargazersCount": 212,
+    "url": "https://github.com/rajudandigam/agent-inspect"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "xiongQvQ/AI_Find_Customer",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-05T14:03:51Z",
+    "stargazersCount": 211,
+    "url": "https://github.com/xiongQvQ/AI_Find_Customer"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Ha11oWe1t/agent-learning",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-27T12:37:57Z",
+    "stargazersCount": 207,
+    "url": "https://github.com/Ha11oWe1t/agent-learning"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Idun-Group/idun-agent-platform",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-30T15:45:45Z",
+    "stargazersCount": 207,
+    "url": "https://github.com/Idun-Group/idun-agent-platform"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "muratcankoylan/readwren",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-11-09T20:25:22Z",
+    "stargazersCount": 203,
+    "url": "https://github.com/muratcankoylan/readwren"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "xxPcy/PharmaLLM-Agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-02T17:51:22Z",
+    "stargazersCount": 203,
+    "url": "https://github.com/xxPcy/PharmaLLM-Agent"
+  },
+  {
+    "defaultBranch": "develop",
+    "fullName": "rootflo/wavefront",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-14T10:32:34Z",
+    "stargazersCount": 202,
+    "url": "https://github.com/rootflo/wavefront"
+  },
+  {
+    "defaultBranch": "integration",
+    "fullName": "GroundedCoreAI/nexusdesk",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T16:08:34Z",
+    "stargazersCount": 198,
+    "url": "https://github.com/GroundedCoreAI/nexusdesk"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "chatchat-space/LangGraph-Chatchat",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-03-07T09:06:46Z",
+    "stargazersCount": 195,
+    "url": "https://github.com/chatchat-space/LangGraph-Chatchat"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "shiv248/Streamlit-x-LangGraph-Cookbooks",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-11-07T07:06:32Z",
+    "stargazersCount": 194,
+    "url": "https://github.com/shiv248/Streamlit-x-LangGraph-Cookbooks"
+  },
+  {
+    "defaultBranch": "develop",
+    "fullName": "yaalalabs/agent-kernel",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T09:35:51Z",
+    "stargazersCount": 193,
+    "url": "https://github.com/yaalalabs/agent-kernel"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "tarun7r/deep-research-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-04-04T17:51:43Z",
+    "stargazersCount": 191,
+    "url": "https://github.com/tarun7r/deep-research-agent"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "velocitybolt/open-extract",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-07-14T03:01:33Z",
+    "stargazersCount": 191,
+    "url": "https://github.com/velocitybolt/open-extract"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "twanew/OmniWriter",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-04-18T13:52:26Z",
+    "stargazersCount": 189,
+    "url": "https://github.com/twanew/OmniWriter"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Sibyl-Labs/Sibyl-Memory",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T06:33:52Z",
+    "stargazersCount": 187,
+    "url": "https://github.com/Sibyl-Labs/Sibyl-Memory"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "godelcomplete9/deepsearch-academic",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-14T00:04:44Z",
+    "stargazersCount": 187,
+    "url": "https://github.com/godelcomplete9/deepsearch-academic"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kaymen99/personal-ai-assistant",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-01-16T13:51:30Z",
+    "stargazersCount": 187,
+    "url": "https://github.com/kaymen99/personal-ai-assistant"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "cacheplane/threadplane",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-18T06:04:30Z",
+    "stargazersCount": 186,
+    "url": "https://github.com/cacheplane/threadplane"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/retrieval-agent-template",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T08:46:11Z",
+    "stargazersCount": 183,
+    "url": "https://github.com/langchain-ai/retrieval-agent-template"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "skygazer42/Weaver",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-15T21:42:06Z",
+    "stargazersCount": 182,
+    "url": "https://github.com/skygazer42/Weaver"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "awslabs/uaef",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-13T20:55:26Z",
+    "stargazersCount": 180,
+    "url": "https://github.com/awslabs/uaef"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "bracesproul/langgraphjs-examples",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-03-11T19:40:35Z",
+    "stargazersCount": 180,
+    "url": "https://github.com/bracesproul/langgraphjs-examples"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "razr001/langgraph-vew",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-08-31T18:07:10Z",
+    "stargazersCount": 180,
+    "url": "https://github.com/razr001/langgraph-vew"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "nihalashetty/Forge",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-11T07:35:13Z",
+    "stargazersCount": 179,
+    "url": "https://github.com/nihalashetty/Forge"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "123-qw-as/Beacon",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-07T02:36:47Z",
+    "stargazersCount": 174,
+    "url": "https://github.com/123-qw-as/Beacon"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "yuyuanweb/ai-ppt-generator",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-16T08:08:14Z",
+    "stargazersCount": 174,
+    "url": "https://github.com/yuyuanweb/ai-ppt-generator"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "bcefghj/medical-multi-agent-system",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-04-06T13:16:57Z",
+    "stargazersCount": 170,
+    "url": "https://github.com/bcefghj/medical-multi-agent-system"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kaymen99/Upwork-AI-jobs-applier",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-05-01T18:38:32Z",
+    "stargazersCount": 170,
+    "url": "https://github.com/kaymen99/Upwork-AI-jobs-applier"
+  },
+  {
+    "defaultBranch": "Agent",
+    "fullName": "qiaojoin586-droid/RAG_LearnLittleCode",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-14T05:28:38Z",
+    "stargazersCount": 170,
+    "url": "https://github.com/qiaojoin586-droid/RAG_LearnLittleCode"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "valmi-io/value",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-12-22T05:06:58Z",
+    "stargazersCount": 170,
+    "url": "https://github.com/valmi-io/value"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "FareedKhan-dev/scalable-rag-pipeline",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-12-27T18:14:56Z",
+    "stargazersCount": 168,
+    "url": "https://github.com/FareedKhan-dev/scalable-rag-pipeline"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "WangWeiqiang-UCAS/E-commerce-Smart-Agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-07T16:03:50Z",
+    "stargazersCount": 167,
+    "url": "https://github.com/WangWeiqiang-UCAS/E-commerce-Smart-Agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "dnntminh/langrepl",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-09T13:36:24Z",
+    "stargazersCount": 167,
+    "url": "https://github.com/dnntminh/langrepl"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ZIZKA-AI-SL/ZizkaDB",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T21:37:17Z",
+    "stargazersCount": 164,
+    "url": "https://github.com/ZIZKA-AI-SL/ZizkaDB"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ipvoov/Craft-Agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-12-17T01:58:20Z",
+    "stargazersCount": 161,
+    "url": "https://github.com/ipvoov/Craft-Agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "LangGraph-GUI/LangGraph-learn",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-01-25T10:04:37Z",
+    "stargazersCount": 160,
+    "url": "https://github.com/LangGraph-GUI/LangGraph-learn"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Ganador1/FenixAI_tradingBot",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-08T17:55:36Z",
+    "stargazersCount": 159,
+    "url": "https://github.com/Ganador1/FenixAI_tradingBot"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "kevin333353/jobsmith",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-07-31T01:12:28Z",
+    "stargazersCount": 159,
+    "url": "https://github.com/kevin333353/jobsmith"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "proactive-agent/langgraphics",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-18T06:57:32Z",
+    "stargazersCount": 159,
+    "url": "https://github.com/proactive-agent/langgraphics"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langgraph-fullstack-python",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-03-31T08:44:21Z",
+    "stargazersCount": 158,
+    "url": "https://github.com/langchain-ai/langgraph-fullstack-python"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ljxpython/ai-agent-platform",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T08:30:02Z",
+    "stargazersCount": 156,
+    "url": "https://github.com/ljxpython/ai-agent-platform"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "BjornMelin/docmind-ai-llm",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-19T00:25:54Z",
+    "stargazersCount": 155,
+    "url": "https://github.com/BjornMelin/docmind-ai-llm"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "aws-samples/sample-agentic-platform",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-04T20:09:23Z",
+    "stargazersCount": 154,
+    "url": "https://github.com/aws-samples/sample-agentic-platform"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "tjni/langgraph-checkpoint-mysql",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-01-23T11:11:31Z",
+    "stargazersCount": 154,
+    "url": "https://github.com/tjni/langgraph-checkpoint-mysql"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "ro-anderson/multi-agent-rag-customer-support",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2024-10-03T13:24:34Z",
+    "stargazersCount": 152,
+    "url": "https://github.com/ro-anderson/multi-agent-rag-customer-support"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "sonnysangha/ai-agent-langchain-langgraph-convex-clerk-ibm-wxtools-nextjs15",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-01-16T06:03:41Z",
+    "stargazersCount": 152,
+    "url": "https://github.com/sonnysangha/ai-agent-langchain-langgraph-convex-clerk-ibm-wxtools-nextjs15"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "colossus-lab/openarg_backend",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-03T11:52:09Z",
+    "stargazersCount": 150,
+    "url": "https://github.com/colossus-lab/openarg_backend"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "liyupi/yu-ai-learn",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-11T13:45:35Z",
+    "stargazersCount": 150,
+    "url": "https://github.com/liyupi/yu-ai-learn"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "limenagent/prodagent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-21T10:31:07Z",
+    "stargazersCount": 148,
+    "url": "https://github.com/limenagent/prodagent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "erfnzdeh/Divar-AI-Contest",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-08T19:06:42Z",
+    "stargazersCount": 144,
+    "url": "https://github.com/erfnzdeh/Divar-AI-Contest"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "kaymen99/local-rag-researcher-deepseek",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-02-13T11:10:13Z",
+    "stargazersCount": 143,
+    "url": "https://github.com/kaymen99/local-rag-researcher-deepseek"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "guruvaidev/avaloka",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T00:30:22Z",
+    "stargazersCount": 142,
+    "url": "https://github.com/guruvaidev/avaloka"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "hidai25/eval-view",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-16T08:19:33Z",
+    "stargazersCount": 142,
+    "url": "https://github.com/hidai25/eval-view"
+  },
+  {
+    "defaultBranch": "master_next",
+    "fullName": "HsienW/chat-gun",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-17T13:17:31Z",
+    "stargazersCount": 141,
+    "url": "https://github.com/HsienW/chat-gun"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "handsomestWei/customer-service-ai-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-05-26T07:12:05Z",
+    "stargazersCount": 139,
+    "url": "https://github.com/handsomestWei/customer-service-ai-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Kkkirito-123/Mutil-Rag-Agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-07-20T09:34:54Z",
+    "stargazersCount": 137,
+    "url": "https://github.com/Kkkirito-123/Mutil-Rag-Agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "wanmol/goal-flow",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-13T09:39:00Z",
+    "stargazersCount": 137,
+    "url": "https://github.com/wanmol/goal-flow"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "agentailor/fullstack-langgraph-nextjs-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-09-04T14:17:24Z",
+    "stargazersCount": 135,
+    "url": "https://github.com/agentailor/fullstack-langgraph-nextjs-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "campusx-official/chatbot-in-langgraph",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-11-22T13:44:45Z",
+    "stargazersCount": 135,
+    "url": "https://github.com/campusx-official/chatbot-in-langgraph"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "jaguarliuu/xunlong",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-10-25T02:27:17Z",
+    "stargazersCount": 135,
+    "url": "https://github.com/jaguarliuu/xunlong"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "luizomf/react_agent_langgraph_course",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-06-07T19:01:40Z",
+    "stargazersCount": 135,
+    "url": "https://github.com/luizomf/react_agent_langgraph_course"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "traccia-ai/traccia-py",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-15T06:50:37Z",
+    "stargazersCount": 134,
+    "url": "https://github.com/traccia-ai/traccia-py"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/paid-media-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T07:34:50Z",
+    "stargazersCount": 133,
+    "url": "https://github.com/langchain-ai/paid-media-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Agentic-Analyst/stock-analyst",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-18T08:47:56Z",
+    "stargazersCount": 131,
+    "url": "https://github.com/Agentic-Analyst/stock-analyst"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "pasonk/ai-chatkit",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-08-21T16:23:56Z",
+    "stargazersCount": 131,
+    "url": "https://github.com/pasonk/ai-chatkit"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "spacesky-cell/TwinFix",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-13T20:26:41Z",
+    "stargazersCount": 131,
+    "url": "https://github.com/spacesky-cell/TwinFix"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "NanGePlus/LangChain_V1_Test",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-07-27T01:50:54Z",
+    "stargazersCount": 130,
+    "url": "https://github.com/NanGePlus/LangChain_V1_Test"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "lucasboscatti/Whatsapp-Langgraph-Agent-Integration",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-02-23T14:45:56Z",
+    "stargazersCount": 130,
+    "url": "https://github.com/lucasboscatti/Whatsapp-Langgraph-Agent-Integration"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "sina2266/Gozar",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-05T11:16:12Z",
+    "stargazersCount": 129,
+    "url": "https://github.com/sina2266/Gozar"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "aarora79/aws-cost-explorer-mcp-server",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-04-14T02:39:53Z",
+    "stargazersCount": 128,
+    "url": "https://github.com/aarora79/aws-cost-explorer-mcp-server"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Citrus-bit/Anaxa",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-07T05:13:59Z",
+    "stargazersCount": 127,
+    "url": "https://github.com/Citrus-bit/Anaxa"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "LCY-666lll/CI_Failure_Intelligence",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-15T08:54:04Z",
+    "stargazersCount": 127,
+    "url": "https://github.com/LCY-666lll/CI_Failure_Intelligence"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Vasallo94/ObsidianRAG",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-14T11:19:16Z",
+    "stargazersCount": 127,
+    "url": "https://github.com/Vasallo94/ObsidianRAG"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "loopgain-ai/loopgain",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-26T11:45:56Z",
+    "stargazersCount": 127,
+    "url": "https://github.com/loopgain-ai/loopgain"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langchain-mongodb",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-17T21:36:30Z",
+    "stargazersCount": 126,
+    "url": "https://github.com/langchain-ai/langchain-mongodb"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "bcefghj/multi-agent-ad-optimizer",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-04-06T13:14:57Z",
+    "stargazersCount": 125,
+    "url": "https://github.com/bcefghj/multi-agent-ad-optimizer"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "rooneyrulz/agentic-stock-research-system",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-15T04:26:00Z",
+    "stargazersCount": 124,
+    "url": "https://github.com/rooneyrulz/agentic-stock-research-system"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/react-agent-js",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-11-12T16:31:27Z",
+    "stargazersCount": 121,
+    "url": "https://github.com/langchain-ai/react-agent-js"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "littlelelephant/literature-review-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-02T14:04:49Z",
+    "stargazersCount": 120,
+    "url": "https://github.com/littlelelephant/literature-review-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "theailanguage/mcp_client",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-06-09T18:15:34Z",
+    "stargazersCount": 120,
+    "url": "https://github.com/theailanguage/mcp_client"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Lum1104/MER-Factory",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-03-13T12:45:28Z",
+    "stargazersCount": 119,
+    "url": "https://github.com/Lum1104/MER-Factory"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "QSong-github/DrugClaw",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-08-25T17:58:12Z",
+    "stargazersCount": 119,
+    "url": "https://github.com/QSong-github/DrugClaw"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "gouchengyujibei-alt/E-commerce-After-sales-Agent-LangGraph-HITL-Writes-Eval-Loop",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-17T03:29:23Z",
+    "stargazersCount": 118,
+    "url": "https://github.com/gouchengyujibei-alt/E-commerce-After-sales-Agent-LangGraph-HITL-Writes-Eval-Loop"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "zebinlu7-a11y/screen-flow-ai-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-01T13:50:02Z",
+    "stargazersCount": 118,
+    "url": "https://github.com/zebinlu7-a11y/screen-flow-ai-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "01-ai/langcrew",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-10-15T06:36:01Z",
+    "stargazersCount": 117,
+    "url": "https://github.com/01-ai/langcrew"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "saltsalt123/buywise-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-26T15:26:39Z",
+    "stargazersCount": 117,
+    "url": "https://github.com/saltsalt123/buywise-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "langchain-ai/langgraph-gen-py",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-07T07:56:32Z",
+    "stargazersCount": 116,
+    "url": "https://github.com/langchain-ai/langgraph-gen-py"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "KylinShinlyLin/QozeCode",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-17T01:04:09Z",
+    "stargazersCount": 115,
+    "url": "https://github.com/KylinShinlyLin/QozeCode"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "emanueleielo/deepagents-open-lovable",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-10-05T08:46:53Z",
+    "stargazersCount": 114,
+    "url": "https://github.com/emanueleielo/deepagents-open-lovable"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Guido1Alessandro1Trevisan/linkedin-ghostwriter",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2025-04-04T16:26:21Z",
+    "stargazersCount": 113,
+    "url": "https://github.com/Guido1Alessandro1Trevisan/linkedin-ghostwriter"
+  },
+  {
+    "defaultBranch": "master",
+    "fullName": "lucianwhy/final-review",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-05T13:22:28Z",
+    "stargazersCount": 113,
+    "url": "https://github.com/lucianwhy/final-review"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "martymcenroe/AssemblyZero",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T16:25:53Z",
+    "stargazersCount": 113,
+    "url": "https://github.com/martymcenroe/AssemblyZero"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Ambuj123-lab/agentic-rag-financial-parser",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-30T12:10:41Z",
+    "stargazersCount": 111,
+    "url": "https://github.com/Ambuj123-lab/agentic-rag-financial-parser"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Aryan-Pardeshi/CiteProof-AI-MCP",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-15T15:30:09Z",
+    "stargazersCount": 111,
+    "url": "https://github.com/Aryan-Pardeshi/CiteProof-AI-MCP"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "loveramarois-byte/council-lab",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-14T10:45:39Z",
+    "stargazersCount": 111,
+    "url": "https://github.com/loveramarois-byte/council-lab"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "AbhinavTheDev/coding-agent",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-05-22T12:27:46Z",
+    "stargazersCount": 110,
+    "url": "https://github.com/AbhinavTheDev/coding-agent"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "KaelLee335/enterprise-support-agent-v2",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T08:23:03Z",
+    "stargazersCount": 110,
+    "url": "https://github.com/KaelLee335/enterprise-support-agent-v2"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "NVIDIA-AI-Blueprints/retail-shopping-assistant",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-18T03:23:48Z",
+    "stargazersCount": 109,
+    "url": "https://github.com/NVIDIA-AI-Blueprints/retail-shopping-assistant"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "VirtualPatientEngine/AIAgents4Pharma",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-03-30T20:09:17Z",
+    "stargazersCount": 109,
+    "url": "https://github.com/VirtualPatientEngine/AIAgents4Pharma"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "BharathxD/ClaimeAI",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-10-02T14:16:21Z",
+    "stargazersCount": 108,
+    "url": "https://github.com/BharathxD/ClaimeAI"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "Kyle-liu888/langgraph-trip-planner",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-09-08T19:20:07Z",
+    "stargazersCount": 107,
+    "url": "https://github.com/Kyle-liu888/langgraph-trip-planner"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "hybroai/a2a-adapter",
+    "isArchived": false,
+    "isFork": false,
+    "language": "Python",
+    "pushedAt": "2026-11-16T07:26:30Z",
+    "stargazersCount": 107,
+    "url": "https://github.com/hybroai/a2a-adapter"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "realyinchen/AgentHub",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2026-07-01T13:58:32Z",
+    "stargazersCount": 103,
+    "url": "https://github.com/realyinchen/AgentHub"
+  },
+  {
+    "defaultBranch": "main",
+    "fullName": "gotohuman/gotohuman-langgraph-lead-example",
+    "isArchived": false,
+    "isFork": false,
+    "language": "TypeScript",
+    "pushedAt": "2025-02-04T23:22:57Z",
+    "stargazersCount": 100,
+    "url": "https://github.com/gotohuman/gotohuman-langgraph-lead-example"
+  }
+]

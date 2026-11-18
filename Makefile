@@ -1,7 +1,7 @@
 GO ?= $(shell command -v go 2>/dev/null || echo $(HOME)/sdk/go/bin/go)
 export GO
 
-.PHONY: demo pg build trace test bench explore hunt stop clean
+.PHONY: demo pg build trace test bench explore hunt stop clean miniagent agent-bench
 
 # One command: start Postgres, build, run the full measurement suite.
 demo: pg build trace bench
@@ -30,6 +30,16 @@ explore: pg build trace
 # Real targets (needs scripts/fetch-targets.sh first): about 70 minutes.
 hunt: pg build
 	./scripts/hunt-all.sh
+
+# Agent mode: miniagent is a FastAPI + LangGraph + PostgresSaver app with one
+# seeded bug per variant. agent-bench hunts every variant (about 15 min).
+miniagent: targets/miniagent/.venv/bin/python
+targets/miniagent/.venv/bin/python: targets/miniagent/requirements.txt
+	uv venv -q --allow-existing --python 3.12 targets/miniagent/.venv
+	uv pip install -q --python targets/miniagent/.venv/bin/python -r targets/miniagent/requirements.txt
+
+agent-bench: pg build miniagent
+	./scripts/agent-bench.sh
 
 test: pg build
 	STUTTER_REQUIRE_PG=1 $(GO) test ./... -count=1

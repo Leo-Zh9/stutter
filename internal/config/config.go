@@ -27,9 +27,11 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 
+	"github.com/Leo-Zh9/stutter/internal/agentstub"
 	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
 	"github.com/Leo-Zh9/stutter/internal/replay"
@@ -65,11 +67,19 @@ type SetupRequest struct {
 type Webhooks struct {
 	Prefix      string `json:"prefix"`
 	Object      string `json:"object_path,omitempty"` // JSON path grouping reorderable webhooks
-	Signing     string `json:"signing,omitempty"` // "" or "stripe"
+	Signing     string `json:"signing,omitempty"`     // "" or "stripe"
 	Secret      string `json:"secret,omitempty"`
 	Header      string `json:"header,omitempty"` // default Stripe-Signature
 	Retry       string `json:"retry,omitempty"`  // "5xx" (default) or "non-2xx"
 	MaxAttempts int    `json:"max_attempts,omitempty"`
+}
+
+type Model struct {
+	Script string `json:"script"` // path to the script JSON
+	// InterruptSQL overrides the query that names the interrupt pending on
+	// thread $1 (NULL or '' if none); default: LangGraph's Postgres
+	// checkpointer (see replay.DefaultInterruptSQL).
+	InterruptSQL string `json:"interrupt_sql,omitempty"`
 }
 
 type Config struct {
@@ -85,6 +95,19 @@ type Config struct {
 	Webhooks     Webhooks `json:"webhooks"`
 	Ignore       []string `json:"ignore,omitempty"`
 	Trace        string   `json:"trace,omitempty"`
+	// IgnoreTables are left out of the oracle and the lock barrier: a
+	// framework's own bookkeeping, such as a checkpointer's tables.
+	IgnoreTables []string `json:"ignore_tables,omitempty"`
+	// Headers are sent on every replayed request (a static test token, for
+	// example). Values may use ${ENV} references; they are never recorded.
+	Headers map[string]string `json:"headers,omitempty"`
+	// RetryRules widen which API calls the client may retry (trace.Rule).
+	RetryRules []trace.Rule `json:"retry_rules,omitempty"`
+	// Model is a scripted model (agentstub) served to the service at
+	// {MODEL_URL} on every run: no recording, no paid calls.
+	Model *Model `json:"model,omitempty"`
+
+	script *agentstub.Script
 
 	base  string
 	bands map[string][]pgenv.Band
@@ -120,6 +143,23 @@ func Load(path string) (*Config, error) {
 	if c.Webhooks.Signing != "" && c.Webhooks.Signing != "stripe" {
 		return nil, fmt.Errorf("%s: unknown webhooks.signing %q", path, c.Webhooks.Signing)
 	}
+	if c.Model != nil {
+		sc, err := agentstub.Load(c.Path(c.Model.Script))
+		if err != nil {
+			return nil, err
+		}
+		c.script = sc
+	}
+	for i, r := range c.RetryRules {
+		if r.Path == "" || (r.BodyKey == "") == (r.Resume == nil) {
+			return nil, fmt.Errorf("%s: retry rule %d needs a path and exactly one of body_key or resume", path, i)
+		}
+		if r.Resume != nil {
+			if err := checkThread(r); err != nil {
+				return nil, fmt.Errorf("%s: retry rule %d: %w", path, i, err)
+			}
+		}
+	}
 	n := 0
 	for _, set := range []bool{c.Prepare.SchemaFile != "", len(c.Prepare.SchemaCmd) > 0, len(c.Prepare.MigrateCmd) > 0, len(c.Prepare.SetupRequests) > 0} {
 		if set {
@@ -130,6 +170,26 @@ func Load(path string) (*Config, error) {
 		return nil, fmt.Errorf("%s: prepare needs exactly one of schema_file, schema_cmd, migrate_cmd, setup_requests", path)
 	}
 	return &c, nil
+}
+
+// checkThread requires a resume rule's thread to name a wildcard path
+// segment ("path:N" where segment N of the rule's path is "*") or a body
+// field ("body:dotted.path"): anything else would quietly make every resume
+// look like the same thread, or none.
+func checkThread(r trace.Rule) error {
+	t := r.Resume.Thread
+	switch {
+	case strings.HasPrefix(t, "body:") && len(t) > len("body:"):
+		return nil
+	case strings.HasPrefix(t, "path:"):
+		n, err := strconv.Atoi(strings.TrimPrefix(t, "path:"))
+		segs := strings.Split(strings.Trim(r.Path, "/"), "/")
+		if err != nil || n < 1 || n > len(segs) || segs[n-1] != "*" {
+			return fmt.Errorf("resume thread %q must name a * segment of %q", t, r.Path)
+		}
+		return nil
+	}
+	return fmt.Errorf("resume thread %q must be path:N or body:dotted.path", t)
 }
 
 // TemplateName names this config's template database for one purpose
@@ -177,7 +237,7 @@ func (c *Config) Spec(extraEnv []string) target.Spec {
 
 // Space is the fault space the config admits.
 func (c *Config) Space() replay.Space {
-	return replay.Space{KeyHeader: c.KeyHeader, WebhookObject: c.Webhooks.Object}
+	return replay.Space{KeyHeader: c.KeyHeader, WebhookObject: c.Webhooks.Object, Rules: c.RetryRules}
 }
 
 // Replay builds a replay config for a template database.
@@ -186,16 +246,42 @@ func (c *Config) Replay(env *pgenv.Env, template string, extraEnv []string) repl
 	for _, col := range c.Ignore {
 		ign[col] = true
 	}
-	return replay.Config{
+	it := map[string]bool{}
+	for _, t := range c.IgnoreTables {
+		it[t] = true
+	}
+	rc := replay.Config{
 		Env: env, Template: template, Barrier: true, Target: c.Spec(extraEnv), Bands: c.bands[template],
-		Oracle:    oracle.Options{Ignore: ign, Schemas: c.Schemas},
+		Oracle:    oracle.Options{Ignore: ign, Schemas: c.Schemas, IgnoreTables: it},
 		KeyHeader: c.KeyHeader,
+		Rules:     c.RetryRules,
+		Headers:   c.ResolvedHeaders(),
+		Model:     c.script,
 		Webhooks: replay.WebhookPolicy{
 			Signing: c.Webhooks.Signing, Secret: c.Webhooks.Secret, Header: c.Webhooks.Header,
 			RetryAny: c.Webhooks.Retry == "non-2xx", MaxAttempts: c.Webhooks.MaxAttempts,
 		},
 	}
+	if c.Model != nil {
+		rc.InterruptSQL = c.Model.InterruptSQL
+	}
+	return rc
 }
+
+// ResolvedHeaders fills ${ENV} references in the static headers.
+func (c *Config) ResolvedHeaders() map[string]string {
+	if len(c.Headers) == 0 {
+		return nil
+	}
+	out := map[string]string{}
+	for k, v := range c.Headers {
+		out[k] = os.ExpandEnv(v)
+	}
+	return out
+}
+
+// Script is the loaded model script, if any.
+func (c *Config) Script() *agentstub.Script { return c.script }
 
 // PrepareTemplate builds the template database: schema, then seed.
 func (c *Config) PrepareTemplate(ctx context.Context, env *pgenv.Env, name string, extraEnv []string) error {
@@ -266,7 +352,16 @@ func (c *Config) PrepareTemplate(ctx context.Context, env *pgenv.Env, name strin
 }
 
 func (c *Config) runSetup(ctx context.Context, env *pgenv.Env, db string, extraEnv []string) error {
-	proc, err := target.Start(ctx, c.Spec(extraEnv), target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)})
+	dbFor := target.DB{DSN: env.DSN(db), URL: env.URL(db), SocketURL: env.SocketURL(db)}
+	if c.script != nil {
+		stub, err := agentstub.Start(c.script)
+		if err != nil {
+			return err
+		}
+		defer stub.Close()
+		dbFor.Vars = map[string]string{"{MODEL_URL}": stub.URL}
+	}
+	proc, err := target.Start(ctx, c.Spec(extraEnv), dbFor)
 	if err != nil {
 		return err
 	}

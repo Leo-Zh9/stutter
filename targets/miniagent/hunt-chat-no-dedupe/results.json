@@ -1,0 +1,122 @@
+{
+  "target": "miniagent",
+  "when": "2026-11-18T10:16:41Z",
+  "trace_requests": 6,
+  "preflight": "every recorded webhook delivery got 2xx",
+  "single_fault_schedules": 65,
+  "by_fault_type": {
+    "concurrent": {
+      "run": 6,
+      "n_fired": 5,
+      "n_not_fired": 1,
+      "failed": 2
+    },
+    "crash": {
+      "run": 53,
+      "n_fired": 53,
+      "n_not_fired": 0,
+      "failed": 0
+    },
+    "lost": {
+      "run": 6,
+      "n_fired": 6,
+      "n_not_fired": 0,
+      "failed": 0
+    }
+  },
+  "no_op_reorder_pairs": null,
+  "crash": {
+    "crash_points": 53,
+    "crash_nondeterministic_requests": null,
+    "background_commits": 0,
+    "resume_pending": {
+      "1": {
+        "before": true,
+        "after": false
+      },
+      "5": {
+        "before": true,
+        "after": false
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": 1,
+      "minimal": {
+        "seqs": [
+          0
+        ],
+        "faults": [
+          {
+            "type": "concurrent",
+            "seq": 0
+          }
+        ]
+      },
+      "steps": [
+        "#0 POST /chat {\"thread_id\":\"t-ada\",\"message_id\":\"m-1\",\"text\":\"Hi, please refund order 1001\"}",
+        "fault concurrent(#0)"
+      ],
+      "delivery_order": [
+        "send-concurrently #0"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"order_number\":1001,\"status\":\"pending\",\"thread_id\":\"t-ada\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 3,
+      "replays": 10,
+      "found_by_single_faults": [
+        "concurrent(#0)"
+      ],
+      "dir": "finding-1"
+    },
+    {
+      "id": 2,
+      "minimal": {
+        "seqs": [
+          4
+        ],
+        "faults": [
+          {
+            "type": "concurrent",
+            "seq": 4
+          }
+        ]
+      },
+      "steps": [
+        "#4 POST /chat {\"thread_id\":\"t-linus\",\"message_id\":\"m-4\",\"text\":\"OK, refund order 1003 for the broken part\"}",
+        "fault concurrent(#4)"
+      ],
+      "delivery_order": [
+        "send-concurrently #4"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":2000,\"order_number\":1003,\"status\":\"pending\",\"thread_id\":\"t-linus\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 5,
+      "replays": 10,
+      "found_by_single_faults": [
+        "concurrent(#4)"
+      ],
+      "dir": "finding-2"
+    }
+  ],
+  "seconds": 167.303505083
+}

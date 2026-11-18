@@ -5,10 +5,10 @@ package replay
 
 import (
 	"bytes"
+	"context"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
-	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -22,6 +22,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
+	"github.com/Leo-Zh9/stutter/internal/agentstub"
 	"github.com/Leo-Zh9/stutter/internal/oracle"
 	"github.com/Leo-Zh9/stutter/internal/pgenv"
 	"github.com/Leo-Zh9/stutter/internal/pgproxy"
@@ -61,6 +62,28 @@ func (f Fault) String() string {
 		return fmt.Sprintf("crash(#%d@commit%d)", f.Seq, f.K)
 	}
 	return fmt.Sprintf("%s(#%d)", f.Type, f.Seq)
+}
+
+// ParseFault reads the notation String writes: lost(#2), concurrent(#2),
+// reorder(#3,#5), crash(#2@commit1).
+func ParseFault(s string) (Fault, error) {
+	var f Fault
+	var a, b int
+	switch {
+	case strings.HasPrefix(s, "lost(#"):
+		_, err := fmt.Sscanf(s, "lost(#%d)", &a)
+		return Fault{Type: Lost, Seq: a}, err
+	case strings.HasPrefix(s, "concurrent(#"):
+		_, err := fmt.Sscanf(s, "concurrent(#%d)", &a)
+		return Fault{Type: Concurrent, Seq: a}, err
+	case strings.HasPrefix(s, "reorder(#"):
+		_, err := fmt.Sscanf(s, "reorder(#%d,#%d)", &a, &b)
+		return Fault{Type: Reorder, Seq: a, Seq2: b}, err
+	case strings.HasPrefix(s, "crash(#"):
+		_, err := fmt.Sscanf(s, "crash(#%d@commit%d)", &a, &b)
+		return Fault{Type: Crash, Seq: a, K: b}, err
+	}
+	return f, fmt.Errorf("unknown fault %q", s)
 }
 
 // Schedule is a subset of the trace (by seq, in trace order) plus faults.
@@ -106,8 +129,45 @@ type Config struct {
 	// Arrival, if set, is called each time a request reaches the transport.
 	Arrival func(seq int)
 	// ObserveCommits routes the service through the wire proxy and reports
-	// commit points per request in Result.Commits, without crashing.
+	// commit points per request in Result.Commits, without crashing. It
+	// also reports, for each resume request, whether an interrupt was
+	// pending before and after it (Result.Pending).
 	ObserveCommits bool
+	// Rules widen which API calls the client may retry (see trace.Rule).
+	Rules []trace.Rule
+	// Headers are sent on every request: static values, never recorded.
+	Headers map[string]string
+	// Model, when set, is served by a scripted model stub for each run;
+	// the service finds it through the {MODEL_URL} placeholder.
+	Model *agentstub.Script
+	// InterruptSQL names the interrupt pending on thread $1 (any text that
+	// identifies it), or returns NULL or '' when none is pending. Default:
+	// LangGraph's Postgres checkpointer.
+	InterruptSQL string
+}
+
+// DefaultInterruptSQL reads LangGraph's Postgres checkpointer: a dynamic
+// interrupt() leaves an __interrupt__ write on the thread's latest root
+// checkpoint, and that checkpoint's id names the interrupt. It fails safe: a
+// node that interrupts twice keeps its old __interrupt__ row after the first
+// resume, so that resume still reads as pending, and its retry is refused.
+const DefaultInterruptSQL = `SELECT max(c.checkpoint_id) FROM checkpoints c
+	WHERE c.thread_id = $1 AND c.checkpoint_ns = ''
+	  AND c.checkpoint_id = (SELECT max(c2.checkpoint_id) FROM checkpoints c2
+	                         WHERE c2.thread_id = $1 AND c2.checkpoint_ns = '')
+	  AND EXISTS (SELECT 1 FROM checkpoint_writes w
+	              WHERE w.thread_id = $1 AND w.checkpoint_ns = '' AND w.checkpoint_id = c.checkpoint_id
+	                AND w.channel = '__interrupt__')`
+
+// Policy is the client's retry rights under this config.
+func (c Config) Policy() trace.Policy {
+	return trace.Policy{KeyHeader: c.KeyHeader, Rules: c.Rules}
+}
+
+// PendingObs is what an observation run saw around one resume request.
+type PendingObs struct {
+	Before bool `json:"before"`
+	After  bool `json:"after"`
 }
 
 // WebhookPolicy describes the provider that sends webhook entries.
@@ -120,14 +180,20 @@ type WebhookPolicy struct {
 }
 
 type Result struct {
-	Canon    *oracle.Canon
-	State    *oracle.State
-	Commits  map[int]int // commit points per request (proxy runs only)
-	BgCommits int        // commits seen while no request was in flight
-	Fired    int
-	NotFired int
-	Err      error
-	Took     time.Duration
+	Canon     *oracle.Canon
+	State     *oracle.State
+	Commits   map[int]int        // commit points per request (proxy runs only)
+	BgCommits int                // commits seen while no request was in flight
+	Pending   map[int]PendingObs // resume requests (observation runs only)
+	Fired     int
+	NotFired  int
+	// ModelCalls and ModelMisses count scripted model requests; a miss
+	// means the conversation left the script. MissReason is the first.
+	ModelCalls  int
+	ModelMisses int
+	MissReason  string
+	Err         error
+	Took        time.Duration
 }
 
 // Run replays one schedule on a fresh database clone and returns the
@@ -185,11 +251,21 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 			SocketURL: fmt.Sprintf("postgres://%s@/%s?host=%s&port=%s&sslmode=disable", cfg.Env.User, db, px.Dir, px.Port),
 		}
 	}
+	var stub *agentstub.Server
+	if cfg.Model != nil {
+		stub, err = agentstub.Start(cfg.Model)
+		if err != nil {
+			return Result{Err: err}
+		}
+		defer stub.Close()
+		dbFor.Vars = map[string]string{"{MODEL_URL}": stub.URL}
+	}
 	proc, err := target.Start(ctx, cfg.Target, dbFor)
 	if err != nil {
 		return Result{Err: err}
 	}
 	defer func() { proc.Stop() }()
+	policy := cfg.Policy()
 
 	bySeq := map[int]trace.Entry{}
 	for _, e := range tr {
@@ -210,19 +286,19 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	for _, f := range s.Faults {
 		switch f.Type {
 		case Lost:
-			if include[f.Seq] && bySeq[f.Seq].Retryable(cfg.KeyHeader) {
+			if include[f.Seq] && policy.Retryable(bySeq[f.Seq]) {
 				lost[f.Seq] = true
 			} else {
 				res.NotFired++
 			}
 		case Concurrent:
-			if include[f.Seq] && bySeq[f.Seq].Retryable(cfg.KeyHeader) {
+			if include[f.Seq] && policy.Retryable(bySeq[f.Seq]) {
 				conc[f.Seq] = true
 			} else {
 				res.NotFired++
 			}
 		case Crash:
-			if !include[f.Seq] || !bySeq[f.Seq].Retryable(cfg.KeyHeader) {
+			if !include[f.Seq] || !policy.Retryable(bySeq[f.Seq]) {
 				res.NotFired++
 				crash = nil
 			}
@@ -250,28 +326,59 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		}
 		defer conn.Close(context.Background())
 		c.barrier = conn
-		rows, err := conn.Query(ctx, `SELECT quote_ident(schemaname) || '.' || quote_ident(tablename)
+		// Tables the oracle ignores are left unlocked: a framework's own
+		// bookkeeping (a checkpointer's writes) commits before the handler
+		// reaches its check-then-act, so holding it would release both
+		// attempts before the race.
+		rows, err := conn.Query(ctx, `SELECT quote_ident(schemaname) || '.' || quote_ident(tablename),
+			CASE WHEN schemaname = 'public' THEN tablename ELSE schemaname || '.' || tablename END
 			FROM pg_tables WHERE schemaname = ANY($1) ORDER BY 1`, schemas(cfg))
 		if err != nil {
 			return Result{Err: err}
 		}
 		for rows.Next() {
-			var t string
-			rows.Scan(&t)
-			c.tables = append(c.tables, t)
+			var t, label string
+			rows.Scan(&t, &label)
+			if !cfg.Oracle.IgnoreTables[label] {
+				c.tables = append(c.tables, t)
+			}
 		}
 		rows.Close()
 	}
 
+	c.interruptSQL = cfg.InterruptSQL
+	if c.interruptSQL == "" {
+		c.interruptSQL = DefaultInterruptSQL
+	}
+	if cfg.ObserveCommits {
+		res.Pending = map[int]PendingObs{}
+	}
 	for _, q := range order {
 		e := bySeq[q]
 		var r response
+		thread, isResume := policy.Resume(e)
+		faulted := lost[q] || conc[q] || (crash != nil && crash.Seq == q)
+		if isResume && (faulted || cfg.ObserveCommits) {
+			c.resume = &resumeState{thread: thread, before: c.interrupt(thread)}
+			if faulted && c.resume.before == "" {
+				// Nothing to answer: a duplicate would not be a duplicate
+				// of an approval. The fault does not fire.
+				res.NotFired++
+				lost[q], conc[q] = false, false
+				if crash != nil && crash.Seq == q {
+					crash = nil
+				}
+				faulted = false
+			}
+		} else {
+			c.resume = nil
+		}
 		if px != nil {
 			px.Begin(q)
 		}
+		fired := false
 		switch {
 		case crash != nil && crash.Seq == q:
-			var fired bool
 			r, fired, err = c.crashed(ctx, e, px, crash.K, func() error {
 				proc.Stop()
 				px.DropConns()
@@ -283,22 +390,11 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 				proc, c.base = np, np.BaseURL
 				return nil
 			})
-			if fired {
-				res.Fired++
-			} else {
-				res.NotFired++
-			}
 		case conc[q]:
-			var fired bool
 			r, fired, err = c.concurrent(ctx, e)
-			if fired {
-				res.Fired++
-			} else {
-				res.NotFired++
-			}
 		case lost[q]:
 			c.once(ctx, e) // completes on the server; the sender never sees it
-			res.Fired++
+			fired = true
 			r, err = c.send(ctx, e, 2)
 		default:
 			r, err = c.send(ctx, e, 1)
@@ -309,9 +405,36 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		if err != nil {
 			return Result{Err: fmt.Errorf("seq %d: %w", q, err)}
 		}
+		if c.resume != nil && c.resume.refused {
+			fired = false // the retry would have answered a different interrupt
+		}
+		if faulted {
+			if fired {
+				res.Fired++
+			} else {
+				res.NotFired++
+			}
+		}
+		if cfg.ObserveCommits && isResume {
+			after := c.interrupt(thread)
+			res.Pending[q] = PendingObs{Before: c.resume.before != "", After: after != "" && after != c.resume.before}
+		}
+		c.resume = nil
 		c.learn(e, r)
 	}
 	proc.Stop()
+	if stub != nil {
+		calls := stub.Calls()
+		res.ModelCalls = len(calls)
+		for _, cl := range calls {
+			if cl.Miss != "" {
+				if res.ModelMisses == 0 {
+					res.MissReason = cl.Miss
+				}
+				res.ModelMisses++
+			}
+		}
+	}
 	if px != nil {
 		res.Commits, res.BgCommits = px.Commits()
 	}
@@ -324,6 +447,10 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	st, err := oracle.Snapshot(ctx, conn, schemas(cfg))
 	if err != nil {
 		return Result{Err: err}
+	}
+	st = st.Without(cfg.Oracle.IgnoreTables)
+	if stub != nil {
+		st.Opaque = stub.Minted()
 	}
 	res.State = st
 	res.Canon, res.Err = oracle.Canonicalize(st, cfg.Oracle)
@@ -353,6 +480,52 @@ type client struct {
 	barrier *pgx.Conn
 	tables  []string
 	dbName  string
+	// resume is set while a resume request is in flight.
+	resume       *resumeState
+	interruptSQL string
+}
+
+// resumeState guards the retries of a request that answers an interrupt.
+// A retry is sent only while no interrupt is pending (the first attempt
+// finished the run) or the same one still is (it did not take effect).
+// If a different interrupt is pending, the retry would approve something
+// the user never saw: the client's mistake, so it is refused and the fault
+// counts as not fired.
+type resumeState struct {
+	thread  string
+	before  string
+	refused bool
+}
+
+// interrupt names the interrupt pending on a thread, "" if none. Any error
+// reads as an unknown interrupt, which refuses retries: fail safe.
+func (c *client) interrupt(thread string) string {
+	ctx := context.Background()
+	conn, err := pgx.Connect(ctx, c.cfg.Env.DSN(c.dbName))
+	if err != nil {
+		return "?unreadable"
+	}
+	defer conn.Close(ctx)
+	var id *string
+	if err := conn.QueryRow(ctx, c.interruptSQL, c.subst1(thread)).Scan(&id); err != nil {
+		return "?unreadable"
+	}
+	if id == nil {
+		return ""
+	}
+	return *id
+}
+
+// mayRetry applies the resume guard before a retry.
+func (c *client) mayRetry() bool {
+	if c.resume == nil {
+		return true
+	}
+	if now := c.interrupt(c.resume.thread); now != "" && now != c.resume.before {
+		c.resume.refused = true
+		return false
+	}
+	return true
 }
 
 // once sends a single attempt and reads the full response.
@@ -363,6 +536,9 @@ func (c *client) once(ctx context.Context, e trace.Entry) (response, error) {
 		return response{}, err
 	}
 	for k, v := range e.Headers {
+		req.Header.Set(k, v)
+	}
+	for k, v := range c.cfg.Headers {
 		req.Header.Set(k, v)
 	}
 	if e.Kind == trace.Webhook && c.cfg.Webhooks.Signing == "stripe" {
@@ -389,9 +565,17 @@ func (c *client) send(ctx context.Context, e trace.Entry, attempt int) (response
 	if e.Kind == trace.Webhook {
 		max = c.cfg.Webhooks.MaxAttempts
 	}
+	// A refused retry ends the request as the client last saw it (nothing,
+	// after a lost response); the run goes on and the fault does not count.
+	var last response
+	var lastErr error
 	for ; ; attempt++ {
+		if attempt >= 2 && !c.mayRetry() {
+			return last, lastErr
+		}
 		r, err := c.once(ctx, e)
-		if c.done(e, r, err) || !e.Retryable(c.cfg.KeyHeader) || attempt >= max {
+		last, lastErr = r, err
+		if c.done(e, r, err) || !c.cfg.Policy().Retryable(e) || attempt >= max {
 			return r, err
 		}
 		c.rngMu.Lock()
@@ -552,7 +736,7 @@ func (c *client) inBand(v int64) bool {
 func (c *client) pair(rec, live any) {
 	switch x := rec.(type) {
 	case string:
-		if y, ok := live.(string); ok && x != y && !looksLikeTime(x) {
+		if y, ok := live.(string); ok && x != y && looksLikeID(x) && looksLikeID(y) {
 			c.subst[x] = y
 		}
 	case json.Number:
@@ -580,6 +764,13 @@ func (c *client) pair(rec, live any) {
 			}
 		}
 	}
+}
+
+// looksLikeID keeps prose out of the id map: an agent's reply text differs
+// between runs too, and mapping it would rewrite unrelated requests. Ids are
+// non-empty and contain no whitespace; timestamps are not ids.
+func looksLikeID(s string) bool {
+	return s != "" && !strings.ContainsAny(s, " \t\n\r") && !looksLikeTime(s)
 }
 
 func looksLikeTime(s string) bool {
@@ -630,6 +821,14 @@ func (c *client) substAll(v any) any {
 	return v
 }
 
+// subst1 maps one recorded id to its live value.
+func (c *client) subst1(s string) string {
+	if y, ok := c.subst[s]; ok {
+		return y
+	}
+	return s
+}
+
 func (c *client) rewritePath(p string) string {
 	parts := strings.Split(p, "/")
 	for i, s := range parts {
@@ -647,6 +846,14 @@ func (c *client) rewritePath(p string) string {
 // Space says which faults a trace admits.
 type Space struct {
 	KeyHeader string // API calls without it are never faulted
+	Rules     []trace.Rule
+	// Pending is what an observation run saw around each resume request.
+	// A resume admits concurrent only if an interrupt was pending before
+	// it, and lost or crash only if, in addition, none was pending after
+	// it: otherwise the retry would answer the next interrupt, which is
+	// the client's mistake, not the service's. Unobserved resumes admit
+	// nothing.
+	Pending map[int]PendingObs
 	// WebhookObject is a dotted JSON path naming what a webhook is about
 	// (e.g. "data.object.customer"). Two webhooks with the same value may be
 	// reordered. Empty: group by the first id minted earlier in the trace.
@@ -657,18 +864,14 @@ type Space struct {
 // each retryable request, Reorder on each pair of webhooks about the same
 // object.
 func Faults(tr []trace.Entry, sp Space) []Fault {
-	keyHeader := sp.KeyHeader
-	if keyHeader == "" {
-		keyHeader = trace.DefaultKeyHeader
-	}
 	var out []Fault
 	for _, e := range tr {
-		if e.Retryable(keyHeader) {
+		if sp.Admits(e, Lost) {
 			out = append(out, Fault{Type: Lost, Seq: e.Seq})
 		}
 	}
 	for _, e := range tr {
-		if e.Retryable(keyHeader) {
+		if sp.Admits(e, Concurrent) {
 			out = append(out, Fault{Type: Concurrent, Seq: e.Seq})
 		}
 	}
@@ -719,6 +922,29 @@ func Faults(tr []trace.Entry, sp Space) []Fault {
 		}
 	}
 	return out
+}
+
+// Admits reports whether fault type t may be placed on request e.
+func (sp Space) Admits(e trace.Entry, t FaultType) bool {
+	p := trace.Policy{KeyHeader: sp.KeyHeader, Rules: sp.Rules}
+	if !p.Retryable(e) {
+		return false
+	}
+	h := sp.KeyHeader
+	if h == "" {
+		h = trace.DefaultKeyHeader
+	}
+	if e.Retryable(h) {
+		return true // keyed by header, or a webhook
+	}
+	if r := p.RuleFor(e); r != nil && r.Resume != nil {
+		obs, ok := sp.Pending[e.Seq]
+		if !ok || !obs.Before {
+			return false
+		}
+		return t == Concurrent || !obs.After
+	}
+	return true
 }
 
 // jsonPath follows a dotted path through decoded JSON objects.

@@ -1,0 +1,558 @@
+{
+  "target": "miniagent",
+  "when": "2026-11-18T10:26:01Z",
+  "trace_requests": 6,
+  "preflight": "every recorded webhook delivery got 2xx",
+  "single_fault_schedules": 75,
+  "by_fault_type": {
+    "concurrent": {
+      "run": 6,
+      "n_fired": 6,
+      "n_not_fired": 0,
+      "failed": 2
+    },
+    "crash": {
+      "run": 63,
+      "n_fired": 60,
+      "n_not_fired": 0,
+      "failed": 10,
+      "nondetermined": 3
+    },
+    "lost": {
+      "run": 6,
+      "n_fired": 6,
+      "n_not_fired": 0,
+      "failed": 0
+    }
+  },
+  "no_op_reorder_pairs": null,
+  "crash": {
+    "crash_points": 63,
+    "crash_nondeterministic_requests": null,
+    "background_commits": 0,
+    "resume_pending": {
+      "1": {
+        "before": true,
+        "after": false
+      },
+      "5": {
+        "before": true,
+        "after": false
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": 1,
+      "minimal": {
+        "seqs": [
+          0
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 0,
+            "k": 10
+          }
+        ]
+      },
+      "steps": [
+        "#0 POST /chat {\"thread_id\":\"t-ada\",\"message_id\":\"m-1\",\"text\":\"Hi, please refund order 1001\"}",
+        "fault crash(#0@commit10)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 10, restart, resend #0"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"order_number\":1001,\"status\":\"pending\",\"thread_id\":\"t-ada\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#0@commit10)"
+      ],
+      "dir": "finding-1"
+    },
+    {
+      "id": 2,
+      "minimal": {
+        "seqs": [
+          0
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 0,
+            "k": 11
+          }
+        ]
+      },
+      "steps": [
+        "#0 POST /chat {\"thread_id\":\"t-ada\",\"message_id\":\"m-1\",\"text\":\"Hi, please refund order 1001\"}",
+        "fault crash(#0@commit11)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 11, restart, resend #0"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"order_number\":1001,\"status\":\"pending\",\"thread_id\":\"t-ada\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#0@commit11)"
+      ],
+      "dir": "finding-2"
+    },
+    {
+      "id": 3,
+      "minimal": {
+        "seqs": [
+          4
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 4,
+            "k": 9
+          }
+        ]
+      },
+      "steps": [
+        "#4 POST /chat {\"thread_id\":\"t-linus\",\"message_id\":\"m-4\",\"text\":\"OK, refund order 1003 for the broken part\"}",
+        "fault crash(#4@commit9)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 9, restart, resend #4"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":2000,\"order_number\":1003,\"status\":\"pending\",\"thread_id\":\"t-linus\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 7,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#4@commit9)"
+      ],
+      "dir": "finding-3"
+    },
+    {
+      "id": 4,
+      "minimal": {
+        "seqs": [
+          4
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 4,
+            "k": 10
+          }
+        ]
+      },
+      "steps": [
+        "#4 POST /chat {\"thread_id\":\"t-linus\",\"message_id\":\"m-4\",\"text\":\"OK, refund order 1003 for the broken part\"}",
+        "fault crash(#4@commit10)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 10, restart, resend #4"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":2000,\"order_number\":1003,\"status\":\"pending\",\"thread_id\":\"t-linus\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#4@commit10)"
+      ],
+      "dir": "finding-4"
+    },
+    {
+      "id": 5,
+      "minimal": {
+        "seqs": [
+          4
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 4,
+            "k": 11
+          }
+        ]
+      },
+      "steps": [
+        "#4 POST /chat {\"thread_id\":\"t-linus\",\"message_id\":\"m-4\",\"text\":\"OK, refund order 1003 for the broken part\"}",
+        "fault crash(#4@commit11)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 11, restart, resend #4"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":2000,\"order_number\":1003,\"status\":\"pending\",\"thread_id\":\"t-linus\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#4@commit11)"
+      ],
+      "dir": "finding-5"
+    },
+    {
+      "id": 6,
+      "minimal": {
+        "seqs": [
+          0,
+          1
+        ],
+        "faults": [
+          {
+            "type": "concurrent",
+            "seq": 1
+          }
+        ]
+      },
+      "steps": [
+        "#0 POST /chat {\"thread_id\":\"t-ada\",\"message_id\":\"m-1\",\"text\":\"Hi, please refund order 1001\"}",
+        "#1 POST /threads/t-ada/approve {\"decision\":\"approve\"}",
+        "fault concurrent(#1)"
+      ],
+      "delivery_order": [
+        "send #0",
+        "send-concurrently #1"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"order_number\":1001,\"status\":\"approved\",\"thread_id\":\"t-ada\"} (+1 referencing rows)"
+        },
+        {
+          "table": "outbox",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"kind\":\"refund_email\",\"order_number\":1001}"
+        },
+        {
+          "table": "refunds",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"approval_id\":\"\u003cref:approvals\u003e\",\"order_number\":1001}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 1,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "concurrent(#1)"
+      ],
+      "dir": "finding-6"
+    },
+    {
+      "id": 7,
+      "minimal": {
+        "seqs": [
+          4,
+          5
+        ],
+        "faults": [
+          {
+            "type": "concurrent",
+            "seq": 5
+          }
+        ]
+      },
+      "steps": [
+        "#4 POST /chat {\"thread_id\":\"t-linus\",\"message_id\":\"m-4\",\"text\":\"OK, refund order 1003 for the broken part\"}",
+        "#5 POST /threads/t-linus/approve {\"decision\":\"reject\"}",
+        "fault concurrent(#5)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send-concurrently #5"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":2000,\"order_number\":1003,\"status\":\"rejected\",\"thread_id\":\"t-linus\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 1,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": 10,
+      "replays": 10,
+      "found_by_single_faults": [
+        "concurrent(#5)"
+      ],
+      "dir": "finding-7"
+    },
+    {
+      "id": 8,
+      "minimal": {
+        "seqs": [
+          0,
+          5
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 0,
+            "k": 9
+          }
+        ]
+      },
+      "steps": [
+        "#0 POST /chat {\"thread_id\":\"t-ada\",\"message_id\":\"m-1\",\"text\":\"Hi, please refund order 1001\"}",
+        "#5 POST /threads/t-linus/approve {\"decision\":\"reject\"}",
+        "fault crash(#0@commit9)"
+      ],
+      "delivery_order": [
+        "send, kill the service after its commit 9, restart, resend #0",
+        "send #5"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"order_number\":1001,\"status\":\"pending\",\"thread_id\":\"t-ada\"}"
+        }
+      ],
+      "one_minimal_verified": false,
+      "one_minimal_unjudged_removals": 0,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#0@commit9)"
+      ],
+      "dir": "finding-8"
+    },
+    {
+      "id": 9,
+      "minimal": {
+        "seqs": [
+          0,
+          1
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 1,
+            "k": 2
+          }
+        ]
+      },
+      "steps": [
+        "#0 POST /chat {\"thread_id\":\"t-ada\",\"message_id\":\"m-1\",\"text\":\"Hi, please refund order 1001\"}",
+        "#1 POST /threads/t-ada/approve {\"decision\":\"approve\"}",
+        "fault crash(#1@commit2)"
+      ],
+      "delivery_order": [
+        "send #0",
+        "send, kill the service after its commit 2, restart, resend #1"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"order_number\":1001,\"status\":\"approved\",\"thread_id\":\"t-ada\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 1,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#1@commit2)"
+      ],
+      "dir": "finding-9"
+    },
+    {
+      "id": 10,
+      "minimal": {
+        "seqs": [
+          0,
+          1
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 1,
+            "k": 3
+          }
+        ]
+      },
+      "steps": [
+        "#0 POST /chat {\"thread_id\":\"t-ada\",\"message_id\":\"m-1\",\"text\":\"Hi, please refund order 1001\"}",
+        "#1 POST /threads/t-ada/approve {\"decision\":\"approve\"}",
+        "fault crash(#1@commit3)"
+      ],
+      "delivery_order": [
+        "send #0",
+        "send, kill the service after its commit 3, restart, resend #1"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"order_number\":1001,\"status\":\"approved\",\"thread_id\":\"t-ada\"} (+1 referencing rows)"
+        },
+        {
+          "table": "outbox",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"kind\":\"refund_email\",\"order_number\":1001}"
+        },
+        {
+          "table": "refunds",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":4200,\"approval_id\":\"\u003cref:approvals\u003e\",\"order_number\":1001}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 1,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#1@commit3)"
+      ],
+      "dir": "finding-10"
+    },
+    {
+      "id": 11,
+      "minimal": {
+        "seqs": [
+          4,
+          5
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 5,
+            "k": 2
+          }
+        ]
+      },
+      "steps": [
+        "#4 POST /chat {\"thread_id\":\"t-linus\",\"message_id\":\"m-4\",\"text\":\"OK, refund order 1003 for the broken part\"}",
+        "#5 POST /threads/t-linus/approve {\"decision\":\"reject\"}",
+        "fault crash(#5@commit2)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send, kill the service after its commit 2, restart, resend #5"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":2000,\"order_number\":1003,\"status\":\"rejected\",\"thread_id\":\"t-linus\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 1,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#5@commit2)"
+      ],
+      "dir": "finding-11"
+    },
+    {
+      "id": 12,
+      "minimal": {
+        "seqs": [
+          4,
+          5
+        ],
+        "faults": [
+          {
+            "type": "crash",
+            "seq": 5,
+            "k": 3
+          }
+        ]
+      },
+      "steps": [
+        "#4 POST /chat {\"thread_id\":\"t-linus\",\"message_id\":\"m-4\",\"text\":\"OK, refund order 1003 for the broken part\"}",
+        "#5 POST /threads/t-linus/approve {\"decision\":\"reject\"}",
+        "fault crash(#5@commit3)"
+      ],
+      "delivery_order": [
+        "send #4",
+        "send, kill the service after its commit 3, restart, resend #5"
+      ],
+      "diff": [
+        {
+          "table": "approvals",
+          "sign": "+",
+          "count": 1,
+          "row": "{\"amount_cents\":2000,\"order_number\":1003,\"status\":\"rejected\",\"thread_id\":\"t-linus\"}"
+        }
+      ],
+      "one_minimal_verified": true,
+      "one_minimal_unjudged_removals": 1,
+      "reproduced_in_replays": 10,
+      "reproduced_by_repro_sh": -1,
+      "replays": 10,
+      "found_by_single_faults": [
+        "crash(#5@commit3)"
+      ],
+      "dir": "finding-12"
+    }
+  ],
+  "seconds": 666.228671958
+}

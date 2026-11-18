@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-		"path/filepath"
+	"path/filepath"
 	"runtime"
 	"sort"
 	"strings"
@@ -67,20 +67,20 @@ type Cell struct {
 
 type VariantResult struct {
 	Variant
-	Matrix map[replay.FaultType]*Cell `json:"by_fault_type"`
-	Schedules    int                 `json:"schedules_available"`
-	Ran          int                 `json:"schedules_run"`
-	Detected     bool                `json:"detected"`
-	DetectedAt   int                 `json:"detected_at_run,omitempty"` // 1-based
-	NFired       int                 `json:"n_fired"`
-	NNotFired    int                 `json:"n_not_fired"`
-	FirstFailing *replay.Schedule    `json:"-"`
-	FirstFaults  []string            `json:"first_failing_faults,omitempty"`
-	Diff         []oracle.DiffLine   `json:"diff,omitempty"`
-	Shrunk       []string            `json:"shrunk,omitempty"`
-	Shrink       *explore.ShrinkStats `json:"shrink,omitempty"`
-	OneMinimal   *bool               `json:"one_minimal_verified,omitempty"`
-	ShrinkSec    float64             `json:"shrink_seconds,omitempty"`
+	Matrix       map[replay.FaultType]*Cell `json:"by_fault_type"`
+	Schedules    int                        `json:"schedules_available"`
+	Ran          int                        `json:"schedules_run"`
+	Detected     bool                       `json:"detected"`
+	DetectedAt   int                        `json:"detected_at_run,omitempty"` // 1-based
+	NFired       int                        `json:"n_fired"`
+	NNotFired    int                        `json:"n_not_fired"`
+	FirstFailing *replay.Schedule           `json:"-"`
+	FirstFaults  []string                   `json:"first_failing_faults,omitempty"`
+	Diff         []oracle.DiffLine          `json:"diff,omitempty"`
+	Shrunk       []string                   `json:"shrunk,omitempty"`
+	Shrink       *explore.ShrinkStats       `json:"shrink,omitempty"`
+	OneMinimal   *bool                      `json:"one_minimal_verified,omitempty"`
+	ShrinkSec    float64                    `json:"shrink_seconds,omitempty"`
 }
 
 type Trigger struct {
@@ -92,17 +92,17 @@ type Trigger struct {
 }
 
 type Results struct {
-	When        string          `json:"when"`
-	Machine     string          `json:"machine"`
-	Postgres    string          `json:"postgres"`
-	Lanes       int             `json:"lanes"`
-	TraceEntries int            `json:"trace_entries"`
-	Retryable   int             `json:"retryable_entries"`
-	Webhooks    int             `json:"webhook_entries"`
-	SingleFaults int            `json:"single_fault_schedules"`
+	When         string             `json:"when"`
+	Machine      string             `json:"machine"`
+	Postgres     string             `json:"postgres"`
+	Lanes        int                `json:"lanes"`
+	TraceEntries int                `json:"trace_entries"`
+	Retryable    int                `json:"retryable_entries"`
+	Webhooks     int                `json:"webhook_entries"`
+	SingleFaults int                `json:"single_fault_schedules"`
 	Crash        explore.CrashSpace `json:"crash"`
-	RandomFaults int            `json:"random_multi_fault_schedules"`
-	Determinism struct {
+	RandomFaults int                `json:"random_multi_fault_schedules"`
+	Determinism  struct {
 		Replays  int `json:"fault_free_replays"`
 		Distinct int `json:"distinct_digests"`
 	} `json:"determinism"`

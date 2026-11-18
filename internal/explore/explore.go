@@ -4,6 +4,7 @@ package explore
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"math/rand"
 	"strings"
@@ -30,8 +31,12 @@ type Runner struct {
 
 // Outcome of one faulted run.
 type Outcome struct {
-	Schedule replay.Schedule   `json:"schedule"`
-	Fired    bool              `json:"fired"` // every fault in the schedule fired
+	Schedule replay.Schedule `json:"schedule"`
+	Fired    bool            `json:"fired"` // every fault in the schedule fired
+	// Diverged: a scripted model was asked something its script does not
+	// cover, in this run or in its baseline. Like a fault that did not
+	// fire, it is never a pass and never a failure.
+	Diverged bool              `json:"diverged,omitempty"`
 	Failed   bool              `json:"failed"`
 	Diff     []oracle.DiffLine `json:"diff,omitempty"`
 	Err      string            `json:"error,omitempty"`
@@ -52,6 +57,11 @@ func (r *Runner) count() {
 	r.mu.Unlock()
 }
 
+// ErrDiverged marks a baseline whose conversation left the model script, for
+// example because shrinking dropped the request that started it. It is not
+// cached, and a schedule compared against it neither passes nor fails.
+var ErrDiverged = errors.New("baseline left the model script")
+
 // Baseline replays the given subset of the trace with no faults. Results are
 // cached per subset.
 func (r *Runner) Baseline(ctx context.Context, seqs []int) (*oracle.Canon, error) {
@@ -68,6 +78,9 @@ func (r *Runner) Baseline(ctx context.Context, seqs []int) (*oracle.Canon, error
 	r.count()
 	if res.Err != nil {
 		return nil, res.Err
+	}
+	if res.ModelMisses > 0 {
+		return nil, fmt.Errorf("%w: %s", ErrDiverged, res.MissReason)
 	}
 	r.mu.Lock()
 	r.baselines[key(seqs)] = res.Canon
@@ -93,6 +106,11 @@ func (r *Runner) CheckStable(ctx context.Context) error {
 	if b.Err != nil {
 		return b.Err
 	}
+	for _, x := range []replay.Result{a, b} {
+		if x.ModelMisses > 0 {
+			return fmt.Errorf("the fault-free run left the model script (fix the script): %s", x.MissReason)
+		}
+	}
 	if d := oracle.Diff(a.Canon, b.Canon); len(d) > 0 {
 		return fmt.Errorf("fault-free replays disagree; unstable columns: %s",
 			strings.Join(oracle.UnstableColumns(a.Canon, b.Canon), ", "))
@@ -109,6 +127,9 @@ func (r *Runner) CheckStable(ctx context.Context) error {
 // Check runs one schedule once and compares it with its baseline.
 func (r *Runner) Check(ctx context.Context, s replay.Schedule, seed int64) Outcome {
 	base, err := r.Baseline(ctx, s.Seqs)
+	if errors.Is(err, ErrDiverged) {
+		return Outcome{Schedule: s, Diverged: true}
+	}
 	if err != nil {
 		return Outcome{Schedule: s, Err: err.Error()}
 	}
@@ -116,6 +137,9 @@ func (r *Runner) Check(ctx context.Context, s replay.Schedule, seed int64) Outco
 	r.count()
 	if res.Err != nil {
 		return Outcome{Schedule: s, Err: res.Err.Error()}
+	}
+	if res.ModelMisses > 0 {
+		return Outcome{Schedule: s, Diverged: true}
 	}
 	o := Outcome{Schedule: s, Fired: res.NotFired == 0}
 	o.Diff = oracle.Diff(base, res.Canon)
@@ -287,10 +311,19 @@ func (r *Runner) Shrink(ctx context.Context, s replay.Schedule, k int) (replay.S
 }
 
 // OneMinimal re-checks a schedule by brute force: it must fail, and removing
-// any single request or fault must make it pass.
+// any single request or fault must make it pass. A removal whose fault did
+// not fire, or whose run left the model script, cannot fail, so it counts as
+// passing here; MinimalCheck reports how many removals were like that.
 func (r *Runner) OneMinimal(ctx context.Context, s replay.Schedule, k int) bool {
+	ok, _ := r.MinimalCheck(ctx, s, k)
+	return ok
+}
+
+// MinimalCheck is OneMinimal plus the number of single removals that could
+// not be judged (not fired, or diverged): "1-minimal over fired candidates".
+func (r *Runner) MinimalCheck(ctx context.Context, s replay.Schedule, k int) (bool, int) {
 	if f, _ := r.Fails(ctx, s, k); !f {
-		return false
+		return false, 0
 	}
 	all := encodeAll(s)
 	cands := make([][]int, len(all))
@@ -301,17 +334,21 @@ func (r *Runner) OneMinimal(ctx context.Context, s replay.Schedule, k int) bool 
 			}
 		}
 	}
-	ok := true
+	ok, unjudged := true, 0
 	var mu sync.Mutex
 	r.Parallel(len(cands), func(i int) Outcome {
-		if f, _ := r.Fails(ctx, decode(s, cands[i]), k); f {
-			mu.Lock()
+		f, nf := r.Fails(ctx, decode(s, cands[i]), k)
+		mu.Lock()
+		if f {
 			ok = false
-			mu.Unlock()
 		}
+		if nf {
+			unjudged++
+		}
+		mu.Unlock()
 		return Outcome{}
 	})
-	return ok
+	return ok, unjudged
 }
 
 // inferIDs runs the fault-free trace three times: twice normally (A, A2) and
@@ -381,6 +418,9 @@ type CrashSpace struct {
 	Points        int            `json:"crash_points"`
 	Nondetermined []int          `json:"crash_nondeterministic_requests"`
 	Background    int            `json:"background_commits"`
+	// Pending is what both observation runs agreed on around each resume
+	// request; a resume they disagree on is left out (and so not faulted).
+	Pending map[int]replay.PendingObs `json:"resume_pending,omitempty"`
 }
 
 // CrashFaults counts commit points per request over two fault-free runs
@@ -394,6 +434,7 @@ func (r *Runner) CrashFaults(ctx context.Context, keyHeader string) (CrashSpace,
 	obs := r.Cfg
 	obs.ObserveCommits = true
 	var counts [2]map[int]int
+	var pend [2]map[int]replay.PendingObs
 	var cs CrashSpace
 	for i := 0; i < 2; i++ {
 		res := replay.Run(ctx, obs, r.Trace, replay.Full(r.Trace), r.Seed+int64(i))
@@ -401,11 +442,22 @@ func (r *Runner) CrashFaults(ctx context.Context, keyHeader string) (CrashSpace,
 		if res.Err != nil {
 			return cs, res.Err
 		}
+		if res.ModelMisses > 0 {
+			return cs, fmt.Errorf("the observation run left the model script: %s", res.MissReason)
+		}
 		counts[i] = res.Commits
+		pend[i] = res.Pending
 		cs.Background += res.BgCommits
 	}
+	cs.Pending = map[int]replay.PendingObs{}
+	for q, a := range pend[0] {
+		if b, ok := pend[1][q]; ok && a == b {
+			cs.Pending[q] = a
+		}
+	}
+	sp := replay.Space{KeyHeader: keyHeader, Rules: r.Cfg.Rules, Pending: cs.Pending}
 	for _, e := range r.Trace {
-		if !e.Retryable(keyHeader) {
+		if !sp.Admits(e, replay.Crash) {
 			continue
 		}
 		a, b := counts[0][e.Seq], counts[1][e.Seq]

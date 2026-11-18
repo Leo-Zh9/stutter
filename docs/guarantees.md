@@ -1,6 +1,6 @@
 # Guarantees and the tests that hold them
 
-`make test` runs all of these. The database-backed tests use the project-local Postgres, and under `make test` they fail rather than skip when it is missing.
+`make test` runs all of these. The agent-mode tests on miniagent need `make miniagent` first; without its virtualenv they are skipped unless `STUTTER_REQUIRE_AGENT=1`. The database-backed tests use the project-local Postgres, and under `make test` they fail rather than skip when it is missing.
 
 | Guarantee | Test |
 |---|---|
@@ -30,6 +30,17 @@
 | Generated repro.sh sends the faulted order with each request's method, signed so a verifier accepts it | `TestReproScript` |
 | Timestamps with a precision modifier (`timestamp(3)`) are treated as timestamps; tables outside `public` are read | `TestCatalogGeneratedRule` |
 | Two configs never share a template database | `TestTemplateNamesAreDistinct` |
+| Agent mode: the scripted model answers step k of the matching turn, resolves `$ref`, and misses on an unmatched message, a step past the end, or a tool the request did not offer | `TestStepFollowsAssistantCount`, `TestMisses` |
+| Agent mode: a repeated request after a completed run gets the final reply with no tool call; an unfinished one does not count as done | `TestRepeatAfterCompletedRunDoesNotActAgain` |
+| Agent mode: side rules answer non-step calls; a re-run of the same prompt gets a fresh tool-call id | `TestSideRulesAndFreshIDs` |
+| Agent mode: tool calls stream in the chat-completions SSE format; embeddings are deterministic | `TestServerStreamsToolCalls`, `TestEmbeddingsAreDeterministic` |
+| Ids the scripted model minted compare equal across runs; a duplicated row is still a diff | `TestOpaqueModelIDs` |
+| Retry rules: a body key or a resume makes a request retryable; a thread id alone does not | `TestRetryRules` |
+| A resume admits concurrent only with an interrupt pending before it, lost and crash only with no new one after it | `TestResumeAdmission` |
+| A resume rule's thread must name a `*` path segment or a body field | `TestResumeThreadMustNameAWildcard` |
+| miniagent (LangGraph + PostgresSaver): no false alarm on lost, concurrent, and every crash point of both approvals | `TestAgentCorrectHasNoFalseAlarms` |
+| The double-clicked approval is caught every time and shrinks to chat + approve + concurrent | `TestAgentApprovalRaceIsDetected` |
+| A crash between the approval's claim and its refund loses the refund, and a crash point finds it | `TestAgentCrashBetweenClaimAndRefundIsDetected` |
 
 ## Mutation checks
 

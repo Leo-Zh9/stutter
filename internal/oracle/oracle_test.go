@@ -181,3 +181,27 @@ func TestUnstableColumnsAreNamed(t *testing.T) {
 		t.Fatal("ignored column still diffed")
 	}
 }
+
+// Ids a scripted model minted differ between equivalent runs; stored in an
+// app table they must compare as their label, while a duplicated row is
+// still a diff.
+func TestOpaqueModelIDs(t *testing.T) {
+	mk := func(ids ...string) *State {
+		st := &State{Tables: []Table{{Name: "notes", Columns: []Column{{Name: "key", Type: "text"}, {Name: "body", Type: "text"}}}},
+			Rows: map[string][]Row{}, Opaque: map[string]string{}}
+		for _, id := range ids {
+			st.Rows["notes"] = append(st.Rows["notes"], Row{"key": id, "body": "delayed"})
+			st.Opaque[id] = "<model-tool-call-id>"
+		}
+		return st
+	}
+	a, _ := Canonicalize(mk("call_aaa"), Options{})
+	b, _ := Canonicalize(mk("call_bbb"), Options{})
+	if d := Diff(a, b); len(d) != 0 {
+		t.Fatalf("different model ids must compare equal: %v", d)
+	}
+	c, _ := Canonicalize(mk("call_aaa", "call_ccc"), Options{})
+	if len(Diff(a, c)) == 0 {
+		t.Fatal("a duplicated row is still a diff")
+	}
+}

@@ -50,7 +50,7 @@ type Proxy struct {
 	mu      sync.Mutex
 	conns   map[net.Conn]bool
 	lns     []net.Listener
-	window  int  // seq of the request in flight, -1 when idle
+	window  int // seq of the request in flight, -1 when idle
 	commits map[int]int
 	bg      int
 	crashAt struct {

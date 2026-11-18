@@ -1,0 +1,15 @@
+{
+  "name": "miniagent",
+  "start": [".venv/bin/python", "app.py", "--port", "{PORT}"],
+  "env": ["DATABASE_URL={DATABASE_URL_SOCKET}", "OPENAI_BASE_URL={MODEL_URL}", "OPENAI_API_KEY=sk-stutter-scripted"],
+  "health": "/healthz",
+  "start_timeout": "40s",
+  "prepare": {"migrate_cmd": [".venv/bin/python", "app.py", "--migrate"], "migrate_env": ["DATABASE_URL={DATABASE_URL_SOCKET}"]},
+  "ignore_tables": ["checkpoints", "checkpoint_blobs", "checkpoint_writes", "checkpoint_migrations"],
+  "retry_rules": [
+    {"method": "POST", "path": "/chat", "body_key": "message_id"},
+    {"method": "POST", "path": "/threads/*/approve", "resume": {"thread": "path:2"}}
+  ],
+  "model": {"script": "model.json"},
+  "trace": "trace.jsonl"
+}

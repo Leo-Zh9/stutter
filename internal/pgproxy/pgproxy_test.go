@@ -61,7 +61,7 @@ func TestCommitPoints(t *testing.T) {
 		{"failed commit", 0, func() error {
 			tx, _ := conn.Begin(ctx)
 			tx.Exec(ctx, `INSERT INTO t (v) VALUES (3)`) // unique violation aborts the transaction
-			tx.Commit(ctx)                              // server answers ROLLBACK
+			tx.Commit(ctx)                               // server answers ROLLBACK
 			return nil
 		}},
 		{"multi-statement implicit transaction", 1, func() error {
