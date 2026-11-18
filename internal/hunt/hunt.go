@@ -83,12 +83,20 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 
 	// Pre-flight: the recorded, in-order run must have accepted every
 	// webhook, or a malformed event could pose as a finding.
+	hooks := 0
 	for _, e := range tr {
-		if e.Kind == trace.Webhook && (e.Status < 200 || e.Status >= 300) {
+		if e.Kind != trace.Webhook {
+			continue
+		}
+		hooks++
+		if e.Status < 200 || e.Status >= 300 {
 			return nil, fmt.Errorf("preflight: recorded delivery #%d got HTTP %d; fix the trace first", e.Seq, e.Status)
 		}
 	}
 	res.Preflight = "every recorded webhook delivery got 2xx"
+	if hooks == 0 {
+		res.Preflight = "no webhook deliveries in the trace"
+	}
 	say("stability check")
 	if err := r.CheckStable(ctx); err != nil {
 		return nil, err
