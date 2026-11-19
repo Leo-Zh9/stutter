@@ -57,5 +57,6 @@
   "model": {
     "script": "model.json"
   },
+  "holds": true,
   "trace": "trace.jsonl"
 }

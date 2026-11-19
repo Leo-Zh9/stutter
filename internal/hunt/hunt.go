@@ -71,6 +71,8 @@ type Tally struct {
 	// findings.
 	Diverged      int `json:"diverged,omitempty"`
 	Nondetermined int `json:"nondetermined,omitempty"`
+	// Why groups the faults that did not fire by reason (held commits only).
+	Why map[string][]string `json:"not_fired_reasons,omitempty"`
 }
 
 const replays = 10
@@ -107,12 +109,12 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 	}
 
 	res.Inference = r.Inference()
-	// One observation pass serves both crash points and resume rules: it
-	// counts commit points per request and records whether an interrupt
-	// was pending around each resume.
+	// One observation pass serves crash points, held commits and resume
+	// rules: it counts commit points per request and records whether an
+	// interrupt was pending around each resume.
 	sp := cfg.Space()
 	var cs explore.CrashSpace
-	if crash || hasResume(cfg.RetryRules) {
+	if crash || cfg.Holds || hasResume(cfg.RetryRules) {
 		say("observing commit points and pending interrupts")
 		var err error
 		if cs, err = r.CrashFaults(ctx, cfg.KeyHeader); err != nil {
@@ -125,17 +127,23 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 		res.Crash = &cs
 		singles = append(singles, cs.Faults...)
 	}
+	if cfg.Holds {
+		singles = append(singles, cs.Holds...)
+	} else {
+		cs.HoldPoints, cs.HoldNondetermined = 0, nil // not run, so not reported
+	}
 	res.Schedules = len(singles)
 	say(fmt.Sprintf("%d single-fault schedules", len(singles)))
 	nondet := make([]bool, len(singles))
 	outs := r.Parallel(len(singles), func(i int) explore.Outcome {
 		o := r.Check(ctx, replay.Full(tr, singles[i]), r.Seed+int64(i))
-		if singles[i].Type != replay.Crash || o.Err != "" || o.Diverged || !o.Fired {
+		twice := singles[i].Type == replay.Crash || singles[i].Type == replay.ConcurrentAt
+		if !twice || o.Err != "" || o.Diverged || !o.Fired {
 			return o
 		}
-		// Crash-twice: with async checkpoint writes the next node can
-		// race the kill, so a crash outcome counts only if a second run
-		// agrees with the first.
+		// Run twice: with async checkpoint writes the next node can race
+		// the kill or the hold, so a crash or held-commit outcome counts
+		// only if a second run agrees with the first.
 		o2 := r.Check(ctx, replay.Full(tr, singles[i]), r.Seed+int64(i)+7919)
 		if o2.Err != "" || o2.Diverged {
 			return o2
@@ -163,6 +171,12 @@ func Run(ctx context.Context, cfg *config.Config, r *explore.Runner, outDir stri
 		}
 		if !o.Fired {
 			tl.NotFired++
+			for _, w := range o.Why {
+				if tl.Why == nil {
+					tl.Why = map[string][]string{}
+				}
+				tl.Why[w] = append(tl.Why[w], singles[i].String())
+			}
 			continue
 		}
 		if nondet[i] {
@@ -338,6 +352,8 @@ func plan(s replay.Schedule) []step {
 			how[f.Seq] = "send-concurrently"
 		case replay.Crash:
 			how[f.Seq] = fmt.Sprintf("send, kill the service after its commit %d, restart, resend", f.K)
+		case replay.ConcurrentAt:
+			how[f.Seq] = fmt.Sprintf("send, hold the ack of its commit %d, send a duplicate meanwhile, release", f.K)
 		}
 	}
 	var out []step
@@ -433,6 +449,16 @@ func Markdown(r *Result) string {
 	for _, t := range types {
 		x := r.ByType[t]
 		fmt.Fprintf(&b, "| %s | %d | %d | %d | %d | %d | %d | %d |\n", t, x.Run, x.Fired, x.NotFired, x.Diverged, x.Nondetermined, x.Failed, x.NoOp)
+	}
+	for _, t := range types {
+		var whys []string
+		for w := range r.ByType[t].Why {
+			whys = append(whys, w)
+		}
+		sort.Strings(whys)
+		for _, w := range whys {
+			fmt.Fprintf(&b, "\nNot fired (%s), %s: %s.\n", t, w, strings.Join(r.ByType[t].Why[w], ", "))
+		}
 	}
 	fmt.Fprintf(&b, "\nNo-op reorder pairs (dropping both events leaves the state unchanged, so their pass says nothing about ordering): %d.\n\n", len(r.NoOpPairs))
 	// Group findings by the state change they cause.

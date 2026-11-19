@@ -45,13 +45,25 @@ const (
 	// before it hears the commit succeeded; it restarts and the sender
 	// retries (see package pgproxy).
 	Crash FaultType = "crash"
+	// ConcurrentAt: the ack of commit K of request Seq is held while a
+	// duplicate is sent; it fires only if the duplicate is answered while
+	// the first attempt is still waiting (opt-in, see client.held).
+	ConcurrentAt FaultType = "concurrent@commit"
+)
+
+// Why a ConcurrentAt fault did not fire.
+const (
+	WhyFinished = "finished before commit K"
+	WhyGuard    = "resume guard"
+	WhyNotHeld  = "first attempt was not held"
+	WhyTimeout  = "no response within HoldTimeout"
 )
 
 type Fault struct {
 	Type FaultType `json:"type"`
 	Seq  int       `json:"seq"`
 	Seq2 int       `json:"seq2,omitempty"`
-	K    int       `json:"k,omitempty"` // crash: which commit of the request
+	K    int       `json:"k,omitempty"` // crash, concurrent@commit: which commit of the request
 }
 
 func (f Fault) String() string {
@@ -61,15 +73,21 @@ func (f Fault) String() string {
 	if f.Type == Crash {
 		return fmt.Sprintf("crash(#%d@commit%d)", f.Seq, f.K)
 	}
+	if f.Type == ConcurrentAt {
+		return fmt.Sprintf("concurrent(#%d@commit%d)", f.Seq, f.K)
+	}
 	return fmt.Sprintf("%s(#%d)", f.Type, f.Seq)
 }
 
 // ParseFault reads the notation String writes: lost(#2), concurrent(#2),
-// reorder(#3,#5), crash(#2@commit1).
+// reorder(#3,#5), crash(#2@commit1), concurrent(#2@commit1).
 func ParseFault(s string) (Fault, error) {
 	var f Fault
 	var a, b int
 	switch {
+	case strings.HasPrefix(s, "concurrent(#") && strings.Contains(s, "@commit"):
+		_, err := fmt.Sscanf(s, "concurrent(#%d@commit%d)", &a, &b)
+		return Fault{Type: ConcurrentAt, Seq: a, K: b}, err
 	case strings.HasPrefix(s, "lost(#"):
 		_, err := fmt.Sscanf(s, "lost(#%d)", &a)
 		return Fault{Type: Lost, Seq: a}, err
@@ -117,6 +135,10 @@ type Config struct {
 	BarrierTimeout time.Duration // default 500ms
 	MaxAttempts    int           // per request, default 3
 	Oracle         oracle.Options
+	// HoldTimeout bounds how long a ConcurrentAt duplicate may take while
+	// the first attempt is held; default 10s (a hunt derives it from the
+	// slowest observed request).
+	HoldTimeout time.Duration
 	// Bands, when set, are the numeric ranges each sequence mints into.
 	// Integers inside a band are mapped from recorded to live ids.
 	Bands []pgenv.Band
@@ -187,6 +209,10 @@ type Result struct {
 	Pending   map[int]PendingObs // resume requests (observation runs only)
 	Fired     int
 	NotFired  int
+	// Why lists, per ConcurrentAt fault that did not fire, the reason.
+	Why []string
+	// Slowest is the slowest single request (observation runs only).
+	Slowest time.Duration
 	// ModelCalls and ModelMisses count scripted model requests; a miss
 	// means the conversation left the script. MissReason is the first.
 	ModelCalls  int
@@ -208,6 +234,9 @@ func Run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int64) Result {
 	if cfg.BarrierTimeout == 0 {
 		cfg.BarrierTimeout = 500 * time.Millisecond
+	}
+	if cfg.HoldTimeout == 0 {
+		cfg.HoldTimeout = 10 * time.Second
 	}
 	if cfg.MaxAttempts == 0 {
 		cfg.MaxAttempts = 3
@@ -232,14 +261,16 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		}
 	}
 	var crash *Fault
+	holds := false
 	for i := range s.Faults {
 		if s.Faults[i].Type == Crash {
 			crash = &s.Faults[i]
 		}
+		holds = holds || s.Faults[i].Type == ConcurrentAt
 	}
 	dbFor := target.DB{DSN: cfg.Env.DSN(db), URL: cfg.Env.URL(db), SocketURL: cfg.Env.SocketURL(db)}
 	var px *pgproxy.Proxy
-	if crash != nil || cfg.ObserveCommits {
+	if crash != nil || holds || cfg.ObserveCommits {
 		px, err = pgproxy.New(cfg.Env.SocketDir, cfg.Env.Port, true)
 		if err != nil {
 			return Result{Err: err}
@@ -282,6 +313,7 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 	}
 	lost := map[int]bool{}
 	conc := map[int]bool{}
+	hold := map[int]int{} // seq -> commit whose ack is held
 	var res Result
 	for _, f := range s.Faults {
 		switch f.Type {
@@ -294,6 +326,12 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		case Concurrent:
 			if include[f.Seq] && policy.Retryable(bySeq[f.Seq]) {
 				conc[f.Seq] = true
+			} else {
+				res.NotFired++
+			}
+		case ConcurrentAt:
+			if include[f.Seq] && policy.Retryable(bySeq[f.Seq]) {
+				hold[f.Seq] = f.K
 			} else {
 				res.NotFired++
 			}
@@ -361,14 +399,18 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		e := bySeq[q]
 		var r response
 		thread, isResume := policy.Resume(e)
-		faulted := lost[q] || conc[q] || (crash != nil && crash.Seq == q)
+		faulted := lost[q] || conc[q] || hold[q] > 0 || (crash != nil && crash.Seq == q)
 		if isResume && (faulted || cfg.ObserveCommits) {
 			c.resume = &resumeState{thread: thread, before: c.interrupt(thread)}
 			if faulted && c.resume.before == "" {
 				// Nothing to answer: a duplicate would not be a duplicate
 				// of an approval. The fault does not fire.
 				res.NotFired++
+				if hold[q] > 0 {
+					res.Why = append(res.Why, WhyGuard)
+				}
 				lost[q], conc[q] = false, false
+				delete(hold, q)
 				if crash != nil && crash.Seq == q {
 					crash = nil
 				}
@@ -380,7 +422,7 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		if px != nil {
 			px.Begin(q)
 		}
-		fired := false
+		fired, why, t0 := false, "", time.Now()
 		switch {
 		case crash != nil && crash.Seq == q:
 			r, fired, err = c.crashed(ctx, e, px, crash.K, func() error {
@@ -394,6 +436,8 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 				proc, c.base = np, np.BaseURL
 				return nil
 			})
+		case hold[q] > 0:
+			r, fired, why, err = c.held(ctx, e, px, hold[q])
 		case conc[q]:
 			r, fired, err = c.concurrent(ctx, e)
 		case lost[q]:
@@ -409,14 +453,23 @@ func run(ctx context.Context, cfg Config, tr []trace.Entry, s Schedule, seed int
 		if err != nil {
 			return Result{Err: fmt.Errorf("seq %d: %w", q, err)}
 		}
+		if cfg.ObserveCommits {
+			res.Slowest = max(res.Slowest, time.Since(t0))
+		}
 		if c.resume != nil && c.resume.refused {
 			fired = false // the retry would have answered a different interrupt
+			if hold[q] > 0 && why == "" {
+				why = WhyGuard
+			}
 		}
 		if faulted {
 			if fired {
 				res.Fired++
 			} else {
 				res.NotFired++
+				if why != "" {
+					res.Why = append(res.Why, why)
+				}
 			}
 		}
 		if cfg.ObserveCommits && isResume {
@@ -534,6 +587,10 @@ func (c *client) mayRetry() bool {
 
 // once sends a single attempt and reads the full response.
 func (c *client) once(ctx context.Context, e trace.Entry) (response, error) {
+	return c.onceWith(ctx, e, c.http)
+}
+
+func (c *client) onceWith(ctx context.Context, e trace.Entry, hc *http.Client) (response, error) {
 	body := c.rewrite(e.Body)
 	req, err := http.NewRequestWithContext(ctx, e.Method, c.base+c.rewritePath(e.Path), bytes.NewReader(body))
 	if err != nil {
@@ -551,7 +608,7 @@ func (c *client) once(ctx context.Context, e trace.Entry) (response, error) {
 	if c.cfg.Arrival != nil {
 		c.cfg.Arrival(e.Seq)
 	}
-	resp, err := c.http.Do(req)
+	resp, err := hc.Do(req)
 	if err != nil {
 		return response{}, err
 	}
@@ -617,6 +674,67 @@ func (c *client) crashed(ctx context.Context, e trace.Entry, px *pgproxy.Proxy, 
 		r, err := c.send(ctx, e, 2)
 		return r, true, err
 	}
+}
+
+// held sends request e with the proxy armed to hold back the ack of commit k
+// on A's own connection, then sends a duplicate B while it is held. It fires
+// only if the hold was reached, B got an HTTP response within HoldTimeout,
+// and A had not answered by then: B ran its whole handler while A was parked
+// right after commit k. Otherwise why says what happened. A sync database
+// call inside an async handler freezes the event loop while held, so B
+// cannot run, and that shows up as not fired, never as a pass. A is released
+// in every case, B is always waited for, and A's response is the one the
+// client keeps, as under the barrier.
+func (c *client) held(ctx context.Context, e trace.Entry, px *pgproxy.Proxy, k int) (response, bool, string, error) {
+	// A may be parked for HoldTimeout, so the default 10s client timeout
+	// would cut it off and pose as a transport error.
+	hc := &http.Client{Timeout: c.cfg.HoldTimeout + 20*time.Second, Transport: &http.Transport{DisableKeepAlives: true}}
+	heldCh, release := px.ArmHold(e.Seq, k)
+	defer release()
+	type out struct {
+		r   response
+		err error
+	}
+	aCh, bCh := make(chan out, 1), make(chan out, 1)
+	go func() { r, err := c.onceWith(ctx, e, hc); aCh <- out{r, err} }()
+	var a out
+	aDone, bWait, fired, why := false, false, false, ""
+	select {
+	case a = <-aCh:
+		aDone, why = true, WhyFinished
+	case <-heldCh:
+		if !c.mayRetry() {
+			why = WhyGuard // B would answer an interrupt A just raised
+			break
+		}
+		bWait = true
+		go func() { r, err := c.onceWith(ctx, e, hc); bCh <- out{r, err} }()
+		timer := time.NewTimer(c.cfg.HoldTimeout)
+		select {
+		case a = <-aCh:
+			aDone, why = true, WhyNotHeld
+		case b := <-bCh:
+			bWait, fired = false, b.err == nil
+			if !fired {
+				why = WhyTimeout
+			}
+		case <-timer.C:
+			why = WhyTimeout
+		}
+		timer.Stop()
+	}
+	release()
+	if !aDone {
+		a = <-aCh
+	}
+	if bWait {
+		<-bCh
+	}
+	if a.err == nil && c.done(e, a.r, nil) {
+		return a.r, fired, why, nil
+	}
+	r, err := c.send(ctx, e, 2) // A's own retry policy continues
+	return r, fired, why, err
 }
 
 // done reports whether a response ends the sender's retries. A client stops
@@ -946,7 +1064,7 @@ func (sp Space) Admits(e trace.Entry, t FaultType) bool {
 		if !ok || !obs.Before {
 			return false
 		}
-		return t == Concurrent || !obs.After
+		return t == Concurrent || t == ConcurrentAt || !obs.After
 	}
 	return true
 }

@@ -78,5 +78,6 @@
     "script": "model.json",
     "interrupt_sql": "SELECT max(c.checkpoint_id) FROM checkpoints c, (SELECT thread_id AS t FROM pma_proposals WHERE proposal_id::text = $1) p WHERE c.thread_id = p.t AND c.checkpoint_ns = '' AND c.checkpoint_id = (SELECT max(c2.checkpoint_id) FROM checkpoints c2 WHERE c2.thread_id = p.t AND c2.checkpoint_ns = '') AND EXISTS (SELECT 1 FROM checkpoint_writes w WHERE w.thread_id = p.t AND w.checkpoint_ns = '' AND w.checkpoint_id = c.checkpoint_id AND w.channel = '__interrupt__')"
   },
+  "holds": true,
   "trace": "trace.jsonl"
 }

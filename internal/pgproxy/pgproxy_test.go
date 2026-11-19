@@ -128,3 +128,55 @@ func TestCrashHoldsBackTheAck(t *testing.T) {
 		t.Fatalf("held-back commit not durable: %d rows", n)
 	}
 }
+
+// A hold delays one connection's ack while others commit; on release the
+// client gets its ack and the row is durable.
+func TestHoldReleasesTheAck(t *testing.T) {
+	p, dsn := setup(t)
+	ctx := context.Background()
+	a, err := pgx.Connect(ctx, dsn)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer a.Close(ctx)
+	b, err := pgx.Connect(ctx, dsn)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer b.Close(ctx)
+	held, release := p.ArmHold(7, 1)
+	defer release()
+	p.Begin(7)
+	defer p.End()
+	done := make(chan error, 1)
+	go func() { _, err := a.Exec(ctx, `INSERT INTO t (v) VALUES (99)`); done <- err }()
+	select {
+	case <-held:
+	case <-time.After(3 * time.Second):
+		t.Fatal("hold point not reached")
+	}
+	if _, err := b.Exec(ctx, `INSERT INTO t (v) VALUES (100)`); err != nil {
+		t.Fatalf("another connection could not commit during the hold: %v", err)
+	}
+	select {
+	case err := <-done:
+		t.Fatalf("held client got an answer (%v) before release", err)
+	case <-time.After(200 * time.Millisecond):
+	}
+	release()
+	select {
+	case err := <-done:
+		if err != nil {
+			t.Fatalf("held client: %v", err)
+		}
+	case <-time.After(3 * time.Second):
+		t.Fatal("ack not forwarded after release")
+	}
+	var n int
+	if err := a.QueryRow(ctx, `SELECT count(*) FROM t WHERE v IN (99, 100)`).Scan(&n); err != nil || n != 2 {
+		t.Fatalf("rows=%d err=%v", n, err)
+	}
+	if got, _ := p.Commits(); got[7] != 2 {
+		t.Fatalf("%d commit points in the window, want 2", got[7])
+	}
+}

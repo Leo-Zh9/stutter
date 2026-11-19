@@ -1,6 +1,6 @@
 # Guarantees and the tests that hold them
 
-`make test` runs all of these. The agent-mode tests on miniagent need `make miniagent` first; without its virtualenv they are skipped unless `STUTTER_REQUIRE_AGENT=1`. The database-backed tests use the project-local Postgres, and under `make test` they fail rather than skip when it is missing.
+`make test` runs all of these. The agent-mode tests on miniagent, and the held-commit tests on miniasync (which runs on the same virtualenv), need `make miniagent` first; without it they are skipped unless `STUTTER_REQUIRE_AGENT=1`. The database-backed tests use the project-local Postgres, and under `make test` they fail rather than skip when it is missing.
 
 | Guarantee | Test |
 |---|---|
@@ -24,6 +24,8 @@
 | Crash-only bugs survive every lost and concurrent fault and are found at a crash point, shrunk 1-minimal | `TestCrashBugs` |
 | Commit points: explicit commit, autocommit write, read-only, rollback, failed commit, multi-statement implicit transaction, pipelined batch | `TestCommitPoints` |
 | A crash holds back the ack: the client hears nothing, the commit is durable | `TestCrashHoldsBackTheAck` |
+| A hold delays one connection's ack while another connection commits; on release the client gets its ack and the commit is durable | `TestHoldReleasesTheAck` |
+| Every fault notation, `concurrent(#n@commitK)` included, reads back as the fault that printed it | `TestFaultNotationRoundTrips` |
 | Id inference attributes ids, references and volatile paths across tables with overlapping ids, burned values, ids in JSON and as decimal strings, and rows outside every band | `TestInferAttributesIdsAndVolatiles` |
 | Inference stops rather than guess: a sequence with no owner, an owner that does not shift | `TestInferRejectsUnownedIds`, `TestInferRejectsOwnerThatDoesNotShift` |
 | Stripe signatures match an independent HMAC; the provider retry profile retries any non-2xx | `TestStripeSignature`, `TestProviderRetryProfile` |
@@ -36,15 +38,17 @@
 | Agent mode: tool calls stream in the chat-completions SSE format; embeddings are deterministic | `TestServerStreamsToolCalls`, `TestEmbeddingsAreDeterministic` |
 | Ids the scripted model minted compare equal across runs; a duplicated row is still a diff | `TestOpaqueModelIDs` |
 | Retry rules: a body key or a resume makes a request retryable; a thread id alone does not | `TestRetryRules` |
-| A resume admits concurrent only with an interrupt pending before it, lost and crash only with no new one after it | `TestResumeAdmission` |
+| A resume admits concurrent (barrier or held commit) only with an interrupt pending before it, lost and crash only with no new one after it | `TestResumeAdmission` |
 | A resume rule's thread must name a `*` path segment or a body field | `TestResumeThreadMustNameAWildcard` |
 | miniagent (LangGraph + PostgresSaver): no false alarm on lost, concurrent, and every crash point of both approvals | `TestAgentCorrectHasNoFalseAlarms` |
 | The double-clicked approval is caught every time and shrinks to chat + approve + concurrent | `TestAgentApprovalRaceIsDetected` |
 | A crash between the approval's claim and its refund loses the refund, and a crash point finds it | `TestAgentCrashBetweenClaimAndRefundIsDetected` |
+| miniasync (async FastAPI): the barrier and a hold at the sync commit do not fire; holding the async commit between check and insert charges twice in 3 of 3 runs and shrinks to that one request | `TestHeldCommitFindsAsyncRace` |
+| miniasync correct variant: no held commit fails, the async commit fires, and every other hold is not fired with its reason (no response, resume guard with the duplicate never sent, first attempt not held) | `TestHeldCommitCorrectHasNoFalseAlarms` |
 
 ## Mutation checks
 
-A passing test proves little until it is shown to fail when the mechanism it guards breaks. Each mechanism below was broken on purpose and its test was run. All 23 mutants were killed, one only after the test that kills it was written:
+A passing test proves little until it is shown to fail when the mechanism it guards breaks. Each mechanism below was broken on purpose and its test was run. All 25 mutants were killed, one only after the test that kills it was written:
 
 | Mutant | Killed by |
 |---|---|
@@ -62,6 +66,8 @@ A passing test proves little until it is shown to fail when the mechanism it gua
 | commit point ignores transaction status | `TestCommitPoints` |
 | a failed commit (ROLLBACK) counted as a commit | `TestCommitPoints` |
 | held connection closed instead of kept silent | `TestCrashHoldsBackTheAck` |
+| a held commit's ack never forwarded on release | `TestHoldReleasesTheAck` (and both miniasync tests: the first attempt times out) |
+| a held commit fires although the first attempt answered before the duplicate | `TestHeldCommitCorrectHasNoFalseAlarms` (`concurrent(#2@commit2)` fires) |
 | crash point never acted on | `TestCrashBugs` |
 | crash without the client's retry | `TestCorrectVariantHasNoFalseAlarms` |
 | inferred ids not resolved to their owner row | `TestInferAttributesIdsAndVolatiles` |

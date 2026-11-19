@@ -9,6 +9,7 @@ import (
 	"math/rand"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/jackc/pgx/v5"
 
@@ -40,6 +41,8 @@ type Outcome struct {
 	Failed   bool              `json:"failed"`
 	Diff     []oracle.DiffLine `json:"diff,omitempty"`
 	Err      string            `json:"error,omitempty"`
+	// Why says why a held-commit fault did not fire (replay.Why*).
+	Why []string `json:"why,omitempty"`
 }
 
 func key(seqs []int) string { return fmt.Sprint(seqs) }
@@ -141,7 +144,7 @@ func (r *Runner) Check(ctx context.Context, s replay.Schedule, seed int64) Outco
 	if res.ModelMisses > 0 {
 		return Outcome{Schedule: s, Diverged: true}
 	}
-	o := Outcome{Schedule: s, Fired: res.NotFired == 0}
+	o := Outcome{Schedule: s, Fired: res.NotFired == 0, Why: res.Why}
 	o.Diff = oracle.Diff(base, res.Canon)
 	o.Failed = o.Fired && len(o.Diff) > 0
 	return o
@@ -421,12 +424,22 @@ type CrashSpace struct {
 	// Pending is what both observation runs agreed on around each resume
 	// request; a resume they disagree on is left out (and so not faulted).
 	Pending map[int]replay.PendingObs `json:"resume_pending,omitempty"`
+	// Holds are concurrent(#n@commitK) for the same commit points, on
+	// requests that admit a concurrent duplicate; a hunt runs them only
+	// when the config opts in.
+	Holds      []replay.Fault `json:"-"`
+	HoldPoints int            `json:"concurrent_hold_points,omitempty"`
+	// HoldNondetermined lists hold-only requests (not crash-admitted, so
+	// not in Nondetermined) whose commit count differs between the runs.
+	HoldNondetermined []int `json:"concurrent_hold_nondeterministic_requests,omitempty"`
 }
 
 // CrashFaults counts commit points per request over two fault-free runs
 // through the wire proxy and returns crash(i,k) for every commit k of every
 // retryable request whose count agrees between the two runs. Requests whose
-// count differs are listed, never silently dropped.
+// count differs are listed, never silently dropped. It also lists the held
+// commits (CrashSpace.Holds) and sets the runner's HoldTimeout to three times
+// the slowest observed request, at least 1s.
 func (r *Runner) CrashFaults(ctx context.Context, keyHeader string) (CrashSpace, error) {
 	if keyHeader == "" {
 		keyHeader = trace.DefaultKeyHeader
@@ -436,6 +449,7 @@ func (r *Runner) CrashFaults(ctx context.Context, keyHeader string) (CrashSpace,
 	var counts [2]map[int]int
 	var pend [2]map[int]replay.PendingObs
 	var cs CrashSpace
+	var slowest time.Duration
 	for i := 0; i < 2; i++ {
 		res := replay.Run(ctx, obs, r.Trace, replay.Full(r.Trace), r.Seed+int64(i))
 		r.count()
@@ -448,7 +462,9 @@ func (r *Runner) CrashFaults(ctx context.Context, keyHeader string) (CrashSpace,
 		counts[i] = res.Commits
 		pend[i] = res.Pending
 		cs.Background += res.BgCommits
+		slowest = max(slowest, res.Slowest)
 	}
+	r.Cfg.HoldTimeout = max(3*slowest, time.Second)
 	cs.Pending = map[int]replay.PendingObs{}
 	for q, a := range pend[0] {
 		if b, ok := pend[1][q]; ok && a == b {
@@ -457,17 +473,28 @@ func (r *Runner) CrashFaults(ctx context.Context, keyHeader string) (CrashSpace,
 	}
 	sp := replay.Space{KeyHeader: keyHeader, Rules: r.Cfg.Rules, Pending: cs.Pending}
 	for _, e := range r.Trace {
-		if !sp.Admits(e, replay.Crash) {
+		crash, hold := sp.Admits(e, replay.Crash), sp.Admits(e, replay.ConcurrentAt)
+		if !crash && !hold {
 			continue
 		}
 		a, b := counts[0][e.Seq], counts[1][e.Seq]
 		if a != b {
-			cs.Nondetermined = append(cs.Nondetermined, e.Seq)
+			if crash {
+				cs.Nondetermined = append(cs.Nondetermined, e.Seq)
+			} else {
+				cs.HoldNondetermined = append(cs.HoldNondetermined, e.Seq)
+			}
 			continue
 		}
 		for k := 1; k <= a; k++ {
-			cs.Faults = append(cs.Faults, replay.Fault{Type: replay.Crash, Seq: e.Seq, K: k})
-			cs.Points++
+			if crash {
+				cs.Faults = append(cs.Faults, replay.Fault{Type: replay.Crash, Seq: e.Seq, K: k})
+				cs.Points++
+			}
+			if hold {
+				cs.Holds = append(cs.Holds, replay.Fault{Type: replay.ConcurrentAt, Seq: e.Seq, K: k})
+				cs.HoldPoints++
+			}
 		}
 	}
 	return cs, nil

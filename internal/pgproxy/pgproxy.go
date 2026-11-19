@@ -18,6 +18,10 @@
 // commit is durable, but the service never learns it happened. The caller
 // then kills the service.
 //
+// To hold, it delays the ReadyForQuery of the chosen commit on that one
+// connection until the caller releases it; every other connection, and every
+// later commit, goes through.
+//
 // Not seen as commit points: COMMIT AND CHAIN (status stays T), procedures
 // that COMMIT internally via CALL, and writes inside a function called from
 // a plain SELECT.
@@ -60,7 +64,20 @@ type Proxy struct {
 	crashed chan struct{}
 	held    bool
 	drop    chan struct{}
+	holdAt  struct {
+		seq, k         int
+		armed          bool
+		fired, release chan struct{}
+	}
 }
+
+type action int
+
+const (
+	forward action = iota
+	crash
+	hold
+)
 
 func (p *Proxy) dropped() <-chan struct{} {
 	p.mu.Lock()
@@ -124,6 +141,29 @@ func (p *Proxy) ArmCrash(seq, k int) {
 	p.mu.Lock()
 	p.crashAt.seq, p.crashAt.k, p.crashAt.armed = seq, k, true
 	p.mu.Unlock()
+}
+
+// ArmHold makes the proxy delay the ack of commit k (1-based) of request seq
+// on its own connection. held is closed when that ack is caught; release
+// forwards it (and disarms the hold if it never fired). A dropped or closed
+// proxy also ends the wait.
+func (p *Proxy) ArmHold(seq, k int) (held <-chan struct{}, release func()) {
+	fired, rel := make(chan struct{}), make(chan struct{})
+	p.mu.Lock()
+	p.holdAt.seq, p.holdAt.k, p.holdAt.armed = seq, k, true
+	p.holdAt.fired, p.holdAt.release = fired, rel
+	p.mu.Unlock()
+	var once sync.Once
+	return fired, func() {
+		once.Do(func() {
+			p.mu.Lock()
+			if p.holdAt.release == rel {
+				p.holdAt.armed = false
+			}
+			p.mu.Unlock()
+			close(rel)
+		})
+	}
 }
 
 // Resume clears a crash so the restarted service is served normally.
@@ -257,7 +297,11 @@ func (p *Proxy) backend(server, client net.Conn) {
 			next := body[0]
 			point := (status == 'T' && next == 'I' && committed) || (status == 'I' && next == 'I' && wrote)
 			status, committed, wrote = next, false, false
-			if point && p.commitPoint() {
+			if !point {
+				break
+			}
+			switch act, rel := p.commitPoint(); act {
+			case crash:
 				// Hold back this acknowledgement: the transaction is
 				// committed, and the service will never hear so. Keep the
 				// connection open and silent until the caller has killed
@@ -265,6 +309,13 @@ func (p *Proxy) backend(server, client net.Conn) {
 				// error and answer its client first.
 				<-p.dropped()
 				return
+			case hold:
+				// Only this connection waits; the ack is late, not lost.
+				select {
+				case <-rel:
+				case <-p.dropped():
+					return
+				}
 			}
 		}
 		if _, err := client.Write(append(append([]byte(nil), hdr...), body...)); err != nil {
@@ -273,22 +324,28 @@ func (p *Proxy) backend(server, client net.Conn) {
 	}
 }
 
-// commitPoint records one commit and reports whether to crash on it.
-func (p *Proxy) commitPoint() bool {
+// commitPoint records one commit and reports what to do with its ack; for a
+// hold, it also returns the channel that releases it.
+func (p *Proxy) commitPoint() (action, <-chan struct{}) {
 	p.mu.Lock()
 	defer p.mu.Unlock()
 	if p.held {
-		return true // after the crash point, nothing more gets through
+		return crash, nil // after the crash point, nothing more gets through
 	}
 	if p.window < 0 {
 		p.bg++
-		return false
+		return forward, nil
 	}
 	p.commits[p.window]++
 	if p.crashAt.armed && p.window == p.crashAt.seq && p.commits[p.window] == p.crashAt.k {
 		p.held = true
 		close(p.crashed)
-		return true
+		return crash, nil
 	}
-	return false
+	if p.holdAt.armed && p.window == p.holdAt.seq && p.commits[p.window] == p.holdAt.k {
+		p.holdAt.armed = false // one ack only: the duplicate's commits go through
+		close(p.holdAt.fired)
+		return hold, p.holdAt.release
+	}
+	return forward, nil
 }

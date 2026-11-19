@@ -245,8 +245,8 @@ func huntCmd(ctx context.Context, root string, args []string) {
 	res, err := hunt.Run(ctx, cfg, r, *out, !*noCrash, say)
 	must(err)
 	for i := range res.Findings {
-		if hasCrash(res.Findings[i].Minimal) {
-			res.Findings[i].CurlRepro = -1 // a crash point cannot be reproduced with curl
+		if needsProxy(res.Findings[i].Minimal) {
+			res.Findings[i].CurlRepro = -1 // a crash point or a held commit cannot be reproduced with curl
 			res.Findings[i].Dir, _ = filepath.Rel(*out, res.Findings[i].Dir)
 			continue
 		}
@@ -266,7 +266,7 @@ func huntCmd(ctx context.Context, root string, args []string) {
 func checkCmd(ctx context.Context, root string, args []string) {
 	fs := flag.NewFlagSet("check", flag.ExitOnError)
 	cfgPath := fs.String("config", "stutter.json", "target config")
-	faultArg := fs.String("fault", "", "faults, e.g. 'lost(#2)' or 'crash(#0@commit3),concurrent(#4)'")
+	faultArg := fs.String("fault", "", "faults, e.g. 'lost(#2)', 'concurrent(#1@commit2)' or 'crash(#0@commit3),concurrent(#4)'")
 	envs := fs.String("env", "", "extra env for the service, comma separated")
 	n := fs.Int("n", 1, "runs")
 	seed := fs.Int64("seed", 1, "seed")
@@ -298,6 +298,9 @@ func checkCmd(ctx context.Context, root string, args []string) {
 			fail(o.Err)
 		}
 		fmt.Printf("run %d: fired=%v diverged=%v failed=%v\n", i+1, o.Fired, o.Diverged, o.Failed)
+		if len(o.Why) > 0 {
+			fmt.Printf("  not fired: %s\n", strings.Join(o.Why, "; "))
+		}
 		if o.Failed {
 			failed++
 		}
@@ -327,9 +330,10 @@ func modelCmd(args []string) {
 	select {}
 }
 
-func hasCrash(s replay.Schedule) bool {
+// needsProxy: stopping a service at a commit takes stutter's wire proxy.
+func needsProxy(s replay.Schedule) bool {
 	for _, f := range s.Faults {
-		if f.Type == replay.Crash {
+		if f.Type == replay.Crash || f.Type == replay.ConcurrentAt {
 			return true
 		}
 	}

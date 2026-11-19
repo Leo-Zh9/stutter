@@ -1,0 +1,3 @@
+{"seq":0,"kind":"api","method":"POST","path":"/pay","headers":{"Content-Type":"application/json","Idempotency-Key":"k-1"},"body":{"account":"acct-1","amount_cents":500},"status":200,"resp_body":{"key":"k-1","account":"acct-1","amount_cents":500}}
+{"seq":1,"kind":"api","method":"POST","path":"/threads/t1/resume","headers":{"Content-Type":"application/json"},"body":{"decision":"approve"},"status":200,"resp_body":{"thread":"t1","status":"done"}}
+{"seq":2,"kind":"api","method":"POST","path":"/notes","headers":{"Content-Type":"application/json","Idempotency-Key":"k-2"},"body":{"text":"hello"},"status":200,"resp_body":{"key":"k-2"}}

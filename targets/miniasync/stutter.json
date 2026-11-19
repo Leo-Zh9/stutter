@@ -1,0 +1,14 @@
+{
+  "name": "miniasync",
+  "start": ["../miniagent/.venv/bin/python", "app.py", "--port", "{PORT}"],
+  "env": ["DATABASE_URL={DATABASE_URL_SOCKET}"],
+  "health": "/healthz",
+  "start_timeout": "40s",
+  "prepare": {"migrate_cmd": ["../miniagent/.venv/bin/python", "app.py", "--migrate"], "migrate_env": ["DATABASE_URL={DATABASE_URL_SOCKET}"]},
+  "retry_rules": [
+    {"method": "POST", "path": "/threads/*/resume", "resume": {"thread": "path:2"}}
+  ],
+  "model": {"script": "model.json", "interrupt_sql": "SELECT n::text FROM steps WHERE thread = $1"},
+  "holds": true,
+  "trace": "trace.jsonl"
+}

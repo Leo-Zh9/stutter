@@ -109,6 +109,11 @@ type Config struct {
 	// Model is a scripted model (agentstub) served to the service at
 	// {MODEL_URL} on every run: no recording, no paid calls.
 	Model *Model `json:"model,omitempty"`
+	// Holds adds concurrent(#n@commitK) to a hunt: the ack of each commit
+	// point is held while a duplicate is sent. Off by default; it costs one
+	// run per commit point (two when it fires), plus HoldTimeout each time
+	// the duplicate cannot run.
+	Holds bool `json:"holds,omitempty"`
 
 	script *agentstub.Script
 
