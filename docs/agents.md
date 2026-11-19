@@ -64,6 +64,7 @@ The model's choices are fixed by the script, not sampled. That is the point: the
 |---|---|
 | `lost(#n)` | The chat or approve response is lost and the client resends it. |
 | `concurrent(#n)` | A double-clicked approval, or a chat message sent twice at once. The lock barrier holds both attempts at their first write to an app table; the checkpointer's tables stay unlocked so its writes cannot release them early. |
+| `concurrent(#n@commitK)` | The same duplicate, sent while the first attempt is parked right after its K-th commit (opt-in, `"holds": true`). This is the only window an async app offers, since it switches requests only at awaits. A sync database call inside an `async def` route freezes the whole worker, so neither concurrency fault can place a duplicate there. See [faults.md](faults.md#holding-at-a-commit). |
 | `crash(#n@commitK)` | The service is killed right after the K-th commit of a request, a checkpoint write or an app write, then restarted, and the client retries. |
 
 **Resumes are retried only when it is safe to.** An approval carries no per-action id, but an interrupt can be answered only once, so a second copy is a duplicate by definition. Two rules keep stutter from blaming the app for a client's mistake:

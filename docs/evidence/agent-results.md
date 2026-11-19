@@ -55,6 +55,22 @@ Root causes:
 
 **Where the rule and the wording disagree.** The protocol counts a finding when a business-table row is duplicated or dropped. The claim's template says "a tool's side effect ran twice or never". Causes 1 and 3 fit both: an approved tool call never ran. Cause 2 duplicates a run and a pending approval, not a tool call. Cause 4 loses the receipt of a tool call that ran once. Reported under the rule as written, M is 4. Under the template's wording alone, it is 2.
 
+## After the blind phase: held-commit re-run
+
+`concurrent` fired 0 times in either hunt, so concurrency was not tested. Afterwards, an opt-in fault `concurrent(#n@commitK)` was added (`dc8d3a9`). Both apps were hunted again with it, at the same pinned commits, with the same configs plus `"holds": true`. This is not blind: the source had been read, and the fault was designed after seeing why the barrier failed. The owner's go-ahead to fix concurrency covered running the third-party code again. The blind results above are untouched, in `hunt/`. The re-runs are in `hunt-holds/`.
+
+| | Forge | paid-media-agent |
+|---|---|---|
+| Held-commit schedules | 47 | 126 |
+| Fired | 31 | 71 |
+| Changed the final state | 4 | 0 |
+| New root causes | 0 | 0 |
+
+- **Forge:** the four findings are root cause 2 without a crash. A duplicate sent while the first run is in flight gets 200 with a second `run_id` and leaves a second pending approval.
+- **paid-media-agent:** sync database calls in async routes freeze the single worker. So no duplicate ran between an approval's claim and its execution under either fault. Two workers were not tested.
+
+M stays 4 (2 strict). Details: [Forge](../targets/forge.md#held-commit-re-run-after-the-blind-phase), [paid-media-agent](../targets/paid-media-agent.md#held-commit-re-run-after-the-blind-phase).
+
 ## Disclosures
 
 - **stutter changed during the hunts.** Three changes, all in `f454ed1`:

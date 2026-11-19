@@ -481,7 +481,7 @@ func Markdown(r *Result) string {
 	}
 	fmt.Fprintf(&b, "## Findings: %d distinct minimal reproductions\n\n", len(r.Findings))
 	for _, f := range r.Findings {
-		fmt.Fprintf(&b, "### Finding %d\n\nReproduced in %d of %d fresh replays and by repro.sh (curl, fresh databases; -1 = crash finding, not scriptable) %d of %d times; 1-minimal: %v (%d single removals could not fire and count as passing). Reached from %d single-fault schedules: %s.\n\n```\n%s\n```\n\nDelivery order: %s\n\nState diff (+ only in the faulted run, - only in the in-order run):\n\n```\n",
+		fmt.Fprintf(&b, "### Finding %d\n\nReproduced in %d of %d fresh replays and by repro.sh (curl, fresh databases; -1 = needs the wire proxy (crash or held commit), not scriptable) %d of %d times; 1-minimal: %v (%d single removals could not fire and count as passing). Reached from %d single-fault schedules: %s.\n\n```\n%s\n```\n\nDelivery order: %s\n\nState diff (+ only in the faulted run, - only in the in-order run):\n\n```\n",
 			f.ID, f.Replayed, f.ReplayOf, f.CurlRepro, f.ReplayOf, f.OneMinimal, f.Unjudged, len(f.FoundBy), strings.Join(f.FoundBy, ", "), strings.Join(f.Steps, "\n"), strings.Join(f.Delivery, ", "))
 		for _, d := range f.Diff {
 			fmt.Fprintf(&b, "%s %s x%d %s\n", d.Sign, d.Table, d.Count, d.Row)

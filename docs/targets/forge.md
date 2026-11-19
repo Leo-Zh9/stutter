@@ -70,7 +70,7 @@ Not filed. This project does not file upstream.
 
 > **Retry with the same Idempotency-Key after a crash starts a second run**
 >
-> `POST /v1/projects/{id}/run` with `stream: false` and an `Idempotency-Key` checks the key in `idempotency` before creating the run, but stores it only after `run_to_completion` returns, and by default in process memory. If the API process dies while the run is in flight (deploy, OOM), the client's retry with the same key creates a new thread and run. The first run stays `queued`, `running` or `interrupted`. With a human-input node, the one request now has two pending approvals, and any tool before the gate runs twice.
+> `POST /v1/projects/{id}/run` with `stream: false` and an `Idempotency-Key` checks the key in `idempotency` before creating the run, but stores it only after `run_to_completion` returns, and by default in process memory. If the API process dies while the run is in flight (deploy, OOM), the client's retry with the same key creates a new thread and run. The first run stays `queued`, `running` or `interrupted`. With a human-input node, the one request now has two pending approvals, and any tool before the gate runs twice. A crash is not needed: a retry sent while the first run is still in flight gets 200 with a second `run_id`.
 >
 > Reproduced against 25074df with PostgreSQL app and checkpoint databases: kill the process after the first request's run commits, restart it, and resend the request with the same key. The `runs` table now holds two runs for the one request.
 >
@@ -87,3 +87,28 @@ Not filed. This project does not file upstream.
 ## Counted under the protocol
 
 Two distinct root causes. Cause 2 drops a business row: the approved `memories` row is never written. Cause 1 duplicates rows in `runs` and `threads` and leaves a second pending approval. In this workload the duplicated run did not repeat a tool call. The claim's wording ("a tool's side effect ran twice or never") fits cause 2 directly. Cause 1 fits it only through the run and approval it duplicates. [agent-results.md](../evidence/agent-results.md) gives the count both ways.
+
+## Held-commit re-run (after the blind phase)
+
+Not part of the blind protocol. After the blind results were pushed, `concurrent(#n@commitK)` was added to stutter ([faults.md](../faults.md#holding-at-a-commit)) because `concurrent` had never fired here. The same pinned commit, config (plus `"holds": true`), fixtures, model script and trace were then hunted again with `-lanes 3`. The owner's go-ahead to fix concurrency covered this re-run. The source had already been read by then. Results: [hunt-holds/REPORT.md](../../targets/agents/forge/hunt-holds/REPORT.md), [hunt-holds/results.json](../../targets/agents/forge/hunt-holds/results.json). The hunt took 3785 s.
+
+| Fault | Schedules | Fired | Not fired | Nondetermined | Changed the final state |
+|---|---|---|---|---|---|
+| lost | 4 | 4 | 0 | 0 | 0 |
+| concurrent | 4 | 0 | 4 | 0 | 0 |
+| concurrent@commit | 47 | 31 | 15 | 1 | 4 |
+| crash after commit | 47 | 47 | 0 | 0 | 42 |
+
+The lost, concurrent and crash rows match the blind hunt: the same 42 crash findings, and the same requests and counts.
+
+**Why the barrier never fired.** For a new turn, `run_admission` (`forge/services/quota.py`) takes a per-tenant `asyncio` lock around the quota check and `create_run`. A resume takes the per-thread lock. The barrier holds A at its first write, inside that lock. B makes its reads, then waits on the lock, so it never reaches a write within 500 ms. Once the barrier timed out, B ran anyway. On `#0` and `#2` it left an extra run and thread, but those runs counted as not fired and were thrown away.
+
+**What the held commit found.** Four findings (18, 19, 45, 46), all 1-minimal and reproduced in 10 of 10 replays: `concurrent(#0@commit2)`, `#0@commit9`, `#2@commit3` and `#2@commit10`. Each leaves one extra `runs` row at `interrupted` and one extra `threads` row: the effect the barrier threw away. No crash is involved. While the first attempt is still in flight, the duplicate with the same `Idempotency-Key` gets 200 with a different `run_id` and its own pending approval. The process never restarts, so this would happen with Redis too.
+
+**Root cause.** Cause 1 above, not a new one. The key is stored only after `run_to_completion` returns, so nothing answers a duplicate while the run is in flight. The blind write-up inferred this from the code; this re-run observed it.
+
+**Where it did not fire.** On `#0` at commits 1 and 3–8, and on `#2` at commits 2 and 4–9, the duplicate got no response within the hold timeout. That fits the per-tenant lock around commit 1, and LangGraph's checkpoint writes going through one shared saver connection, which the held commit blocks. Neither was traced further. `#2@commit1` was not on A's path: A answered while it was held (one of the 22 background commits seen while idle). On the resumes `#1` and `#3`, every held commit that fired passed. In the one point probed, `#1@commit5`, the duplicate got `409 no interrupted run to resume on this thread`. One held commit was nondetermined. The report counts it but does not name it.
+
+The duplicates' responses quoted here (`200` with a new `run_id`, `409`) came from `stutter check` runs of a throwaway debug build that printed B's response. That build was not committed.
+
+**Counting.** M is unchanged. The issue draft for cause 1 now says a crash is not needed.

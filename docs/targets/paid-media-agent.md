@@ -103,3 +103,28 @@ Not filed. This project does not file upstream.
 ## Counted under the protocol
 
 Two distinct root causes. Cause 1 drops a row, and the approved change never runs. Cause 2 drops the receipt row, though the change itself ran once. The claim's wording ("a tool's side effect ran twice or never") fits cause 1 directly, and fits cause 2 only through the record it loses. [agent-results.md](../evidence/agent-results.md) gives the count both ways.
+
+## Held-commit re-run (after the blind phase)
+
+Not part of the blind protocol. After the blind results were pushed, `concurrent(#n@commitK)` was added to stutter ([faults.md](../faults.md#holding-at-a-commit)) because `concurrent` had never fired here. The same pinned commit, config (plus `"holds": true`), model script and trace were then hunted again with `-lanes 4`. The owner's go-ahead to fix concurrency covered this re-run. The source had already been read by then. Results: [hunt-holds/REPORT.md](../../targets/agents/paid-media-agent/hunt-holds/REPORT.md), [hunt-holds/results.json](../../targets/agents/paid-media-agent/hunt-holds/results.json). The hunt took 3916 s.
+
+| Fault | Schedules | Fired | Not fired | Nondetermined | Changed the final state |
+|---|---|---|---|---|---|
+| lost | 3 | 3 | 0 | 0 | 0 |
+| concurrent | 3 | 0 | 3 | 0 | 0 |
+| concurrent@commit | 126 | 71 | 53 | 2 | 0 |
+| crash after commit | 126 | 116 | 0 | 10 | 89 |
+
+**Crash row versus the blind hunt.** Four points that failed in the blind hunt did not fail this time: `crash(#1@commit10)`, `#1@commit11`, `#1@commit19` and `#5@commit17`. One that had not failed before did: `#5@commit21`. Re-run alone with the new build (`stutter check -n 4`), all five failed 4 of 4. So this is run-to-run variance on requests whose checkpoint writes race in the background, not a change in the crash fault. Both counted causes are still found: cause 1 at `#1` commits 12–15 and 17 and at `#5` commits 10–16; cause 2 at `#1` commit 21. There are 9 distinct end-state changes, as before.
+
+**Why neither concurrency fault reaches the window that matters.** `async def approve` calls the sync `ProposalService.approve` on a sync `psycopg_pool.ConnectionPool`. The executor's repository calls are sync too. Each one blocks the event loop of the single uvicorn worker. While A is inside them, no other request runs.
+
+- The barrier holds A at its first write, inside such a call, so B is never served. That is why it never fired. Once it timed out, B ran later and minted an extra claim (`+ pma_approvals`), which is the not-counted cause 3.
+- The held commit did not fire at any sync commit: 53 points, all `no response within HoldTimeout`. These are `#1` commits 1–8, 12–22, 24, 46 and 47; `#3` commits 1–7, 31 and 32; and `#5` commits 1–8, 12–18, 20–24, 46 and 47.
+- It fired at 71 checkpoint commits, and all passed. But those commits are LangGraph's background checkpoint writes, which A does not wait for. A kept running while one was held. At the two approve points probed (`#1@commit9`, `#1@commit30`), the duplicate got `403 not_awaiting_approval: verified`: by the time B ran, A had already executed and verified the change. At `#3@commit10`, the duplicate reject got 500, the unmapped `InvalidTransition` already noted under "Also seen".
+
+So a duplicate approve cannot run between A's claim and its `executing` transition in one worker process, under either fault. Whether two workers or replicas could execute twice in that window was not tested. Two held commits were nondetermined. The report counts them but does not name them.
+
+The duplicates' responses quoted here came from `stutter check` runs of a throwaway debug build that printed B's response. That build was not committed.
+
+**Counting.** No new finding. M is unchanged.
